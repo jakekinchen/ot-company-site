@@ -1,0 +1,269 @@
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ */
+
+ @import 'tailwindcss/base';
+ @import 'tailwindcss/components';
+ @import 'tailwindcss/utilities';
+
+:root {
+	--base-margin: 5rem;
+	--accent: #1079D0;
+	--blue: #1079d0;
+	--filter-blue: invert(33%) sepia(71%) saturate(3814%) hue-rotate(192deg) brightness(93%) contrast(87%);
+	--cold-white: #E2EDFF;
+	--light-blue: #63A7E0;
+    --orange: #FF8500;
+    --dark-orange: #FF5700;
+    --dark-blue: #083D68;
+	--filter-dark-blue: invert(18%) sepia(16%) saturate(7409%) hue-rotate(188deg) brightness(87%) contrast(94%);
+    --white: #FFFFFF;
+	--filter-white: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+	--black: 15, 18, 25;
+	--filter-black: saturate(100%) brightness(0%);
+	--gray: 96, 115, 159;
+	--gray-light: 229, 233, 240;
+	--gray-dark: 34, 41, 57;
+	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--blue-gradient: 90deg, rgba(var(--blue), 50%), #fff;
+	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
+		0 16px 32px rgba(var(--gray), 33%);
+	--mobile: 960px;
+}
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'K2D';
+	src: url('/fonts/K2D/K2D-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'K2D';
+	src: url('/fonts/K2D/K2D-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+.filter-black {
+	filter: var(--filter-black);
+  }
+
+.filter-blue {
+	filter: var(--filter-blue);
+}
+
+.filter-dark-blue {
+	filter: var(--filter-dark-blue);
+}
+
+.filter-white {
+	filter: var(--filter-white);
+}
+
+.text-dark-blue {
+	color: var(--dark-blue);
+}
+
+.text-blue {
+	color: var(--blue);
+}
+
+.text-light-blue {
+	color: var(--light-blue);
+}
+
+.text-orange {
+	color: var(--orange);
+}
+
+.text-dark-orange {
+	color: var(--dark-orange);
+}
+
+.text-white {
+	color: var(--white);
+}
+
+.text-gray {
+	color: rgb(var(--gray));
+}
+
+.text-gray-dark {
+	color: rgb(var(--gray-dark));
+}
+
+.text-gray-light {
+	color: rgb(var(--gray-light));
+}
+
+.bg-blue {
+	background-color: var(--blue);
+}
+
+.bg-light-blue {
+	background-color: var(--light-blue);
+}
+
+.bg-orange {
+	background-color: var(--orange);
+}
+
+.bg-dark-orange {
+	background-color: var(--dark-orange);
+}
+
+.bg-dark-blue {
+	background-color: var(--dark-blue);
+}
+
+.bg-white {
+	background-color: var(--white);
+}
+
+body {
+	font-family: 'K2D', sans-serif;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	text-align: left;
+	background: linear-gradient(var(--blue-gradient)) no-repeat;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: rgb(var(--gray-dark));
+	font-size: 1rem;
+	line-height: 1.7;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: rgb(var(--black));
+	line-height: 1.2;
+}
+h1 {
+	font-size: 6rem;
+	color: var(--blue);
+}
+h2 {
+	font-size: 2.441em;
+	color: var(--blue);
+}
+h3 {
+	font-size: 1.953em;
+}
+h4 {
+	font-size: 1.563em;
+}
+h5 {
+	font-size: 1.25em;
+}
+strong,
+b {
+	font-weight: 700;
+}
+a {
+	color: var(--accent);
+}
+a:hover {
+	color: var(--accent);
+}
+p {
+	margin-bottom: 1em;
+}
+.prose p {
+	margin-bottom: 2em;
+}
+textarea {
+	width: 100%;
+	font-size: 1rem;
+}
+input {
+	font-size: 1rem;
+}
+table {
+	width: 100%;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+code {
+	padding: 2px 5px;
+	background-color: rgb(var(--gray-light));
+	border-radius: 2px;
+}
+pre {
+	padding: 1.5em;
+	border-radius: 8px;
+}
+pre > code {
+	all: unset;
+}
+blockquote {
+	border-left: 4px solid var(--accent);
+	padding: 0 0 0 20px;
+	margin: 0px;
+	font-size: 1.333em;
+}
+hr {
+	border: none;
+	border-top: 1px solid rgb(var(--gray-light));
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+	clip: rect(1px 1px 1px 1px);
+	/* maybe deprecated but we need to support legacy browsers */
+	clip: rect(1px, 1px, 1px, 1px);
+	/* modern browsers, clip-path works inwards from each corner */
+	clip-path: inset(50%);
+	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+	white-space: nowrap;
+}
+
+.gradient-button {
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(to right, #FF8500, #FF5700);
+	padding: 10px 20px;
+	border-radius: 30px;
+	font-size: 1.25rem;
+	color: white;
+	min-width: 150px;
+	max-width: 200px;
+	height: 50px; /* Adjusted fixed height */
+	font-weight: 600;
+	border: none;
+	transition: background 0.7s ease-in-out;
+}
+.gradient-button:hover, .gradient-button:focus {
+	background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #FF8500, #FF5700);
+}

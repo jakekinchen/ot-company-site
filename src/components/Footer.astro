@@ -1,0 +1,82 @@
+---
+let { theme = "blue", gradient = false, background = 'blue' } = Astro.props;
+let textColor, bgColor, logoColor, iconColor;
+if (theme == 'blue'){
+    textColor = 'text-white';
+    bgColor = 'bg-blue';
+    logoColor = 'filter-white';
+    iconColor = 'filter-white';
+} else if (theme == 'dark-blue'){
+    textColor = 'text-white';
+    bgColor = 'bg-dark-blue';
+    logoColor = 'filter-white';
+    iconColor = 'filter-white';
+} else if (theme == 'white'){
+    textColor = 'text-dark-blue';
+    bgColor = 'bg-white';
+    logoColor = 'filter-dark-blue';
+    iconColor = 'filter-dark-blue';
+}else{
+    textColor = 'text-dark-blue';
+    bgColor = 'bg-white';
+    logoColor = 'filter-dark-blue';
+    iconColor = 'filter-dark-blue';
+}
+if (background == 'transparent'){
+    bgColor = 'bg-opacity-0';
+}
+const today = new Date();
+---
+
+<footer class={`${bgColor} mt-auto flex-shrink-0 p-8`}>
+    <div class="flex justify-between items-center">
+        <div class="text-left">
+            <a href="/">
+                <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={`${gradient ? " " : logoColor} w-40`} />
+            </a>
+            <p class={`${textColor} mt-2`}>A Beautiful Motto For OneTier</p>
+        </div>
+        <div>
+            <ul class="grid grid-cols-2 gap-4 list-none p-0 m-0">
+                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Request Demo</a></li>
+                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Resources</a></li>
+                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Products</a></li>
+                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Solutions</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="flex justify-between items-center mt-4">
+        <p class={`${textColor} footer-left`}>© {today.getFullYear()} OneTier. All rights reserved.</p>
+        <div class="social-links footer-right flex justify-end mr-8">
+            <ul class="flex">
+                <a href="/" class={iconColor}>
+                    <img src="/social-media-icons/instagram.svg" alt="Instagram" />
+                </a>
+                <a href="/" class={iconColor}>
+                    <img src="/social-media-icons/x.svg" alt="X" />
+                </a>
+                <a href="/" class={iconColor}>
+                    <img src="/social-media-icons/facebook.svg" alt="Facebook" />
+                </a>
+                <a href="/" class={iconColor}>
+                    <img src="/social-media-icons/rss.svg" alt="RSS" />
+                </a>
+            </ul>
+        </div>
+    </div>
+</footer>
+<style>
+    footer {
+        flex-shrink: 0;
+        position: absolute;
+        top: 8560px;
+        width: 100%;
+    }
+    
+    .social-links img {
+        border-radius: 0;
+        width: 1.75em;
+        height: 1.75em;
+        margin-left: 1rem;
+    }
+</style>

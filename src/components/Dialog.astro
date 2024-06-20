@@ -1,0 +1,196 @@
+---
+const { open } = Astro.props;
+---
+<dialog id="demoModal" class="modal-content rounded-3xl max-w-screen-lg ">
+    <form method="dialog">
+        <button style="color: var(--blue);" class="close text-blue cursor-pointer " aria-label='Close'>x</button>
+		<div class="m-4 space-y-2">
+        <h2 class="no-appearance text-blue mb-2 max-w-xl text-center mx-auto">Find the solution in our portfolio that fits your business</h2>
+        <p class="text-blue-500 text-xl mb-2">CONTACT US</p>
+        <div class="grid grid-cols-1 gap-4 space-y-4">
+			<!-- First row, one whole-width email address input -->
+			<div>
+				<input type="email" name="email" placeholder="Email Address" class="appearance-none rounded-3xl placeholder-white rounded-xxl" required>
+			<div class="grid grid-cols-2 gap-1 mb:grid-cols-none">
+				<input type="text" name="first-name" placeholder="First Name" class="placeholder-white" required>
+				<input type="text" name="last-name" placeholder="Last Name" class="placeholder-white" required>
+			</div>
+			<div class="grid grid-cols-2 gap-1 mb:grid-cols-none">
+				<input type="text" name="title" placeholder="Title" class="placeholder-white" required>
+				<input type="tel" name="phone" placeholder="Phone Number" class="placeholder-white" required>
+			</div>
+			<!-- Third row, one full-width textarea -->
+			<div class="col-span-2">
+				<label class="text-blue">What can we help you solve?</label>
+				<textarea name="message" rows="4" class="rounded-xl border-blue border-2" ></textarea>
+			</div>
+		</div>
+		<div class="flex justify-center">
+			<button type="submit" id="submitButton" class="submit-button bg-blue text-white rounded-3xl text-lg px-4 py-2">Submit</button>
+		</div>
+	</div>
+    </form>
+</dialog>
+<script>
+	(() => {
+		
+        const modal = document.getElementById('demoModal');
+        if (!modal) return;
+        const closeBtn = modal.querySelector('.close');
+        if (!closeBtn) return;
+
+        // Listen for openDialog custom event and show modal when fired
+        window.addEventListener('openDialog', () => {
+            console.log('openDialog event fired');
+            modal.showModal();
+        });
+        closeBtn.addEventListener('click', () => modal.close());
+		
+        // Optional: Close on backdrop click
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.close();
+            }
+        });
+		console.log('modal script');
+    })();
+</script>
+<style>
+
+	header {
+		margin: 0;
+		padding: 0 2em;
+		display: flex;
+		justify-content: center;
+		background: white;
+	}
+
+    .modal-content {
+		background-color: #fefefe;
+		border: none;
+		padding: 2rem;
+		width: 70vw; /* Adjusted width */
+		border-radius: 10px; /* Rounded corners */
+		box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+		text-align: center; /* Center the text inside the modal */
+		position: relative; /* Ensure relative positioning for child elements */
+	}
+
+	p {
+		font-size: 1rem;
+		margin-bottom: 1em;
+		color: var(--blue);
+	}
+
+	.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-rows: auto auto 1fr; /* Define the height of rows */
+    gap: 1em; /* Space between grid items */
+    align-items: start; /* Align grid items to start at their row */
+}
+
+	/* Specific grid areas for clarity and control */
+	.form-grid label, .form-grid input, .form-grid textarea {
+		grid-column: span 1; /* Most fields span one column */
+	}
+
+	/* Make textarea or a large input field span both columns */
+	.form-grid .full-width {
+		grid-column: 1 / -1; /* Span from the first to the last line */
+	}
+
+	/* Style adjustments for specific types of inputs, can be adjusted as needed */
+	input[type="email"],
+	input[type="text"],
+	input[type="tel"] {
+		/* Inputs take full width of their cell */
+	}
+
+	textarea {
+		/* Textarea spans both columns if needed */
+		grid-column: span 2;
+	}
+
+	label {
+		width: 100%;
+		margin-top: 0.5em;
+		font-size: 1em;
+		text-align: left; /* Align labels to the left */
+	}
+
+	input{
+		width: 100%;
+		padding: 10px;
+		margin: 0.5em 0;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		background-color: #3F6FBF; /* Blue background */
+		color: white; /* White text */
+	}
+
+	textarea {
+		grid-column: span 2; /* Span both columns */
+	}
+
+
+	/* Close Button */
+	.close {
+		top: .5rem;
+		right: 1.2rem;
+		color: #aaa;
+		font-size: 28px;
+		font-weight: bold;
+		background: none;
+		border: none;
+		cursor: pointer;
+		position: absolute; /* Absolute positioning */
+		outline: none; /* Remove outline */
+	}
+
+	.close:hover,
+	.close:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	/* Modal Backdrop */
+	.modal::backdrop {
+		background: rgba(0, 0, 0, 0.8);
+		backdrop-filter: blur(5px);
+	}
+
+	h2 {
+    color: var(--blue);
+    font-size: 2.5rem;  /* Default font size for larger screens */
+}
+
+@media (max-width: 640px) {
+    .dialog {
+        width: calc(100% - 2rem); /* Adjust based on padding or margin needs */
+        min-width: 90vw; /* Minimum width of the dialog */
+    }
+    h2 {
+        /* Smooth transition from 2.5rem at 640px to 1rem at 320px */
+        font-size: 1.5rem;
+		width: 90%;
+    }
+}
+
+@media (min-width: 641px) {
+    .dialog {
+        width: 90%; /* Suitable percentage/fixed width for larger screens */
+        max-width: 600px; /* Example fixed max-width for larger screens */
+    }
+}
+
+@media (max-width: 320px) {
+    h2 {
+        font-size: 1rem; /* Minimum font size */
+    }
+}
+
+	
+</style>
+

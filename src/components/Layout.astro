@@ -1,0 +1,48 @@
+---
+import BaseHead from './BaseHead.astro';
+import Header from './Header.astro';
+import Dialog from './Dialog.astro';
+import Footer from './Footer.astro';
+const { title, description, gradient=true, headerBackground='transparent', headerIconColor='blue', footerBackground='white' } = Astro.props;
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <script is:inline>
+      // Add your scripts here
+  </script>
+</head>
+<body class="flex flex-col min-h-screen pt-[28px]">
+  <Header background={headerBackground} gradient={gradient} iconColor={headerIconColor} />
+  <Dialog />
+  <main class="flex-grow">
+    <slot /> <!-- This is where the page-specific content will go -->
+  </main>
+  <Footer theme={footerBackground} gradient={gradient} />
+</body>
+</html>
+
+<style>
+  h1 {
+    /* Custom styles for h1 */
+  }
+  html, body {
+    height: 100%; /* Ensures the html and body tags take up at least the full viewport height */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    position: relative; /* For absolute positioning of children */
+    min-height: 100vh;
+}
+body {
+    position: relative; /* Establishes a positioning context for absolute positioning */
+    min-height: 100vh; /* Minimum height is 100% of the viewport height */
+    display: flex;
+    flex-direction: column;
+}
+  main {
+  flex: 1 0 auto;
+}
+</style>

@@ -1,0 +1,36 @@
+---
+const {
+  iconSrc = "/productIcons/Risk Engagement.svg",
+  productName = "Risk Engagement",
+  title = "Respond swiftly and decisively",
+  subtitle = "Assess and address your cyber risk head on. Become compliant in your choice of frameworks that align with business objectives.",
+  url = "/products/risk-engagement",
+  justify = "left", // Default justification
+  outerClass = "", // Additional classes for outer div
+  containerClass = "", // Additional classes for container
+  textClass = "", // Additional classes for text elements
+  iconClass = "", // Additional classes for large icon
+} = Astro.props;
+
+const isLeft = justify === "left";
+const containerClasses = isLeft ? `flex-col items-start mr-8 w-2/6 ${containerClass}` : `flex-col items-end ml-8 w-2/6 ${containerClass}`;
+const textAlignClass = isLeft ? `text-left ${textClass}` : `text-right ${textClass}`;
+const orderClasses = isLeft ? "order-1" : "order-2";
+const iconOrderClasses = isLeft ? "order-2" : "order-1";
+const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-4 ${iconClass}`;
+---
+
+<div class={`text-white p-8 flex justify-center items-center ${outerClass}`}>
+  <div class={`flex ${containerClasses} ${orderClasses}`}>
+    <div class="flex items-center mb-4">
+      <img src={iconSrc} alt={`${productName} Icon`} class={`h-6 w-6 mr-2 rounded-none`}>
+      <h1 class={`text-2xl font-semibold text-white ${textClass}`}>{productName}</h1>
+    </div>
+    <h2 class={`text-5xl font-bold mb-4 text-white ${textAlignClass}`}>{title}</h2>
+    <p class={`text-2xl mb-4 text-white ${textAlignClass}`}>{subtitle}</p>
+    <a href={url} class="gradient-button px-5 text-sm leading-normal">
+      More Information
+    </a>
+  </div>
+  <img src={iconSrc} alt={`${productName} Icon`} class={`h-80 w-80 ${marginClasses} ${iconOrderClasses}`}>
+</div>

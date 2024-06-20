@@ -1,0 +1,191 @@
+---
+import Layout from '../components/Layout.astro';
+import CardComponent from '../components/CardComponent.astro';
+import ProductSnippet from '../components/ProductSnippet.astro';
+import CounterComponent from '../components/react/CounterComponent.jsx';
+import products from '../../public/products.json';
+---
+
+<Layout>
+    <div class="background">
+      <div>
+        <div class="w-1/2 min-w-[600px] leading-snug text-left text-wrap text-blue ml-8 mt-[15vh]">
+            <h1 class="text-7xl mb-5 xs:text-2-xl">
+                OneTier's AnyCloud Data Secure Portfolio
+            </h1>
+            <h2 class="text-3xl w-3/5 min-w-[300px] mb-5">
+                OneTier's AnyCloud Data Secure words things here Portfolio
+            </h2>
+            <button class="gradient-button">
+                More Information
+            </button>
+        </div>
+        <div id="cards" class="flex gap-8 justify-end mx-8 my-[12vh]">
+            <CardComponent
+                title="Event: Webinar"
+                subtitle="Tuesday, June 24th"
+                glassmorphism="true"
+                route="/events"
+            />
+            <CardComponent
+                title="Product Highlight"
+                subtitle="Risk Engagement"
+                glassmorphism="true"
+                route="/products/risk-engagement"
+            />
+        </div>
+        
+        <div class="flex flex-col items-center justify-center min-h-screen text-white p-4">
+          <div class="text-center mb-8">
+            <p class="text-xl md:text-2xl lg:text-4xl">Cybersecurity is slated to cost the world</p>
+            <CounterComponent targetNumber={10500000000000} duration={3000} client:visible />
+            <p class="text-xl md:text-2xl lg:text-4xl">by 2025</p>
+          </div>
+          <div class="pane backdrop-filter backdrop-blur-lg rounded-3xl p-4 md:p-6 lg:p-8 text-center w-full md:w-4/5 lg:w-3/5 text-lg md:text-2xl lg:text-6xl">
+            <h2 class="text-6-xl md:text-3-xl lg:text-4-xl font-bold mb-4 md:mb-6 lg:mb-8 text-white">From Zero to Trust</h2>
+            <p class="text-2-xl">Here’s how we keep you safe.</p>
+          </div>
+        </div>
+        
+        <div class="mt-14 flex flex-col gap-64">
+          <!-- Risk Engagement -->
+          <ProductSnippet
+            iconSrc={products[0].icon}
+            productName={products[0].product}
+            title={products[0].title}
+            subtitle={products[0].subtitle}
+            url={products[0].url}
+            justify="left"
+            iconClass="ml-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- KubeZT Secure Apps -->
+          <ProductSnippet
+            iconSrc={products[1].icon}
+            productName={products[1].product}
+            title={products[1].title}
+            subtitle={products[1].subtitle}
+            url={products[1].url}
+            justify="right"
+            iconClass="mr-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- AnyCloud Orchestration -->
+          <ProductSnippet
+            iconSrc={products[2].icon}
+            productName={products[2].product}
+            title={products[2].title}
+            subtitle={products[2].subtitle}
+            url={products[2].url}
+            justify="left"
+            iconClass="ml-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- Analytics HQ -->
+          <ProductSnippet
+            iconSrc={products[3].icon}
+            productName={products[3].product}
+            title={products[3].title}
+            subtitle={products[3].subtitle}
+            url={products[3].url}
+            justify="left"
+            iconClass="ml-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- Secure Access -->
+          <ProductSnippet
+            iconSrc={products[4].icon}
+            productName={products[4].product}
+            title={products[4].title}
+            subtitle={products[4].subtitle}
+            url={products[4].url}
+            justify="right"
+            iconClass="mr-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- Secure Access -->
+          <ProductSnippet
+            iconSrc={products[5].icon}
+            productName={products[5].product}
+            title={products[5].title}
+            subtitle={products[5].subtitle}
+            url={products[5].url}
+            justify="left"
+            iconClass="ml-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- Global Data Security -->
+          <ProductSnippet
+            iconSrc={products[6].icon}
+            productName={products[6].product}
+            title={products[6].title}
+            subtitle={products[6].subtitle}
+            url={products[6].url}
+            justify="left"
+            iconClass="ml-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+          <!-- Security Overwatch -->
+          <ProductSnippet
+            iconSrc={products[7].icon}
+            productName={products[7].product}
+            title={products[7].title}
+            subtitle={products[7].subtitle}
+            url={products[7].url}
+            justify="right"
+            iconClass="mr-[9vw]"
+            outerClass="mt-[2vw]"
+          />
+        </div>
+      </div>
+    </div>
+  <div class="gradient-background">
+    <img src="/lines.svg" class="absolute top-675 left-1/2 transform -translate-x-1/2 max-w-full" />
+  </div>
+</Layout>
+
+<style>
+:root {
+    --filter-half-blue: rgba(16, 121, 208, .3); /* Semi-transparent blue */
+}
+
+.pane {
+    background-color: var(--filter-half-blue);
+    backdrop-filter: 'blur(10px)';
+}
+
+.content {
+    position: relative;
+    z-index: 1; /* Ensure content appears above the background */
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    background: url('/backgroundImage.jpg') top center no-repeat, linear-gradient(to bottom, var(--blue), var(--dark-blue));
+    background-size: cover, cover;
+    z-index: -1;
+}
+
+.gradient-background {
+    background: linear-gradient(to bottom, var(--blue), var(--dark-blue));
+    position: relative;
+   
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+@media (max-width: 640px) {
+    h1 {
+        font-size: calc(2rem + 1.5vw); /* Adjusts size dynamically between specified max and min sizes */
+        width: calc(80vw);
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.875rem; /* text-3xl in Tailwind, adjust as needed */
+    }
+}
+</style>
