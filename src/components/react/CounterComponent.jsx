@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const CounterComponent = ({ targetNumber, duration }) => {
+const CounterComponent = ({ targetNumber, duration, emphasize }) => {
   const [count, setCount] = useState(0);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     const startTime = performance.now();
@@ -43,20 +44,26 @@ const CounterComponent = ({ targetNumber, duration }) => {
         requestAnimationFrame(step);
       } else {
         setCount(targetNumber); // Ensure the final number is set
+        if (emphasize) {
+          setAnimate(true); // Trigger the animation
+          setTimeout(() => setAnimate(false), 500); // Remove the animation class after 500ms
+        }
       }
     };
 
     requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(step);
-  }, [targetNumber, duration]);
+  }, [targetNumber, duration, emphasize]);
 
   return (
-    <div className="w-full text-center">
-      <h1 className="text-3xl md:text-5xl lg:text-8xl font-bold mb-4 md:mb-6 lg:mb-8 font-mono text-dark-blue">
-        ${count.toLocaleString()}
-      </h1>
-    </div>
+  <div className="w-full text-center">
+    <h1
+      className={`text-[calc(10px+4vw)] font-bold font-mono text-white transition-transform duration-500 ease-out ${animate ? 'scale-125' : ''}`}
+    >
+      ${count.toLocaleString()}
+    </h1>
+  </div>
   );
 };
 

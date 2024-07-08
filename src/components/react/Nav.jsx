@@ -1,0 +1,152 @@
+import React, { useRef, useState, useEffect } from 'react';
+import CompanyMenu from './CompanyMenu';
+import PartnersMenu from './PartnersMenu';
+import ProductsMenu from './ProductsMenu';
+import SolutionsMenu from './SolutionsMenu';
+import SlideWrapper from './SlideWrapper';
+
+const MENU_ITEMS = ['Solutions', 
+'Products', 'Partners', 'Company'];
+
+const Nav = () => {
+  const [pathname, setPathname] = useState('/');
+  const refs = useRef([]);
+  const [hovering, setHovering] = useState(null);
+  const [caretLeft, setCaretLeft] = useState(0);
+  const [popoverHeight, setPopoverHeight] = useState(null);
+  const closeTimeoutRef = useRef(null);
+  const navBarRef = useRef(null);
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  const focusMenu = (index) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setHovering(index);
+
+    const navElement = navBarRef.current;
+    const menuItem = document.getElementById(`nav-${MENU_ITEMS[index].toLowerCase()}`);
+
+    if (navElement && menuItem) {
+      const navRect = navElement.getBoundingClientRect();
+      const itemRect = menuItem.getBoundingClientRect();
+
+      // Set caret position relative to the nav bar
+      setCaretLeft(itemRect.left - navRect.left + itemRect.width / 2);
+    }
+
+    const menuElement = refs.current[index];
+    if (menuElement) {
+      setPopoverHeight(menuElement.offsetHeight);
+    }
+  };
+
+  const startCloseTimer = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = setTimeout(() => {
+      setHovering(null);
+    }, 300);
+  };
+
+  const cancelCloseTimer = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+  };
+
+  const isActive = (href) => {
+    if (href === '/') {
+      return pathname === '/' || pathname === '';
+    }
+    const subpath = pathname.match(/[^/]+/g);
+    return href === pathname || href === '/' + (subpath?.[0] || '');
+  };
+
+  return (
+    <nav className="mb:hidden w-full py-4 relative">
+      <div className="max-w-6xl mx-auto flex items-center justify-center relative flex-1">
+        <div className="flex items-center">
+          <div id="navBar" ref={navBarRef} className="flex space-x-1 shadow-sm bg-[#EEF0F4] rounded-full p-2">
+            <a
+              href="/"
+              className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full bg-blue hover:text-white active:bg-blue text-white transition-colors duration-200 ${
+                  isActive(`/`) ? 'active:!bg-blue' : ''
+                }`}
+              >
+              Home
+            </a>
+            {MENU_ITEMS.map((item, index) => (
+              <a
+                key={item}
+                id={`nav-${item.toLowerCase()}`}
+                onMouseEnter={() => focusMenu(index)}
+                onMouseLeave={startCloseTimer}
+                onFocus={() => focusMenu(index)}
+                href={`/${item.toLowerCase()}`}
+                className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 ${
+                  isActive(`/${item.toLowerCase()}`) ? 'active:!bg-blue' : ''
+                }`}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      {typeof hovering === 'number' && (
+        <div
+          onMouseEnter={cancelCloseTimer}
+          onMouseLeave={startCloseTimer}
+          style={{
+            height: popoverHeight ?? 'auto',
+            width: '100%',  // Set width to 100%
+            maxWidth: '6xl',  // Match the max-width of the nav bar
+            left: '50%',
+            transform: 'translateX(-50%)',  // Center the submenu
+          }}
+          className="absolute bg-white shadow-lg transition-all duration-300 mt-2 z-50"
+        >
+          <div 
+            className="submenu-caret absolute w-4 h-4 bg-white transform rotate-45 -top-2 z-50 rounded-md"
+            style={{ 
+              left: `${caretLeft}px`,
+              marginLeft: '-8px' 
+            }}
+          />
+          <div className="relative bg-white w-full h-full">
+             <SlideWrapper index={0} hovering={hovering}>
+              <SolutionsMenu ref={refs.current[0]} />
+            </SlideWrapper> 
+            <SlideWrapper index={1} hovering={hovering}>
+              <ProductsMenu ref={refs.current[1]} />
+            </SlideWrapper>
+            <SlideWrapper index={2} hovering={hovering}>
+              <PartnersMenu ref={refs.current[2]} />
+            </SlideWrapper>
+            <SlideWrapper index={3} hovering={hovering}>
+              <CompanyMenu ref={refs.current[3]} />
+            </SlideWrapper> 
+            
+            {/*
+            <SlideWrapper index={0} hovering={hovering}>
+              <ProductsMenu ref={refs.current[0]} />
+            </SlideWrapper>
+            <SlideWrapper index={1} hovering={hovering}>
+              <PartnersMenu ref={refs.current[1]} />
+            </SlideWrapper>
+            <SlideWrapper index={2} hovering={hovering}>
+              <CompanyMenu ref={refs.current[2]} />
+            </SlideWrapper> */}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Nav;

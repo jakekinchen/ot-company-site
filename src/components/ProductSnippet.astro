@@ -10,27 +10,87 @@ const {
   containerClass = "", // Additional classes for container
   textClass = "", // Additional classes for text elements
   iconClass = "", // Additional classes for large icon
+  firstLine = null,
 } = Astro.props;
 
 const isLeft = justify === "left";
-const containerClasses = isLeft ? `flex-col items-start mr-8 w-2/6 ${containerClass}` : `flex-col items-end ml-8 w-2/6 ${containerClass}`;
-const textAlignClass = isLeft ? `text-left ${textClass}` : `text-right ${textClass}`;
+const containerClasses = isLeft ? `items-start ${containerClass}` : `items-end ${containerClass}`;
+const justifyClass = isLeft ? "justify-start" : "justify-end";
+const textAlignClass = isLeft ? `dt:text-left ${textClass}` : `dt:text-right ${textClass}`;
 const orderClasses = isLeft ? "order-1" : "order-2";
 const iconOrderClasses = isLeft ? "order-2" : "order-1";
 const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-4 ${iconClass}`;
+const productId = productName.toLowerCase().replace(/ /g, '-');
+import Lines from './Lines.astro';
 ---
 
-<div class={`text-white p-8 flex justify-center items-center ${outerClass}`}>
-  <div class={`flex ${containerClasses} ${orderClasses}`}>
-    <div class="flex items-center mb-4">
-      <img src={iconSrc} alt={`${productName} Icon`} class={`h-6 w-6 mr-2 rounded-none`}>
-      <h1 class={`text-2xl font-semibold text-white ${textClass}`}>{productName}</h1>
+<div id={`${productId} outer-container`} class={`text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center relative`}>
+  <div class="connector-line"></div>
+  <div class={`flex flex-col mb:my-[6vw] w-[55%] mb:w-[85%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
+    <div class="mb:hidden">
+      { /* in the Lines component here we would like to set the x-coordinate of the beginning of the instantiated {productId} outer-container if isLeft=true but the end of the containers x-coordinate if false and pass that in as */ }
+      <Lines
+        id={`${productId}-line`}
+        path="M0 0 H150 V-66 H250"
+        flipped={!isLeft}
+        circleRadius={12}
+        circleColor="cold-white"
+        viewBox='0 0 100 100'
+        glowDistance={5}
+        yOffset={80}
+        xOffset={-300}
+        animationDuration={4}
+      />
+  </div>
+    <div class="flex mb:flex-col mb:justify-center items-center mb-4">
+      <img src={iconSrc} alt={`${productName} Icon`} class={`w-[2vw] mr-[1vw] rounded-none mb:w-[25vw] mb:order-2 filter filter-white`}>
+      <h1 class={`text-[calc(1vw+1rem)] mb:text-[6vw] font-semibold text-white mb:mb-4 ${textClass}`}>{productName}</h1>
     </div>
-    <h2 class={`text-5xl font-bold mb-4 text-white ${textAlignClass}`}>{title}</h2>
-    <p class={`text-2xl mb-4 text-white ${textAlignClass}`}>{subtitle}</p>
-    <a href={url} class="gradient-button px-5 text-sm leading-normal">
+    <h2 class={`text-[calc(3vw+2rem)] mb:text-[10vw] font-bold mb-4 text-white text-center ${textAlignClass}`}>{title}</h2>
+    <p class={`text-2xl mb-4 text-white text-center ${textAlignClass}`}>{subtitle}</p>
+    <a href={url} class="gradient-button flex justify-center items-center px-[1vw] text-[calc(.2vw+.5rem)] leading-v-relaxed mb:w-[60%] h-full">
       More Information
     </a>
   </div>
-  <img src={iconSrc} alt={`${productName} Icon`} class={`h-80 w-80 ${marginClasses} ${iconOrderClasses}`}>
+  <div class={`outer-container relative w-[20%] mb:transform mb:-translate-x-full mb:w-[.2vw] mb:hidden mb:absolute  ${marginClasses} ${iconOrderClasses}`}>
+    <img id={`${productId}-icon`} src={iconSrc} alt={`${productName} Icon`} class={`filter filter-white`}>
+  </div>
 </div>
+<style>
+  @keyframes dash {WHA
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }
+
+  .connector-line {
+    position: absolute;
+    width: 4px;
+    height: 8rem;
+    top: -8.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent 50%, white 50%);
+    background-size: 100% 10px;
+    animation: dash 5s linear infinite;
+    background-repeat: repeat-y; /* Ensure the gradient repeats */
+  }
+
+  .outer-container {
+    position: relative;
+  }
+
+  .outer-container:first-child .connector-line {
+    display: none; /* Hide the connector line for the first box */
+  }
+
+  a:hover {
+    color: white;
+  }
+
+  @media (min-width: 960px) {
+    .connector-line {
+      display: none;
+    }
+  }
+</style>

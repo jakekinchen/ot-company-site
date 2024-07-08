@@ -1,5 +1,4 @@
 ---
-const { open } = Astro.props;
 ---
 <dialog id="demoModal" class="modal-content rounded-3xl max-w-screen-lg ">
     <form method="dialog">
@@ -32,9 +31,8 @@ const { open } = Astro.props;
     </form>
 </dialog>
 <script>
-	(() => {
-		
-        const modal = document.getElementById('demoModal');
+    (() => {
+        const modal = document.getElementById('demoModal') as HTMLDialogElement;
         if (!modal) return;
         const closeBtn = modal.querySelector('.close');
         if (!closeBtn) return;
@@ -45,14 +43,13 @@ const { open } = Astro.props;
             modal.showModal();
         });
         closeBtn.addEventListener('click', () => modal.close());
-		
+        
         // Optional: Close on backdrop click
         modal.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.close();
             }
         });
-		console.log('modal script');
     })();
 </script>
 <style>

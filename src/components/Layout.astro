@@ -3,7 +3,16 @@ import BaseHead from './BaseHead.astro';
 import Header from './Header.astro';
 import Dialog from './Dialog.astro';
 import Footer from './Footer.astro';
-const { title, description, gradient=true, headerBackground='transparent', headerIconColor='blue', footerBackground='white' } = Astro.props;
+
+const { 
+  title, 
+  description, 
+  gradient=true, 
+  headerBackground='transparent', 
+  headerIconColor='blue', 
+  footerBackground='white',
+  customBackground=false
+} = Astro.props;
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -11,38 +20,136 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 <head>
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  <script is:inline>
-      // Add your scripts here
-  </script>
+  <!--  <base href="https://onetier.com/">   -->
 </head>
-<body class="flex flex-col min-h-screen pt-[28px]">
+<body class={`flex flex-col min-h-screen ${customBackground ? 'custom-background' : ''}`}>
+  
   <Header background={headerBackground} gradient={gradient} iconColor={headerIconColor} />
   <Dialog />
-  <main class="flex-grow">
-    <slot /> <!-- This is where the page-specific content will go -->
+  <main class="flex-grow content">
+    <slot />
   </main>
   <Footer theme={footerBackground} gradient={gradient} />
+  <script type="module" src="src/helpers/backgroundColor.js"></script>
+  <!-- <script type="module">
+    import { displayViewportDimensions } from './src/helpers/viewportDimensions.js';
+    displayViewportDimensions(); -->
+  </script>
 </body>
 </html>
 
 <style>
-  h1 {
-    /* Custom styles for h1 */
-  }
-  html, body {
-    height: 100%; /* Ensures the html and body tags take up at least the full viewport height */
-    margin: 0; /* Removes default margin */
-    padding: 0; /* Removes default padding */
-    position: relative; /* For absolute positioning of children */
-    min-height: 100vh;
-}
+
+/* Move the background styles to a separate file or component */
 body {
-    position: relative; /* Establishes a positioning context for absolute positioning */
-    min-height: 100vh; /* Minimum height is 100% of the viewport height */
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  z-index: 0;
 }
-  main {
+
+.custom-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2440px;
+  background: url('/backgroundImage.jpg') top center no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.custom-background::after {
+  content: '';
+  position: absolute;
+  top: 2440px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, var(--blue), var(--dark-blue)) no-repeat;
+  z-index: -1;
+}
+
+
+
+main {
   flex: 1 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.gradient {
+  position: absolute;
+  top: 2240px; /* Start exactly where the background image ends */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 2240px); /* Fill the rest of the viewport height */
+  background: linear-gradient(to bottom, var(--blue), var(--dark-blue)) no-repeat;
+  z-index: 0;
+}
+
+
+  .conic {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -50%;
+        top: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
+        animation: rotate 4s linear infinite;
+    }
+}
+
+.border-path {
+    width: 200px;
+    height: 100px;
+    border: 10px solid;
+    border-image: linear-gradient(45deg, gold, deeppink) 1;
+    clip-path: inset(0px round 10px);
+    animation: huerotate 6s infinite linear;
+    filter: hue-rotate(360deg);
+}
+
+@keyframes huerotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+
+/* Text size adjustments for small screens */
+@media (max-width: 640px) {
+  h1 {
+    font-size: calc(2rem + 1.5vw); /* Adjusts size dynamically between specified max and min sizes */
+    width: calc(80vw);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.875rem; /* text-3xl in Tailwind, adjust as needed */
+  }
 }
 </style>

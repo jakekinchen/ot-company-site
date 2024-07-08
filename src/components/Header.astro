@@ -1,170 +1,67 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import Dialog from './Dialog.astro';
+import Nav from './react/Nav.jsx';
 import { enableGradientFollowById } from '../helpers/gradientFollow';
-let { background = "transparent", gradient = true, iconColor = "blue", logoColor = "blue"} = Astro.props;
-let bgColor;
-if (background === "transparent") {
-    bgColor = "bg-opacity-0";
-} else {
-    bgColor = background;
-}
+import MobileMenu from './react/MobileMenu.jsx';
+const { background = "transparent", gradient = true, iconColor = "blue", logoColor = "blue" } = Astro.props;
 
+const bgColor = background === "transparent" ? "bg-opacity-0" : background;
 ---
-<header class={bgColor}>
-    <nav>
-        <div>
-            <a href="/">
-                <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoColor} style="width: 10rem;" />
-            </a>
-        </div>
-		<div class="internal-links-container">
-        <div class="internal-links bg-opacity-25 backdrop-blur-lg rounded-xl border-opacity-20 justify-center">
-            <HeaderLink href="/" class="nav-link">Home</HeaderLink>
-            <HeaderLink href="/solutions" class="nav-link">Solutions</HeaderLink>
-            <HeaderLink href="/products" class="nav-link">Products</HeaderLink>
-            <HeaderLink href="/partners" class="nav-link">Partners</HeaderLink>
-            <HeaderLink href="/overview" class="nav-link">Company</HeaderLink>
-        </div>
-		</div>
-        <div>
-            <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={iconColor + " hamburger-menu flex filter-blue"}>
-            <button id="requestDemo" class="gradient-button hidden" onclick="">Request Demo</button>
-        </div>
-    </nav>
-    <Dialog/>
-</header>
-<script type="module">
-    document.addEventListener('DOMContentLoaded', () => {
-        const buttons = document.querySelectorAll('.gradient-button');
-        buttons.forEach(button => {
-            button.addEventListener('mousemove', applyGradientEffect);
-            button.addEventListener('mouseleave', resetGradientEffect);
-            button.addEventListener('click', openDialog);
-        });
-    });
 
-function applyGradientEffect(event) {
+<header class={`${bgColor} flex justify-between items-center w-full h-[80px] mt-[2vh]`}>
+  <a href="/" class="ml-[5vw]">
+    <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoColor} style="width: 10rem;" />
+  </a>
+  
+  <Nav client:only="react" />
+  
+  <div class="flex items-center mr-[5vw]">
+    <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={`hamburger-menu dt:hidden ${iconColor} filter-blue`}>
+    <button id="requestDemo" class="gradient-button mb:hidden">Request Demo</button>
+  </div>
+  
+  <Dialog />
+  <MobileMenu client:only="react" />
+</header>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.gradient-button');
+    buttons.forEach(button => {
+      button.addEventListener('mousemove', applyGradientEffect);
+      button.addEventListener('mouseleave', resetGradientEffect);
+      button.addEventListener('click', openDialog);
+    });
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    hamburgerMenu.addEventListener('click', toggleMobileMenu);
+  });
+
+  function applyGradientEffect(event) {
     const rect = this.getBoundingClientRect();
     const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
     const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
     this.style.setProperty('--x', `${xPercent}%`);
     this.style.setProperty('--y', `${yPercent}%`);
-}
+  }
 
-function resetGradientEffect() {
+  function resetGradientEffect() {
     this.style.setProperty('--x', '50%');
     this.style.setProperty('--y', '50%');
-}
+  }
 
-function openDialog() {
+  function openDialog() {
     window.dispatchEvent(new CustomEvent('openDialog'));
-}
+  }
+
+  function toggleMobileMenu() {
+    document.dispatchEvent(new CustomEvent('toggleMobileMenu'));
+  }
+  
 </script>
 
 <style>
-    /* Initial styles for buttons and other elements */
-
-	header {
-    margin: 0;
-    padding: 0 2em;
-    display: flex;
-    align-items: center; /* Center children vertically */
-    justify-content: center;
-    height: 80px; /* Adjust height as needed */
-	}
-
-	nav {
-		position: sticky;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		max-width: 1920px;
-		top: 50%; /* Center vertically */
-	}
-	.internal-links {
-		display: none;
-		align-items: center;
-		width: calc(10vh + 400px); /* Adjusted based on the provided size */
-		max-width: 40vw;
-		height: calc(3vh + 60px); /* Adjusted based on the provided size */
-        max-height: 50px;
-		background: #EEF0F4;
-		padding: 0.5em 1em;
-		border-radius: 30px;
-		margin-right: auto;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	}
-	.internal-links-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-	}
-	nav .nav-link {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 1em 0;
-		font-size: 1em;
-		color: var(--dark-blue);
+	a{
 		text-decoration: none;
-		border-radius: 20px;
-		width: calc(8vw + 50px);
-		max-width: calc(8vw + 50px);
-		height: 1vh; /* Adjusted based on the provided size */
-		text-align: center;
-		line-height: 1vh; /* Adjusted to center the text vertically */
 	}
-	nav .nav-link:hover{
-		background: var(--light-blue);
-		color: white;
-	}
-	nav .nav-link.active {
-		background: #1079D0;
-		color: white;
-	}
-
-    @media screen and (min-width: 960px) {
-        .hamburger-menu {
-            display: none;
-        }
-        .gradient-button {
-            display: flex;
-        }
-		.internal-links {
-			display: flex;
-		}
-    }
-	
-	.logo {
-		margin-right: auto;
-        align-items: center;
-	}
-	.logo.gradient {
-		background: linear-gradient(to bottom, #083D68, #3984C2); /* Example gradient */
-		-webkit-background-clip: text;
-		color: transparent;
-	}
-	.logo img {
-		height: 60px; /* Adjusted based on the provided size */
-		width: 180px;
-	}
-	
-
-	/* Dynamic logo color styles */
-	.logo.white img {
-		filter: brightness(0) invert(1); /* Makes the logo white */
-	}
-	.logo.blue img {
-		filter: none; /* Keeps the logo blue (default) */
-	}
-	.logo.gradient img {
-		background: linear-gradient(to bottom, #083D68, #3984C2); /* Example gradient */
-		-webkit-background-clip: text;
-		color: transparent;
-	}
-
 </style>

@@ -1,0 +1,75 @@
+---
+// src/components/ProductSection.astro
+
+interface Props {
+  title: string;
+  text: string;
+  imageUrl: string;
+  subtitle?: string;
+  leftLine?: boolean;
+  rightLine?: boolean;
+  titleClasses?: string;
+  textClasses?: string;
+  imageClasses?: string;
+  subtitleClasses?: string;
+  buttonClasses?: string;
+  sectionClasses?: string;
+}
+
+const {
+  title,
+  text,
+  imageUrl,
+  subtitle,
+  leftLine,
+  rightLine,
+  titleClasses = '',
+  textClasses = '',
+  imageClasses = '',
+  subtitleClasses = '',
+  buttonClasses = '',
+  sectionClasses = '',
+} = Astro.props;
+
+const hasSubtitle = !!subtitle;
+---
+
+<section class={`bg-white bg-opacity-10 rounded-lg p-6 mb-8 relative ${sectionClasses}`}>
+  {leftLine && (
+    <svg class="absolute left-0 top-8 h-0.5 w-16" viewBox="0 0 64 2">
+      <line x1="0" y1="1" x2="64" y2="1" stroke="white" stroke-width="2" />
+    </svg>
+  )}
+  {rightLine && (
+    <svg class="absolute right-0 top-8 h-0.5 w-16" viewBox="0 0 64 2">
+      <line x1="0" y1="1" x2="64" y2="1" stroke="white" stroke-width="2" />
+    </svg>
+  )}
+  
+  <h2 class={`text-2xl font-bold mb-4 ${titleClasses}`} id="title">{title}</h2>
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+    <div class="flex-1">
+      <p class={`mb-4 ${textClasses}`} id="text">{text}</p>
+      {!hasSubtitle && (
+        <button class={`gradient-button absolute bottom-0 right-6 mb-[-1rem] ${buttonClasses}`} id="button">
+          More Information
+        </button>
+      )}
+    </div>
+    <div class="flex flex-col items-center">
+      <div
+        class={`w-32 h-32 bg-white rounded-lg ${hasSubtitle ? 'mb-2' : ''} ${imageClasses}`}
+        id="image"
+        style={`background-image: url(${imageUrl}); background-size: cover; background-position: center;`}
+      ></div>
+      {hasSubtitle && (
+        <p class={`text-sm ${subtitleClasses}`} id="subtitle">{subtitle}</p>
+      )}
+    </div>
+  </div>
+  {hasSubtitle && (
+    <button class={`gradient-button mt-4 ${buttonClasses}`} id="button">
+      More Information
+    </button>
+  )}
+</section>

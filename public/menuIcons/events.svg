@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41">
+  <g id="events-svgrepo-com" transform="translate(-0.285 -0.285)">
+    <g id="Group_764" data-name="Group 764" transform="translate(3.44 1.892)">
+      <path id="Path_1067" data-name="Path 1067" d="M30.155,7.4V25.462a5.069,5.069,0,0,1-5.161,5.161H5.9a3.451,3.451,0,0,0,3.44,3.44H26.715A6.9,6.9,0,0,0,33.6,27.182V10.84A3.451,3.451,0,0,0,30.155,7.4Z" transform="translate(0.809 3.437)" fill="#000000"/>
+      <g id="Group_763" data-name="Group 763">
+        <path id="Path_1068" data-name="Path 1068" d="M7.161,1.1V4.54H5.44A3.451,3.451,0,0,0,2,7.981V28.623a3.451,3.451,0,0,0,3.44,3.44H26.427a3.451,3.451,0,0,0,3.44-3.44V7.981a3.451,3.451,0,0,0-3.44-3.44h-1.72V1.1h-3.44V4.54H10.6V1.1ZM5.44,13.142H26.427V28.623H5.44Z" transform="translate(-2 -1.1)" fill="#000000"/>
+        <path id="Path_1069" data-name="Path 1069" d="M18.165,21.558l-4.129-2.408L10.08,21.558l1.032-4.645L7.5,13.817l4.817-.344L14.209,9,16.1,13.3l4.817.516-3.612,3.1Z" transform="translate(1.961 4.59)" fill="#000000"/>
+      </g>
+    </g>
+    <rect id="Rectangle_327" data-name="Rectangle 327" width="41" height="41" transform="translate(0.285 0.285)" fill="none"/>
+  </g>
+</svg>

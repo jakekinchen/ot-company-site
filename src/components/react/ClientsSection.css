@@ -1,0 +1,24 @@
+/* ClientsSection.css */
+.clients-section {
+    height: 40vh;
+  }
+  
+  .swiper-container {
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    height: 100%;
+  }
+
+  .swiper-wrapper {
+    transition-timing-function: linear !important; /* Ensure linear transition */
+  }
+  
+  img {
+    object-fit: contain;
+  }

@@ -1,0 +1,36 @@
+---
+import ProductLayout from '../components/ProductLayout.astro';
+
+const products = [
+  {
+    title: "GDS Product 1",
+    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
+    buttonLabel: "More Information",
+    buttonUrl: "#"
+  },
+  {
+    title: "GDS Product 2",
+    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
+    buttonLabel: "More Information",
+    buttonUrl: "#"
+  },
+  {
+    title: "GDS Product 3",
+    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
+    buttonLabel: "More Information",
+    buttonUrl: "#"
+  },
+  {
+    title: "GDS Product 4",
+    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
+    buttonLabel: "More Information",
+    buttonUrl: "#"
+  }
+];
+---
+
+<ProductLayout 
+  mainTitle="AnyCloud Orchestration"
+  mainDescription="AnyCloud Orchestration automates secure, cost-inclusive environments for effective hybrid and multi-cloud strategies."
+  products={products}
+/>

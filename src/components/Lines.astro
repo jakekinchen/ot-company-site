@@ -1,0 +1,102 @@
+---
+interface Props {
+  id: string;
+  path: string;
+  flipped?: boolean;
+  xOffset?: number;
+  yOffset?: number;
+  circleRadius?: number;
+  circleColor?: string;
+  viewBox?: string;
+  glowDistance?: number;
+  animationDuration?: number;
+  outerBoundaryX?: number;
+}
+
+const { 
+  id, 
+  path, 
+  flipped = false, 
+  xOffset = 0, 
+  yOffset = 0, 
+  circleRadius = 15, 
+  circleColor = 'cold-white', 
+  viewBox='0 0 100 100', 
+  glowDistance=36,
+  animationDuration=20,
+  outerBoundaryX = null
+} = Astro.props;
+
+const adjustedXOffset = flipped ? -xOffset : xOffset;
+---
+
+<div
+  id={`${id}-container`}
+  class={`z-50 line-container ${flipped ? 'flipped' : ''}`}
+  style={`transform: translate(${adjustedXOffset}px, ${yOffset}px) ${flipped ? 'scaleX(-1)' : ''};`}
+>
+  <svg class="line-svg" xmlns="http://www.w3.org/2000/svg" viewBox={viewBox} preserveAspectRatio="xMidYMin slice" overflow="visible">
+    <defs>
+      <filter id={`glow-${id}`} x="-50%" y="-50%" width="500%" height="500%">
+        <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <path class="line-path" d={path} id={`${id}-path`} />
+    <circle class="glowing-circle" cx="0" cy="0" r={circleRadius} style={`fill: var(--${circleColor});`} filter={`url(#glow-${id})`}>
+      <animateMotion repeatCount="indefinite" dur={`${animationDuration}s`}>
+        <mpath href={`#${id}-path`}/>
+      </animateMotion>
+    </circle>
+  </svg>
+</div>
+
+<style define:vars={{ circleColor }}>
+  .line-container {
+    position: absolute;
+    width: 12vw;
+  }
+  .line-container.flipped {
+    right: 0;
+  }
+  .line-container:not(.flipped) {
+    left: 0;
+  }
+  .line-svg {
+    width: 100%;
+    height: auto;
+  }
+  .line-path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 1);
+    stroke-width: 12;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 20;
+    stroke-dashoffset: 21;
+    animation: dash 20s linear infinite;
+  }
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: 20;
+    }
+  }
+</style>
+
+<script define:vars={{ id }}>
+  function updateSVGSize() {
+    const container = document.querySelector(`#${id}-container`);
+    const svg = container.querySelector('.line-svg');
+    if (svg && container) {
+      svg.setAttribute('width', container.offsetWidth.toString());
+      svg.setAttribute('height', container.offsetHeight.toString());
+    }
+  }
+  window.addEventListener('resize', updateSVGSize);
+  document.addEventListener('DOMContentLoaded', updateSVGSize);
+</script>

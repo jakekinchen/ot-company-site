@@ -1,0 +1,59 @@
+---
+// src/pages/anycloud-orchestration.astro
+import ProductSection from '../components/ProductSection.astro';
+import Layout from '../components/Layout.astro';
+
+const backgroundSvgUrl = '/productIcons/anycloud-orchestration.svg';
+---
+
+<Layout>
+    <div class="relative bg-gradient-to-b from-dark-blue to-blue text-white min-h-screen p-8">
+    <div class="absolute inset-0 bg-cover bg-center opacity-10" style={`background-image: url(${backgroundSvgUrl})`}></div>
+    
+    <div class="relative z-10">
+        <header class="text-center mb-12">
+        <!-- Header content -->
+        </header>
+
+        <main>
+        <ProductSection
+            title="Comprehensive Risk Engagement"
+            text="At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where."
+            imageUrl="/productIcons/anycloud-orchestration.svg"
+            leftLine={true}
+        />
+
+        <ProductSection
+            title="GDS Product 1 (Can be title or intro statement)"
+            text="At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where."
+            imageUrl="/productIcons/anycloud-orchestration.svg"
+            rightLine={true}
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ProductSection
+            title="GDS Product 2 (Can be title or intro statement)"
+            text="At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where."
+            imageUrl="/productIcons/anycloud-orchestration.svg"
+            subtitle="Additional information about GDS Product 2"
+            leftLine={true}
+            />
+            <ProductSection
+            title="GDS Product 3 (Can be title or intro statement)"
+            text="At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where."
+            imageUrl="/productIcons/anycloud-orchestration.svg"
+            subtitle="Additional information about GDS Product 3"
+            rightLine={true}
+            />
+        </div>
+
+        <ProductSection
+            title="GDS Product 4 (Can be title or intro statement)"
+            text="At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where."
+            imageUrl="/productIcons/anycloud-orchestration.svg"
+            leftLine={true}
+        />
+        </main>
+    </div>
+    </div>
+</Layout>

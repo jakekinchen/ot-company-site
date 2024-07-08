@@ -1,0 +1,106 @@
+---
+// ProductLayout.astro
+interface Product {
+  title: string;
+  description: string;
+  buttonLabel: string;
+  buttonUrl: string;
+}
+
+interface Props {
+  mainTitle: string;
+  mainDescription: string;
+  products: Product[];
+}
+
+const { mainTitle, mainDescription, products } = Astro.props;
+---
+
+<div class="container">
+  <header>
+    <h1>{mainTitle}</h1>
+    <p>{mainDescription}</p>
+  </header>
+
+  <section class="products">
+    {products.map(product => (
+      <div class="product-item">
+        <h3>{product.title}</h3>
+        <p>{product.description}</p>
+        <a href={product.buttonUrl} class="button">{product.buttonLabel}</a>
+      </div>
+    ))}
+  </section>
+</div>
+
+<style>
+  body {
+    background-color: #0077c8;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  header p {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .product-item {
+    background-color: #005b99;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    flex: 1 1 calc(50% - 1rem);
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  .product-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-item p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    background-color: orange;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    background-color: darkorange;
+  }
+</style>

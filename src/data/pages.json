@@ -1,0 +1,72 @@
+{
+  "products": [
+    {
+      "label": "Risk Engagement",
+      "title": "Respond swiftly and decisively",
+      "subtitle": "Assess and address your cyber risk head on. Become compliant in your choice of frameworks that align with business objectives.",
+      "iconSrc": "/productIcons/risk-engagement.svg",
+      "href": "/risk-engagement",
+      "snippetProperties":{
+
+      }
+    },
+    {
+      "label": "KubeZT Secure Apps",
+      "title": "Secure Kubernetes",
+      "subtitle": "Harden Apps designed to integrate zero trust into your infrastructure",
+      "iconSrc": "/productIcons/kubezt-secure-apps.svg",
+      "href": "/kubezt-secure-apps"
+    },
+    {
+      "label": "AnyCloud Orchestration",
+      "title": "Cloud Automation, done right",
+      "subtitle": "Simple Digital Transformation. Cost, Drag, Drop & Scale your Multi-Cloud Environment.",
+      "iconSrc": "/productIcons/anycloud-orchestration.svg",
+      "href": "/anycloud-orchestration"
+    },
+    {
+      "label": "Secure Access",
+      "title": "Stop Phishing & Block Lateral Movement",
+      "subtitle": "Detect and deny malicious activity. MFA Privilege Access & Geofence Service Accounts.",
+      "iconSrc": "/productIcons/secure-access.svg",
+      "href": "/secure-access"
+    },
+    {
+      "label": "Stealth Networking",
+      "title": "Secure and Hide Your Network",
+      "subtitle": "Make your Firewall a True Firewall - Block Inbound Ports. A true service mesh network - realized.",
+      "iconSrc": "/productIcons/stealth-networking.svg",
+      "href": "/stealth-networking"
+    },
+    {
+      "label": "Global Data Security",
+      "title": "Anywhere, Anytime",
+      "subtitle": "Create peace of mind that your data is always available, secure and ransomware resilient.",
+      "iconSrc": "/productIcons/global-data-security.svg",
+      "href": "/global-data-security"
+    },
+    {
+      "label": "Security Overwatch",
+      "title": "Know your Environment",
+      "subtitle": "Evolve with threats in real-time. Detect, Monitor & Remediate.",
+      "iconSrc": "/productIcons/security-overwatch.svg",
+      "href": "/security-overwatch"
+    }
+  ],
+  "company": [
+    { "href": "/company", "iconSrc": "/menuIcons/overview.svg", "label": "Overview" },
+    { "href": "/leadership", "iconSrc": "/menuIcons/leadership.svg", "label": "Leadership" },
+    { "href": "/initiatives", "iconSrc": "/menuIcons/initiatives.svg", "label": "Initiatives" },
+    { "href": "/careers", "iconSrc": "/menuIcons/careers.svg", "label": "Careers" },
+    { "href": "/news", "iconSrc": "/menuIcons/news.svg", "label": "News and Blog", "subLinks": ["Company News", "Blog"] },
+    { "href": "/events", "iconSrc": "/menuIcons/events.svg", "label": "Events", "subLinks": ["Webinars", "Out and About", "Conferences and Exhibitions"] }
+  ],
+  "solutions": [
+    { "href": "/cyber-risk", "iconSrc": "/menuIcons/cyber-risk.svg", "label": "Overview" },
+    { "href": "/ransomware-recovery", "iconSrc": "/menuIcons/ransomware.svg", "label": "How long to recover from Ransomware?" }
+  ],
+  "partners": [
+    { "href": "/become-a-partner", "iconSrc": "/menuIcons/become-a-partner.svg", "label": "Become a Partner" },
+    { "href": "/partner-portal", "iconSrc": "/menuIcons/partner-portal.svg", "label": "Partner Portal" }
+  ]
+}
