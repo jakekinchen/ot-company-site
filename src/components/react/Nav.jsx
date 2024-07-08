@@ -16,6 +16,7 @@ const Nav = () => {
   const [popoverHeight, setPopoverHeight] = useState(null);
   const closeTimeoutRef = useRef(null);
   const navBarRef = useRef(null);
+  const navRef = useRef(null);
 
   useEffect(() => {
     setPathname(window.location.pathname);
@@ -34,7 +35,6 @@ const Nav = () => {
       const navRect = navElement.getBoundingClientRect();
       const itemRect = menuItem.getBoundingClientRect();
 
-      // Set caret position relative to the nav bar
       setCaretLeft(itemRect.left - navRect.left + itemRect.width / 2);
     }
 
@@ -67,35 +67,33 @@ const Nav = () => {
     return href === pathname || href === '/' + (subpath?.[0] || '');
   };
 
-  return (
-    <nav className="mb:hidden w-full py-4 relative">
-      <div className="max-w-6xl mx-auto flex items-center justify-center relative flex-1">
-        <div className="flex items-center">
-          <div id="navBar" ref={navBarRef} className="flex space-x-1 shadow-sm bg-[#EEF0F4] rounded-full p-2">
+    return (
+    <nav ref={navRef} className="mb:hidden w-full py-4 relative">
+      <div className="max-w-6xl mx-auto flex items-center justify-center relative">
+        <div id="navBar" ref={navBarRef} className="flex space-x-1 shadow-sm bg-[#EEF0F4] rounded-full p-2">
+          <a
+            href="/"
+            className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full bg-blue hover:text-white active:bg-blue text-white transition-colors duration-200 ${
+              isActive(`/`) ? 'active:!bg-blue' : ''
+            }`}
+          >
+            Home
+          </a>
+          {MENU_ITEMS.map((item, index) => (
             <a
-              href="/"
-              className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full bg-blue hover:text-white active:bg-blue text-white transition-colors duration-200 ${
-                  isActive(`/`) ? 'active:!bg-blue' : ''
-                }`}
-              >
-              Home
+              key={item}
+              id={`nav-${item.toLowerCase()}`}
+              onMouseEnter={() => focusMenu(index)}
+              onMouseLeave={startCloseTimer}
+              onFocus={() => focusMenu(index)}
+              href={`/${item.toLowerCase()}`}
+              className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 ${
+                isActive(`/${item.toLowerCase()}`) ? 'active:!bg-blue' : ''
+              }`}
+            >
+              {item}
             </a>
-            {MENU_ITEMS.map((item, index) => (
-              <a
-                key={item}
-                id={`nav-${item.toLowerCase()}`}
-                onMouseEnter={() => focusMenu(index)}
-                onMouseLeave={startCloseTimer}
-                onFocus={() => focusMenu(index)}
-                href={`/${item.toLowerCase()}`}
-                className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 ${
-                  isActive(`/${item.toLowerCase()}`) ? 'active:!bg-blue' : ''
-                }`}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
       {typeof hovering === 'number' && (
@@ -103,13 +101,14 @@ const Nav = () => {
           onMouseEnter={cancelCloseTimer}
           onMouseLeave={startCloseTimer}
           style={{
-            height: popoverHeight ?? 'auto',
-            width: '100%',  // Set width to 100%
-            maxWidth: '6xl',  // Match the max-width of the nav bar
+            position: 'absolute',
+            top: '100%',
             left: '50%',
-            transform: 'translateX(-50%)',  // Center the submenu
+            transform: 'translateX(-50%)',
+            width: navBarRef.current ? navBarRef.current.offsetWidth : 'auto',
+            height: popoverHeight ?? 'auto',
           }}
-          className="absolute bg-white shadow-lg transition-all duration-300 mt-2 z-50"
+          className="bg-white shadow-lg transition-all duration-300 mt-2 z-50"
         >
           <div 
             className="submenu-caret absolute w-4 h-4 bg-white transform rotate-45 -top-2 z-50 rounded-md"
