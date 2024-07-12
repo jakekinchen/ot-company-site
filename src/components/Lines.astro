@@ -1,7 +1,7 @@
 ---
 interface Props {
   id: string;
-  path: string;
+  path?: string;
   flipped?: boolean;
   xOffset?: number;
   yOffset?: number;
@@ -10,7 +10,11 @@ interface Props {
   viewBox?: string;
   glowDistance?: number;
   animationDuration?: number;
-  outerBoundaryX?: number;
+  directIntoDiv?: 'left' | 'right' | null;
+  initialYOffset?: number;
+  verticalSegmentXOffset?: number;
+  divEndX?: 'beginning' | 'center' | 'end';
+  divEndY?: 'top' | 'center' | 'bottom';
 }
 
 const { 
@@ -21,10 +25,14 @@ const {
   yOffset = 0, 
   circleRadius = 15, 
   circleColor = 'cold-white', 
-  viewBox='0 0 100 100', 
-  glowDistance=36,
-  animationDuration=20,
-  outerBoundaryX = null
+  viewBox = '0 0 100 100', 
+  glowDistance = 36,
+  animationDuration = 20,
+  directIntoDiv = null,
+  initialYOffset = 0,
+  verticalSegmentXOffset = null,
+  divEndX = 'beginning',
+  divEndY = 'center'
 } = Astro.props;
 
 const adjustedXOffset = flipped ? -xOffset : xOffset;
@@ -32,7 +40,7 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
 
 <div
   id={`${id}-container`}
-  class={`z-50 line-container ${flipped ? 'flipped' : ''}`}
+  class={`z-50 line-container ${flipped ? 'flipped' : ''} ${directIntoDiv ? `direct-into-div-${directIntoDiv}` : ''}`}
   style={`transform: translate(${adjustedXOffset}px, ${yOffset}px) ${flipped ? 'scaleX(-1)' : ''};`}
 >
   <svg class="line-svg" xmlns="http://www.w3.org/2000/svg" viewBox={viewBox} preserveAspectRatio="xMidYMin slice" overflow="visible">
@@ -54,7 +62,7 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
   </svg>
 </div>
 
-<style define:vars={{ circleColor }}>
+<style>
   .line-container {
     position: absolute;
     width: 12vw;
@@ -64,6 +72,10 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
   }
   .line-container:not(.flipped) {
     left: 0;
+  }
+  .direct-into-div-left, .direct-into-div-right {
+    width: 100vw;
+    height: 100%;
   }
   .line-svg {
     width: 100%;
@@ -88,7 +100,69 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
   }
 </style>
 
-<script define:vars={{ id }}>
+
+
+<script define:vars={{ id, directIntoDiv, initialYOffset, verticalSegmentXOffset, divEndX, divEndY }}>
+  function updatePath() {
+    if (!directIntoDiv) return;
+
+    const container = document.querySelector(`#${id}-container`);
+    const svg = container.querySelector('.line-svg');
+    const path = svg.querySelector('.line-path');
+    const targetDiv = container.closest('.product-snippet'); // Adjust this selector as needed
+
+    if (!targetDiv) return;
+
+    const targetRect = targetDiv.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const startX = directIntoDiv === 'left' ? 0 : window.innerWidth;
+    let endX;
+    switch (divEndX) {
+      case 'beginning':
+        endX = directIntoDiv === 'left' ? targetRect.left : targetRect.right;
+        break;
+      case 'center':
+        endX = (targetRect.left + targetRect.right) / 2;
+        break;
+      case 'end':
+        endX = directIntoDiv === 'left' ? targetRect.right : targetRect.left;
+        break;
+    }
+
+    const middleX = verticalSegmentXOffset !== null 
+      ? (directIntoDiv === 'left' ? startX + verticalSegmentXOffset : endX - verticalSegmentXOffset)
+      : (startX + endX) / 2;
+    
+    const startY = containerRect.top + initialYOffset;
+    let endY;
+    switch (divEndY) {
+      case 'top':
+        endY = targetRect.top;
+        break;
+      case 'center':
+        endY = (targetRect.top + targetRect.bottom) / 2;
+        break;
+      case 'bottom':
+        endY = targetRect.bottom;
+        break;
+    }
+
+    const newPath = `M ${startX} ${startY} 
+                     H ${middleX} 
+                     V ${endY} 
+                     H ${endX}`;
+    
+    path.setAttribute('d', newPath);
+
+    // Update viewBox to encompass the entire path
+    const minX = Math.min(startX, endX);
+    const maxX = Math.max(startX, endX);
+    const minY = Math.min(startY, endY);
+    const maxY = Math.max(startY, endY);
+    svg.setAttribute('viewBox', `${minX} ${minY} ${maxX - minX} ${maxY - minY}`);
+  }
+
   function updateSVGSize() {
     const container = document.querySelector(`#${id}-container`);
     const svg = container.querySelector('.line-svg');
@@ -97,6 +171,14 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
       svg.setAttribute('height', container.offsetHeight.toString());
     }
   }
-  window.addEventListener('resize', updateSVGSize);
-  document.addEventListener('DOMContentLoaded', updateSVGSize);
+
+  window.addEventListener('resize', () => {
+    updateSVGSize();
+    updatePath();
+  });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    updateSVGSize();
+    updatePath();
+  });
 </script>

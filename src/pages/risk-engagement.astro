@@ -1,36 +1,71 @@
 ---
-import ProductLayout from '../components/ProductLayout.astro';
+import Lines from '../components/Lines.astro';
+import Layout from '../components/Layout.astro';
 
-const products = [
-  {
-    title: "GDS Product 1",
-    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
-    buttonLabel: "More Information",
-    buttonUrl: "#"
-  },
-  {
-    title: "GDS Product 2",
-    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
-    buttonLabel: "More Information",
-    buttonUrl: "#"
-  },
-  {
-    title: "GDS Product 3",
-    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
-    buttonLabel: "More Information",
-    buttonUrl: "#"
-  },
-  {
-    title: "GDS Product 4",
-    description: "At OneTier, we offer data aggregation for your business environments so you can see exactly what is happening and where.",
-    buttonLabel: "More Information",
-    buttonUrl: "#"
-  }
+const buttons = [
+  { text: 'Benefits', href: '#benefits' },
+  { text: 'Features', href: '#features' },
+  { text: 'Visual Guide', href: '#visual-guide' }
 ];
 ---
+<Layout headerLogoColor='white' gradient="false">
+  <div class="risk-engagement-snippet relative bg-blue text-white p-8">
+    <Lines
+      id="risk-engagement-line"
+      directIntoDiv="left"
+      circleRadius={3}
+      circleColor="white"
+      glowDistance={3}
+      initialYOffset={-50}
+      verticalSegmentXOffset={-200}
+      divEndX="end"
+      divEndY="top"
+    />
+    
+    <div class="justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%]">
+      <div class="flex justify-between items-start">
+        <div class="content w-2/3">
+          <p class="text-4xl font-bold mb-4">Risk Engagement</p>
+          <p class="text-xl mb-8 w-1/2">Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.</p>
+          
+          <div class="buttons flex space-x-4">
+            {buttons.map((button, index) => (
+              <a
+                href={button.href}
+                class="bg-orange text-white px-6 py-2 rounded-full hover:bg-orange transition-colors"
+                id={index === 2 ? 'last-button' : ''}
+              >
+                {button.text}
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <div class="logo w-1/3 flex">
+          <img src="/productIcons/risk-engagement.svg" alt="Risk Engagement Icon" class="w-32 h-32 filter-white">
+        </div>
+      </div>
+    </div>
+</div>
+</Layout>
 
-<ProductLayout 
-  mainTitle="AnyCloud Orchestration"
-  mainDescription="AnyCloud Orchestration automates secure, cost-inclusive environments for effective hybrid and multi-cloud strategies."
-  products={products}
-/>
+<style>
+  .risk-engagement-snippet {
+    min-height: 300px; /* Adjust as needed */
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lastButton = document.getElementById('last-button');
+    const lineContainer = document.getElementById('risk-engagement-line-container');
+    
+    if (lastButton && lineContainer) {
+      const buttonRect = lastButton.getBoundingClientRect();
+      const containerRect = lineContainer.getBoundingClientRect();
+      
+      const yOffset = buttonRect.top - containerRect.top;
+      lineContainer.style.transform = `translateY(${yOffset}px)`;
+    }
+  });
+</script>

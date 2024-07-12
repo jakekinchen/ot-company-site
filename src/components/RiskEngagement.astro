@@ -1,0 +1,67 @@
+---
+import Lines from './Lines.astro';
+
+const buttons = [
+  { text: 'Benefits', href: '#benefits' },
+  { text: 'Features', href: '#features' },
+  { text: 'Visual Guide', href: '#visual-guide' }
+];
+---
+
+<div class="risk-engagement-snippet relative bg-blue-600 text-white p-8">
+  <Lines
+    id="risk-engagement-line"
+    directIntoDiv="left"
+    circleRadius={5}
+    circleColor="white"
+    glowDistance={3}
+    initialYOffset={-50}
+    verticalSegmentXOffset={-200}
+    divEndX="end"
+    divEndY="top"
+  />
+  
+  <div class="flex justify-between items-start">
+    <div class="content w-2/3">
+      <h2 class="text-4xl font-bold mb-4">Risk Engagement</h2>
+      <p class="text-xl mb-8">Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.</p>
+      
+      <div class="buttons flex space-x-4">
+        {buttons.map((button, index) => (
+          <a
+            href={button.href}
+            class="bg-orange-400 text-white px-6 py-2 rounded-full hover:bg-orange-500 transition-colors"
+            id={index === 2 ? 'last-button' : ''}
+          >
+            {button.text}
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="logo w-1/3 flex justify-end">
+      <img src="./public/productIcons/Risk Engagement.svg" alt="Risk Engagement Icon" class="w-32 h-32">
+    </div>
+  </div>
+</div>
+
+<style>
+  .risk-engagement-snippet {
+    min-height: 300px; /* Adjust as needed */
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lastButton = document.getElementById('last-button');
+    const lineContainer = document.getElementById('risk-engagement-line-container');
+    
+    if (lastButton && lineContainer) {
+      const buttonRect = lastButton.getBoundingClientRect();
+      const containerRect = lineContainer.getBoundingClientRect();
+      
+      const yOffset = buttonRect.top - containerRect.top;
+      lineContainer.style.transform = `translateY(${yOffset}px)`;
+    }
+  });
+</script>

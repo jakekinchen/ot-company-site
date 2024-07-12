@@ -4,17 +4,66 @@ import pages from '../../data/pages.json';
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [wasOpenOnMobile, setWasOpenOnMobile] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [lastActiveSubmenu, setLastActiveSubmenu] = useState(null);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    const handleToggle = () => setIsOpen(!isOpen);
+    const handleResize = () => {
+      const newIsMobile = window.innerWidth < 960; // Adjust this breakpoint as needed
+      if (isMobile !== newIsMobile) {
+        if (newIsMobile) {
+          // Transitioning to mobile
+          setIsOpen(wasOpenOnMobile);
+          setActiveSubmenu(lastActiveSubmenu);
+        } else {
+          // Transitioning to desktop
+          setWasOpenOnMobile(isOpen);
+          setLastActiveSubmenu(activeSubmenu);
+          setIsOpen(false);
+          setActiveSubmenu(null);
+        }
+        setIsMobile(newIsMobile);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Call once to set initial state
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile, isOpen, wasOpenOnMobile, activeSubmenu, lastActiveSubmenu]);
+
+  useEffect(() => {
+    const handleToggle = () => {
+      if (isMobile) {
+        setIsOpen(!isOpen);
+        setWasOpenOnMobile(!isOpen);
+      }
+    };
     document.addEventListener('toggleMobileMenu', handleToggle);
     return () => document.removeEventListener('toggleMobileMenu', handleToggle);
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
 
-  const openSubmenu = (submenu) => setActiveSubmenu(submenu);
-  const closeMenu = () => setIsOpen(false);
-  const backToMainMenu = () => setActiveSubmenu(null);
+  const openSubmenu = (submenu) => {
+    setActiveSubmenu(submenu);
+    setLastActiveSubmenu(submenu);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    setWasOpenOnMobile(false);
+    setActiveSubmenu(null);
+    setLastActiveSubmenu(null);
+  };
+
+  const backToMainMenu = () => {
+    setActiveSubmenu(null);
+    setLastActiveSubmenu(null);
+  };
+
+  if (!isMobile) return null; // Don't render anything if not mobile
+
 
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center ${isOpen ? 'visible' : 'invisible'}`}>
@@ -23,9 +72,9 @@ const MobileMenu = () => {
           {!activeSubmenu ? (
             <>
               <div className="flex justify-between items-center w-full py-4">
-                <img 
-                  src="/ot-gradient-logo.svg" 
-                  alt="OneTier Logo" 
+                <img
+                  src="/ot-gradient-logo.svg"
+                  alt="OneTier Logo"
                   style={{ width: '10rem' }}
                 />
                 <button
@@ -38,29 +87,26 @@ const MobileMenu = () => {
                   </svg>
                 </button>
               </div>
-              <hr className="w-full border-gray" />
               <nav className="flex-grow overflow-y-auto">
-                <ul className="space-y-4">
-                  <li><a href="/" className="block py-2 text-xl font-semibold text-dark-blue hover:text-blue">Home</a>
-                  <hr className="w-full border-gray" />
+                <ul className="divide-y divide-gray">
+                  <li className="py-4">
+                    <a href="/" className="block text-xl font-semibold text-dark-blue hover:text-blue">Home</a>
                   </li>
-                  
                   {['solutions', 'products', 'partners', 'company'].map((item) => (
-                    <li key={item}>
+                    <li key={item} className="py-4">
                       <button
                         onClick={() => openSubmenu(item)}
-                        className="flex items-center justify-between w-full py-2 text-xl font-semibold text-dark-blue hover:text-blue"
+                        className="flex items-center justify-between w-full text-xl font-semibold text-dark-blue hover:text-blue"
                       >
-                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                        <span>{item.charAt(0).toUpperCase() + item.slice(1)}</span>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>
-                      <hr className="w-full border-gray" />
                     </li>
                   ))}
-                  <li>
-                    <a href="/request-demo" className="block py-2 text-xl font-semibold text-blue hover:text-blue">
+                  <li className="py-4">
+                    <a href="/request-demo" className="block text-xl font-semibold text-blue hover:text-orange">
                       Request a Demo
                     </a>
                   </li>
@@ -68,10 +114,10 @@ const MobileMenu = () => {
               </nav>
             </>
           ) : (
-            <MobileSubMenu 
-              submenu={activeSubmenu} 
-              items={pages[activeSubmenu]} 
-              onBack={backToMainMenu} 
+            <MobileSubMenu
+              submenu={activeSubmenu}
+              items={pages[activeSubmenu]}
+              onBack={backToMainMenu}
               onClose={closeMenu}
             />
           )}
