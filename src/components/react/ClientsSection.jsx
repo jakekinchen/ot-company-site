@@ -37,14 +37,14 @@ const ClientsSection = () => {
   }, []);
 
   return (
-    <section className="bg-white h-[40vh] flex items-center">
+    <section className="bg-white h-[55vw] max-h-[400px] flex items-center">
       <div className="w-full max-w-screen-lg mx-auto">
         <h2 className="text-center text-5xl font-bold mb-16">Our Clients</h2>
         <swiper-container init="false" ref={swiperElRef} class="h-full">
           {clients.map((client, index) => (
             <swiper-slide key={index} class="flex items-center justify-center h-full gap-40">
               <div className="flex justify-center items-center h-full w-full">
-                <img src={client.logo} alt={client.name} className="max-h-[20vh] object-contain" />
+                <img src={client.logo} alt={client.name} className="max-h-[200px] h-[25vw] object-contain" />
               </div>
             </swiper-slide>
           ))}

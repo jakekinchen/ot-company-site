@@ -39,6 +39,13 @@
       "href": "/stealth-networking"
     },
     {
+      "label": "Analytics HQ",
+      "title": "Visualize your Data",
+      "subtitle": "Interact with your data with Secure Realtime Visibility",
+      "iconSrc": "/productIcons/analytics-hq.svg",
+      "href": "/analytics-hq"
+    },
+    {
       "label": "Global Data Security",
       "title": "Anywhere, Anytime",
       "subtitle": "Create peace of mind that your data is always available, secure and ransomware resilient.",

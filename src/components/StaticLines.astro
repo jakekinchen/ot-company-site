@@ -36,6 +36,7 @@ const {
 } = Astro.props;
 
 const adjustedXOffset = flipped ? -xOffset : xOffset;
+
 ---
 
 <div
@@ -74,7 +75,7 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
     left: 0;
   }
   .direct-into-div-left, .direct-into-div-right {
-    width: 100vw;
+    width: 100%;
     height: 100%;
   }
   .line-svg {
@@ -130,6 +131,8 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
         break;
     }
 
+
+
     const middleX = verticalSegmentXOffset !== null 
       ? (directIntoDiv === 'left' ? startX + verticalSegmentXOffset : endX - verticalSegmentXOffset)
       : (startX + endX) / 2;
@@ -163,6 +166,10 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
     svg.setAttribute('viewBox', `${minX} ${minY} ${maxX - minX} ${maxY - minY}`);
   }
 
+  window.addEventListener('updateLine', () => {
+      updatePath();
+    });
+
   function updateSVGSize() {
     const container = document.querySelector(`#${id}-container`);
     const svg = container.querySelector('.line-svg');
@@ -179,6 +186,6 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
   
   document.addEventListener('DOMContentLoaded', () => {
     updateSVGSize();
-    updatePath();
+    setTimeout(updatePath, 0);
   });
 </script>

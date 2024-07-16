@@ -1,0 +1,23 @@
+[
+    {
+      "iconSrc": "/featureIcons/cyber-risk.svg",
+      "title": "Cost of your Cyber Risk",
+      "description": "OneTier scans your enterprise to define cyber risk, identifying high-risk areas and associated costs. Focus your budget where it impacts security the most."
+    },
+    {
+      "iconSrc": "/featureIcons/compliance-management.svg",
+      "title": "Compliance Management",
+      "description": "Looking to become compliant in the latest standards, SOC2, ISO27001, CMMC 2.0, FedRAMP, HiTrust? We have you covered with AI-driven compliance tools."
+    },
+    {
+      "iconSrc": "/featureIcons/cmmc.svg",
+      "title": "CMMC 2.0 Compliance",
+      "description": "Whether it is a CMMC Level 1 self assessment, a Level 2 with independent audit, or a Level 3 with government audit, we have you covered."
+    },
+    {
+      "iconSrc": "/featureIcons/fedramp.svg",
+      "title": "FedRAMP & StateRAMP",
+      "description": "Using our scanning and AI documentation management tools, we can help reduce the time for a FedRAMP certification from years down to months. This saves money and time to certification and sales."
+    }
+  ]
+  

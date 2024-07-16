@@ -4,20 +4,22 @@ import Dialog from './Dialog.astro';
 import Nav from './react/Nav.jsx';
 import { enableGradientFollowById } from '../helpers/gradientFollow';
 import MobileMenu from './react/MobileMenu.jsx';
-const { background = "transparent", gradient = true, iconColor = "blue", logoColor = "blue" } = Astro.props;
+const { background = "transparent", gradient = false, iconColor = "blue", logoColor = "blue" } = Astro.props;
 
 const bgColor = background === "transparent" ? "bg-opacity-0" : background;
+const iconFilterColor = iconColor === "blue" ? "filter-blue" : "filter-white";
+const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
 ---
 
-<header class={`${bgColor} flex justify-between items-center w-full h-[80px] mt-[2vh]`}>
+<header class={`${bgColor} flex justify-between items-center w-full h-[80px] mt-[1rem]`}>
   <a href="/" class="ml-[5vw]">
-    <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoColor} style="width: 10rem;" />
+    <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoFilterColor} style="width: 10rem;" />
   </a>
   
   <Nav client:only="react" />
   
   <div class="flex items-center mr-[5vw]">
-    <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={`hamburger-menu dt:hidden ${iconColor} filter-blue cursor-pointer`}>
+    <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={`hamburger-menu dt:hidden ${iconFilterColor} filter-blue cursor-pointer`}>
     <button id="requestDemo" class="gradient-button mb:hidden">Request Demo</button>
   </div>
   

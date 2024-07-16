@@ -5,10 +5,10 @@ import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
 import { products } from '../data/pages.json';
 import ClientsSection from '../components/react/ClientsSection.jsx';
-import Lines from '../components/Lines.astro';
+import Lines from '../components/StaticLines.astro';
 ---
 
-<Layout customBackground={true}>
+<Layout customBackground={true} gradient="true">
   <div class="mb:hidden">
     <Lines
       id="line-1"
@@ -23,8 +23,8 @@ import Lines from '../components/Lines.astro';
     />
   </div>
   <div class="justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%]">
-    <div class="max-w-full min-w-[85%] w-[60rem] leading-snug text-left text-wrap text-blue mt-[6vw] mb-[calc(24px+4vw)] space-y-[2.5vh]">
-      <h1 class="text-[calc(3vw+3rem)]  break-words w-full">
+    <div class="max-w-full min-w-[85%] w-[60rem] leading-snug text-left text-wrap text-blue mt-[6vw] mb-[calc(24px+4vw)] space-y-[2.5vw]">
+      <h1 class="text-[calc(3vw+3rem)]  break-words w-full font-medium">
           OneTier's AnyCloud Data Secure Portfolio
       </h1>
       
@@ -105,6 +105,10 @@ import Lines from '../components/Lines.astro';
 <style>
 :root {
     --filter-half-blue: rgba(16, 121, 208, .3); /* Semi-transparent blue */
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 .glassmorphic-bg {

@@ -1,0 +1,24 @@
+---
+import features from '../data/features.json';
+---
+<section class="bg-blue text-white">
+  <p class="text-6xl mb-8 font-semibold">
+    Features
+  </p>
+  <div class="grid grid-cols-2 dt:grid-cols-4 gap-8">
+    {features.map(feature => (
+      <div class="flex flex-row items-start gap-4">
+        <div class="mb-4 relative space-y-2">
+          <div class="w-12 h-12 flex items-center justify-center">
+            <img src={feature.iconSrc} alt={feature.title} class="h-8 w-8 filter-white rounded-none" />
+          </div>
+          <div class="absolute top-full left-1/2 w-px h-24 mb:h-16 border-l-2 border-dotted border-white"></div>
+        </div>
+        <div class="flex flex-col">
+          <h3 class="text-xl text-white mb-2">{feature.title}</h3>
+          <p class="text-sm">{feature.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

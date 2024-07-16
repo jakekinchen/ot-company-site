@@ -21,7 +21,7 @@ const orderClasses = isLeft ? "order-1" : "order-2";
 const iconOrderClasses = isLeft ? "order-2" : "order-1";
 const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-4 ${iconClass}`;
 const productId = productName.toLowerCase().replace(/ /g, '-');
-import Lines from './Lines.astro';
+import Lines from './StaticLines.astro';
 ---
 
 <div id={`${productId} outer-container`} class={`text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center relative`}>

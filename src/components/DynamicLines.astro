@@ -1,0 +1,92 @@
+---
+interface Props {
+  id: string;
+  targetId: string;
+  circleRadius?: number;
+  circleColor?: string;
+  glowDistance?: number;
+}
+
+const { 
+  id, 
+  targetId,
+  circleRadius = 3, 
+  circleColor = 'white', 
+  glowDistance = 3,
+} = Astro.props;
+---
+
+<svg class="line-svg" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id={`glow-${id}`} x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path class="line-path" id={`${id}-path`} />
+  <circle class="glowing-circle" cx="0" cy="0" r={circleRadius} fill={circleColor} filter={`url(#glow-${id})`}>
+    <animateMotion repeatCount="indefinite" dur="20s">
+      <mpath href={`#${id}-path`}/>
+    </animateMotion>
+  </circle>
+</svg>
+
+<style>
+  .line-svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .line-path {
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+  }
+</style>
+
+<script define:vars={{ id, targetId }}>
+  function updatePath() {
+    const svg = document.querySelector(`#${id}-path`).closest('svg');
+    const path = document.querySelector(`#${id}-path`);
+    const targetElement = document.getElementById(targetId);
+    
+    if (!svg || !path || !targetElement) {
+      console.error('Required elements not found');
+      return;
+    }
+
+    const rect = targetElement.getBoundingClientRect();
+    const startX = rect.right;
+    const startY = rect.top;
+    const endX = 0; // Left edge of viewport
+
+    // Adjust coordinates relative to the SVG
+    const svgRect = svg.getBoundingClientRect();
+    const relativeStartX = startX - svgRect.left;
+    const relativeStartY = startY - svgRect.top;
+    const relativeEndX = endX - svgRect.left;
+
+    const newPath = `M ${relativeStartX} ${relativeStartY} H ${relativeEndX}`;
+    path.setAttribute('d', newPath);
+
+    // Set SVG size to cover from left edge to the right edge of the target element
+    svg.style.width = `${startX}px`;
+    svg.style.height = `${rect.height}px`;
+
+    // Set viewBox to ensure the entire path is visible
+    svg.setAttribute('viewBox', `${relativeEndX} ${relativeStartY} ${relativeStartX - relativeEndX} ${rect.height}`);
+
+    console.log('Path updated:', { startX, startY, endX, newPath });
+  }
+
+  window.addEventListener('resize', updatePath);
+  window.addEventListener('scroll', updatePath);
+  document.addEventListener('DOMContentLoaded', () => setTimeout(updatePath, 100));
+</script>

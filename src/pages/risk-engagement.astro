@@ -1,38 +1,51 @@
 ---
-import Lines from '../components/Lines.astro';
 import Layout from '../components/Layout.astro';
+import Features from '../components/Features.astro';
 
 const buttons = [
   { text: 'Benefits', href: '#benefits' },
   { text: 'Features', href: '#features' },
-  { text: 'Visual Guide', href: '#visual-guide' }
-];
+  { text: 'Visual Guide', href: '#visual-guide' }];
+
+const customYOffset = 100; // Set your desired offset here
+const gradient = false;
 ---
-<Layout headerLogoColor='white' gradient="false">
-  <div class="risk-engagement-snippet relative bg-blue text-white p-8">
-    <Lines
-      id="risk-engagement-line"
-      directIntoDiv="left"
-      circleRadius={3}
-      circleColor="white"
-      glowDistance={3}
-      initialYOffset={-50}
-      verticalSegmentXOffset={-200}
-      divEndX="end"
-      divEndY="top"
-    />
-    
-    <div class="justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%]">
+<Layout headerLogoColor='white' headerIconColor='white' gradient={gradient}>
+  <div class="relative bg-blue text-white p-8">
+    <svg class="absolute left-0 top-0 w-screen h-full pointer-events-none overflow-visible z-50" preserveAspectRatio="none">
+      <path id="dotted-path" fill="none" stroke="white" stroke-width="4" stroke-dasharray="5,5" vector-effect="non-scaling-stroke"/>
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <circle id="moving-circle" r="15" fill="white" filter="url(#glow)">
+        <animateMotion dur="10s" repeatCount="indefinite">
+          <mpath href="#dotted-path"/>
+        </animateMotion>
+      </circle>
+    </svg>
+    <div class="justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%] mt-4">
       <div class="flex justify-between items-start">
+        <div class="logo flex">
         <div class="content w-2/3">
-          <p class="text-4xl font-bold mb-4">Risk Engagement</p>
-          <p class="text-xl mb-8 w-1/2">Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.</p>
+          <p class="text-7xl font-bold mb-4 drop-shadow-lg">Risk Engagement</p>
+          <p class="text-3xl mb-8">Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.</p>
+        </div>
+          <img src="/productIcons/risk-engagement.svg" alt="Risk Engagement Icon" class="w-1/3 filter-white">
+        </div>
+        </div>
+        <div class="risk-engagement-content relative w-full mt-10">
           
-          <div class="buttons flex space-x-4">
+          <div class="buttons flex flex-row justify-center space-x-[5%]">
             {buttons.map((button, index) => (
               <a
                 href={button.href}
-                class="bg-orange text-white px-6 py-2 rounded-full hover:bg-orange transition-colors"
+                class="bg-orange text-white py-2 hover:bg-orange transition-colors w-[30%] h-12 text-center font-bold rounded-b-2xl"
                 id={index === 2 ? 'last-button' : ''}
               >
                 {button.text}
@@ -40,10 +53,33 @@ const buttons = [
             ))}
           </div>
         </div>
-        
-        <div class="logo w-1/3 flex">
-          <img src="/productIcons/risk-engagement.svg" alt="Risk Engagement Icon" class="w-32 h-32 filter-white">
+        <div class="mt-16 mb-16 flex flex-row space-x-10">
+          <div class="risk-mockup">
+            <img src="/risk_mockup.png" alt="Risk Engagement Mockup" class="w-full" />
+          </div>
+          <div class="w-full md:w-1/3">
+            <p class="text-6xl mb-8 font-semibold">
+              Benefits
+            </p>
+            <p class="text-xl">
+              At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening.
+            </p>
+          </div>
         </div>
+        <Features />
+        <div class="mt-16 flex flex-row">
+          <p class="text-6xl mb-8 font-semibold w-[45%]">
+            Visual Breakdown
+          </p>
+          <div class="w-[55%]">
+            <iframe class="w-full h-[315px] border-5" src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          </div>
+        </div>
+          <div class="flex justify-center items-center mt-10">
+            <button class="gradient-button">Request Demo</button>
+          </div>
+          <p class="text-2xl mt-10">OneTier's Risk Engagement is a comprehensive solution that helps organizations understand the cost of cyber risk and make informed decisions to protect their business.</p>
       </div>
     </div>
 </div>
@@ -54,18 +90,54 @@ const buttons = [
     min-height: 300px; /* Adjust as needed */
   }
 </style>
+<script define:vars={{ customYOffset }}>
+  let initialYOffset = customYOffset;
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const lastButton = document.getElementById('last-button');
-    const lineContainer = document.getElementById('risk-engagement-line-container');
+  function updateDottedPath() {
+    const riskEngagementContent = document.querySelector('.risk-engagement-content');
+    const dottedPath = document.getElementById('dotted-path');
     
-    if (lastButton && lineContainer) {
-      const buttonRect = lastButton.getBoundingClientRect();
-      const containerRect = lineContainer.getBoundingClientRect();
+    if (riskEngagementContent && dottedPath && dottedPath instanceof SVGPathElement) {
+      const rect = riskEngagementContent.getBoundingClientRect();
+      const svg = dottedPath.ownerSVGElement;
       
-      const yOffset = buttonRect.top - containerRect.top;
-      lineContainer.style.transform = `translateY(${yOffset}px)`;
+      if (svg) {
+        const svgRect = svg.getBoundingClientRect();
+        
+        const startY = 65;
+        const endY = rect.top - svgRect.top -1;
+        const startX = 0;
+        const endX = rect.right - svgRect.left;
+        const midpointX = (rect.left - svgRect.left) / 2;
+
+        // Set initialYOffset if it's null
+        if (initialYOffset === null) {
+          initialYOffset = endY - startY;
+        }
+
+        let pathData;
+
+        if (initialYOffset > 0) {
+          // Complex path with rotations
+          pathData = [
+            `M ${startX},${startY}`,  // Move to start point
+            `H ${midpointX}`,         // Draw horizontal line to midpoint
+            `V ${endY}`,              // Draw vertical line down
+            `H ${endX}`               // Draw horizontal line to end
+          ].join(' ');
+        } else {
+          // Simple horizontal line
+          pathData = `M ${startX},${endY} H ${endX}`;
+        }
+
+        dottedPath.setAttribute('d', pathData);
+      }
     }
-  });
+  }
+
+  // Run on load and resize
+  window.addEventListener('load', updateDottedPath);
+  window.addEventListener('resize', updateDottedPath);
+
+  // If content might change dynamically, you may need to call updateDottedPath() after those changes
 </script>
