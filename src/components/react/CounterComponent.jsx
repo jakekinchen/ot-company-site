@@ -59,7 +59,7 @@ const CounterComponent = ({ targetNumber, duration, emphasize }) => {
   return (
   <div className="w-full text-center">
     <h1
-      className={`text-[calc(10px+4vw)] font-bold font-mono text-white transition-transform duration-500 ease-out ${animate ? 'scale-125' : ''}`}
+      className={`text-[calc(14px+3vw)] font-bold font-mono text-white transition-transform duration-500 ease-out ${animate ? 'scale-125' : ''}`}
     >
       ${count.toLocaleString()}
     </h1>

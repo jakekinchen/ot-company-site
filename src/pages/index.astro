@@ -3,9 +3,13 @@ import Layout from '../components/Layout.astro';
 import CardComponent from '../components/CardComponent.astro';
 import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
-import { products } from '../data/pages.json';
-import ClientsSection from '../components/react/ClientsSection.jsx';
+import { products, clients } from '../data/pages.json';
+//import ClientsSection from '../components/react/ClientsSection.jsx';
+import Carousel from '../components/Carousel.astro';
 import Lines from '../components/StaticLines.astro';
+if (!clients) {
+  throw new Error('Client info not found');
+}
 ---
 
 <Layout customBackground={true} gradient="true">
@@ -83,19 +87,27 @@ import Lines from '../components/StaticLines.astro';
         />
       ))}
     </div>
-    <div class="mt-[10vw] w-[100vw] transform -translate-x-[12.5%]" >
-    <ClientsSection client:load />
+    <div class="mt-16 relative w-screen left-1/2 right-1/2 -mx-[50vw]">
+      <div class="bg-white">
+        <section class="bg-white w-full py-8 mb:py-4">
+          <div class="w-full max-w-screen-lg mx-auto px-4">
+            <p class="text-center text-5xl mb:text-3xl text-blue font-bold mb-8 mb:mb-4">Our Clients</p>
+            <div class="logo-container w-full">
+              <Carousel clients={clients} scale={1.5} speed={45} />
+            </div>
+            </section>
+      </div>
     </div>
-    <div class="flex items-center justify-center my-[10vh] mb:my-[2vh] mb:space-x-8">
+    <div class="flex items-center justify-center my-16 mb:my-[2vh] mb:space-x-8">
       <!-- glassmorphic background with padding -->
-      <div class="flex flex-row items-center dt:space-x-24 justify-center mb:space-x-8 dt:glassmorphic-bg bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-lg w-[calc(60vw+200px)] mb:w-full p-8 mb:h-[40vw] h-[20vw]">
-        <div class="text-center flex flex-col items-center h-[25vw] w-full mb:w-[42vw] justify-center">
-          <p class="text-white text-[calc(1vw+1rem)] mb:text-[calc(3vw)] mb-4 w-[22vw] mb:w-full h-auto min-h-[6vw] mb:min-h-auto">Learn about the OneTier Partner Program</p>
-          <a href="/" class="bg-white dt:mt-[2vw] dt:py-auto text-[calc(1vw+1rem)] mb:text-[calc(3vw)] text-blue font-bold py-4 px-8 rounded-full hover:bg-cold-white w-[22vw] mb:w-[32vw] mb:h-[6vh] dt:h-[8vh] flex items-center justify-center">Partners</a>
+      <div class="grid grid-cols-1 dt:grid-cols-2 gap-8 dt:gap-16 items-center justify-items-center dt:glassmorphic-bg bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-lg w-full max-w-[calc(60vw+200px)] p-8">
+        <div class="flex flex-col items-center justify-between w-full max-w-[350px] h-full">
+          <p class="text-white text-lg md:text-xl dt:text-2xl mb-4 text-center">Learn about the OneTier Partner Program</p>
+          <a href="/" class="bg-white text-blue font-bold py-3 px-6 rounded-full hover:bg-cold-white w-full max-w-[250px] h-[50px] flex items-center justify-center text-base md:text-lg dt:text-xl">Partners</a>
         </div>
-        <div class="text-center flex flex-col items-center h-[25vw] w-full mb:w-[42vw] justify-center">
-          <p class="text-white text-[calc(1vw+1rem)] mb:text-[calc(3vw)] mb-4 w-[22vw] mb:w-full h-auto min-h-[6vw] mb:min-h-[auto]">Join our Newsletter on LinkedIn</p>
-          <a href="/" class="bg-white dt:mt-[2vw] text-[calc(1vw+1rem)] mb:text-[calc(3vw)] text-blue font-bold py-4 px-8 rounded-full hover:bg-cold-white w-[22vw] mb:w-[32vw] mb:h-[6vh] dt:h-[8vh] flex items-center justify-center">Subscribe</a>
+        <div class="flex flex-col items-center justify-between w-full max-w-[350px] h-full">
+          <p class="text-white text-lg md:text-xl dt:text-2xl mb-4 text-center">Join our Newsletter on LinkedIn</p>
+          <a href="/" class="bg-white text-blue font-bold py-3 px-6 rounded-full hover:bg-cold-white w-full max-w-[250px] h-[50px] flex items-center justify-center text-base md:text-lg dt:text-xl">Subscribe</a>
         </div>
       </div>
     </div>

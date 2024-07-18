@@ -285,5 +285,13 @@
   "partners": [
     { "href": "/become-a-partner", "iconSrc": "/menuIcons/become-a-partner.svg", "label": "Become a Partner" },
     { "href": "/partner-portal", "iconSrc": "/menuIcons/partner-portal.svg", "label": "Partner Portal" }
+  ],
+  "clients": [
+    { "label": "U.S. Air Force", "iconSrc": "/clientLogos/airforce.png", "alt": "U.S. Air Force", "href": "https://www.airforce.com"},
+    { "label": "Milkwaukee", "iconSrc": "/clientLogos/milwaukee.png", "alt": "Milwaukee", "href": "https://www.milwaukee.gov"},
+    { "label": "U.S. Navy", "iconSrc": "/clientLogos/navy.png", "alt": "U.S. Navy", "href": "https://www.navy.mil"},
+    { "label": "Disney", "iconSrc": "/clientLogos/disney.png", "alt": "Disney", "href": "https://www.disney.com"},
+    { "label": "Microsoft", "iconSrc": "/clientLogos/microsoft.png", "alt": "Microsoft", "href": "https://www.microsoft.com"},
+    { "label": "Oracle", "iconSrc": "/clientLogos/oracle.png", "alt": "Oracle", "href": "https://www.oracle.com"}
   ]
 }

@@ -26,6 +26,13 @@ export type ProductInfo = {
       };
     };
   };
+
+  export type Clients = {
+    label: string;
+    iconSrc: string;
+    alt: string;
+    href: string;
+  };
   
   export type CompanyLink = {
     href: string;
@@ -51,4 +58,5 @@ export type ProductInfo = {
     company: CompanyLink[];
     solutions: SolutionLink[];
     partners: PartnerLink[];
+    clients: Clients[];
   };

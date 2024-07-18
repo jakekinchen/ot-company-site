@@ -1,0 +1,120 @@
+---
+// Carousel.astro
+import type { Clients } from '../types';
+
+interface Props {
+  pauseOnHover?: boolean;
+  clients: Clients[];
+  scale?: number;
+  speed?: number;
+}
+
+const { pauseOnHover = true, clients = [], scale = 1, speed=35 } = Astro.props;
+---
+<div class={`logos ${pauseOnHover ? 'pause-on-hover' : ''}`} style={`--scale: ${scale}; --speed: ${speed}`}>
+  <div class="logos-slide">
+    {clients.map((client) => (
+      <a href={client.href} target="_blank" rel="noopener noreferrer">
+        <img src={client.iconSrc} alt={client.alt} title={client.label} />
+      </a>
+    ))}
+  </div>
+  <div class="logos-slide">
+    {clients.map((client) => (
+      <a href={client.href} target="_blank" rel="noopener noreferrer">
+        <img src={client.iconSrc} alt={client.alt} title={client.label} />
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .logos {
+    --base-height: 100px;
+    --base-padding: 30px;
+    --base-max-width: 180px;
+    --base-max-height: 80px;
+
+    overflow: hidden;
+    padding: calc(20px * var(--scale)) 0;
+    background: white;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .logos:before,
+  .logos:after {
+    position: absolute;
+    top: 0;
+    width: calc(100px * var(--scale));
+    height: 100%;
+    content: "";
+    z-index: 2;
+  }
+
+  .logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  .logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+
+  .logos.pause-on-hover:hover .logos-slide {
+    animation-play-state: paused;
+  }
+
+  .logos-slide {
+    display: inline-flex;
+    animation: calc(var(--speed) * 1s) slide infinite linear;
+  }
+
+  .logos-slide a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 calc(var(--base-padding) * var(--scale));
+    height: calc(var(--base-height) * var(--scale));
+  }
+
+  .logos-slide img {
+    border-radius: 0;
+    max-width: calc(var(--base-max-width) * var(--scale));
+    max-height: calc(var(--base-max-height) * var(--scale));
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease; 
+  }
+
+  .logos-slide img:hover {
+    transform: scale(1.1); /* Slightly increase size on hover */
+  }
+
+  @media (max-width: 960px) {
+    .logos-slide a {
+      padding: 0 calc(20px * var(--scale));
+    }
+
+    .logos-slide img {
+      max-width: calc(120px * var(--scale));
+      max-height: calc(60px * var(--scale));
+    }
+
+    .logos:before,
+    .logos:after {
+      width: calc(50px * var(--scale));
+    }
+  }
+</style>

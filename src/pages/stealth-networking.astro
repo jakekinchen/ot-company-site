@@ -5,7 +5,9 @@ import Lines from '../components/StaticLinesProducts.astro';
 import DottedPathSVG from '../components/DottedPathSVG.astro';
 import type { ProductInfo } from '../types';
 import pages from '../data/pages.json';
-const productInfo: ProductInfo = pages.products.find(p => p.href === '/anycloud-orchestration') || pages.products[2];
+// Change this line for each product
+const productInfo: ProductInfo = pages.products.find(p => p.href === '/stealth-networking') || pages.products[4];
+
 if (!productInfo) {
   throw new Error('Product info not found');
 }
