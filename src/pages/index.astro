@@ -4,6 +4,7 @@ import CardComponent from '../components/CardComponent.astro';
 import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
 import { products, clients } from '../data/pages.json';
+import DottedPathSVG from '../components/DottedPathSVG.astro';
 //import ClientsSection from '../components/react/ClientsSection.jsx';
 import Carousel from '../components/Carousel.astro';
 import Lines from '../components/StaticLines.astro';
@@ -14,19 +15,28 @@ if (!clients) {
 
 <Layout customBackground={true} gradient="true">
   <div class="mb:hidden">
-    <Lines
-      id="line-1"
-      path="M0 3 L449.32 3 L449.32 1590.83 L7.88 1590.83"
-      flipped={true}
-      xOffset={0}
-      yOffset={1100}
-      circleRadius={75}
-      circleColor='cold-white'
-      viewBox='0 0 770.82 1480.79'
+    <DottedPathSVG
+      uniqueId='line-2'
+      targetDivClass="main-content"
+      strokeWidth={4}
+      strokeDasharray="5,5"
+      circleRadius={10}
       animationDuration={10}
-    />
+      glowDistance={2.5}
+      initialYOffset={20}
+      startY={165}
+      strokeColor="white"
+      circleColor="white"
+      glowColor={null}
+      targetDivXPosition="center"
+      targetDivYPosition="center"
+      flipped={true}
+      semiRect={true}
+      height={775}
+      loopReverse={true}
+      />
   </div>
-  <div class="justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%]">
+  <div class="main-content justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%]">
     <div class="max-w-full min-w-[85%] w-[60rem] leading-snug text-left text-wrap text-blue mt-[6vw] mb-[calc(24px+4vw)] space-y-[2.5vw]">
       <h1 class="text-[calc(3vw+3rem)]  break-words w-full font-medium">
           OneTier's AnyCloud Data Secure Portfolio
@@ -74,7 +84,7 @@ if (!clients) {
         </p>
       </div>
     </div>
-    <div class="mt-[8vw] flex flex-col gap-32 dt:gap-64 mb:w-full">
+    <div class="mt-[8vw] flex flex-col gap-8 dt:gap-16 mb:w-full">
       {products.map((product: any, index: number) => (
         <ProductSnippet
           key={product.href}

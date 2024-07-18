@@ -21,6 +21,12 @@ interface Props {
   semiRect: boolean;
   simpleHorizontal?: boolean;
   loopReverse?: boolean;
+  endYOffset?: number;
+  startYDivClass?: string;
+  followDivBorder?: boolean;
+  followDivBorderOffset?: number;
+  followDivBorderDirection?: 'top' | 'bottom';
+  startYDivPosition?: 'top' | 'bottom' | 'center';
 }
 
 const {
@@ -43,13 +49,19 @@ const {
   semiRect = false,
   height = 0,
   simpleHorizontal = false,
-  loopReverse = false
+  loopReverse = false,
+  endYOffset = 0,
+  startYDivClass = null,
+  followDivBorder = false,
+  followDivBorderDirection = 'top',
+  startYDivPosition = 'center',
+  followDivBorderOffset = 0
 } = Astro.props;
 
 const effectiveGlowColor = glowColor || circleColor;
 ---
 
-<svg class="absolute left-0 top-0 w-screen h-full pointer-events-none overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
+<svg class="absolute left-0 top-0 w-screen h-auto max-h-[50%] pointer-events-none overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
     <defs>
         <filter id={`${uniqueId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
@@ -74,39 +86,55 @@ const effectiveGlowColor = glowColor || circleColor;
     </g>
   </svg>
 
-<script define:vars={{ initialYOffset, startY, targetDivClass, effectiveGlowColor, targetDivYPosition, targetDivXPosition, flipped, customPath, glowDistance, uniqueId, semiRect, height, simpleHorizontal, loopReverse  }}>
+<script define:vars={{ initialYOffset, startY, targetDivClass, effectiveGlowColor, targetDivYPosition, targetDivXPosition, flipped, customPath, glowDistance, uniqueId, semiRect, height, simpleHorizontal, loopReverse, endYOffset, startYDivClass, followDivBorder, followDivBorderDirection, startYDivPosition, followDivBorderOffset  }}>
 
 function getEndPathY(svgRect, rect, targetDivYPosition) {
   switch (targetDivYPosition) {
     case 'top':
-      return rect.top - svgRect.top;
+      return rect.top - svgRect.top + endYOffset;
     case 'center':
-      return rect.top - svgRect.top + (rect.height / 2);
+      return rect.top - svgRect.top + (rect.height / 2) + endYOffset;
     case 'bottom':
-      return rect.bottom - svgRect.top;
+      return rect.bottom - svgRect.top + endYOffset;
     default:
-      return rect.top - svgRect.top + (rect.height / 2);
+      return rect.top - svgRect.top + (rect.height / 2) + endYOffset;
   }
 }
 
 function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
   let endX;
   const svgWidth = svgRect.width;
-  switch (targetDivXPosition) {
-    case 'left':
-      endX = flipped ? svgWidth - (rect.right - svgRect.left) : rect.left - svgRect.left;
-      break;
-    case 'center':
-      endX = flipped ? svgWidth - (rect.left - svgRect.left + rect.width / 2) : rect.left - svgRect.left + rect.width / 2;
-      break;
-    case 'right':
-      endX = flipped ? svgWidth - (rect.left - svgRect.left) : rect.right - svgRect.left;
-      break;
+  
+  if (flipped) {
+    switch (targetDivXPosition) {
+      case 'left':
+        endX = rect.left - svgRect.left;
+        break;
+      case 'center':
+        endX = rect.left - svgRect.left + rect.width / 2;
+        break;
+      case 'right':
+        endX = rect.right - svgRect.left;
+        break;
+    }
+  } else {
+    switch (targetDivXPosition) {
+      case 'left':
+        endX = rect.left - svgRect.left;
+        break;
+      case 'center':
+        endX = rect.left - svgRect.left + rect.width / 2;
+        break;
+      case 'right':
+        endX = rect.right - svgRect.left;
+        break;
+    }
   }
   return endX;
 }
 
   function updateDottedPath() {
+    let pathData;
     if (customPath) {
     const dottedPath = document.getElementById(`${uniqueId}-path`);
     if (dottedPath) {
@@ -161,6 +189,86 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
         pathData = `M ${startX},${startY} H ${endX}`;
         
         }
+        else if (followDivBorder) {
+        const startX = flipped ? svgRect.width : 0;
+        let endX = getEndPathX(svgRect, rect, targetDivXPosition, flipped);
+        let startY;
+        const targetDiv = document.querySelector(`.${startYDivClass}`);
+        if (targetDiv) {
+            const targetDivRect = targetDiv.getBoundingClientRect();
+            console.log('targetDivRect:', targetDivRect);
+            console.log('svgRect:', svgRect);
+            console.log('startYDivPosition:', startYDivPosition);
+            console.log('initialYOffset:', initialYOffset);
+            switch (startYDivPosition) {
+                case 'top':
+                    startY = targetDivRect.top - svgRect.top;
+                    break;
+                case 'center':
+                    startY = targetDivRect.top - svgRect.top + (targetDivRect.height / 2);
+                    break;
+                case 'bottom':
+                    startY = targetDivRect.bottom - svgRect.top;
+                    break;
+                default:
+                    startY = targetDivRect.top - svgRect.top + (targetDivRect.height / 2);
+                    break;
+            }
+            
+            if (initialYOffset){
+                startY += initialYOffset;
+            }
+            console.log('calculated startY:', startY);
+            let endY;
+            switch (targetDivYPosition) {
+                case 'top':
+                    endY = rect.top - svgRect.top + endYOffset;
+                    break;
+                case 'center':
+                    endY = rect.top - svgRect.top + (rect.height / 2) + endYOffset;
+                    break;
+                case 'bottom':
+                    endY = rect.bottom - svgRect.top + endYOffset;
+                    break;
+                default:
+                    endY = rect.top - svgRect.top + (rect.height / 2) + endYOffset;
+                    break;
+            }
+            
+            const firstTurnY = startY;
+            let firstTurnX;
+            if (flipped) {
+                firstTurnX = rect.right - svgRect.left + followDivBorderOffset;
+                endX = rect.left - svgRect.left;
+            } else {
+                firstTurnX = rect.left - svgRect.left - followDivBorderOffset;
+                endX = rect.right - svgRect.left;
+            }
+            const secondTurnY = followDivBorderDirection === 'top' ? 
+            rect.top - svgRect.top - followDivBorderOffset : 
+            rect.bottom - svgRect.top + followDivBorderOffset;
+            const secondTurnX = firstTurnX;
+            
+            pathData = [
+                `M ${startX},${startY}`,
+                `H ${firstTurnX}`,
+                `V ${firstTurnY}`,
+                `H ${secondTurnX}`,
+                `V ${secondTurnY}`,
+                `H ${endX}`
+            ].join(' ');
+            // Log all relevant variables for debugging
+        console.log('flipped:', flipped);
+        console.log('pathData:', pathData);
+        console.log('startY:', startY);
+        console.log('endY:', endY);
+        console.log('firstTurnX:', firstTurnX);
+        console.log('secondTurnY:', secondTurnY);
+        console.log('endX:', endX);
+
+        }
+        
+      }
       else {
         // Existing path calculation logic
         const endY = getEndPathY(svgRect, rect, targetDivYPosition);
@@ -185,7 +293,6 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
           pathData = `M ${startX},${endY} H ${endX}`;
         }
       }
-
       dottedPath.setAttribute('d', pathData);
         
         // Update glow color and filter

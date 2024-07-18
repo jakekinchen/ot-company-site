@@ -22,27 +22,43 @@ const iconOrderClasses = isLeft ? "order-2" : "order-1";
 const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-4 ${iconClass}`;
 const productId = productName.toLowerCase().replace(/ /g, '-');
 import Lines from './StaticLines.astro';
+import DottedPathSVG from './DottedPathSVG.astro';
 ---
 
-<div id={`${productId} outer-container`} class={`text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center relative`}>
+<div class="mb:hidden w-screen left-1/2 right-1/2 -mx-[50vw]">
+  { /* in the Lines component here we would like to set the x-coordinate of the beginning of the instantiated {productId} outer-container if isLeft=true but the end of the containers x-coordinate if false and pass that in as */ }
+  <DottedPathSVG
+  uniqueId={`${productId}-line`}
+  targetDivClass={`${productId}-title`}
+  strokeWidth={4}
+  strokeDasharray="5,5"
+  circleRadius={10}
+  animationDuration={10}
+  glowDistance={2.5}
+  initialYOffset={0}
+  startY={0}
+  strokeColor="white"
+  circleColor="white"
+  glowColor={null}
+  targetDivXPosition="right"
+  targetDivYPosition="top"
+  semiRect={false}
+  flipped={!isLeft}
+  endYOffset={0}
+  startYDivClass = {`${productId}-container`},
+  followDivBorder = {true},
+  followDivBorderDirection = 'top',
+  startYDivPosition = 'center',
+  followDivBorderOffset = {25},
+
+/>
+</div>
+<div id={`${productId}-container outer-container`} class={`${productId}-container text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center`}>
   <div class="connector-line"></div>
+  
   <div class={`flex flex-col mb:my-[6vw] w-[55%] mb:w-[85%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
-    <div class="mb:hidden">
-      { /* in the Lines component here we would like to set the x-coordinate of the beginning of the instantiated {productId} outer-container if isLeft=true but the end of the containers x-coordinate if false and pass that in as */ }
-      <Lines
-        id={`${productId}-line`}
-        path="M0 0 H150 V-66 H250"
-        flipped={!isLeft}
-        circleRadius={12}
-        circleColor="cold-white"
-        viewBox='0 0 100 100'
-        glowDistance={5}
-        yOffset={80}
-        xOffset={-300}
-        animationDuration={4}
-      />
-  </div>
-    <div class="flex mb:flex-col mb:justify-center items-center mb-4">
+    
+    <div class={`${productId}-title flex mb:flex-col mb:justify-center items-center mb-4`}>
       <img src={iconSrc} alt={`${productName} Icon`} class={`w-[2vw] mr-[1vw] rounded-none mb:w-[25vw] mb:order-2 filter filter-white`}>
       <h1 class={`text-[calc(1vw+1rem)] mb:text-[6vw] font-semibold text-white mb:mb-4 ${textClass}`}>{productName}</h1>
     </div>
