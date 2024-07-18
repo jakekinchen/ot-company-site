@@ -5,9 +5,42 @@
       "title": "Respond swiftly and decisively",
       "subtitle": "Assess and address your cyber risk head on. Become compliant in your choice of frameworks that align with business objectives.",
       "iconSrc": "/productIcons/risk-engagement.svg",
+      "iconAlt": "Risk Engagement Icon",
       "href": "/risk-engagement",
-      "snippetProperties":{
-
+      "pageContent":{
+        "title": "Risk Engagement",
+        "subtitle": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.",
+        "benefits":{
+          "subtitle": "At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening.",
+          "graphicSrc": "/risk_mockup.png",
+          "graphicAlt": "Risk Engagement Mockup"
+        },
+        "features":[
+          {
+            "iconSrc": "/featureIcons/cyber-risk.svg",
+            "title": "Cost of your Cyber Risk",
+            "description": "OneTier scans your enterprise to define cyber risk, identifying high-risk areas and associated costs. Focus your budget where it impacts security the most."
+          },
+          {
+            "iconSrc": "/featureIcons/compliance-management.svg",
+            "title": "Compliance Management",
+            "description": "Looking to become compliant in the latest standards, SOC2, ISO27001, CMMC 2.0, FedRAMP, HiTrust? We have you covered with AI-driven compliance tools."
+          },
+          {
+            "iconSrc": "/featureIcons/cmmc.svg",
+            "title": "CMMC 2.0 Compliance",
+            "description": "Whether it is a CMMC Level 1 self assessment, a Level 2 with independent audit, or a Level 3 with government audit, we have you covered."
+          },
+          {
+            "iconSrc": "/featureIcons/fedramp.svg",
+            "title": "FedRAMP & StateRAMP",
+            "description": "Using our scanning and AI documentation tools, we can reduce FedRAMP certification time from years to months, saving both time and money."
+          }
+        ],
+       "visual-guide": {
+          "subtitle": "At OneTier, we offer data aggregation for your business environments, to you can see exactly what is happening, and where it is happening.",
+          "graphicSrc": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        }
       }
     },
     {
@@ -15,49 +48,226 @@
       "title": "Secure Kubernetes",
       "subtitle": "Harden Apps designed to integrate zero trust into your infrastructure",
       "iconSrc": "/productIcons/kubezt-secure-apps.svg",
-      "href": "/kubezt-secure-apps"
+      "iconAlt": "KubeZT Secure Apps Icon",
+      "href": "/kubezt-secure-apps",
+      "pageContent": {
+        "title": "KubeZT Secure Apps",
+        "subtitle": "Secure your Kubernetes infrastructure with zero trust integration",
+        "benefits": {
+          "subtitle": "Enhance your Kubernetes security with our advanced zero trust solutions.",
+          "graphicSrc": "/kubezt_mockup.png",
+          "graphicAlt": "KubeZT Secure Apps Mockup"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/zero-trust.svg",
+            "title": "Zero Trust Integration",
+            "description": "Implement zero trust principles in your Kubernetes environment for enhanced security."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "See how KubeZT Secure Apps can transform your Kubernetes security.",
+          "graphicSrc": "https://www.youtube.com/embed/your_kubezt_video_id"
+        }
+      }
     },
     {
       "label": "AnyCloud Orchestration",
       "title": "Cloud Automation, done right",
       "subtitle": "Simple Digital Transformation. Cost, Drag, Drop & Scale your Multi-Cloud Environment.",
       "iconSrc": "/productIcons/anycloud-orchestration.svg",
-      "href": "/anycloud-orchestration"
+      "iconAlt": "AnyCloud Orchestration Icon",
+      "href": "/anycloud-orchestration",
+      "pageContent": {
+        "title": "AnyCloud Orchestration",
+        "subtitle": "Simplify and automate your multi-cloud environment management",
+        "benefits": {
+          "subtitle": "Streamline your cloud operations with our intuitive drag-and-drop interface and cost-effective scaling solutions.",
+          "graphicSrc": "/anycloud_mockup.png",
+          "graphicAlt": "AnyCloud Orchestration Dashboard"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/multi-cloud.svg",
+            "title": "Multi-Cloud Management",
+            "description": "Seamlessly manage and orchestrate resources across multiple cloud providers from a single interface."
+          },
+          {
+            "iconSrc": "/featureIcons/cost-optimization.svg",
+            "title": "Cost Optimization",
+            "description": "Intelligently allocate resources and optimize costs across your entire cloud infrastructure."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "See how AnyCloud Orchestration can transform your cloud management experience.",
+          "graphicSrc": "https://www.youtube.com/embed/anycloud_demo_id"
+        }
+      }
     },
     {
       "label": "Secure Access",
       "title": "Stop Phishing & Block Lateral Movement",
       "subtitle": "Detect and deny malicious activity. MFA Privilege Access & Geofence Service Accounts.",
       "iconSrc": "/productIcons/secure-access.svg",
-      "href": "/secure-access"
+      "iconAlt": "Secure Access Icon",
+      "href": "/secure-access",
+      "pageContent": {
+        "title": "Secure Access",
+        "subtitle": "Enhance your security posture with advanced access controls",
+        "benefits": {
+          "subtitle": "Protect your organization from phishing attacks and unauthorized lateral movement with our comprehensive secure access solution.",
+          "graphicSrc": "/secure_access_mockup.png",
+          "graphicAlt": "Secure Access Dashboard"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/mfa.svg",
+            "title": "Multi-Factor Authentication",
+            "description": "Implement robust MFA for privileged access, significantly reducing the risk of unauthorized entry."
+          },
+          {
+            "iconSrc": "/featureIcons/geofencing.svg",
+            "title": "Geofencing for Service Accounts",
+            "description": "Restrict service account access based on geographic locations, adding an extra layer of security."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "Discover how Secure Access can fortify your organization against cyber threats.",
+          "graphicSrc": "https://www.youtube.com/embed/secure_access_demo_id"
+        }
+      }
     },
     {
       "label": "Stealth Networking",
       "title": "Secure and Hide Your Network",
       "subtitle": "Make your Firewall a True Firewall - Block Inbound Ports. A true service mesh network - realized.",
       "iconSrc": "/productIcons/stealth-networking.svg",
-      "href": "/stealth-networking"
+      "iconAlt": "Stealth Networking Icon",
+      "href": "/stealth-networking",
+      "pageContent": {
+        "title": "Stealth Networking",
+        "subtitle": "Invisible and impenetrable network security",
+        "benefits": {
+          "subtitle": "Transform your network security with our advanced stealth networking solution, making your infrastructure invisible to potential threats.",
+          "graphicSrc": "/stealth_networking_mockup.png",
+          "graphicAlt": "Stealth Networking Visualization"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/inbound-blocking.svg",
+            "title": "True Firewall Protection",
+            "description": "Block all inbound ports, significantly reducing your attack surface and enhancing overall security."
+          },
+          {
+            "iconSrc": "/featureIcons/service-mesh.svg",
+            "title": "Service Mesh Integration",
+            "description": "Implement a true service mesh network for secure, efficient, and flexible inter-service communication."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "See how Stealth Networking can make your network invisible to threats.",
+          "graphicSrc": "https://www.youtube.com/embed/stealth_networking_demo_id"
+        }
+      }
     },
     {
       "label": "Analytics HQ",
       "title": "Visualize your Data",
       "subtitle": "Interact with your data with Secure Realtime Visibility",
       "iconSrc": "/productIcons/analytics-hq.svg",
-      "href": "/analytics-hq"
+      "iconAlt": "Analytics HQ Icon",
+      "href": "/analytics-hq",
+      "pageContent": {
+        "title": "Analytics HQ",
+        "subtitle": "Turn data into actionable insights with real-time analytics",
+        "benefits": {
+          "subtitle": "Gain comprehensive visibility into your data with our secure, real-time analytics platform.",
+          "graphicSrc": "/analytics_hq_mockup.png",
+          "graphicAlt": "Analytics HQ Dashboard"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/real-time-analytics.svg",
+            "title": "Real-Time Data Visualization",
+            "description": "View and interact with your data in real-time, enabling quick decision-making and trend identification."
+          },
+          {
+            "iconSrc": "/featureIcons/secure-analytics.svg",
+            "title": "Secure Data Processing",
+            "description": "Ensure the confidentiality and integrity of your data with our secure analytics processing engine."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "Explore how Analytics HQ can transform your data into valuable insights.",
+          "graphicSrc": "https://www.youtube.com/embed/analytics_hq_demo_id"
+        }
+      }
     },
     {
       "label": "Global Data Security",
       "title": "Anywhere, Anytime",
       "subtitle": "Create peace of mind that your data is always available, secure and ransomware resilient.",
       "iconSrc": "/productIcons/global-data-security.svg",
-      "href": "/global-data-security"
+      "iconAlt": "Global Data Security Icon",
+      "href": "/global-data-security",
+      "pageContent": {
+        "title": "Global Data Security",
+        "subtitle": "Ensure your data is secure, available, and resilient globally",
+        "benefits": {
+          "subtitle": "Protect your data against threats and ensure its availability with our comprehensive global data security solution.",
+          "graphicSrc": "/global_data_security_mockup.png",
+          "graphicAlt": "Global Data Security Overview"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/ransomware-protection.svg",
+            "title": "Ransomware Resilience",
+            "description": "Implement advanced protection measures to make your data resilient against ransomware attacks."
+          },
+          {
+            "iconSrc": "/featureIcons/global-availability.svg",
+            "title": "Global Data Availability",
+            "description": "Ensure your data is accessible anytime, anywhere, with our global data distribution and replication system."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "Discover how Global Data Security can safeguard your data across the globe.",
+          "graphicSrc": "https://www.youtube.com/embed/global_data_security_demo_id"
+        }
+      }
     },
     {
       "label": "Security Overwatch",
       "title": "Know your Environment",
       "subtitle": "Evolve with threats in real-time. Detect, Monitor & Remediate.",
       "iconSrc": "/productIcons/security-overwatch.svg",
-      "href": "/security-overwatch"
+      "iconAlt": "Security Overwatch Icon",
+      "href": "/security-overwatch",
+      "pageContent": {
+        "title": "Security Overwatch",
+        "subtitle": "Comprehensive threat detection, monitoring, and remediation",
+        "benefits": {
+          "subtitle": "Stay ahead of evolving threats with our advanced Security Overwatch platform, providing real-time detection and response capabilities.",
+          "graphicSrc": "/security_overwatch_mockup.png",
+          "graphicAlt": "Security Overwatch Dashboard"
+        },
+        "features": [
+          {
+            "iconSrc": "/featureIcons/real-time-detection.svg",
+            "title": "Real-Time Threat Detection",
+            "description": "Identify and respond to threats as they emerge with our advanced real-time detection algorithms."
+          },
+          {
+            "iconSrc": "/featureIcons/automated-remediation.svg",
+            "title": "Automated Remediation",
+            "description": "Streamline your security operations with automated threat remediation, reducing response times and minimizing impact."
+          }
+        ],
+        "visual-guide": {
+          "subtitle": "See how Security Overwatch can revolutionize your threat detection and response capabilities.",
+          "graphicSrc": "https://www.youtube.com/embed/security_overwatch_demo_id"
+        }
+      }
     }
   ],
   "company": [

@@ -33,6 +33,7 @@
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--blue-dark-blue-gradient: 180deg, rgba(var(--blue), 50%), rgba(var(--dark-blue), 50%);
 	--dark-blue-blue-gradient: 180deg, rgba(var(--dark-blue), 50%), rgba(var(--blue), 50%);
+	--orange-dark-orange-gradient: 180deg, rgba(var(--orange), 50%), rgba(var(--dark-orange), 50%);
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
 	--mobile: 960px;
@@ -276,6 +277,14 @@
 	background-color: var(--white);
 }
 
+.bg-blue-dark-blue-gradient {
+	background: linear-gradient(var(--blue-dark-blue-gradient));
+}
+
+.bg-orange-dark-orange-gradient {
+	background: linear-gradient(var(--orange-dark-orange-gradient));
+  }
+
 body {
 	font-family: 'K2D', sans-serif;
 	display: flex;
@@ -390,14 +399,11 @@ hr {
 	cursor: pointer;
 	align-items: center;
 	justify-content: center;
-	background: linear-gradient(to right, #FF8500, #FF5700);
+	background: linear-gradient(to right, var(--orange), var(--dark-orange));
 	padding: 10px 20px;
 	border-radius: 30px;
 	font-size: 1rem;
 	color: white;
-	min-width: 150px;
-	max-width: 200px;
-	height: 50px; /* Adjusted fixed height */
 	font-weight: 600;
 	border: none;
 	transition: background 0.7s ease-in-out;

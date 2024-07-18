@@ -8,6 +8,8 @@ module.exports = {
     'sm': {'max':'640px'},
     'md': {'max': '768px'},
     'mb': {'max': '960px'}, // mobile breakpoint
+    'tbx': {'max': '1115px'}, // tablet breakpoint
+    'tb': {'min': '1115px'}, // tablet breakpoint
     'dt': {'min': '960px'}, // desktop breakpoint
     'lg': '1024px',
     'xl': '1280px',

@@ -50,9 +50,9 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
   class={`z-50 line-container ${flipped ? 'flipped' : ''} ${directIntoDiv ? `direct-into-div-${directIntoDiv}` : ''}`}
   style={`transform: translate(${adjustedXOffset}px, ${yOffset}px) ${flipped ? 'scaleX(-1)' : ''};`}
 >
-  <svg class="line-svg" xmlns="http://www.w3.org/2000/svg" viewBox={viewBox} preserveAspectRatio="xMidYMin slice" overflow="visible">
+<svg class="line-svg" xmlns="http://www.w3.org/2000/svg" viewBox={viewBox} preserveAspectRatio="xMidYMid" overflow="visible">
     <defs>
-      <filter id={`glow-${id}`} x="-50%" y="-50%" width="500%" height="500%">
+      <filter id={`glow-${id}`} x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
         <feMerge>
           <feMergeNode in="coloredBlur"/>
@@ -60,8 +60,24 @@ const adjustedXOffset = flipped ? -xOffset : xOffset;
         </feMerge>
       </filter>
     </defs>
-    <path class="line-path" :style={`stroke-width: ${strokeWidth}px; stroke-dasharray: ${strokeDashArray}; stroke-dashoffset: ${strokeDashOffset};`} d={path} id={`${id}-path`} />
-    <circle class="glowing-circle" cx="0" cy="0" r={circleRadius} style={`fill: var(--${circleColor});`} filter={`url(#glow-${id})`}>
+    <path 
+      class="line-path" 
+      d={path} 
+      id={`${id}-path`}
+      stroke="white"
+      stroke-width={strokeWidth}
+      stroke-dasharray={strokeDashArray}
+      stroke-dashoffset={strokeDashOffset}
+      vector-effect="non-scaling-stroke"
+    />
+    <circle 
+      class="glowing-circle" 
+      cx="0" 
+      cy="0" 
+      r={circleRadius} 
+      fill="white"
+      filter={`url(#glow-${id})`}
+    >
       <animateMotion repeatCount="indefinite" dur={`${animationDuration}s`}>
         <mpath href={`#${id}-path`}/>
       </animateMotion>

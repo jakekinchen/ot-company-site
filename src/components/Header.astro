@@ -20,7 +20,7 @@ const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
   
   <div class="flex items-center mr-[5vw]">
     <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={`hamburger-menu dt:hidden ${iconFilterColor} filter-blue cursor-pointer`}>
-    <button id="requestDemo" class="gradient-button mb:hidden">Request Demo</button>
+    <button id="requestDemo" class="gradient-button request-demo-button min-w-[150px] max-w-[200px] h-[50px] mb:hidden">Request Demo</button>
   </div>
   
   <Dialog />
@@ -33,11 +33,18 @@ const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
     buttons.forEach(button => {
       button.addEventListener('mousemove', applyGradientEffect);
       button.addEventListener('mouseleave', resetGradientEffect);
-      button.addEventListener('click', openDialog);
+
+      button.addEventListener('click', (e) => {
+        if (e.target.classList.contains('request-demo-button')) {
+          openDialog(e);
+        }
+      });
     });
+
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     hamburgerMenu.addEventListener('click', toggleMobileMenu);
   });
+
 
   function applyGradientEffect(event) {
     const rect = this.getBoundingClientRect();
