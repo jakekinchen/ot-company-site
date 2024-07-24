@@ -1,0 +1,65 @@
+---
+const { imageSrc, name, title, backgroundColor = 'blue', hasBackground = true, circleWidth = 100, nameColor = 'white', titleColor = 'white' } = Astro.props;
+const bgColor = backgroundColor.startsWith('#') ? backgroundColor : `var(--${backgroundColor})`;
+const nameTextColor = nameColor.startsWith('#') ? nameColor : `var(--${nameColor})`;
+const titleTextColor = titleColor.startsWith('#') ? titleColor : `var(--${titleColor})`;
+---
+<div class="profile-circle" style={`--width: ${circleWidth}px;`}>
+  {hasBackground && (
+    <div class="circle-background" style={`background-color: ${bgColor};`}></div>
+  )}
+  <div class="image-container">
+    <img
+      src={imageSrc}
+      alt={name}
+      class="profile-image"
+    />
+  </div>
+  <p class="name" style={`color: ${nameTextColor};`}>{name}</p>
+  <p class="title" style={`color: ${titleTextColor};`}>{title}</p>
+</div>
+
+<style>
+  .profile-circle {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+  }
+
+  .circle-background {
+    position: absolute;
+    left: 0;
+    width: var(--width);
+    height: var(--width);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .image-container {
+    position: relative;
+    width: var(--width);
+    height: var(--width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .profile-image {
+    width: calc(var(--width) * 0.85);
+    height: calc(var(--width) * 0.85);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .name {
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 0px;;
+  }
+
+  .title {
+    font-size: 0.875rem;
+  }
+</style>

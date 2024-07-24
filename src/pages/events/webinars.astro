@@ -1,0 +1,73 @@
+---
+import Layout from '../../components/Layout.astro';
+import ProfileCircle from '../../components/ProfileCircle.astro';
+import { teamMembers } from '../../data/pages.json';
+
+---
+
+<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
+  <section class="bg-white py-16 text-blue">
+    <div class="custom-container mx-auto">
+      <h1 class="text-6xl font-bold text-center mb-4">Events</h1>
+      
+      <div id="CalendarSection" class="flex justify-center mb-16 w-full">
+        <div id="calendar-grid" >
+        </div>
+      </div>
+
+      
+      
+      <div class="grid grid-cols-1 dt:grid-cols-2 gap-8 mt-16 mb:mx-8 dt:mx-auto px-8 dt:max-w-[1100px] align-self-center">
+        
+        {teamMembers.map((member) => (
+            <div>
+          <div class="bg-light-blue dt:rounded-full mb:rounded-full rounded-xl flex mb:flex-col dt:items-center mb:items-start h-32 w-full dt:pt-4">
+            <div class="flex items-center gap-8">
+                <img src={member.imageSrc} alt={member.name} 
+                class="w-32 h-32 rounded-full object-cover mb-4" 
+                />
+                <div>
+                    <h3 class="text-2xl font-bold text-white">{member.name}</h3>
+                    <p class="text-lg text-white mb-4">{member.title}</p>
+                </div>
+            </div>
+            
+          </div>
+          <p class="text-blue m-4">
+                Here is {member.name}'s bio. {member.name} is a professional in their field who brings valuable experience to our team. They are dedicated to providing top-tier customer experience to businesses from all walks of life.
+              </p>
+            </div>
+        ))}
+        
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+    .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.grid-container > .grid-item:nth-last-child(1):nth-child(3n-2),
+.grid-container > .grid-item:nth-last-child(2):nth-child(3n-1),
+.grid-container > .grid-item:nth-last-child(3):nth-child(3n) {
+  justify-self: stretch;
+}
+
+.grid-container:has(.grid-item:nth-last-child(1):nth-child(3n-2)),
+.grid-container:has(.grid-item:nth-last-child(2):nth-child(3n-1)),
+.grid-container:has(.grid-item:nth-last-child(3):nth-child(3n)) {
+  justify-content: space-between;
+}
+  
+</style>

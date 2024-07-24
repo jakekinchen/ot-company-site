@@ -50,11 +50,12 @@ import DottedPathSVG from './DottedPathSVG.astro';
   followDivBorderDirection = 'top',
   startYDivPosition = 'center',
   followDivBorderOffset = {25},
+  loopReverse={true}
 
 />
 </div>
 <div id={`${productId}-container outer-container`} class={`${productId}-container text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center`}>
-  <div class="connector-line"></div>
+  <div class="connector-line"/>
   
   <div class={`flex flex-col mb:my-[6vw] w-[55%] mb:w-[85%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
     

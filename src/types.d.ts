@@ -52,11 +52,25 @@ export type ProductInfo = {
     iconSrc: string;
     label: string;
   };
-  
-  export type AppData = {
-    products: ProductInfo[];
-    company: CompanyLink[];
-    solutions: SolutionLink[];
-    partners: PartnerLink[];
-    clients: Clients[];
-  };
+
+export type TeamMember = {
+  name: string;
+  title: string;
+  imageSrc: string;
+};
+
+export type Initiative = {
+  iconSrc: string;
+  description: string;
+};
+
+// Update the AppData type to include these new arrays
+export type AppData = {
+  products: ProductInfo[];
+  company: CompanyLink[];
+  solutions: SolutionLink[];
+  partners: PartnerLink[];
+  clients: Clients[];
+  teamMembers: TeamMember[];
+  initiatives: Initiative[];
+};

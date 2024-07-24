@@ -18,6 +18,7 @@ module.exports = {
   },
   colors: {
     'blue': 'var(--blue)',
+    'blue-dark-blue-gradient': 'var(--blue-dark-blue-gradient)',
     'orange': 'var(--orange)',
     'dark-orange': 'var(--dark-orange)',
     'dark-blue': 'var(--dark-blue)',
@@ -33,6 +34,9 @@ module.exports = {
     'filter-black': 'var(--filter-black)',
   },
     extend: {
+      gridTemplateColumns: {
+        'auto-fill': 'repeat(auto-fill, minmax(100px, 1fr))',
+      },
       borderWidth: {
         '5': '5px',
       },

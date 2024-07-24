@@ -39,7 +39,8 @@
         ],
        "visual-guide": {
           "subtitle": "At OneTier, we offer data aggregation for your business environments, to you can see exactly what is happening, and where it is happening.",
-          "graphicSrc": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+          "graphicSrc": "https://www.youtube.com/watch?v=-5Pm4iTDAGk",
+          "isVideo": "true"
         }
       }
     },
@@ -67,7 +68,8 @@
         ],
         "visual-guide": {
           "subtitle": "See how KubeZT Secure Apps can transform your Kubernetes security.",
-          "graphicSrc": "https://www.youtube.com/embed/your_kubezt_video_id"
+          "graphicSrc": "https://www.youtube.com/embed/your_kubezt_video_id",
+          "isVideo": "true"
         }
       }
     },
@@ -100,7 +102,8 @@
         ],
         "visual-guide": {
           "subtitle": "See how AnyCloud Orchestration can transform your cloud management experience.",
-          "graphicSrc": "https://www.youtube.com/embed/anycloud_demo_id"
+          "graphicSrc": "https://www.youtube.com/embed/anycloud_demo_id",
+          "isVideo": "true"
         }
       }
     },
@@ -133,7 +136,8 @@
         ],
         "visual-guide": {
           "subtitle": "Discover how Secure Access can fortify your organization against cyber threats.",
-          "graphicSrc": "https://www.youtube.com/embed/secure_access_demo_id"
+          "graphicSrc": "https://www.youtube.com/embed/secure_access_demo_id",
+          "isVideo": "true"
         }
       }
     },
@@ -166,7 +170,8 @@
         ],
         "visual-guide": {
           "subtitle": "See how Stealth Networking can make your network invisible to threats.",
-          "graphicSrc": "https://www.youtube.com/embed/stealth_networking_demo_id"
+          "graphicSrc": "https://www.youtube.com/embed/stealth_networking_demo_id",
+          "isVideo": "true"
         }
       }
     },
@@ -199,7 +204,8 @@
         ],
         "visual-guide": {
           "subtitle": "Explore how Analytics HQ can transform your data into valuable insights.",
-          "graphicSrc": "https://www.youtube.com/embed/analytics_hq_demo_id"
+          "graphicSrc": "https://www.youtube.com/embed/analytics_hq_demo_id",
+          "isVideo": "true"
         }
       }
     },
@@ -232,7 +238,8 @@
         ],
         "visual-guide": {
           "subtitle": "Discover how Global Data Security can safeguard your data across the globe.",
-          "graphicSrc": "https://www.youtube.com/embed/global_data_security_demo_id"
+          "graphicSrc": "https://www.youtube.com/embed/global_data_security_demo_id",
+          "isVideo": "true"
         }
       }
     },
@@ -265,7 +272,8 @@
         ],
         "visual-guide": {
           "subtitle": "See how Security Overwatch can revolutionize your threat detection and response capabilities.",
-          "graphicSrc": "https://www.youtube.com/embed/security_overwatch_demo_id"
+          "graphicSrc": "https://www.youtube.com/embed/security_overwatch_demo_id",
+          "isVideo": "true"
         }
       }
     }
@@ -293,5 +301,17 @@
     { "label": "Disney", "iconSrc": "/clientLogos/disney.png", "alt": "Disney", "href": "https://www.disney.com"},
     { "label": "Microsoft", "iconSrc": "/clientLogos/microsoft.png", "alt": "Microsoft", "href": "https://www.microsoft.com"},
     { "label": "Oracle", "iconSrc": "/clientLogos/oracle.png", "alt": "Oracle", "href": "https://www.oracle.com"}
+  ],
+"teamMembers": [
+    { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg" },
+    { "name": "Taber West", "title": "Chief Technology Officer", "imageSrc": "/profiles/taber-west.jpg" },
+    { "name": "Jai Oliver", "title": "Vice President of Sales", "imageSrc": "/profiles/jai-oliver.jpg" },
+    { "name": "Krystal Morgan", "title": "US Partner Manager", "imageSrc": "/profiles/krystal-morgan.jpg" },
+    { "name": "Mateo Pinzón", "title": "LATAM Partner Manager", "imageSrc": "/profiles/mateo-pinzon.jpg" }
+  ],
+  "initiatives": [
+    { "iconSrc": "/globe.svg", "description": "Environmental Activism is a key part of OneTier's secure global strategy." },
+    { "iconSrc": "/tree.svg", "description": "By the end of 2024, OneTier pledges to plant 10,000 trees." },
+    { "iconSrc": "/globe.svg", "description": "Environmental Activism is a key part of OneTier's secure global strategy." }
   ]
 }

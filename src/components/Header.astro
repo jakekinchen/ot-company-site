@@ -11,7 +11,7 @@ const iconFilterColor = iconColor === "blue" ? "filter-blue" : "filter-white";
 const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
 ---
 
-<header class={`${bgColor} flex justify-between items-center w-full h-[80px] mt-[1rem]`}>
+<header class={`${bgColor} flex justify-between items-center w-full h-[80px] pt-4`}>
   <a href="/" class="ml-[5vw]">
     <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoFilterColor} style="width: 10rem;" />
   </a>
@@ -20,7 +20,7 @@ const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
   
   <div class="flex items-center mr-[5vw]">
     <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={`hamburger-menu dt:hidden ${iconFilterColor} filter-blue cursor-pointer`}>
-    <button id="requestDemo" class="gradient-button request-demo-button min-w-[150px] max-w-[200px] h-[50px] mb:hidden">Request Demo</button>
+    <button id="requestDemo" class="gradient-button request-demo-button shadow-md min-w-[150px] max-w-[200px] h-[50px] mb:hidden">Request Demo</button>
   </div>
   
   <Dialog />

@@ -1,0 +1,182 @@
+---
+import DottedPathSVG from '../components/DottedPathSVG.astro';
+import AnchorPath from '../components/AnchorPath.astro';
+import Layout from '../components/Layout.astro';
+import ProfileCircle from '../components/ProfileCircle.astro';
+import TeamMember from '../types';
+import Initiative from '../types';
+import { teamMembers, initiatives } from '../data/pages.json';
+const glowDistance = 5;
+
+---
+
+<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
+  <div class="line-1-container mb:hidden">
+    <AnchorPath
+      startXDiv="profileCirclesContainer"
+      startXDivPosition="right"
+      startYDiv="sectionA"
+      startYPosition="top"
+      startDirection="down"
+      firstTurnYDiv="learn-more-button"
+      firstTurnYPosition="vCenter"
+      firstTurnXDiv={null}
+      firstTurnXPosition="hCenter"
+      firstTurnDirection="left"
+      EndXDiv="initiatives-icon-3"
+      EndXPosition="hCenter"
+      EndYDiv="initiatives-icon-3"
+      EndYPosition="top"
+      strokeColor="white"
+      strokeWidth={4}
+      circleRadius={10}
+      circleColor="white"
+      uniqueId="line-1"
+      edgeAnchor={['startXDiv', 'right']}
+      circleGlowColor = "white"
+      circleGlowDistance = {glowDistance},
+      animationDuration = {40}
+    />
+    <DottedPathSVG
+        uniqueId="logo-border2"
+        targetDivClass="onetier-logo"
+        strokeWidth={4}
+        startY={450}
+        initialYOffset={1}
+        strokeDasharray="5,5"
+        glowDistance={glowDistance}
+        strokeColor="blue"
+        semiRect={false}
+        targetDivXPosition='left'
+        targetDivYPosition='center'
+        flipped={false}
+        height={200}
+        circleColor='blue'
+        verticalSegmentXOffset={0}
+
+      />
+  </div>
+  <div class="line-2-container dt:hidden">
+    <DottedPathSVG
+      uniqueId="company-line-3"
+      targetDivClass="sectionA"
+      strokeWidth={4}
+      strokeDasharray="5,5"
+      circleRadius={10}
+      animationDuration={10}
+      glowDistance={glowDistance}
+      initialYOffset={15}
+      startY={15}
+      strokeColor="blue"
+      circleColor="blue"
+      glowColor={null}
+      targetDivXPosition="left"
+      targetDivYPosition="top"
+      semiRect={false}
+      simpleHorizontal={true}
+      loopReverse={true}
+    />
+    <DottedPathSVG
+      uniqueId="company-line-4"
+      targetDivClass="learn-more-button"
+      strokeWidth={4}
+      strokeDasharray="5,5"
+      circleRadius={10}
+      animationDuration={10}
+      glowDistance={glowDistance}
+      initialYOffset={0}
+      startY={15}
+      strokeColor="white"
+      circleColor="white"
+      glowColor={null}
+      targetDivYPosition="center"
+      targetDivXPosition='center'
+      semiRect={false}
+      simpleHorizontal={true}
+      loopReverse={true}
+    />
+    
+  </div>
+<section id="sectionA" class="sectionA bg-white py-16 text-blue">
+  <div id='' class="mx-auto">
+    <h2 class="text-5xl font-bold text-center mb-4">What Do We Do?</h2>
+    <p class="text-center text-xl my-8 mx-auto dt:w-[60%] mb:w-[90%]">
+      OneTier delivers our technology products through dedicated channel partners to provide customers the best technology
+    </p>
+    <div class="relative mb-16">
+      
+      <div class="line-1-container mb:hidden">
+      <DottedPathSVG
+        uniqueId="logo-border"
+        targetDivClass="onetier-logo"
+        strokeWidth={4}
+        startY={-100}
+        initialYOffset={260}
+        glowDistance={glowDistance}
+        strokeDasharray="5,5"
+        strokeColor="blue"
+        semiRect={false}
+        targetDivXPosition='right'
+        targetDivYPosition='center'
+        flipped={true}
+        height={200}
+        circleColor='blue'
+      />
+    </div>
+    
+      <div class="text-center">
+        <img src="/ot-logo.svg" alt="OneTier" class="onetier-logo mx-auto filter-dark-blue w-96 mb-8" />
+        <p id="sectionADiv2" class="mx-auto dt:w-[60%] mb:w-[90%]">
+          OneTier is a Technology Platform Integrator that brings together unique start-ups to create solutions that solve business and technical challenges. This is a long paragraph that should explain how we bring the best we can offer to your businesses through dedication, teamwork, and field expertise.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="profileCirclesSection" class="flex justify-center -mt-14">
+  <div id="profileCirclesContainer" class="flex mb:flex-wrap justify-center relative inset-x-0 space-x-10">
+  {teamMembers.map((member) => (
+    <ProfileCircle imageSrc={member.imageSrc} name={member.name} title={member.title} hasBackground={true} backgroundColor='blue' circleWidth={130} />
+  ))}
+  </div>
+</div>
+<section id="sectionB" class="sectionB bg-blue-dark-blue-gradient mb-32 relative">
+  <div class="text-center mb-16 mt-16">
+    <a href="/learn-more" id="learn-more-button" class="learn-more-button shadow-lg gradient-button request-demo-button hover:text-white bg-orange text-white font-bold py-3 px-8 rounded-full hover:bg-orange transition duration-300">
+      Learn More
+    </a>
+  </div>
+  <div class="text-white p-8 rounded-lg flex flex-col items-center justify-center max-w-4xl mx-auto">
+    <h3 class="text-5xl font-bold text-center mb-16 text-white">Initiatives</h3>
+    <div class="space-y-16 w-full">
+      {initiatives.map((initiative, index) => (
+        <div class="flex mb:flex-col mb:justify-items-center mb:text-center items-center">
+          <div class="bg-white rounded-full mx-5 p-3 flex-shrink-0">
+            <img
+              id={`initiatives-icon-${index+1}`}
+              src={initiative.iconSrc}
+              alt=""
+              class="w-12 h-12 mb:w-24 mb:h-24 mb:p-3 filter-blue"
+            />
+          </div>
+          <p class="text-2xl translate-y-[30%]">{initiative.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+  p {
+    font-size: clamp(10px, 7vw + 1rem, 25px );
+  }
+  .sectionB {
+    background: var(--blue-dark-blue-gradient);
+  }
+  #profileCirclesContainer {
+    top: 43%;
+    z-index: 10;
+  }
+</style>

@@ -1,0 +1,259 @@
+---
+interface Props {
+  startXDiv: string;
+  startXDivPosition: 'left' | 'hCenter' | 'right';
+  startYDiv: string;
+  startYPosition: 'top' | 'vCenter' | 'bottom';
+  startDirection: 'up' | 'down' | 'left' | 'right';
+  firstTurnYDiv: string;
+  firstTurnYPosition: 'top' | 'vCenter' | 'bottom';
+  firstTurnXDiv: string | null;
+  firstTurnXPosition: 'left' | 'hCenter' | 'right';
+  firstTurnDirection: 'up' | 'down' | 'left' | 'right';
+  EndXDiv: string;
+  EndXPosition: 'left' | 'hCenter' | 'right';
+  EndYDiv: string;
+  EndYPosition: 'top' | 'vCenter' | 'bottom';
+  strokeColor?: string;
+  strokeWidth?: number;
+  circleRadius?: number;
+  circleColor?: string;
+  uniqueId: string;
+  edgeAnchor?: ['startXDiv' | 'startYDiv' | 'firstTurnYDiv' | 'firstTurnXDiv' | 'EndXDiv' | 'EndYDiv', 'left' | 'right' | 'top' | 'bottom']
+  circleGlowColor?: string;
+  circleGlowDistance?: number;
+  animationDuration?: number;
+}
+
+const {
+  startXDiv,
+  startXDivPosition,
+  startYDiv,
+  startYPosition,
+  startDirection,
+  firstTurnYDiv,
+  firstTurnYPosition,
+  firstTurnXDiv,
+  firstTurnXPosition,
+  firstTurnDirection,
+  EndXDiv,
+  EndXPosition,
+  EndYDiv,
+  EndYPosition,
+  strokeColor = "white",
+  strokeWidth = 2,
+  circleRadius = 5,
+  circleColor = "white",
+  uniqueId,
+  edgeAnchor,
+  circleGlowColor = "rgba(255, 255, 255, 0.5)",
+  circleGlowDistance = 3,
+  animationDuration = 10
+} = Astro.props;
+---
+
+<svg class="absolute left-0 top-0 w-screen h-auto pointer-events-none overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
+  <defs>
+  <filter id={`${uniqueId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation={circleGlowDistance} result="blur1" />
+    <feOffset dx="0" dy="0" result="offsetblur"/>
+    <feFlood flood-color={circleGlowColor} result="color" />
+    <feComposite in="color" in2="offsetblur" operator="in" result="shadow" />
+    <feGaussianBlur in="shadow" stdDeviation={circleGlowDistance / 2} result="blur2" />
+    <feMerge>
+      <feMergeNode in="blur2" />
+      <feMergeNode in="SourceGraphic" />
+    </feMerge>
+  </filter>
+</defs>
+  <path 
+  id={`${uniqueId}-path`} 
+  fill="none" stroke={strokeColor} 
+  stroke-width={strokeWidth} 
+  vector-effect="non-scaling-stroke"
+  stroke-dasharray="5,5"
+  />
+  <circle 
+    id={`${uniqueId}-circle`}
+    r={circleRadius} 
+    fill={circleColor}
+    filter={`url(#${uniqueId}-glow)`}
+  >
+  <animateMotion dur={`${animationDuration}s`} repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
+      <mpath href={`#${uniqueId}-path`}/>
+    </animateMotion>
+  </circle>
+</svg>
+
+<script define:vars={{ startXDiv, startXDivPosition, startYDiv, startYPosition, startDirection, firstTurnYDiv, firstTurnYPosition, firstTurnXDiv, firstTurnXPosition, firstTurnDirection, EndXDiv, EndXPosition, EndYDiv, EndYPosition, uniqueId, edgeAnchor }}>
+function getPosition(element, position) {
+  if (!element) {
+    console.error(`Element not found for position: ${position}`);
+    return { raw: 0, adjusted: 0 };
+  }
+  const rect = element.getBoundingClientRect();
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
+
+  let raw, adjusted;
+  switch(position) {
+    case 'left': raw = rect.left; adjusted = raw + scrollX; break;
+    case 'hCenter': 
+        // Horizontal center
+      raw = rect.left + rect.width / 2;
+      adjusted = raw + scrollX;
+      break;
+    case 'vCenter': 
+        // Vertical center
+      raw = rect.top + rect.height / 2;
+      adjusted = raw + scrollY;
+      break;
+    case 'right': raw = rect.right; adjusted = raw + scrollX; break;
+    case 'top': raw = rect.top; adjusted = raw + scrollY; break;
+    case 'bottom': raw = rect.bottom; adjusted = raw + scrollY; break;
+    default: raw = 0; adjusted = 0;
+  }
+
+  console.log(`getPosition for ${element.id || 'unknown'}, position: ${position}, raw: ${raw}, adjusted: ${adjusted}, rect:`, rect);
+  return { raw, adjusted };
+}
+
+function getEdgePosition(svg, edge) {
+  switch(edge) {
+    case 'left': return 0;
+    case 'right': return svg.width;
+    case 'top': return 0;
+    case 'bottom': return svg.height;
+    default: return 0;
+  }
+}
+
+let lastSvgTop = null;
+
+function updatePath() {
+  console.log("Starting updatePath function");
+  console.log("Scroll position:", window.pageXOffset, window.pageYOffset);
+
+  const path = document.getElementById(`${uniqueId}-path`);
+  if (!path) {
+    console.error(`Path element with id ${uniqueId}-path not found`);
+    return;
+  }
+
+  const svg = path.ownerSVGElement;
+  if (!svg) {
+    console.error("SVG element not found");
+    return;
+  }
+
+  const svgRect = svg.getBoundingClientRect();
+  console.log("SVG bounding rect:", svgRect);
+
+  if (lastSvgTop !== null && Math.abs(svgRect.top - lastSvgTop) > 10) {
+    console.warn("Large change in SVG position detected:", lastSvgTop, "->", svgRect.top);
+  }
+  lastSvgTop = svgRect.top;
+
+
+  // Calculate positions relative to the document
+  let startX = getPosition(document.getElementById(startXDiv), startXDivPosition).adjusted;
+  let startY = getPosition(document.getElementById(startYDiv), startYPosition).adjusted;
+  let firstTurnY = getPosition(document.getElementById(firstTurnYDiv), firstTurnYPosition).adjusted;
+  let firstTurnX = firstTurnXDiv ? getPosition(document.getElementById(firstTurnXDiv), firstTurnXPosition).adjusted : startX;
+  let endX = getPosition(document.getElementById(EndXDiv), EndXPosition).adjusted;
+  let endY = getPosition(document.getElementById(EndYDiv), EndYPosition).adjusted;
+
+  console.log("Adjusted positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
+
+  // Adjust positions relative to SVG and scroll
+  const scrollY = window.pageYOffset;
+  startX -= svgRect.left;
+  startY -= (svgRect.top + scrollY);
+  firstTurnY -= (svgRect.top + scrollY);
+  firstTurnX -= svgRect.left;
+  endX -= svgRect.left;
+  endY -= (svgRect.top + scrollY);
+
+  console.log("Final positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
+
+  // Apply edgeAnchor for all positions if set
+  if (edgeAnchor) {
+    const edgePosition = edgeAnchor[1] === 'right' ? svgRect.width : 0;
+
+    const edgePositionValue = edgePosition.baseVal? edgePosition.baseVal.value : edgePosition;
+    const originalPositions = {
+      startXDiv: startX,
+      startYDiv: startY,
+      firstTurnYDiv: firstTurnY,
+      firstTurnXDiv: firstTurnX,
+      EndXDiv: endX,
+      EndYDiv: endY
+    };
+    
+    const anchoredPosition = originalPositions[edgeAnchor[0]];
+    if (anchoredPosition !== undefined) {
+      const averagedPosition = (anchoredPosition + edgePositionValue) / 2;
+      
+      switch(edgeAnchor[0]) {
+        case 'startXDiv': startX = averagedPosition; break;
+        case 'startYDiv': startY = averagedPosition; break;
+        case 'firstTurnYDiv': firstTurnY = averagedPosition; break;
+        case 'firstTurnXDiv': firstTurnX = averagedPosition; break;
+        case 'EndXDiv': endX = averagedPosition; break;
+        case 'EndYDiv': endY = averagedPosition; break;
+      }
+      //console.log('Updated position:', edgeAnchor[0], '=', averagedPosition);
+    }
+  }
+
+  // Construct path
+  let pathData = `M ${startX},${startY} `;
+  //console.log('Path start:', pathData);
+
+  if (startDirection === 'down') {
+    pathData += `V ${firstTurnY} `;
+  } else if (startDirection === 'up') {
+    pathData += `V ${2 * startY - firstTurnY} `;
+  } else if (startDirection === 'left') {
+    pathData += `H ${firstTurnX} `;
+  } else if (startDirection === 'right') {
+    pathData += `H ${2 * startX - firstTurnX} `;
+  }
+  //console.log('Path after first turn:', pathData);
+
+  if (firstTurnDirection === 'left') {
+    pathData += `H ${endX} `;
+  } else if (firstTurnDirection === 'right') {
+    pathData += `H ${2 * firstTurnX - endX} `;
+  } else if (firstTurnDirection === 'down') {
+    pathData += `V ${endY} `;
+  } else if (firstTurnDirection === 'up') {
+    pathData += `V ${2 * firstTurnY - endY} `;
+  }
+  //console.log('Path after second turn:', pathData);
+
+  if (firstTurnDirection === 'left' || firstTurnDirection === 'right') {
+    pathData += `V ${endY}`;
+  } else {
+    pathData += `H ${endX}`;
+  }
+
+  console.log('Final path data:', pathData);
+  path.setAttribute('d', pathData);
+}
+
+function tryUpdatePath() {
+  try {
+    updatePath();
+  } catch (error) {
+    console.error('Error updating path:', error);
+  }
+}
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', tryUpdatePath);
+const path = document.getElementById(`${uniqueId}-path`);
+  console.log("Path after DOM Loaded: ", path.getBoundingClientRect());
+window.addEventListener('load', tryUpdatePath);
+window.addEventListener('resize', tryUpdatePath);
+</script>

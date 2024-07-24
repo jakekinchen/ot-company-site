@@ -27,6 +27,11 @@ interface Props {
   followDivBorderOffset?: number;
   followDivBorderDirection?: 'top' | 'bottom';
   startYDivPosition?: 'top' | 'bottom' | 'center';
+  firstGradientColor?: string;
+  secondGradientColor?: string;
+  gradientDirection?: 'horizontal' | 'vertical' | 'radial';
+  verticalSegmentXOffset?: number;
+  edgeAnchor?: ['startY' | 'verticalSegment', 'left' | 'right' | 'top' | 'bottom', string]
 }
 
 const {
@@ -55,7 +60,12 @@ const {
   followDivBorder = false,
   followDivBorderDirection = 'top',
   startYDivPosition = 'center',
-  followDivBorderOffset = 0
+  followDivBorderOffset = 0,
+  firstGradientColor = null,
+  secondGradientColor = null,
+  gradientDirection = 'vertical',
+  verticalSegmentXOffset = 0,
+  edgeAnchor = null
 } = Astro.props;
 
 const effectiveGlowColor = glowColor || circleColor;
@@ -70,13 +80,38 @@ const effectiveGlowColor = glowColor || circleColor;
                 <feMergeNode in="SourceGraphic"/>
             </feMerge>
         </filter>
+        {firstGradientColor && secondGradientColor && (
+          gradientDirection === 'radial' ? (
+              <radialGradient id={`${uniqueId}-gradient`}>
+                  <stop offset="0%" stop-color={firstGradientColor} />
+                  <stop offset="100%" stop-color={secondGradientColor} />
+              </radialGradient>
+          ) : (
+              <linearGradient 
+                  id={`${uniqueId}-gradient`} 
+                  x1={gradientDirection === 'horizontal' ? '0%' : '50%'} 
+                  y1={gradientDirection === 'horizontal' ? '50%' : '0%'} 
+                  x2={gradientDirection === 'horizontal' ? '100%' : '50%'} 
+                  y2={gradientDirection === 'horizontal' ? '50%' : '100%'}
+              >
+                  <stop offset="0%" stop-color={firstGradientColor} />
+                  <stop offset="100%" stop-color={secondGradientColor} />
+              </linearGradient>
+          )
+      )}
     </defs>
     <g>
-      <path id={`${uniqueId}-path`} fill="none" stroke={strokeColor} stroke-width={strokeWidth} stroke-dasharray={strokeDasharray} vector-effect="non-scaling-stroke"/>
+      <path 
+      id={`${uniqueId}-path`} 
+      fill="none" 
+      stroke={firstGradientColor && secondGradientColor ? `url(#${uniqueId}-gradient)` : `var(--${strokeColor})`} 
+      stroke-width={strokeWidth} 
+      stroke-dasharray={strokeDasharray} 
+      vector-effect="non-scaling-stroke"/>
       <circle 
       id={`${uniqueId}-circle`}
       r={circleRadius} 
-      fill={circleColor} 
+      fill={`var(--${circleColor})`} 
       filter={`url(#${uniqueId}-glow)`}
     >
     <animateMotion dur={`${animationDuration}s`} repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
@@ -86,7 +121,7 @@ const effectiveGlowColor = glowColor || circleColor;
     </g>
   </svg>
 
-<script define:vars={{ initialYOffset, startY, targetDivClass, effectiveGlowColor, targetDivYPosition, targetDivXPosition, flipped, customPath, glowDistance, uniqueId, semiRect, height, simpleHorizontal, loopReverse, endYOffset, startYDivClass, followDivBorder, followDivBorderDirection, startYDivPosition, followDivBorderOffset  }}>
+<script define:vars={{ initialYOffset, startY, targetDivClass, effectiveGlowColor, targetDivYPosition, targetDivXPosition, flipped, customPath, glowDistance, uniqueId, semiRect, height, simpleHorizontal, loopReverse, endYOffset, startYDivClass, followDivBorder, followDivBorderDirection, startYDivPosition, followDivBorderOffset, verticalSegmentXOffset, edgeAnchor  }}>
 
 function getEndPathY(svgRect, rect, targetDivYPosition) {
   switch (targetDivYPosition) {
@@ -196,10 +231,7 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
         const targetDiv = document.querySelector(`.${startYDivClass}`);
         if (targetDiv) {
             const targetDivRect = targetDiv.getBoundingClientRect();
-            console.log('targetDivRect:', targetDivRect);
-            console.log('svgRect:', svgRect);
-            console.log('startYDivPosition:', startYDivPosition);
-            console.log('initialYOffset:', initialYOffset);
+   
             switch (startYDivPosition) {
                 case 'top':
                     startY = targetDivRect.top - svgRect.top;
@@ -258,22 +290,54 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
                 `H ${endX}`
             ].join(' ');
             // Log all relevant variables for debugging
-        console.log('flipped:', flipped);
-        console.log('pathData:', pathData);
-        console.log('startY:', startY);
-        console.log('endY:', endY);
-        console.log('firstTurnX:', firstTurnX);
-        console.log('secondTurnY:', secondTurnY);
-        console.log('endX:', endX);
 
         }
         
       }
       else {
         // Existing path calculation logic
+        let verticalSegmentXOffset = 0;
         const endY = getEndPathY(svgRect, rect, targetDivYPosition);
         const startX = flipped ? svgRect.width : 0;
         const endX = getEndPathX(svgRect, rect, targetDivXPosition, flipped);
+
+        // get anchor element
+        if (edgeAnchor) {
+          const targetDiv = document.querySelector(`.${edgeAnchor[2]}`);
+          if (targetDiv) {
+            const targetDivRect = targetDiv.getBoundingClientRect();
+            if (edgeAnchor[0] === 'startY') {
+              let anchoredStartY;
+              switch (edgeAnchor[1]) {
+                case 'top':
+                  anchoredStartY = targetDivRect.top - svgRect.top;
+                  break;
+                case 'center':
+                  anchoredStartY = targetDivRect.top - svgRect.top + (targetDivRect.height / 2);
+                  break;
+                case 'bottom':
+                  anchoredStartY = targetDivRect.bottom - svgRect.top;
+                  break;
+              }
+              console.log("About to set startY to", anchoredStartY);
+              startY = anchoredStartY; // Assuming startY is defined in the outer scope
+            } else if (edgeAnchor[0] === 'verticalSegment') {
+              switch (edgeAnchor[1]) {
+                case 'left':
+                  verticalSegmentXOffset = targetDivRect.left - svgRect.left;
+                  break;
+                case 'center':
+                  verticalSegmentXOffset = (targetDivRect.left + targetDivRect.right) / 2 - svgRect.left;
+                  break;
+                case 'right':
+                  verticalSegmentXOffset = targetDivRect.right - svgRect.left;
+                  break;
+              }
+            }
+          } else {
+            console.warn(`Element with class ${edgeAnchor[2]} not found for edgeAnchor`);
+          }
+        }
         
         let midpointX;
         if (flipped) {
@@ -281,6 +345,7 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
         } else {
           midpointX = (rect.left - svgRect.left) / 2;
         }
+        midpointX += verticalSegmentXOffset;
 
         if (initialYOffset > 0) {
           pathData = [

@@ -27,7 +27,7 @@ function MenuItem({ href, iconSrc, label, subLinks, linkRefs }) {
         <a
           href={href}
           ref={(el) => el && linkRefs.current.push(el)}
-          className="flex items-center space-x-2 text-md font-medium text-dark-blue hover:text-dark-blue"
+          className="flex items-center space-x-2 text-md font-medium cursor-pointer text-dark-blue hover:text-dark-blue"
         >
           <MainContent />
         </a>
@@ -39,7 +39,7 @@ function MenuItem({ href, iconSrc, label, subLinks, linkRefs }) {
               key={index}
               href={`${href}/${subLink.toLowerCase().replace(/ /g, '-')}`}
               ref={(el) => el && linkRefs.current.push(el)}
-              className="block text-sm text-dark-blue hover:text-blue"
+              className="block text-sm text-dark-blue hover:text-blue cursor-pointer"
             >
               {subLink}
             </a>

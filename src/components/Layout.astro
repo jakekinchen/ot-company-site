@@ -13,18 +13,19 @@ const {
   footerBackground='white',
   customBackground=false,
   logoColor='blue',
-  headerLogoColor='blue'
+  headerLogoColor='blue',
+  backgroundColorScript=false
 } = Astro.props;
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
-<head>
+<head> 
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   <!--  <base href="https://onetier.com/">   -->
 </head>
-<body class={`flex flex-col min-h-screen ${customBackground ? 'custom-background' : ''}`}>
+<body class={`bg-white flex flex-col min-h-screen ${customBackground ? 'custom-background' : ''}`}>
   
   <Header background={headerBackground} gradient={gradient} iconColor={headerIconColor} logoColor={headerLogoColor} />
   <Dialog />
@@ -32,11 +33,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <slot />
   </main>
   <Footer theme={footerBackground} gradient={gradient} />
-  <script type="module" src="src/helpers/backgroundColor.js"></script>
+  {backgroundColorScript && (
+    <script type="module" src="src/helpers/backgroundColor.js"></script>
+  )}
   <!-- <script type="module">
     import { displayViewportDimensions } from './src/helpers/viewportDimensions.js';
-    displayViewportDimensions(); -->
-  </script>
+    displayViewportDimensions(); </script> -->
 </body>
 </html>
 
