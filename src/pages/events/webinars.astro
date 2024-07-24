@@ -1,73 +1,94 @@
 ---
 import Layout from '../../components/Layout.astro';
-import ProfileCircle from '../../components/ProfileCircle.astro';
-import { teamMembers } from '../../data/pages.json';
+import { getCollection } from 'astro:content';
+import type { Event } from '../../types';
 
+const events = await getCollection('events') as Event[];
+const sortedEvents = events.sort((a: Event, b: Event) => a.data.eventDate.getTime() - b.data.eventDate.getTime());
+const eventTypes = ['All', 'Webinar', 'Out and About', 'Conference', 'Exposition'] as const;
 ---
 
 <Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
   <section class="bg-white py-16 text-blue">
     <div class="custom-container mx-auto">
-      <h1 class="text-6xl font-bold text-center mb-4">Events</h1>
-      
-      <div id="CalendarSection" class="flex justify-center mb-16 w-full">
-        <div id="calendar-grid" >
+      <h1 class="text-6xl font-bold text-center mb-12">Events</h1>
+      <div class="flex justify-center mb-8">
+        <div class="filter-buttons">
+          <span class="mr-2">Filter:</span>
+          {eventTypes.map(type => (
+            <button class="filter-btn bg-blue text-white px-4 py-2 rounded-full mr-2" data-type={type}>{type}</button>
+          ))}
         </div>
       </div>
-
-      
-      
-      <div class="grid grid-cols-1 dt:grid-cols-2 gap-8 mt-16 mb:mx-8 dt:mx-auto px-8 dt:max-w-[1100px] align-self-center">
-        
-        {teamMembers.map((member) => (
-            <div>
-          <div class="bg-light-blue dt:rounded-full mb:rounded-full rounded-xl flex mb:flex-col dt:items-center mb:items-start h-32 w-full dt:pt-4">
-            <div class="flex items-center gap-8">
-                <img src={member.imageSrc} alt={member.name} 
-                class="w-32 h-32 rounded-full object-cover mb-4" 
-                />
-                <div>
-                    <h3 class="text-2xl font-bold text-white">{member.name}</h3>
-                    <p class="text-lg text-white mb-4">{member.title}</p>
-                </div>
-            </div>
-            
+      <div id="events-grid" class="grid mb:grid-cols-1 dt:grid-cols-3 gap-8 dt:w-[70%] mb:w-[90%] mx-auto">
+        {sortedEvents.map(event => (
+          <div class="event-card bg-light-blue rounded-xl p-6" data-category={event.data.category}>
+            <h2 class="text-2xl font-bold mb-2">
+              {event.data.eventDate.toLocaleString('default', { month: 'short' })} {event.data.eventDate.getDate()}
+            </h2>
+            <p class="text-lg mb-2">{event.data.title}</p>
+            <p class="text-lg">{event.data.category}</p>
           </div>
-          <p class="text-blue m-4">
-                Here is {member.name}'s bio. {member.name} is a professional in their field who brings valuable experience to our team. They are dedicated to providing top-tier customer experience to businesses from all walks of life.
-              </p>
-            </div>
         ))}
-        
+      </div>
+      <div class="flex justify-center mt-8">
+        <button class="mr-4 font-bold text-4xl hover:scale-110">&lt;</button>
+        <button class="font-bold text-4xl hover:scale-110">&gt;</button>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-    .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
-}
-
-.grid-item {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 20px;
-  text-align: center;
-}
-
-.grid-container > .grid-item:nth-last-child(1):nth-child(3n-2),
-.grid-container > .grid-item:nth-last-child(2):nth-child(3n-1),
-.grid-container > .grid-item:nth-last-child(3):nth-child(3n) {
-  justify-self: stretch;
-}
-
-.grid-container:has(.grid-item:nth-last-child(1):nth-child(3n-2)),
-.grid-container:has(.grid-item:nth-last-child(2):nth-child(3n-1)),
-.grid-container:has(.grid-item:nth-last-child(3):nth-child(3n)) {
-  justify-content: space-between;
-}
-  
+  .filter-buttons button {
+    transition: background-color 0.3s ease;
+  }
+  .filter-buttons button:hover {
+    background-color: var(--blue);
+  }
+  #events-grid {
+    min-height: 600px;
+  }
+  .filter-btn.active {
+    background-color: var(--blue);
+  }
+  .filter-btn:not(.active) {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const eventCards = document.querySelectorAll('.event-card');
+  
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterType = button.getAttribute('data-type');
+  
+        // Toggle active class for buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+  
+        // Filter events
+        eventCards.forEach(card => {
+          if (card instanceof HTMLElement) {  // Type assertion
+            if (filterType === 'All' || card.getAttribute('data-category') === filterType) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  
+    // Set 'All' as default active filter
+    const allButton = document.querySelector('.filter-btn[data-type="All"]');
+    if (allButton instanceof HTMLElement) {  // Type assertion
+      allButton.classList.add('active');
+    }
+  });
+  </script>

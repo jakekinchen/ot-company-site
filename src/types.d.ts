@@ -1,4 +1,17 @@
 // types.d.ts
+import type { z } from 'astro:content';
+import type { collections } from '../content/config';
+
+type EventSchema = z.infer<(typeof collections.events)['schema']>;
+
+export type Event = {
+  id: string;
+  slug: string;
+  body: string;
+  collection: 'events';
+  data: EventSchema;
+};
+
 
 export type ProductInfo = {
     label: string;

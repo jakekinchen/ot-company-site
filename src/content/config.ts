@@ -6,7 +6,7 @@ export const collections = {
       draft: z.boolean().default(false),
       date: z.date().transform((str) => new Date(str)),
       title: z.string(),
-      slug: z.string().optional(),
+      href: z.string().optional(),
       category: z.enum(['Company News', 'Editorial']),
       tags: z.array(z.string().optional()),
       share: z.object({
@@ -25,7 +25,7 @@ export const collections = {
         imageAlt: z.string(),
         eventDate: z.date(),
         moreInfo: z.string(),
-        slug: z.string().optional(),
+        href: z.string().optional(),
         category: z.enum(['Webinar', 'Out and About', 'Conference', 'Exposition']),
         share: z.object({
             image: z.string().optional(),
