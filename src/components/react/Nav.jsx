@@ -70,7 +70,7 @@ const Nav = () => {
     return (
     <nav ref={navRef} className="mb:hidden w-full py-4 relative">
       <div className="max-w-6xl mx-auto flex items-center justify-center relative">
-        <div id="navBar" ref={navBarRef} className="flex space-x-1 font-medium shadow-sm bg-off-white rounded-full p-2">
+        <div id="navBar" ref={navBarRef} className="flex space-x-1 font-medium drop-shadow-md bg-off-white rounded-full p-2">
           <a
             href="/"
             className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full bg-blue hover:text-white active:bg-blue text-white transition-colors duration-200 ${

@@ -12,6 +12,24 @@ export type Event = {
   data: EventSchema;
 };
 
+export type Post = {
+  id: string;
+  slug: string;
+  body: string;
+  category: enum['Company News'| 'Editorial'];
+  collection: 'posts';
+  description: string;
+  pubDate: Date;
+  updatedDate: Date;
+  heroImage: string;
+  share: {
+    image: string;
+    title: string;
+    description: string;
+  };
+  data: z.infer<(typeof collections.posts)['schema']>;
+};
+
 
 export type ProductInfo = {
     label: string;
