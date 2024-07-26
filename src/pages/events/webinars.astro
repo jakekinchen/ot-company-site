@@ -20,10 +20,10 @@ const eventTypes = ['All', 'Webinar', 'Out and About', 'Conference', 'Exposition
           ))}
         </div>
       </div>
-      <div id="events-grid" class="grid mb:grid-cols-1 dt:grid-cols-3 gap-8 dt:w-[70%] mb:w-[90%] mx-auto">
+      <div id="events-grid" class="grid mb:grid-cols-1 dt:grid-cols-3 gap-8 dt:w-[70%] mb:w-[90%] mx-auto text-white">
         {sortedEvents.map(event => (
           <div class="event-card bg-light-blue rounded-xl p-6" data-category={event.data.category}>
-            <h2 class="text-2xl font-bold mb-2">
+            <h2 class="text-2xl font-bold mb-2 text-white">
               {event.data.eventDate.toLocaleString('default', { month: 'short' })} {event.data.eventDate.getDate()}
             </h2>
             <p class="text-lg mb-2">{event.data.title}</p>
