@@ -6,6 +6,7 @@
   "dev": "astro dev",
   "start": "astro dev",
   "build": "astro check && astro build --verbose",
+  "build-preview": "astro check && astro build --verbose --mode=production",
   "preview": "astro preview",
   "astro": "astro",
   "prefix": "postcss --use autoprefixer --output public/css/styles.css public/css/styles.css"
