@@ -12,12 +12,14 @@ const eventTypes = ['All', 'Webinar', 'Out and About', 'Conference', 'Exposition
   <section class="bg-white py-16 text-blue">
     <div class="custom-container mx-auto">
       <h1 class="text-6xl font-bold text-center mb-12">Events</h1>
-      <div class="flex justify-center mb-8">
-        <div class="filter-buttons">
-          <span class="mr-2">Filter:</span>
-          {eventTypes.map(type => (
-            <button class="filter-btn bg-blue text-white px-4 py-2 rounded-full mr-2" data-type={type}>{type}</button>
-          ))}
+      <div class="flex justify-center mb-8 dt:w-[70%] mb:w-[90%] mx-auto">
+        <div class="filter-buttons-container flex items-center">
+          <span class="mr-4 pb-2">Filter:</span>
+          <div class="filter-buttons flex flex-wrap">
+            {eventTypes.map(type => (
+              <button class="filter-btn bg-blue text-white px-4 py-2 rounded-full mr-2 mb-2" data-type={type}>{type}</button>
+            ))}
+          </div>
         </div>
       </div>
       <div id="events-grid" class="grid mb:grid-cols-1 dt:grid-cols-3 gap-8 dt:w-[70%] mb:w-[90%] mx-auto text-white">
