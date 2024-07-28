@@ -51,7 +51,7 @@ const {
   }
 </style>
 
-<script define:vars={{ id, targetId }}>
+<script is:inline define:vars={{ id, targetId }}>
   function updatePath() {
     const svg = document.querySelector(`#${id}-path`).closest('svg');
     const path = document.querySelector(`#${id}-path`);

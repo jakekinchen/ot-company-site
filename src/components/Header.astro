@@ -27,7 +27,7 @@ const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
   <MobileMenu client:only="react" />
 </header>
 
-<script type="module">
+<script is:inline type="module">
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.gradient-button');
     buttons.forEach(button => {
