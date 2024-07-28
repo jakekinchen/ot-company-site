@@ -32,7 +32,7 @@ const SolutionsMenu = React.forwardRef((props, ref) => {
   }
 
   return (
-    <nav className="flex space-x-8" onKeyPress={onKeyPress}>
+    <nav className="flex space-x-8" onKeyDown={onKeyPress}>
       {columns.map((column, columnIndex) => (
         <div key={columnIndex} className="flex flex-col space-y-4">
           {column.map((item) => (
