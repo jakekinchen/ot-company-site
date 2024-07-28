@@ -132,7 +132,7 @@ let lastSvgTop = null;
 
 function updatePath() {
   console.log("Starting updatePath function");
-  console.log("Scroll position:", window.pageXOffset, window.pageYOffset);
+  console.log("Scroll position:", window.scrollX, window.scrollY);
 
   const path = document.getElementById(`${uniqueId}-path`);
   if (!path) {
@@ -166,7 +166,7 @@ function updatePath() {
   console.log("Adjusted positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
 
   // Adjust positions relative to SVG and scroll
-  const scrollY = window.pageYOffset;
+  const scrollY = window.scrollY;
   startX -= svgRect.left;
   startY -= (svgRect.top + scrollY);
   firstTurnY -= (svgRect.top + scrollY);
