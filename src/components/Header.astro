@@ -4,14 +4,17 @@ import Dialog from './Dialog.astro';
 import Nav from './react/Nav.jsx';
 import { enableGradientFollowById } from '../helpers/gradientFollow';
 import MobileMenu from './react/MobileMenu.jsx';
-const { background = "transparent", gradient = false, iconColor = "blue", logoColor = "blue" } = Astro.props;
+const { background = "transparent", gradient = false, iconColor = "blue", logoColor = "blue", width="" } = Astro.props;
 
 const bgColor = background === "transparent" ? "bg-opacity-0" : background;
 const iconFilterColor = iconColor === "blue" ? "filter-blue" : "filter-white";
 const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
+
+const navWidth = width ? `dt:w-[${width}%] dt:mx-auto` : "w-full";
 ---
 
-<header class={`${bgColor} flex justify-between items-center w-full h-[80px] pt-4`}>
+<div class={`${bgColor}`}>
+<header class={`${bgColor} flex justify-between items-center dt:w-[85%] dt:mx-auto h-[80px] pt-4`}>
   <a href="/" class="ml-[5vw]">
     <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoFilterColor} style="width: 10rem;" />
   </a>
@@ -26,6 +29,7 @@ const logoFilterColor = logoColor === "blue" ? "filter-blue" : "filter-white";
   <Dialog />
   <MobileMenu client:only="react" />
 </header>
+</div>
 
 <script is:inline type="module">
   document.addEventListener('DOMContentLoaded', () => {

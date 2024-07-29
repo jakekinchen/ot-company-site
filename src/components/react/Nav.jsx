@@ -5,7 +5,8 @@ import ProductsMenu from './ProductsMenu';
 import SolutionsMenu from './SolutionsMenu';
 import SlideWrapper from './SlideWrapper';
 
-const MENU_ITEMS = ['Solutions', 
+
+const MENU_ITEMS = [ 
 'Products', 'Partners', 'Company'];
 
 const Nav = () => {
@@ -79,6 +80,13 @@ const Nav = () => {
           >
             Home
           </a>
+          <a
+            href="/solutions"
+            className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 active:!bg-blue
+              }`}
+          >
+            Solutions
+          </a>
           {MENU_ITEMS.map((item, index) => (
             <a
               key={item}
@@ -118,17 +126,15 @@ const Nav = () => {
             }}
           />
           <div className="relative bg-white w-full h-full">
-             <SlideWrapper index={0} hovering={hovering}>
-              <SolutionsMenu ref={refs.current[0]} />
-            </SlideWrapper> 
+
+            <SlideWrapper index={0} hovering={hovering}>
+              <ProductsMenu ref={refs.current[0]} />
+            </SlideWrapper>
             <SlideWrapper index={1} hovering={hovering}>
-              <ProductsMenu ref={refs.current[1]} />
+              <PartnersMenu ref={refs.current[1]} />
             </SlideWrapper>
             <SlideWrapper index={2} hovering={hovering}>
-              <PartnersMenu ref={refs.current[2]} />
-            </SlideWrapper>
-            <SlideWrapper index={3} hovering={hovering}>
-              <CompanyMenu ref={refs.current[3]} />
+              <CompanyMenu ref={refs.current[2]} />
             </SlideWrapper> 
             
             {/*

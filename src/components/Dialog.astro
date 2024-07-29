@@ -2,7 +2,11 @@
 ---
 <dialog id="demoModal" class="modal-content rounded-3xl max-w-screen-lg ">
     <form method="dialog">
-        <button style="color: var(--blue);" class="close text-blue cursor-pointer " aria-label='Close'>x</button>
+        <button class="close cursor-pointer mt-2 " aria-label='Close'>
+		<svg xmlns="http://www.w3.org/2000/svg" style="color: var(--blue);" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+		</button>
 		<div class="m-4 space-y-2">
         <h2 class="no-appearance text-blue mb-2 max-w-xl text-center mx-auto">Find the solution in our portfolio that fits your business</h2>
         <p class="text-blue-500 text-xl mb-2">CONTACT US</p>

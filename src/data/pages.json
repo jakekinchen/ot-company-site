@@ -283,8 +283,8 @@
     { "href": "/leadership", "iconSrc": "/menuIcons/leadership.svg", "label": "Leadership" },
     { "href": "/initiatives", "iconSrc": "/menuIcons/initiatives.svg", "label": "Initiatives" },
     { "href": "/careers", "iconSrc": "/menuIcons/careers.svg", "label": "Careers" },
-    { "href": "/news", "iconSrc": "/menuIcons/news.svg", "label": "News and Blog", "subLinks": ["Company News", "Blog"] },
-    { "href": "/events", "iconSrc": "/menuIcons/events.svg", "label": "Events", "subLinks": ["Webinars", "Out and About", "Conferences and Exhibitions"] }
+    { "href": "/news", "iconSrc": "/menuIcons/news.svg", "label": "News and Blog"},
+    { "href": "/events", "iconSrc": "/menuIcons/events.svg", "label": "Events"}
   ],
   "solutions": [
     { "href": "/cyber-risk", "iconSrc": "/menuIcons/cyber-risk.svg", "label": "Overview" },

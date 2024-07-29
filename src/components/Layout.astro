@@ -14,7 +14,8 @@ const {
   customBackground=false,
   logoColor='blue',
   headerLogoColor='blue',
-  backgroundColorScript=false
+  backgroundColorScript=false,
+  navWidth
 } = Astro.props;
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
@@ -27,7 +28,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 </head>
 <body class={`bg-white flex flex-col min-h-screen ${customBackground ? 'custom-background' : ''}`}>
   
-  <Header background={headerBackground} gradient={gradient} iconColor={headerIconColor} logoColor={headerLogoColor} />
+  <Header background={headerBackground} gradient={gradient} iconColor={headerIconColor} logoColor={headerLogoColor} width={navWidth} />
   <Dialog />
   <main class="flex-grow content">
     <slot />
