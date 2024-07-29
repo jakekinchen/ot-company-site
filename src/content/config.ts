@@ -4,9 +4,9 @@ export const collections = {
   posts: defineCollection({
     schema: z.object({
       draft: z.boolean().default(false),
-      date: z.date().transform((str) => new Date(str)),
+      pubDate: z.date().transform((str) => new Date(str)),
       title: z.string(),
-      slug: z.string().optional(),
+      href: z.string().optional(),
       category: z.enum(['Company News', 'Editorial']),
       tags: z.array(z.string().optional()),
       share: z.object({

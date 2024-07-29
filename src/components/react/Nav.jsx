@@ -95,7 +95,7 @@ const Nav = () => {
               onMouseLeave={startCloseTimer}
               onFocus={() => focusMenu(index)}
               href={`/${item.toLowerCase()}`}
-              className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 ${
+              className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white cursor-default transition-colors duration-200 ${
                 isActive(`/${item.toLowerCase()}`) ? 'active:!bg-blue' : ''
               }`}
             >

@@ -1,0 +1,105 @@
+---
+import Layout from '../components/Layout.astro';
+import { getCollection } from 'astro:content';
+import type { Post } from '../types';
+
+const posts = await getCollection('posts') as unknown as Post[];
+const sortedPosts = posts.sort((a: Post, b: Post) => a.pubDate.getTime() - b.pubDate.getTime());
+const postCategories = ['All', 'Company News', 'Editorial'] as const;
+---
+
+<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
+  <section class="bg-white py-16 text-blue">
+    <div class="custom-container dt:w-[75%] mb:w-[90%] mx-auto">
+      <h1 class="text-5xl font-bold mb:text-center mb-12">Latest</h1>
+      <div class="flex mb-8 mb:mx-auto dt:justify-start justify-center">
+        <div class="filter-buttons-container flex">
+          <span class="mr-4 mt-2">Filter:</span>
+          <div class="filter-buttons flex flex-wrap">
+            {postCategories.map(category => (
+              <button class="filter-btn bg-blue text-white hover:text-white px-4 py-2 rounded-full mr-2 mb-2" data-category={category}>{category}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div id="posts-grid" class="grid grid-cols-3 gap-4 mx-auto">
+        {sortedPosts.map(post => (
+          <div class="post-card bg-light-blue rounded-xl p-4 col-span-3 grid grid-cols-3 gap-4 items-center" data-category={post.category}>
+            <div class="text-white">
+              <h2 class="text-2xl font-bold">
+                {new Date(post.pubDate).toLocaleString('default', { month: 'short' })} {new Date(post.pubDate).getDate()}, {new Date(post.pubDate).getFullYear()}
+              </h2>
+            </div>
+            <div class="text-white">
+              <p class="text-lg mb-2">{post.category}</p>
+              <p class="text-xl font-semibold">{post.title}</p>
+            </div>
+            <div>
+              <img src={post.heroImage} alt={post.title} class="w-full h-auto rounded-lg object-cover aspect-video"/>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="flex justify-center mt-8">
+        <button class="mr-4 font-bold text-4xl hover:scale-110">&lt;</button>
+        <button class="font-bold text-4xl hover:scale-110">&gt;</button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .filter-buttons button {
+    transition: background-color 0.3s ease;
+  }
+  .filter-buttons button:hover {
+    background-color: var(--light-blue);
+    color: var(--white);
+  }
+  #posts-grid {
+    min-height: 600px;
+  }
+  .filter-btn.active {
+    background-color: var(--blue);
+    color: var(--white);
+  }
+  .filter-btn:not(.active) {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const postCards = document.querySelectorAll('.post-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterCategory = button.getAttribute('data-category');
+
+        // Toggle active class for buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter posts
+        postCards.forEach(card => {
+          if (card instanceof HTMLElement) {
+            if (filterCategory === 'All' || card.getAttribute('data-category') === filterCategory) {
+              card.style.display = 'grid';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+
+    // Set 'All' as default active filter
+    const allButton = document.querySelector('.filter-btn[data-category="All"]');
+    if (allButton instanceof HTMLElement) {
+      allButton.classList.add('active');
+    }
+  });
+</script>

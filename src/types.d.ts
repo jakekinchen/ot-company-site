@@ -14,8 +14,9 @@ export type Event = {
 
 export type Post = {
   id: string;
-  slug: string;
+  href: string;
   body: string;
+  title: string;
   category: enum['Company News'| 'Editorial'];
   collection: 'posts';
   description: string;

@@ -18,7 +18,7 @@ if (!isPostData(props)) {
   throw new Error('Props do not match the expected type');
 }
 
-const { title, date, category, tags, share } = props;
+const { title, pubDate, category, tags, share } = props;
 ---
 
 <html lang="en">
@@ -39,7 +39,7 @@ const { title, date, category, tags, share } = props;
                 <div class="prose">
                     <div class="title">
                         <div class="date">
-                            <FormattedDate date={date} />
+                            <FormattedDate date={pubDate} />
                         </div>
                         <h1>{title}</h1>
                         <p>Category: {category}</p>
