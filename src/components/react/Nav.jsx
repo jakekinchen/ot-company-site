@@ -88,7 +88,7 @@ const Nav = () => {
             Solutions
           </a>
           {MENU_ITEMS.map((item, index) => (
-            <a
+            <span
               key={item}
               id={`nav-${item.toLowerCase()}`}
               onMouseEnter={() => focusMenu(index)}
@@ -100,7 +100,7 @@ const Nav = () => {
               }`}
             >
               {item}
-            </a>
+            </span>
           ))}
         </div>
       </div>
