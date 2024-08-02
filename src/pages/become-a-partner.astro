@@ -1,0 +1,154 @@
+---
+import Carousel from '../components/Carousel.astro';
+import Layout from '../components/Layout.astro';
+import { partnerLogos } from '../data/pages.json';
+
+if (!partnerLogos) {
+  throw new Error('Partner Logos info not found');
+}
+---
+
+<Layout customBackground="/backgroundImage.jpg" headerLogoColor='white' headerIconColor='white' headerBackground='transparent' gradient={false} backgroundColorScript={true}>
+  <section class="section section-a">
+    <div class="layoutConstraint">
+      <div id="header-text-become-a-partner" class="text-center">
+        <h1>Partner Program</h1>
+        <h2>Unlock the Power of the Ecosystem</h2>
+        <p>OneTier partners with cutting-edge technologies to deliver solutions in a 100% channel resale model.</p>
+      </div>
+      <div class="button-container">
+        <a class="gradient-button partner-button">Become a Partner</a>
+        <a class="gradient-button partner-button">Partner Portal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-b">
+    <h2 class="text-center text-blue !font-medium ">OneTier Featured Partners</h2>
+    <div class="partner-carousel">
+      <Carousel clients={partnerLogos} scale={1.5} speed={900} scroll={true} />
+    </div>
+  </section>
+
+  <section class="section section-c layoutConstraint text-white">
+    <h2>Benefits</h2>
+    <p>OneTier operates with a 100% channel approach, offering a range of mature, cutting-edge products through a diverse ecosystem of value-added resellers, service integrators, and partners. Our method allows partners to receive a single quote from multiple vendors, reducing contract complexity, speeding up delivery, and boosting profitability. Simplify with OneTier and accelerate your growth!</p>
+    
+    <h2>Partnerships with OneTier</h2>
+    <h3>Technology Partners</h3>
+    <p>OneTier works with cutting edge, software-based technology firms that solve problems felt across the technology landscape. This includes virtualized infrastructure (Network, Compute, Storage), Cybersecurity, and the AI/ML systems allowing for the management or visualization of the architecture.</p>
+    <p>We add GaaS to the fire you have already started by providing Channel Development, Sales, Lead Generation, and Sales Engineering as an integrated service, connecting your solution to customers through a diverse partner ecosystem of companies large and small.</p>
+    <p>From just ready to scale and build a channel, through to large organizations working to expand market presence and develop new verticals, We help our partners focus on being great at technology, while we focus on being great at Growth.</p>
+    
+    <div class="flex-container items-center">
+      <div class="square"></div>
+      <div class="content-half">
+        <h3>End User</h3>
+        <p>Looking for innovative software solutions to solve business problems? OneTier has integrated solutions to solve your problems. It starts with identifying your Risk And then providing the Infrastructure and Cyber solutions.</p>
+      </div>
+    </div>
+    
+    <h3>Reseller Partners</h3>
+    <p>The OneTier Channel Ecosystem is comprised of a variety of partners including VARs, SIs, CSPs & MSPs, ISVs, or other consultancies who provide Subject Matter Expertise and deliver integrated solutions to clients and end users. As a Value Added Technology Partner, we bring a variety of support to our Channel Ecosystem including; Sales Enablement, BD & Lead Generation, Sales Engineering, and mature, vetted, cutting edge solutions to the remaining technology gaps faced by many IT organizations today.</p>
+  </section>
+</Layout>
+
+<style>
+  .section {
+    padding: 2rem 0;
+  }
+
+  .section-a {
+    color: white;
+  }
+
+  .section-b {
+    background: var(--white);
+  }
+
+
+  h1 {
+    font-size: clamp(3rem, 2vw + 2rem, 6rem);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 2vw + 1rem, 6rem);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: clamp(1.5rem, .5vw + 1rem, 3rem);
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: clamp(1rem, 0.5vw + .75rem, 2rem);
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 650px) {
+    
+    .button-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .partner-button {
+    width: clamp(250px, 10vw, 400px);
+    text-align: center;
+    font-size: clamp(4px, 0.1vw + 1.25rem, 40px);
+    white-space: nowrap;
+    padding: 0.75rem 2rem;
+  }
+
+  .flex-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  .square {
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    max-width: 400px;
+    min-width: 100px;
+    background-color: white;
+    border-radius: 3rem;
+  }
+
+  .content-half {
+    width: 70%;
+  }
+
+  @media (max-width: 960px) {
+    h3 + p {
+      margin-top: 1rem;
+    }
+    .flex-container {
+      flex-direction: column;
+    }
+
+    .square {
+      width: 75%;
+      max-width: none;
+    }
+
+    .content-half {
+      width: 100%;
+    }
+
+    .section-c {
+      text-align: center;
+    }
+  }
+</style>

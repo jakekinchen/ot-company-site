@@ -19,7 +19,7 @@ const justifyClass = isLeft ? "justify-start" : "justify-end";
 const textAlignClass = isLeft ? `dt:text-left ${textClass}` : `dt:text-right ${textClass}`;
 const orderClasses = isLeft ? "order-1" : "order-2";
 const iconOrderClasses = isLeft ? "order-2" : "order-1";
-const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-4 ${iconClass}`;
+const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-24 ${iconClass}`;
 const productId = productName.toLowerCase().replace(/ /g, '-');
 import Lines from './StaticLines.astro';
 import DottedPathSVG from './DottedPathSVG.astro';
@@ -59,13 +59,13 @@ import DottedPathSVG from './DottedPathSVG.astro';
   
   <div class={`flex flex-col mb:my-[6vw] w-[55%] mb:w-[85%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
     
-    <div class={`${productId}-title flex mb:flex-col mb:justify-center items-center mb-4`}>
+    <div class={`${productId}-title flex mb:flex-col mb:justify-center items-center`}>
       <img src={iconSrc} alt={`${productName} Icon`} class={`w-[2vw] mr-[1vw] rounded-none mb:w-[25vw] mb:order-2 filter filter-white`}>
       <h1 class={`text-[calc(1vw+1rem)] mb:text-[6vw] font-semibold text-white mb:mb-4 ${textClass}`}>{productName}</h1>
     </div>
-    <h2 class={`text-[calc(3vw+2rem)] mb:text-[10vw] font-bold mb-4 text-white text-center ${textAlignClass}`}>{title}</h2>
-    <p class={`text-2xl mb-4 text-white text-center ${textAlignClass}`}>{subtitle}</p>
-    <a href={url} class="gradient-button flex justify-center items-center px-[1vw] text-[calc(.2vw+.5rem)] leading-v-relaxed mb:w-[60%] h-full">
+    <h2 class={`text-[calc(3vw+2rem)] mb:text-[10vw] font-bold mb-6 text-white text-center ${textAlignClass}`}>{title}</h2>
+    <p class={`text-2xl mb-6 text-white w-[70%] text-center ${textAlignClass}`}>{subtitle}</p>
+    <a href={url} class="gradient-button text-center px-8 py-2 text-2xl leading-v-relaxed">
       More Information
     </a>
   </div>

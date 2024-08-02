@@ -7,26 +7,93 @@ interface Props {
   clients: Clients[];
   scale?: number;
   speed?: number;
+  scroll?: boolean;
+  sideBlur?: boolean;
 }
 
-const { pauseOnHover = true, clients = [], scale = 1, speed=35 } = Astro.props;
+const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false, sideBlur=true } = Astro.props;
 ---
-<div class={`logos ${pauseOnHover ? 'pause-on-hover' : ''}`} style={`--scale: ${scale}; --speed: ${speed}`}>
-  <div class="logos-slide">
-    {clients.map((client) => (
-      <a href={client.href} target="_blank" rel="noopener noreferrer">
-        <img src={client.iconSrc} alt={client.alt} title={client.label} />
-      </a>
-    ))}
+
+<div class="logos-wrapper">
+  <div 
+    class={`logos ${pauseOnHover ? 'pause-on-hover' : ''} ${scroll ? 'scrollable' : ''} ${sideBlur ? 'side-blur' : ''}`} 
+    style={`--scale: ${scale}; --speed: ${speed}; --blur-color: rgba(0,0,0,0.5)`}
+  >
+    <div class="logos-slide">
+      {clients.map((client) => (
+        <a href={client.href} target="_blank" rel="noopener noreferrer">
+          <img src={client.iconSrc} alt={client.alt} title={client.label} />
+        </a>
+      ))}
+    </div>
   </div>
-  <div class="logos-slide">
-    {clients.map((client) => (
-      <a href={client.href} target="_blank" rel="noopener noreferrer">
-        <img src={client.iconSrc} alt={client.alt} title={client.label} />
-      </a>
-    ))}
-  </div>
+  <div class="blur-left"></div>
+  <div class="blur-right"></div>
 </div>
+
+<script>
+  const logosContainers = document.querySelectorAll('.logos.scrollable') as NodeListOf<HTMLElement>;
+  logosContainers.forEach(container => {
+    const slide = container.querySelector('.logos-slide') as HTMLElement;
+    let isMouseOver = false;
+    let animationFrame = 0;
+    let lastScrollPosition = 0;
+    let scrollDirection = 1;
+    let scrollSpeed = 1;
+
+    const cloneLogos = () => {
+      const logos = slide.innerHTML;
+      slide.innerHTML = logos.repeat(3);  // Just three sets of logos
+    }
+
+    const updateScroll = (timestamp: number) => {
+      if (!isMouseOver) {
+        container.scrollLeft += scrollSpeed * scrollDirection;
+      } else {
+        // Update scroll direction and speed based on manual scrolling
+        const currentScrollPosition = container.scrollLeft;
+        scrollDirection = currentScrollPosition > lastScrollPosition ? 1 : -1;
+        scrollSpeed = Math.abs(currentScrollPosition - lastScrollPosition);
+        lastScrollPosition = currentScrollPosition;
+      }
+
+      // Check if we need to reset the scroll position
+      const oneSetWidth = slide.scrollWidth / 3;
+      if (container.scrollLeft >= oneSetWidth * 2) {
+        container.scrollLeft -= oneSetWidth;
+      } else if (container.scrollLeft <= 0) {
+        container.scrollLeft += oneSetWidth;
+      }
+
+        // Update side blur visibility
+    const wrapper = container.closest('.logos-wrapper') as HTMLElement;
+    const blurLeft = wrapper.querySelector('.blur-left') as HTMLElement;
+    const blurRight = wrapper.querySelector('.blur-right') as HTMLElement;
+    if (blurLeft && blurRight) {
+      blurLeft.style.opacity = container.scrollLeft > 0 ? '1' : '0';
+      blurRight.style.opacity = container.scrollLeft < (container.scrollWidth - container.clientWidth) ? '1' : '0';
+    }
+
+
+      animationFrame = requestAnimationFrame(updateScroll);
+    }
+
+    const handleMouseOver = () => {
+      isMouseOver = true;
+      lastScrollPosition = container.scrollLeft;
+    };
+
+    const handleMouseOut = () => {
+      isMouseOver = false;
+    };
+
+    container.addEventListener('mouseenter', handleMouseOver);
+    container.addEventListener('mouseleave', handleMouseOut);
+
+    cloneLogos();
+    animationFrame = requestAnimationFrame(updateScroll);
+  });
+</script>
 
 <style>
   @keyframes slide {
@@ -34,8 +101,13 @@ const { pauseOnHover = true, clients = [], scale = 1, speed=35 } = Astro.props;
       transform: translateX(0);
     }
     to {
-      transform: translateX(-100%);
+      transform: translateX(-33.33%);
     }
+  }
+
+  .logos-wrapper {
+    position: relative;
+    overflow: hidden;
   }
 
   .logos {
@@ -43,7 +115,6 @@ const { pauseOnHover = true, clients = [], scale = 1, speed=35 } = Astro.props;
     --base-padding: 30px;
     --base-max-width: 180px;
     --base-max-height: 80px;
-
     overflow: hidden;
     padding: calc(20px * var(--scale)) 0;
     background: white;
@@ -51,33 +122,38 @@ const { pauseOnHover = true, clients = [], scale = 1, speed=35 } = Astro.props;
     position: relative;
   }
 
-  .logos:before,
-  .logos:after {
+  .logos-wrapper .blur-left,
+  .logos-wrapper .blur-right {
     position: absolute;
     top: 0;
     width: calc(100px * var(--scale));
     height: 100%;
-    content: "";
     z-index: 2;
+    pointer-events: none;
   }
 
-  .logos:before {
+  .logos-wrapper .blur-left {
     left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+    background: linear-gradient(to right, var(--blur-color, rgba(255, 255, 255, 0.8)), rgba(255, 255, 255, 0));
   }
 
-  .logos:after {
+  .logos-wrapper .blur-right {
     right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+    background: linear-gradient(to left, var(--blur-color, rgba(255, 255, 255, 0.8)), rgba(255, 255, 255, 0));
   }
 
-  .logos.pause-on-hover:hover .logos-slide {
-    animation-play-state: paused;
+  .logos-wrapper:not(.side-blur) .blur-left,
+  .logos-wrapper:not(.side-blur) .blur-right {
+    display: none;
   }
 
   .logos-slide {
     display: inline-flex;
     animation: calc(var(--speed) * 1s) slide infinite linear;
+  }
+
+  .logos.pause-on-hover:hover .logos-slide {
+    animation-play-state: paused;
   }
 
   .logos-slide a {
@@ -95,25 +171,50 @@ const { pauseOnHover = true, clients = [], scale = 1, speed=35 } = Astro.props;
     width: auto;
     height: auto;
     object-fit: contain;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
   }
 
   .logos-slide img:hover {
-    transform: scale(1.1); /* Slightly increase size on hover */
+    transform: scale(1.1);
+  }
+
+  .logos.scrollable {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+
+  .logos.scrollable::-webkit-scrollbar {
+    display: none; /* WebKit browsers (Safari, Chrome) */
+  }
+
+  .logos.scrollable:hover {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .logos.scrollable:hover .logos-slide {
+    animation-play-state: paused;
+    display: flex;
+    width: max-content;
+  }
+
+
+  .logos:not(.side-blur) .blur-left,
+  .logos:not(.side-blur) .blur-right {
+    display: none;
   }
 
   @media (max-width: 960px) {
     .logos-slide a {
       padding: 0 calc(20px * var(--scale));
     }
-
     .logos-slide img {
       max-width: calc(120px * var(--scale));
       max-height: calc(60px * var(--scale));
     }
-
-    .logos:before,
-    .logos:after {
+    
+    .logos-wrapper .blur-left,
+    .logos-wrapper .blur-right {
       width: calc(50px * var(--scale));
     }
   }

@@ -1,7 +1,9 @@
-{
+[{
     "label": "Analytics HQ",
     "title": "Visualize your Data",
     "subtitle": "Interact with your data with Secure Realtime Visibility",
     "iconSrc": "/productIcons/analytics-hq.svg",
     "href": "/analytics-hq"
-  }
+  },
+  { "href": "/initiatives", "iconSrc": "/menuIcons/initiatives.svg", "label": "Initiatives" },
+  { "href": "/careers", "iconSrc": "/menuIcons/careers.svg", "label": "Careers" }]

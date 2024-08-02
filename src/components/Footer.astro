@@ -29,7 +29,7 @@ const today = new Date();
 ---
 
 <footer class={`${bgColor} mt-auto flex-shrink-0 p-8`}>
-    <div class="flex justify-between items-center">
+    <div class="layoutConstraint flex justify-between items-center">
         <div class="text-left">
             <a href="/">
                 <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={`${gradient ? " " : logoColor} w-40`} />
@@ -45,7 +45,7 @@ const today = new Date();
             </ul>
         </div>
     </div>
-    <div class="flex justify-between items-center mt-4">
+    <div class="layoutConstraint flex justify-between items-center mt-4">
         <p class={`${textColor} footer-left`}>© {today.getFullYear()} OneTier. All rights reserved.</p>
         <div class="social-links footer-right flex justify-end mr-8">
             <ul class="flex">

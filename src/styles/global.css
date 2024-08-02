@@ -45,7 +45,44 @@
 	--slope: calc((var(--max-fs) - var(--min-fs)) * (100vw - var(--min-vw)) / (var(--max-vw) - var(--min-vw)));
 
 	--clamped-fs: clamp(var(--min-fs), var(--slope), var(--max-fs));
+	--gutterWidth: 16px;
+    --scrollbarWidth: 0px;
+    --windowWidth: calc(100vw - var(--scrollbarWidth));
+    --layoutWidthMin: 900px;
+    --layoutWidthPreferred: 75vw;
+    --layoutWidthMax: 1440px;
+    --layoutWidth: clamp(var(--layoutWidthMin), var(--layoutWidthPreferred), var(--layoutWidthMax));
+	--overflowWidth: max(100vw, var(--layoutWidth));
+    --mobileLayoutWidth: 90vw;
+	--columnWidth: var(--layoutWidth)*0.25;
+	--smallColumnWidth: var(--layoutWidth)*0.2;
+	--screen-left: 0;
+	--sectionAHeight: 715px;
 }
+
+.layoutConstraint {
+	width: var(--layoutWidth);
+	margin: auto;
+}
+
+@media (min-width: 960px) {
+    header {
+        width: var(--layoutWidth);
+        margin: auto;
+    }
+}
+
+@media (max-width: 960px) {
+    header {
+        width: var(--mobileLayoutWidth);
+        margin: auto;
+    }
+	.layoutConstraint {
+		width: var(--mobileLayoutWidth);
+		margin: auto;
+	}
+}
+
 @font-face {
 	font-family: 'Atkinson';
 	src: url('/fonts/atkinson-regular.woff') format('woff');
@@ -302,16 +339,16 @@ h3,
 h4,
 h5,
 h6 {
-	color: rgb(var(--black));
+	
 	line-height: 1.2;
 }
 h1 {
 	font-size: 6rem;
-	color: var(--blue);
+	
 }
 h2 {
 	font-size: 2.441em;
-	color: var(--blue);
+	
 }
 h3 {
 	font-size: 1.953em;
@@ -400,14 +437,12 @@ hr {
 	align-items: center;
 	justify-content: center;
 	background: linear-gradient(to right, var(--orange), var(--dark-orange));
-	padding: 10px 20px;
 	border-radius: 30px;
-	font-size: 1rem;
 	color: white;
 	font-weight: 600;
-	border: none;
 	transition: background 0.7s ease-in-out;
 }
 .gradient-button:hover, .gradient-button:focus {
 	background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #FF8500, #FF5700);
+	color: white;
 }

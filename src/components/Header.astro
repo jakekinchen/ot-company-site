@@ -14,16 +14,16 @@ const navWidth = width ? `dt:w-[${width}%] dt:mx-auto` : "w-full";
 ---
 
 <div class={`${bgColor}`}>
-<header class={`${bgColor} flex justify-between items-center dt:w-[85%] dt:mx-auto h-[80px] pt-4`}>
-  <a href="/" class="ml-[5vw]">
-    <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={gradient ? " " : logoFilterColor} style="width: 10rem;" />
+<header class={`${bgColor} flex justify-between items-center h-[100px]`}>
+  <a href="/" class="h-[80px] mb:min-w-[8vw] mb:max-w-[50vw] flex items-center fit-content cursor-pointer">
+    <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={`${gradient ? "" : logoFilterColor}`} />
   </a>
   
   <Nav client:only="react" />
   
-  <div class="flex items-center mr-[5vw]">
+  <div class="flex items-center">
     <img src="/hamburger-menu.svg" alt="Menu" id="hamburgerMenu" class={`hamburger-menu dt:hidden ${iconFilterColor} filter-blue cursor-pointer`}>
-    <button id="requestDemo" class="gradient-button request-demo-button shadow-md min-w-[150px] max-w-[200px] h-[50px] mb:hidden">Request Demo</button>
+    <button id="requestDemo" class="gradient-button request-demo-button shadow-md min-w-[150px] max-w-[200px] px-4 py-2 mb:hidden">Request Demo</button>
   </div>
   
   <Dialog />
@@ -77,4 +77,6 @@ const navWidth = width ? `dt:w-[${width}%] dt:mx-auto` : "w-full";
 	a{
 		text-decoration: none;
 	}
+
+  
 </style>

@@ -5,16 +5,14 @@ const { features } = Astro.props as { features: Array<{ iconSrc: string, title: 
   <p class="text-5xl mb:text-center mb-8 font-semibold">
     Features
   </p>
-  <div class="grid grid-cols-2 tb:grid-cols-4 gap-8">
+  <div class="features-grid">
     {features.map(feature => (
-      <div class="flex flex-row items-start gap-4">
-        <div class="mb-4 relative space-y-2">
-          <div class="w-12 h-12 flex items-center justify-center">
-            <img src={feature.iconSrc} alt={feature.title} class="h-8 w-8 filter-white rounded-none" />
-          </div>
-          <div class="absolute top-full left-1/2 w-px h-24 tbx:h-16 border-l-2 border-dotted border-white"></div>
+      <div class="feature-item">
+        <div class="icon-container">
+          <img src={feature.iconSrc} alt={feature.title} class="h-10 w-10 filter-white rounded-none" />
+          <div class="dotted-line"></div>
         </div>
-        <div class="flex flex-col">
+        <div class="feature-content">
           <h3 class="text-xl text-white mb-2">{feature.title}</h3>
           <p class="text-sm">{feature.description}</p>
         </div>
@@ -22,3 +20,74 @@ const { features } = Astro.props as { features: Array<{ iconSrc: string, title: 
     ))}
   </div>
 </section>
+
+<script>
+  function adjustDottedLines() {
+  const featureItems = document.querySelectorAll('.feature-item');
+  let maxHeight = 0;
+
+  // Find the maximum height of feature content
+  featureItems.forEach(item => {
+    if (!(item instanceof HTMLElement)) return;
+    
+    const contentElement = item.querySelector('.feature-content');
+    if (!(contentElement instanceof HTMLElement)) return;
+
+    const contentHeight = contentElement.offsetHeight;
+    maxHeight = Math.max(maxHeight, contentHeight);
+  });
+
+  // Set the height of all dotted lines
+  featureItems.forEach(item => {
+    if (!(item instanceof HTMLElement)) return;
+
+    const dottedLine = item.querySelector('.dotted-line');
+    if (!(dottedLine instanceof HTMLElement)) return;
+
+    dottedLine.style.height = `${maxHeight-60}px`;
+  });
+}
+
+  // Run on load and resize
+  window.addEventListener('load', adjustDottedLines);
+  window.addEventListener('resize', adjustDottedLines);
+</script>
+<style>
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .icon-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dotted-line {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    border-left: 2px dotted white;
+    margin-top: 0.5rem;
+  }
+
+  .feature-content {
+    flex: 1;
+  }
+
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

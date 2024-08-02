@@ -1,6 +1,6 @@
 ---
 ---
-<dialog id="demoModal" class="modal-content rounded-3xl max-w-screen-lg ">
+<dialog id="demoModal" class="modal-content rounded-3xl">
     <form method="dialog">
         <button class="close cursor-pointer mt-2 " aria-label='Close'>
 		<svg xmlns="http://www.w3.org/2000/svg" style="color: var(--blue);" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,8 +171,8 @@
 
 @media (max-width: 640px) {
     .dialog {
-        width: calc(100% - 2rem); /* Adjust based on padding or margin needs */
-        min-width: 90vw; /* Minimum width of the dialog */
+        width: clamp(300px, 90%, 600px); /* Suitable percentage/fixed width for smaller screens */
+       
     }
     h2 {
         /* Smooth transition from 2.5rem at 640px to 1rem at 320px */

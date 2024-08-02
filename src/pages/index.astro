@@ -12,7 +12,7 @@ if (!clients) {
 }
 ---
 
-<Layout customBackground={true} gradient="true" backgroundColorScript="true" navWidth={70}>
+<Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70}>
   <div class="mb:hidden">
     <DottedPathSVG
       uniqueId='line-2'
@@ -35,17 +35,17 @@ if (!clients) {
       loopReverse={true}
       />
   </div>
-  <div class="main-content justify-center dt:w-[75%] dt:ml-[12.5%] w-[90%] ml-[5%]">
-    <div class="max-w-full min-w-[85%] w-[60rem] leading-snug text-left text-wrap text-blue mt-[6vw] mb-[calc(24px+4vw)] space-y-[2.5vw]">
-      <h1 class="text-[calc(3vw+3rem)]  break-words w-full font-medium">
+  <div class="layoutConstraint main-content justify-center">
+    <div class="leading-snug text-left text-wrap text-blue">
+      <h1 class="text-[calc(3vw+3rem)]  break-words w-full font-medium mt-16">
           OneTier's AnyCloud Data Secure Portfolio
       </h1>
       
-      <button class="gradient-button request-demo-button !text-base">
+      <button class="gradient-button request-demo-button text-2xl px-8 py-3 mt-8">
           More Information
       </button>
     </div>
-    <div id="cards" class="flex gap-8 justify-end my-[12vh] mb:hidden">
+    <div id="cards" class="flex gap-8 justify-end my-16 mb:hidden">
       <CardComponent
         title="Digital Fight Club"
         subtitle="Thursday, June 26th"
@@ -59,7 +59,7 @@ if (!clients) {
         route="/products/risk-engagement"
       />
     </div>
-    <div class="flex flex-col items-center justify-center min-h-[40vw] text-white py-4">
+    <div class="flex flex-col items-center justify-center min-h-[40vw] mt-16 text-white py-4">
       <div class="pane backdrop-filter backdrop-blur-lg rounded-3xl text-center mb-8 space-y-[10px] w-[75%] py-4 mb:w-full ">
         <p class="text-[calc(16px+1vw)]">
           Cybersecurity threats are slated to cost the world
@@ -102,7 +102,7 @@ if (!clients) {
           <div class="w-full max-w-screen-lg mx-auto px-4">
             <p class="text-center text-5xl mb:text-3xl text-blue font-bold mb-8 mb:mb-4">Our Clients</p>
             <div class="logo-container w-full">
-              <Carousel clients={clients} scale={1.5} speed={45} />
+              <Carousel clients={clients} scale={1.5} speed={15} />
             </div>
             </section>
       </div>
@@ -144,5 +144,9 @@ html, body {
 .pane {
     background-color: var(--filter-half-blue);
     backdrop-filter: 'blur(10px)';
+}
+
+h1{
+  color: var(--color-blue);
 }
 </style>

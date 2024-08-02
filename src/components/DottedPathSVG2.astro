@@ -1,0 +1,395 @@
+---
+// DottedPathSVG.astro
+interface Props {
+  targetDivClass: string;
+  targetDivXPosition?: 'left' | 'center' | 'right';
+  targetDivYPosition?: 'top' | 'center' | 'bottom';
+  strokeWidth?: number;
+  strokeDasharray?: string;
+  circleRadius?: number;
+  animationDuration?: number;
+  glowDistance?: number;
+  initialYOffset?: number;
+  startY?: number;
+  height?: number;
+  strokeColor?: string;
+  circleColor?: string;
+  glowColor?: string | null;
+  flipped?: boolean;
+  customPath?: string;
+  uniqueId: string;
+  semiRect: boolean;
+  simpleHorizontal?: boolean;
+  loopReverse?: boolean;
+  endYOffset?: number;
+  startYDivClass?: string;
+  followDivBorder?: boolean;
+  followDivBorderOffset?: number;
+  followDivBorderDirection?: 'top' | 'bottom';
+  startYDivPosition?: 'top' | 'bottom' | 'center';
+  firstGradientColor?: string;
+  secondGradientColor?: string;
+  gradientDirection?: 'horizontal' | 'vertical' | 'radial';
+  verticalSegmentXOffset?: number;
+  edgeAnchor?: ['startY' | 'verticalSegment', 'left' | 'right' | 'top' | 'bottom', string]
+}
+
+const {
+  targetDivClass="",
+  strokeWidth = 4,
+  strokeDasharray = "5,5",
+  circleRadius = 10,
+  animationDuration = 10,
+  glowDistance = 2.5,
+  initialYOffset = 0,
+  startY = 65,
+  strokeColor = "white",
+  circleColor = "white",
+  glowColor = null,
+  targetDivXPosition = 'center',
+  targetDivYPosition = 'center',
+  flipped = false,
+  customPath = null,
+  uniqueId,
+  semiRect = false,
+  height = 0,
+  simpleHorizontal = false,
+  loopReverse = false,
+  endYOffset = 0,
+  startYDivClass = null,
+  followDivBorder = false,
+  followDivBorderDirection = 'top',
+  startYDivPosition = 'center',
+  followDivBorderOffset = 0,
+  firstGradientColor = null,
+  secondGradientColor = null,
+  gradientDirection = 'vertical',
+  verticalSegmentXOffset = 0,
+  edgeAnchor = null
+} = Astro.props;
+
+const effectiveGlowColor = glowColor || circleColor;
+---
+
+<svg class="absolute left-0 top-0 h-auto max-h-[50%] pointer-events-none inline-block overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
+    <defs>
+        <filter id={`${uniqueId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        {firstGradientColor && secondGradientColor && (
+          gradientDirection === 'radial' ? (
+              <radialGradient id={`${uniqueId}-gradient`}>
+                  <stop offset="0%" stop-color={firstGradientColor} />
+                  <stop offset="100%" stop-color={secondGradientColor} />
+              </radialGradient>
+          ) : (
+              <linearGradient 
+                  id={`${uniqueId}-gradient`} 
+                  x1={gradientDirection === 'horizontal' ? '0%' : '50%'} 
+                  y1={gradientDirection === 'horizontal' ? '50%' : '0%'} 
+                  x2={gradientDirection === 'horizontal' ? '100%' : '50%'} 
+                  y2={gradientDirection === 'horizontal' ? '50%' : '100%'}
+              >
+                  <stop offset="0%" stop-color={firstGradientColor} />
+                  <stop offset="100%" stop-color={secondGradientColor} />
+              </linearGradient>
+          )
+      )}
+    </defs>
+    <g>
+      <path 
+      id={`${uniqueId}-path`} 
+      fill="none" 
+      stroke={firstGradientColor && secondGradientColor ? `url(#${uniqueId}-gradient)` : `var(--${strokeColor})`} 
+      stroke-width={strokeWidth} 
+      stroke-dasharray={strokeDasharray} 
+      vector-effect="non-scaling-stroke"/>
+      <circle 
+      id={`${uniqueId}-circle`}
+      r={circleRadius} 
+      fill={`var(--${circleColor})`} 
+      filter={`url(#${uniqueId}-glow)`}
+    >
+    <animateMotion dur={`${animationDuration}s`} repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
+        <mpath href={`#${uniqueId}-path`}/>
+    </animateMotion>
+  </circle>
+    </g>
+  </svg>
+
+<script is:inline define:vars={{ initialYOffset, startY, targetDivClass, effectiveGlowColor, targetDivYPosition, targetDivXPosition, flipped, customPath, glowDistance, uniqueId, semiRect, height, simpleHorizontal, loopReverse, endYOffset, startYDivClass, followDivBorder, followDivBorderDirection, startYDivPosition, followDivBorderOffset, verticalSegmentXOffset, edgeAnchor  }}>
+
+function getEndPathY(svgRect, rect, targetDivYPosition) {
+  switch (targetDivYPosition) {
+    case 'top':
+      return rect.top - svgRect.top + endYOffset;
+    case 'center':
+      return rect.top - svgRect.top + (rect.height / 2) + endYOffset;
+    case 'bottom':
+      return rect.bottom - svgRect.top + endYOffset;
+    default:
+      return rect.top - svgRect.top + (rect.height / 2) + endYOffset;
+  }
+}
+
+function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
+  let endX;
+  const svgWidth = svgRect.width;
+  
+  if (flipped) {
+    switch (targetDivXPosition) {
+      case 'left':
+        endX = rect.left - svgRect.left;
+        break;
+      case 'center':
+        endX = rect.left - svgRect.left + rect.width / 2;
+        break;
+      case 'right':
+        endX = rect.right - svgRect.left;
+        break;
+    }
+  } else {
+    switch (targetDivXPosition) {
+      case 'left':
+        endX = rect.left - svgRect.left;
+        break;
+      case 'center':
+        endX = rect.left - svgRect.left + rect.width / 2;
+        break;
+      case 'right':
+        endX = rect.right - svgRect.left;
+        break;
+    }
+  }
+  return endX;
+}
+
+  function updateDottedPath() {
+    let pathData;
+    if (customPath) {
+    const dottedPath = document.getElementById(`${uniqueId}-path`);
+    if (dottedPath) {
+      dottedPath.setAttribute('d', customPath);
+    }
+    return;
+  }
+    const targetDiv = document.querySelector(`.${targetDivClass}`);
+    const dottedPath = document.getElementById(`${uniqueId}-path`);
+    const movingCircle = document.getElementById(`${uniqueId}-circle`);
+    
+    if (targetDiv && dottedPath && dottedPath instanceof SVGPathElement && movingCircle) {
+    const rect = targetDiv.getBoundingClientRect();
+    const svg = dottedPath.ownerSVGElement;
+    
+    if (svg) {
+      const svgRect = svg.getBoundingClientRect();
+
+      if (semiRect) {
+        const startX = flipped ? svgRect.width : 0;
+        const endX = flipped ? svgRect.width - (rect.left - svgRect.left) : rect.right - svgRect.left;
+        const midpointX = flipped ? (startX + endX) / 2 : (endX + startX) / 2;
+        const endY = startY + height;
+        const finalX = flipped ? svgRect.width : 0;
+        pathData = [
+          `M ${startX},${startY}`,  // Start point
+          `H ${midpointX}`,         // Horizontal line to midpoint
+          `V ${endY}`,              // Vertical line down
+          `H ${finalX}`               // Horizontal line to end
+        ].join(' ');
+      } else if (simpleHorizontal) {
+        const startX = 0 - svgRect.left;
+        const endX = window.innerWidth;
+        let startY;
+        switch (targetDivYPosition) {
+            case 'top':
+                startY = rect.top - svgRect.top;
+                break;
+            case 'center':
+                startY = rect.top - svgRect.top + (rect.height / 2);
+                break;
+            case 'bottom':
+                startY = rect.bottom - svgRect.top;
+                break;
+            default:
+                startY = rect.top - svgRect.top + (rect.height / 2);
+                break;
+        }
+        if (initialYOffset){
+            startY += initialYOffset;
+        }
+        pathData = `M ${startX},${startY} H ${endX}`;
+        
+        }
+        else if (followDivBorder) {
+        const startX = flipped ? svgRect.width : 0 - svgRect.left;
+        let endX = getEndPathX(svgRect, rect, targetDivXPosition, flipped);
+        let startY;
+        const targetDiv = document.querySelector(`.${startYDivClass}`);
+        if (targetDiv) {
+            const targetDivRect = targetDiv.getBoundingClientRect();
+   
+            switch (startYDivPosition) {
+                case 'top':
+                    startY = targetDivRect.top - svgRect.top;
+                    break;
+                case 'center':
+                    startY = targetDivRect.top - svgRect.top + (targetDivRect.height / 2);
+                    break;
+                case 'bottom':
+                    startY = targetDivRect.bottom - svgRect.top;
+                    break;
+                default:
+                    startY = targetDivRect.top - svgRect.top + (targetDivRect.height / 2);
+                    break;
+            }
+            
+            if (initialYOffset){
+                startY += initialYOffset;
+            }
+            console.log('calculated startY:', startY);
+            let endY;
+            switch (targetDivYPosition) {
+                case 'top':
+                    endY = rect.top - svgRect.top + endYOffset;
+                    break;
+                case 'center':
+                    endY = rect.top - svgRect.top + (rect.height / 2) + endYOffset;
+                    break;
+                case 'bottom':
+                    endY = rect.bottom - svgRect.top + endYOffset;
+                    break;
+                default:
+                    endY = rect.top - svgRect.top + (rect.height / 2) + endYOffset;
+                    break;
+            }
+            
+            const firstTurnY = startY;
+            let firstTurnX;
+            if (flipped) {
+                firstTurnX = rect.right - svgRect.left + followDivBorderOffset;
+                endX = rect.left - svgRect.left;
+            } else {
+                firstTurnX = rect.left - svgRect.left - followDivBorderOffset;
+                endX = rect.right - svgRect.left;
+            }
+            const secondTurnY = followDivBorderDirection === 'top' ? 
+            rect.top - svgRect.top - followDivBorderOffset : 
+            rect.bottom - svgRect.top + followDivBorderOffset;
+            const secondTurnX = firstTurnX;
+            
+            pathData = [
+                `M ${startX},${startY}`,
+                `H ${firstTurnX}`,
+                `V ${firstTurnY}`,
+                `H ${secondTurnX}`,
+                `V ${secondTurnY}`,
+                `H ${endX}`
+            ].join(' ');
+            // Log all relevant variables for debugging
+
+        }
+        
+      }
+      else {
+        // Existing path calculation logic
+        let verticalSegmentXOffset = 0;
+        const endY = getEndPathY(svgRect, rect, targetDivYPosition);
+        const startX = flipped ? svgRect.width : 0 - svgRect.left;
+        const endX = getEndPathX(svgRect, rect, targetDivXPosition, flipped);
+
+        // get anchor element
+        if (edgeAnchor) {
+          const targetDiv = document.querySelector(`.${edgeAnchor[2]}`);
+          if (targetDiv) {
+            const targetDivRect = targetDiv.getBoundingClientRect();
+            if (edgeAnchor[0] === 'startY') {
+              let anchoredStartY;
+              switch (edgeAnchor[1]) {
+                case 'top':
+                  anchoredStartY = targetDivRect.top - svgRect.top;
+                  break;
+                case 'center':
+                  anchoredStartY = targetDivRect.top - svgRect.top + (targetDivRect.height / 2);
+                  break;
+                case 'bottom':
+                  anchoredStartY = targetDivRect.bottom - svgRect.top;
+                  break;
+              }
+              console.log("About to set startY to", anchoredStartY);
+              startY = anchoredStartY; // Assuming startY is defined in the outer scope
+            } else if (edgeAnchor[0] === 'verticalSegment') {
+              switch (edgeAnchor[1]) {
+                case 'left':
+                  verticalSegmentXOffset = targetDivRect.left - svgRect.left;
+                  break;
+                case 'center':
+                  verticalSegmentXOffset = (targetDivRect.left + targetDivRect.right) / 2 - svgRect.left;
+                  break;
+                case 'right':
+                  verticalSegmentXOffset = targetDivRect.right - svgRect.left;
+                  break;
+              }
+            }
+          } else {
+            console.warn(`Element with class ${edgeAnchor[2]} not found for edgeAnchor`);
+          }
+        }
+        
+        let midpointX;
+        if (flipped) {
+          midpointX = (svgRect.width + rect.right - svgRect.left) / 2;
+        } else {
+          midpointX = (rect.left - svgRect.left) / 2;
+        }
+        midpointX += verticalSegmentXOffset;
+
+        if (initialYOffset > 0) {
+          pathData = [
+            `M ${startX},${startY}`,
+            `H ${midpointX}`,
+            `V ${endY}`,
+            `H ${endX}`
+          ].join(' ');
+        } else {
+          pathData = `M ${startX},${endY} H ${endX}`;
+        }
+      }
+      dottedPath.setAttribute('d', pathData);
+        
+        // Update glow color and filter
+        const glowFilter = document.getElementById(`${uniqueId}-glow`);
+        if (glowFilter) {
+            const feGaussianBlur = glowFilter.querySelector('feGaussianBlur');
+            if (feGaussianBlur) {
+                feGaussianBlur.setAttribute('stdDeviation', glowDistance.toString());
+            }
+            movingCircle.setAttribute('filter', `url(#${uniqueId}-glow)`);
+        }
+
+        // Set animation direction if loopReverse is true
+        const animateMotion = movingCircle.querySelector('animateMotion');
+        if (animateMotion) {
+            if (loopReverse) {
+            animateMotion.setAttribute('keyTimes', '0;0.5;1');
+            animateMotion.setAttribute('keyPoints', '0;1;0');
+            animateMotion.setAttribute('calcMode', 'linear');
+            } else {
+            animateMotion.removeAttribute('keyTimes');
+            animateMotion.removeAttribute('keyPoints')
+            animateMotion.removeAttribute('calcMode');
+            }
+        }
+      }
+    }
+  }
+
+  // Run on load and resize
+  window.addEventListener('load', updateDottedPath);
+  window.addEventListener('resize', updateDottedPath);
+
+  // If content might change dynamically, you may need to call updateDottedPath() after those changes
+</script>

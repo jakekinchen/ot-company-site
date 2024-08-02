@@ -114,7 +114,7 @@ function getPosition(element, position) {
     default: raw = 0; adjusted = 0;
   }
 
-  console.log(`getPosition for ${element.id || 'unknown'}, position: ${position}, raw: ${raw}, adjusted: ${adjusted}, rect:`, rect);
+  //console.log(`getPosition for ${element.id || 'unknown'}, position: ${position}, raw: ${raw}, adjusted: ${adjusted}, rect:`, rect);
   return { raw, adjusted };
 }
 
@@ -131,8 +131,8 @@ function getEdgePosition(svg, edge) {
 let lastSvgTop = null;
 
 function updatePath() {
-  console.log("Starting updatePath function");
-  console.log("Scroll position:", window.scrollX, window.scrollY);
+  //console.log("Starting updatePath function");
+  //console.log("Scroll position:", window.scrollX, window.scrollY);
 
   const path = document.getElementById(`${uniqueId}-path`);
   if (!path) {
@@ -147,7 +147,7 @@ function updatePath() {
   }
 
   const svgRect = svg.getBoundingClientRect();
-  console.log("SVG bounding rect:", svgRect);
+  //console.log("SVG bounding rect:", svgRect);
 
   if (lastSvgTop !== null && Math.abs(svgRect.top - lastSvgTop) > 10) {
     console.warn("Large change in SVG position detected:", lastSvgTop, "->", svgRect.top);
@@ -163,7 +163,7 @@ function updatePath() {
   let endX = getPosition(document.getElementById(EndXDiv), EndXPosition).adjusted;
   let endY = getPosition(document.getElementById(EndYDiv), EndYPosition).adjusted;
 
-  console.log("Adjusted positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
+  //console.log("Adjusted positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
 
   // Adjust positions relative to SVG and scroll
   const scrollY = window.scrollY;
@@ -174,7 +174,7 @@ function updatePath() {
   endX -= svgRect.left;
   endY -= (svgRect.top + scrollY);
 
-  console.log("Final positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
+  //console.log("Final positions:", { startX, startY, firstTurnX, firstTurnY, endX, endY });
 
   // Apply edgeAnchor for all positions if set
   if (edgeAnchor) {
@@ -238,7 +238,7 @@ function updatePath() {
     pathData += `H ${endX}`;
   }
 
-  console.log('Final path data:', pathData);
+ // console.log('Final path data:', pathData);
   path.setAttribute('d', pathData);
 }
 
@@ -253,7 +253,7 @@ function tryUpdatePath() {
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', tryUpdatePath);
 const path = document.getElementById(`${uniqueId}-path`);
-  console.log("Path after DOM Loaded: ", path.getBoundingClientRect());
+  //console.log("Path after DOM Loaded: ", path.getBoundingClientRect());
 window.addEventListener('load', tryUpdatePath);
 window.addEventListener('resize', tryUpdatePath);
 </script>

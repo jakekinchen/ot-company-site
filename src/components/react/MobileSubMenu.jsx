@@ -43,7 +43,7 @@ const MobileSubMenu = ({ submenu, items, onBack, onClose }) => {
             {item.subLinks && (
             <ul className="pl-9 mt-1 space-y-1">
               {item.subLinks.map((subLink, subIndex) => (
-                <li key={subIndex} className="text-sm font-semibold text-dark-blue hover:text-blue cursor-pointer border-5">
+                <li key={subIndex} className="text-sm font-semibold text-dark-blue hover:text-blue cursor-pointer">
                   <a href={subLink.href} className="cursor-pointer">{subLink.text}</a>
                 </li>
               ))}

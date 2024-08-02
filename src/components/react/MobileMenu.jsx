@@ -93,7 +93,7 @@ const MobileMenu = () => {
                     <a href="/" className="block text-xl font-semibold text-dark-blue hover:text-blue">Home</a>
                   </li>
                   <li className="py-4">
-                    <a href="/solutions" className="block text-xl font-semibold text-dark-blue hover:text-blue">Home</a>
+                    <a href="/solutions" className="block text-xl font-semibold text-dark-blue hover:text-blue">Solutions</a>
                   </li>
                   {['products', 'partners', 'company'].map((item) => (
                     <li key={item} className="py-4">

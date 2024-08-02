@@ -71,7 +71,7 @@ const {
 const effectiveGlowColor = glowColor || circleColor;
 ---
 
-<svg class="absolute left-0 top-0 w-screen h-auto max-h-[50%] pointer-events-none overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
+<svg class="absolute left-0 top-0 w-screen h-auto max-h-[50%] pointer-events-none inline-block overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
     <defs>
         <filter id={`${uniqueId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
@@ -201,8 +201,8 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
           `H ${finalX}`               // Horizontal line to end
         ].join(' ');
       } else if (simpleHorizontal) {
-        const startX = 0;
-        const endX = svgRect.width;
+        const startX = 0 - svgRect.left;
+        const endX = window.innerWidth;
         let startY;
         switch (targetDivYPosition) {
             case 'top':
@@ -225,7 +225,7 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
         
         }
         else if (followDivBorder) {
-        const startX = flipped ? svgRect.width : 0;
+        const startX = flipped ? svgRect.width : 0 - svgRect.left;
         let endX = getEndPathX(svgRect, rect, targetDivXPosition, flipped);
         let startY;
         const targetDiv = document.querySelector(`.${startYDivClass}`);
@@ -298,7 +298,7 @@ function getEndPathX(svgRect, rect, targetDivXPosition, flipped) {
         // Existing path calculation logic
         let verticalSegmentXOffset = 0;
         const endY = getEndPathY(svgRect, rect, targetDivYPosition);
-        const startX = flipped ? svgRect.width : 0;
+        const startX = flipped ? svgRect.width : 0 - svgRect.left;
         const endX = getEndPathX(svgRect, rect, targetDivXPosition, flipped);
 
         // get anchor element
