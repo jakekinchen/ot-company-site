@@ -290,7 +290,7 @@
   ],
   "partners": [
     { "href": "/become-a-partner", "iconSrc": "/menuIcons/become-a-partner.svg", "label": "Become a Partner" },
-    { "href": "/partner-portal", "iconSrc": "/menuIcons/partner-portal.svg", "label": "Partner Portal" }
+    { "href": "https://partners.onetier.com/login", "iconSrc": "/menuIcons/partner-portal.svg", "label": "Partner Portal" }
   ],
   "clients": [
     { "label": "U.S. Air Force", "iconSrc": "/clientLogos/airforce.png", "alt": "U.S. Air Force", "href": "https://www.airforce.com"},

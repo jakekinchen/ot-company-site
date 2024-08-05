@@ -1,7 +1,7 @@
 ---
 ---
 <dialog id="demoModal" class="modal-content rounded-3xl">
-    <form method="dialog">
+    <form id="leadForm" method="dialog">
         <button class="close cursor-pointer mt-2 " aria-label='Close'>
 		<svg xmlns="http://www.w3.org/2000/svg" style="color: var(--blue);" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
@@ -14,12 +14,13 @@
 			<!-- First row, one whole-width email address input -->
 			<div>
 				<input type="email" name="email" placeholder="Email Address" class="appearance-none rounded-3xl placeholder-white rounded-xxl" required>
+				<input type="text" name="organization" placeholder="Organization" class="appearance-none rounded-3xl placeholder-white rounded-xxl" required>
 			<div class="grid grid-cols-2 gap-1 mb:grid-cols-none">
 				<input type="text" name="first-name" placeholder="First Name" class="placeholder-white" required>
 				<input type="text" name="last-name" placeholder="Last Name" class="placeholder-white" required>
 			</div>
 			<div class="grid grid-cols-2 gap-1 mb:grid-cols-none">
-				<input type="text" name="title" placeholder="Title" class="placeholder-white" required>
+				<input type="text" name="title" placeholder="Job Title" class="placeholder-white" required>
 				<input type="tel" name="phone" placeholder="Phone Number" class="placeholder-white" required>
 			</div>
 			<!-- Third row, one full-width textarea -->
@@ -36,26 +37,83 @@
 </dialog>
 <script>
     (() => {
+		//console.log('Dialog component loaded');
         const modal = document.getElementById('demoModal') as HTMLDialogElement;
-        if (!modal) return;
-        const closeBtn = modal.querySelector('.close');
-        if (!closeBtn) return;
+		if (!modal) return;
+        const closeBtn = modal.querySelector('.close') as HTMLButtonElement;
+        const form = document.getElementById('leadForm') as HTMLFormElement;
+        const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
 
-        // Listen for openDialog custom event and show modal when fired
+        if (!modal || !closeBtn || !form || !submitButton) return;
+
         window.addEventListener('openDialog', () => {
             console.log('openDialog event fired');
             modal.showModal();
         });
+
         closeBtn.addEventListener('click', () => modal.close());
-        
-        // Optional: Close on backdrop click
+
         modal.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.close();
             }
         });
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            submitButton.disabled = true;
+
+            const formData = new FormData(form);
+			// search for organization by name, GET /api/v2/organizations/search, term (required): The search term to look for. Minimum 2 characters (or 1 if using exact_match). Please note that the search term has to be URL encoded.
+			// exact_match = true, example response: {"success":true,"data":{"items":[{"result_score":0.316,"item":{"id":1,"type":"organization","name":"Organization name","address":"Mustamäe tee 3a, 10615 Tallinn","visible_to":3,"owner":{"id":1},"custom_fields":[],"notes":[]}}]},"additional_data":{"next_cursor":"eyJmaWVsZCI6ImlkIiwiZmllbGRWYWx1ZSI6Nywic29ydERpcmVjdGlvbiI6ImFzYyIsImlkIjo3fQ"}}
+			// if there is exact match, use its id but if not, create organization in Pipedrive
+			//POST/v1/organizations
+			// name (required): Name of the organization
+			// response: {"success":true,"data":{"id": 1, "company_id": 77}}
+
+			// create person in Pipedrive
+			//POST/v1/persons
+			// fields: name, email, phone, org_id (search for organization by name to get ID)
+            const data = {
+                title: formData.get('title'),
+                organization: formData.get('organization'),
+                person: {
+                    name: `${formData.get('first-name')} ${formData.get('last-name')}`,
+                    email: formData.get('email'),
+                    phone: formData.get('phone')
+                },
+                message: formData.get('message'),
+            };
+
+            try {
+                const response = await fetch('/api/submitLead', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (!response.ok) {
+					console.log("Response: ", response, "data: ", data);
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+				// get lead ID and create a note using message as the content field "POST/v1/notes"
+
+                console.log('Lead created successfully:', result);
+                form.reset();
+                modal.close();
+            } catch (error) {
+                console.error('Error creating lead:', error);
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
     })();
 </script>
+
 <style>
 
 	header {

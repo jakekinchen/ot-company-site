@@ -2,18 +2,19 @@
   "name": "red-rotation",
   "type": "module",
   "version": "0.0.1",
-"scripts": {
-  "dev": "astro dev",
-  "start": "astro dev",
-  "build": "astro check && astro build --verbose",
-  "build-preview": "astro check && astro build --verbose --mode=production",
-  "preview": "astro preview",
-  "astro": "astro",
-  "prefix": "postcss --use autoprefixer --output public/css/styles.css public/css/styles.css"
-},
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build --verbose",
+    "build-preview": "astro check && astro build --verbose --mode=production",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prefix": "postcss --use autoprefixer --output public/css/styles.css public/css/styles.css"
+  },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/mdx": "^3.1.0",
+    "@astrojs/node": "^8.3.2",
     "@astrojs/react": "^3.6.0",
     "@astrojs/rss": "^4.0.6",
     "@astrojs/sitemap": "^3.1.5",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^18.3.0",
     "astro": "^4.10.1",
     "clsx": "^2.1.1",
+    "node-fetch": "^3.3.2",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
     "react": "^18.3.1",
