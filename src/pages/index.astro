@@ -3,13 +3,25 @@ import Layout from '../components/Layout.astro';
 import CardComponent from '../components/CardComponent.astro';
 import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
-import { products, clients } from '../data/pages.json';
+import { products, clients, events } from '../data/pages.json';
 import DottedPathSVG from '../components/DottedPathSVG.astro';
 //import ClientsSection from '../components/react/ClientsSection.jsx';
 import Carousel from '../components/Carousel.astro';
 if (!clients) {
   throw new Error('Client info not found');
 }
+
+// Get the current date
+const currentDate = new Date();
+
+// Filter and sort the events to find the closest future event
+const futureEvents = events
+  .map(event => ({ ...event, date: new Date(event.eventDate) }))
+  .filter(event => new Date(event.eventDate) > currentDate)
+  .sort((a: any, b: any) => a.date - b.date);
+
+const closestEvent = futureEvents[0];
+
 ---
 
 <Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70}>
@@ -47,8 +59,8 @@ if (!clients) {
     </div>
     <div id="cards" class="flex gap-8 justify-end my-16 mb:hidden">
       <CardComponent
-        title="Digital Fight Club"
-        subtitle="Thursday, June 26th"
+        title={closestEvent.title}
+        subtitle={closestEvent.date.toDateString()}
         glassmorphism="true"
         route="/events"
       />
@@ -56,7 +68,7 @@ if (!clients) {
         title="Product Highlight"
         subtitle="Risk Engagement"
         glassmorphism="true"
-        route="/products/risk-engagement"
+        route="/risk-engagement"
       />
     </div>
     <div class="flex flex-col items-center justify-center min-h-[40vw] mt-16 text-white py-4">

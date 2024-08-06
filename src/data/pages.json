@@ -285,8 +285,38 @@
     { "href": "/events", "iconSrc": "/menuIcons/events.svg", "label": "Events"}
   ],
   "solutions": [
-    { "href": "/cyber-risk", "iconSrc": "/menuIcons/cyber-risk.svg", "label": "Overview" },
-    { "href": "/ransomware-recovery", "iconSrc": "/menuIcons/ransomware.svg", "label": "How long to recover from Ransomware?" }
+    { 
+      "label": "Ransomware", 
+      "iconSrc": "/solutionsIcons/ransomware.svg", 
+      "articles": [
+        {"label": "How to prevent ransomware attacks", "href": "/how-to-prevent-ransomware-attacks"}, 
+        {"label": "How Long to Recover from Ransomware?", "href": "/how-long-to-recover-from-ransomware"}
+      ] 
+    },
+    { 
+      "label": "Cyber Risk", 
+      "iconSrc": "/solutionsIcons/cyber-risk.svg", 
+      "articles": [
+        {"label": "What is Cyber Risk?", "href": "/what-is-cyber-risk"}, 
+        {"label": "How to Manage Cyber Risk", "href": "/how-to-manage-cyber-risk"}
+      ] 
+    },
+    { 
+      "label": "Zero Trust", 
+      "iconSrc": "/solutionsIcons/zero-trust.svg", 
+      "articles": [
+        {"label": "What is Zero Trust?", "href": "/what-is-zero-trust"}, 
+        {"label": "How to Implement Zero Trust", "href": "/how-to-implement-zero-trust"}
+      ] 
+    },
+    { 
+      "label": "CMMC", 
+      "iconSrc": "/solutionsIcons/cmmc.svg", 
+      "articles": [
+        {"label": "What is CMMC?", "href": "/what-is-cmmc"}, 
+        {"label": "How to Prepare for CMMC", "href": "/how-to-prepare-for-cmmc"}
+      ] 
+    }
   ],
   "partners": [
     { "href": "/become-a-partner", "iconSrc": "/menuIcons/become-a-partner.svg", "label": "Become a Partner" },
@@ -327,65 +357,65 @@
     { "iconSrc": "/globe.svg", "description": "Environmental Activism is a key part of OneTier's secure global strategy." }
   ],
   "events": [
-  {
-    "title": "MACo Summer Conference",
-    "subtitle": "Connecting Maryland's local government leaders",
-    "imageSrc": "/images/maco-summer-conference.jpg",
-    "imageAlt": "MACo Summer Conference logo",
-    "eventDate": "2024-08-14",
-    "moreInfo": "MACo's Summer Conference brings together approximately 3,000 leaders from all levels of government and the private sector. With four days of educational sessions, along with 2 exhibit shows (over 350 vendors!), and numerous briefings, meetings, and opportunities to connect with counties, this conference is a can't-miss event for anyone involved in Maryland's local government interests.",
-    "href": "https://www.mdcounties.org/events/summer-conference",
-    "category": "Conference",
-    "share": {
-      "image": "/images/maco-share.jpg",
-      "title": "Join us at the MACo Summer Conference 2024",
-      "description": "Connect with 3,000+ government leaders at the Roland Powell Convention Center in Ocean City, MD, August 14-17, 2024."
+    {
+      "title": "Maryland Association of Counties Summer Conference",
+      "subtitle": "Connecting Maryland's local government leaders",
+      "imageSrc": "/images/maco-summer-conference.jpg",
+      "imageAlt": "MACo Summer Conference logo",
+      "eventDate": "2024-08-14",
+      "moreInfo": "MACo's Summer Conference brings together approximately 3,000 leaders from all levels of government and the private sector. With four days of educational sessions, along with 2 exhibit shows (over 350 vendors!), and numerous briefings, meetings, and opportunities to connect with counties, this conference is a can't-miss event for anyone involved in Maryland's local government interests.",
+      "href": "https://www.mdcounties.org/148/Summer-Conference",
+      "category": "Conference",
+      "share": {
+        "image": "/images/maco-share.jpg",
+        "title": "Join us at the Maryland Association of Counties Summer Conference 2024",
+        "description": "Connect with 3,000+ government leaders at the Roland Powell Convention Center in Ocean City, MD, August 14-17, 2024."
+      }
+    },
+    {
+      "title": "Oklahoma Indian Gaming Association Conference and Trade Show",
+      "subtitle": "The biggest little show in Indian Gaming",
+      "imageSrc": "/images/oiga-conference.jpg",
+      "imageAlt": "OIGA Conference and Trade Show logo",
+      "eventDate": "2024-08-14",
+      "moreInfo": "The 2024 OIGA Conference and Trade Show will be held in Oklahoma City, OK August 12-14, and will draw nearly 3,000 vendors, visitors and guest speakers to Oklahoma City to celebrate and advance our industry. It is a lively, fun, informative, high-energy assembly of some of the biggest names in the gaming and hospitality industries.",
+      "href": "https://oiga.org/tradeshow",
+      "category": "Exposition",
+      "share": {
+        "image": "/images/oiga-share.jpg",
+        "title": "Experience the Oklahoma Indian Gaming Association Conference and Trade Show 2024",
+        "description": "Join 3,000+ gaming industry professionals in Oklahoma City, August 12-14, 2024."
+      }
+    },
+    {
+      "title": "TechNet Augusta",
+      "subtitle": "Transform, Align, Accelerate for Pacing Challenges",
+      "imageSrc": "/images/technet-augusta.jpg",
+      "imageAlt": "TechNet Augusta logo",
+      "eventDate": "2024-08-19",
+      "moreInfo": "TechNet Augusta 2024 gives participants the opportunity to examine and explore the intricacies of the cyber domain. With assistance from the U.S. Army Cyber Center of Excellence and industry experts, the conference is designed to open the lines of communication and facilitate networking, education and problem solving.",
+      "href": "https://events.afcea.org/augusta24/public/enter.aspx",
+      "category": "Conference",
+      "share": {
+        "image": "/images/technet-augusta-share.jpg",
+        "title": "Join us at TechNet Augusta 2024",
+        "description": "Explore cyber domain challenges with military and industry experts, August 19-22, 2024 in Augusta, GA."
+      }
+    },
+    {
+      "title": "DEF CON 32",
+      "subtitle": "The world's largest hacker convention",
+      "imageSrc": "/images/defcon-32.jpg",
+      "imageAlt": "DEF CON 32 logo",
+      "eventDate": "2024-08-08",
+      "moreInfo": "DEF CON is a hacker convention which takes place immediately following Black Hat in Las Vegas every year. Tickets are available for purchase through Black Hat registration until August 2, 2024, or on-site at the Las Vegas Convention Center during DEF CON.",
+      "href": "https://defcon.org",
+      "category": "Conference",
+      "share": {
+        "image": "/images/defcon-32-share.jpg",
+        "title": "Attend DEF CON 32 in Las Vegas",
+        "description": "Join the world's largest hacker community at DEF CON 32, August 8-11, 2024 in Las Vegas."
+      }
     }
-  },
-  {
-    "title": "OIGA Conference and Trade Show",
-    "subtitle": "The biggest little show in Indian Gaming",
-    "imageSrc": "/images/oiga-conference.jpg",
-    "imageAlt": "OIGA Conference and Trade Show logo",
-    "eventDate": "2024-08-12",
-    "moreInfo": "The 2024 OIGA Conference and Trade Show will be held in Oklahoma City, OK August 12-14, and will draw nearly 3,000 vendors, visitors and guest speakers to Oklahoma City to celebrate and advance our industry. It is a lively, fun, informative, high-energy assembly of some of the biggest names in the gaming and hospitality industries.",
-    "href": "https://oiga.org/tradeshow",
-    "category": "Exposition",
-    "share": {
-      "image": "/images/oiga-share.jpg",
-      "title": "Experience the OIGA Conference and Trade Show 2024",
-      "description": "Join 3,000+ gaming industry professionals in Oklahoma City, August 12-14, 2024."
-    }
-  },
-  {
-    "title": "TechNet Augusta",
-    "subtitle": "Transform, Align, Accelerate for Pacing Challenges",
-    "imageSrc": "/images/technet-augusta.jpg",
-    "imageAlt": "TechNet Augusta logo",
-    "eventDate": "2024-08-19",
-    "moreInfo": "TechNet Augusta 2024 gives participants the opportunity to examine and explore the intricacies of the cyber domain. With assistance from the U.S. Army Cyber Center of Excellence and industry experts, the conference is designed to open the lines of communication and facilitate networking, education and problem solving.",
-    "href": "https://events.afcea.org/augusta24/public/enter.aspx",
-    "category": "Conference",
-    "share": {
-      "image": "/images/technet-augusta-share.jpg",
-      "title": "Join us at TechNet Augusta 2024",
-      "description": "Explore cyber domain challenges with military and industry experts, August 19-22, 2024 in Augusta, GA."
-    }
-  },
-  {
-    "title": "DEF CON 32",
-    "subtitle": "The world's largest hacker convention",
-    "imageSrc": "/images/defcon-32.jpg",
-    "imageAlt": "DEF CON 32 logo",
-    "eventDate": "2024-08-08",
-    "moreInfo": "DEF CON is a hacker convention which takes place immediately following Black Hat in Las Vegas every year. Tickets are available for purchase through Black Hat registration until August 2, 2024, or on-site at the Las Vegas Convention Center during DEF CON.",
-    "href": "https://defcon.org",
-    "category": "Conference",
-    "share": {
-      "image": "/images/defcon-32-share.jpg",
-      "title": "Attend DEF CON 32 in Las Vegas",
-      "description": "Join the world's largest hacker community at DEF CON 32, August 8-11, 2024 in Las Vegas."
-    }
-  }
-]
+  ]
 }

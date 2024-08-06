@@ -1,0 +1,243 @@
+---
+// PathMaker.astro
+interface Props {
+  startEdge: 'left' | 'right';
+  startY?: number | [string, 'top' | 'center' | 'bottom'];
+  endY: number | [string, 'top' | 'center' | 'bottom'];
+  endX: number | [string, 'left' | 'center' | 'right'];
+  midpointX?: number | [string, 'left' | 'center' | 'right'];
+  offsetStartY?: number;
+  startYAnchor?: [string, 'top' | 'center' | 'bottom'] | null;
+  strokeWidth?: number;
+  strokeDasharray?: string;
+  circleRadius?: number;
+  animationDuration?: number;
+  animationDelay?: number;
+  glowDistance?: number;
+  strokeColor?: string;
+  circleColor?: string;
+  glowColor?: string | null;
+  uniqueId: string;
+  firstGradientColor?: string;
+  secondGradientColor?: string;
+  gradientDirection?: 'horizontal' | 'vertical' | 'radial';
+  midpointXMinWidth?: number | null;
+  secondaryMidpointX?: [string, 'left' | 'center' | 'right'] | null;
+  
+}
+
+const {
+  startEdge,
+  startY,
+  startYAnchor = null,
+  endY,
+  endX,
+  midpointX,
+  offsetStartY = 0,
+  strokeWidth = 4,
+  strokeDasharray = "5,5",
+  circleRadius = 10,
+  animationDuration = 10,
+  animationDelay = 0,
+  glowDistance = 2.5,
+  strokeColor = "white",
+  circleColor = "white",
+  glowColor = null,
+  uniqueId,
+  firstGradientColor = null,
+  secondGradientColor = null,
+  gradientDirection = 'vertical',
+  midpointXMinWidth = null,
+  secondaryMidpointX = null,
+} = Astro.props;
+
+const effectiveGlowColor = glowColor || circleColor;
+---
+
+<svg class="absolute left-0 top-0 w-screen h-auto max-h-[50%] pointer-events-none inline-block overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
+    <defs>
+        <filter id={`${uniqueId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        {firstGradientColor && secondGradientColor && (
+          gradientDirection === 'radial' ? (
+              <radialGradient id={`${uniqueId}-gradient`}>
+                  <stop offset="0%" stop-color={firstGradientColor} />
+                  <stop offset="100%" stop-color={secondGradientColor} />
+              </radialGradient>
+          ) : (
+              <linearGradient 
+                  id={`${uniqueId}-gradient`} 
+                  x1={gradientDirection === 'horizontal' ? '0%' : '50%'} 
+                  y1={gradientDirection === 'horizontal' ? '50%' : '0%'} 
+                  x2={gradientDirection === 'horizontal' ? '100%' : '50%'} 
+                  y2={gradientDirection === 'horizontal' ? '50%' : '100%'}
+              >
+                  <stop offset="0%" stop-color={firstGradientColor} />
+                  <stop offset="100%" stop-color={secondGradientColor} />
+              </linearGradient>
+          )
+      )}
+    </defs>
+    <g>
+        <path 
+          id={`${uniqueId}-path`} 
+          fill="none" 
+          stroke={firstGradientColor && secondGradientColor ? `url(#${uniqueId}-gradient)` : `var(--${strokeColor})`} 
+          stroke-width={strokeWidth} 
+          stroke-dasharray={strokeDasharray} 
+          vector-effect="non-scaling-stroke"/>
+        <circle 
+          id={`${uniqueId}-circle`}
+          r={circleRadius} 
+          fill={`var(--${circleColor})`} 
+          filter={`url(#${uniqueId}-glow)`}
+        >
+          <animateMotion 
+            dur={`${animationDuration}s`} 
+            repeatCount="indefinite" 
+            begin={`${animationDelay}s`}
+            keyPoints="0;1"
+            keyTimes="0;1"
+            calcMode="linear"
+          >
+            <mpath href={`#${uniqueId}-path`}/>
+          </animateMotion>
+        </circle>
+      </g>
+  </svg>
+
+  <script is:inline define:vars={{ startEdge, startY, endY, endX, midpointX, offsetStartY, startYAnchor, effectiveGlowColor, glowDistance, uniqueId, midpointXMinWidth, secondaryMidpointX }}>
+    function getYPosition(svgRect, yValue) {
+      if (typeof yValue === 'number') {
+        return yValue;
+      } else if (Array.isArray(yValue)) {
+        const [elementId, position] = yValue;
+        const element = document.getElementById(elementId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          switch (position) {
+            case 'top': return rect.top - svgRect.top;
+            case 'bottom': return rect.bottom - svgRect.top;
+            default: return rect.top + rect.height / 2 - svgRect.top;
+          }
+        } else {
+          console.log(`Element not found: ${elementId}`);
+        }
+      }
+      return 0;
+    }
+    
+    function getXPosition(svgRect, xValue) {
+      if (typeof xValue === 'number') {
+        return xValue;
+      } else if (Array.isArray(xValue)) {
+        const [elementId, position] = xValue;
+        const element = document.getElementById(elementId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          switch (position) {
+            case 'left': return rect.left - svgRect.left;
+            case 'right': return rect.right - svgRect.left;
+            default: return rect.left + rect.width / 2 - svgRect.left;
+          }
+        } else {
+          console.log(`Element not found: ${elementId}`);
+        }
+      }
+      return 0;
+    }
+    
+    function updateDottedPath() {
+      const dottedPath = document.getElementById(`${uniqueId}-path`);
+      const movingCircle = document.getElementById(`${uniqueId}-circle`);
+      
+      if (!dottedPath) {
+        console.log(`Path element not found: ${uniqueId}-path`);
+        return;
+      }
+      if (!movingCircle) {
+        console.log(`Circle element not found: ${uniqueId}-circle`);
+        return;
+      }
+      
+      if (dottedPath instanceof SVGPathElement) {
+        const svg = dottedPath.ownerSVGElement;
+        if (svg) {
+          const svgRect = svg.getBoundingClientRect();
+          const startX = startEdge === 'left' ? 0 : svgRect.width;
+
+          let effectiveStartY;
+          if (startY !== null && startYAnchor !== null) {
+            const startYPosition = getYPosition(svgRect, startY);
+            const startYAnchorPosition = getYPosition(svgRect, startYAnchor);
+            effectiveStartY = (startYPosition + startYAnchorPosition) / 2 + offsetStartY;
+            } else if (startY !== null) {
+            effectiveStartY = getYPosition(svgRect, startY) + offsetStartY;
+            } else {
+            effectiveStartY = getYPosition(svgRect, endY);
+            }
+
+          const effectiveEndY = getYPosition(svgRect, endY);
+          const effectiveEndX = getXPosition(svgRect, endX);
+          
+          let effectiveMidpointX;
+        if (!midpointXMinWidth || window.innerWidth > midpointXMinWidth) {
+          if (midpointX) {
+            const midX = getXPosition(svgRect, midpointX);
+            effectiveMidpointX = startEdge === 'left' ? 
+              (startX + midX) / 2 : 
+              ((midX - startX) / 2) + startX;
+          } else {
+            effectiveMidpointX = (startX + effectiveEndX) / 2;
+          }
+        } else if (secondaryMidpointX) {
+          const secondaryMidX = getXPosition(svgRect, secondaryMidpointX);
+          effectiveMidpointX = startEdge === 'left' ? 
+            (startX + secondaryMidX) / 2 : 
+            ((secondaryMidX - startX) / 2) + startX;
+        } else {
+          effectiveMidpointX = (startX + effectiveEndX) / 2;
+        }
+    
+          let pathData;
+          if (startY === null) {
+            pathData = `M ${startX},${effectiveEndY} H ${effectiveEndX}`;
+          } else {
+            pathData = [
+              `M ${startX},${effectiveStartY}`,
+              `H ${effectiveMidpointX}`,
+              `V ${effectiveEndY}`,
+              `H ${effectiveEndX}`
+            ].join(' ');
+          }
+          
+          dottedPath.setAttribute('d', pathData);
+          
+          // Update glow color and filter
+          const glowFilter = document.getElementById(`${uniqueId}-glow`);
+          if (glowFilter) {
+            const feGaussianBlur = glowFilter.querySelector('feGaussianBlur');
+            if (feGaussianBlur) {
+              feGaussianBlur.setAttribute('stdDeviation', glowDistance.toString());
+            }
+            movingCircle.setAttribute('filter', `url(#${uniqueId}-glow)`);
+          } else {
+            console.log(`Glow filter not found: ${uniqueId}-glow`);
+          }
+        }
+      }
+    }
+    
+    // Run on load, resize, and scroll
+    window.addEventListener('load', updateDottedPath);
+    window.addEventListener('resize', updateDottedPath);
+    window.addEventListener('scroll', updateDottedPath);
+    
+    // Run periodically to catch any other layout changes
+    setInterval(updateDottedPath, 1000);
+    </script>

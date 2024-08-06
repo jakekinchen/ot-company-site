@@ -85,6 +85,8 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
 
     const handleMouseOut = () => {
       isMouseOver = false;
+      scrollSpeed = 1;
+      scrollDirection = 1;
     };
 
     container.addEventListener('mouseenter', handleMouseOver);
