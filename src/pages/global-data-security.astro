@@ -5,16 +5,22 @@ import DottedPathSVG from '../components/DottedPathSVG.astro';
 import type { ProductInfo } from '../types';
 import pages from '../data/pages.json';
 
-export function getStaticPaths() {
-  return pages.products.map(product => ({
-    params: { product: product.href.substring(1) },
-    props: { productInfo: product },
-  }));
+if (!pages) {
+  throw new Error('Page info not found');
 }
 
-const { productInfo } = Astro.props;
+if (!pages.products) {
+  throw new Error('Product info not found');
+}
 
-const pageContent = productInfo.pageContent;
+const product = pages.products.find(product => product.label === "Global Data Security");
+
+if (!product) {
+  throw new Error('Product with label "Global Data Security" not found');
+}
+
+const { pageContent } = product;
+
 if (!pageContent) {
   throw new Error('Page content not found');
 }
@@ -92,7 +98,7 @@ const gradient = false;
           loopReverse={true}
         />
       </div>
-      <div class="layoutConstraint main-content justify-center pt-8">
+      <div class="layoutConstraint main-content justify-center pt-8 border-5">
         <div class="flex justify-between items-start">
           <div class="logo dt:grid mb:flex mb:flex-col-reverse w-full">
             <div class="relative content dt:w-[62.5%] mb:w-full mb:flex mb:flex-col mb:items-center">
@@ -103,7 +109,7 @@ const gradient = false;
                   {pageContent.subtitle}
               </p>
             </div>
-            <img src={productInfo.iconSrc} alt={productInfo.iconAlt} class="productIcon dt:w-[20%] filter-white mb:w-[50%] dt:place-self-end mb:mb-9 mb:place-self-center"/>
+            <img src={product.iconSrc} alt={product.iconAlt} class="productIcon dt:w-[20%] filter-white mb:w-[50%] dt:place-self-end mb:mb-9 mb:place-self-center"/>
           </div>
         </div>
         <div class="button-container relative w-full mt-10">
@@ -119,10 +125,8 @@ const gradient = false;
               ))}
             </div>
           </div>
-          <div class="mt-16 mb-16 flex flex-row space-x-10 mb:space-x-0 mb:flex-col-reverse">
-            <div class="pt-4">
-              <img src={pageContent.benefits.graphicSrc} alt={pageContent.benefits.graphicAlt} class="w-full" />
-            </div>
+          <div class="mt-16 mb-16 flex flex-col space-x-10 mb:space-x-0 mb:flex-col-reverse">
+            
             <div id="benefits" class="w-full">
               <p class="text-5xl mb-8 font-semibold mb:text-center">
                 Benefits
@@ -131,6 +135,9 @@ const gradient = false;
                 <p class="text-xl mb:text-center">
                   {pageContent.benefits?.subtitle || "At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening."}
                 </p>
+              </div>
+              <div class="pt-4">
+                <img src={pageContent.benefits.graphicSrc} alt={pageContent.benefits.graphicAlt} class="w-full" />
               </div>
             </div>
           </div>

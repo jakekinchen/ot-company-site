@@ -2,9 +2,9 @@
 import Layout from '../components/Layout.astro';
 import { getCollection } from 'astro:content';
 import type { Event } from '../types';
+import { events } from '../data/pages.json';
 
-const events = await getCollection('events') as Event[];
-const sortedEvents = events.sort((a: Event, b: Event) => a.data.eventDate.getTime() - b.data.eventDate.getTime());
+const sortedEvents = events.sort((a: any, b: any) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime());
 const eventTypes = ['All', 'Webinar', 'Out and About', 'Conference', 'Exposition'] as const;
 ---
 
@@ -22,15 +22,17 @@ const eventTypes = ['All', 'Webinar', 'Out and About', 'Conference', 'Exposition
           </div>
         </div>
       </div>
-      <div id="events-grid" class="grid mb:grid-cols-1 dt:grid-cols-3 gap-8 mx-auto text-white">
+      <div id="events-grid" class="grid mb:grid-cols-1 dt:grid-cols-3 gap-8 mx-auto">
         {sortedEvents.map(event => (
-          <div class="event-card bg-light-blue rounded-xl p-6" data-category={event.data.category}>
-            <h2 class="text-2xl font-bold mb-2 text-white">
-              {event.data.eventDate.toLocaleString('default', { month: 'short' })} {event.data.eventDate.getDate()}
-            </h2>
-            <p class="text-lg mb-2">{event.data.title}</p>
-            <p class="text-lg">{event.data.category}</p>
-          </div>
+          <a href={event.href} class="event-card bg-light-blue hover:bg-white hover:text-blue hover:border-light-blue hover:border-5 rounded-xl p-6 block duration-300" data-category={event.category}>
+            <div class="text-white hover:text-blue transition-colors duration-300">
+              <h2 class="text-2xl font-bold mb-2">
+                {new Date(event.eventDate).toLocaleDateString('default', { month: 'short', day: 'numeric' })}
+              </h2>
+              <p class="text-lg mb-2">{event.title}</p>
+              <p class="text-lg">{event.category}</p>
+            </div>
+          </a>
         ))}
       </div>
       <div class="flex justify-center mt-8">

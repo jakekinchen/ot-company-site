@@ -12,7 +12,7 @@
         "subtitle": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.",
         "benefits":{
           "subtitle": "At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening.",
-          "graphicSrc": "/risk_mockup.png",
+          "graphicSrc": "/mockups/risk-engagement.png",
           "graphicAlt": "Risk Engagement Mockup"
         },
         "features":[
@@ -53,18 +53,34 @@
       "href": "/kubezt-secure-apps",
       "pageContent": {
         "title": "KubeZT Secure Apps",
-        "subtitle": "Secure your Kubernetes infrastructure with zero trust integration",
+        "subtitle": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform.",
         "benefits": {
-          "subtitle": "Enhance your Kubernetes security with our advanced zero trust solutions.",
-          "graphicSrc": "/kubezt_mockup.png",
+          "subtitle": "Save time deploying a suite of Zero-Trust enabled Directory Services, Public Key Infrastructure, Secure Domain Name Service, Resource Scheduling and Stealth Networking integrated into a secure Kubernetes Virtual Container Platform.",
+          "graphicSrc": "/mockups/kubezt-secure-apps.png",
           "graphicAlt": "KubeZT Secure Apps Mockup"
         },
         "features": [
           {
-            "iconSrc": "/featureIcons/zero-trust.svg",
-            "title": "Zero Trust Integration",
-            "description": "Implement zero trust principles in your Kubernetes environment for enhanced security."
+            "iconSrc": "/featureIcons/zero-trust-directory-services.svg",
+            "title": "Zero Trust Directory Services",
+            "description": "Deploy your application with MFA zero-trust directory services to ensure that anyone accessing the application is verified to be who they say they are, creating a least-privileged access environment."
+          },
+          {
+            "iconSrc": "/featureIcons/secure-dns.svg",
+            "title": "Secure Domain Name Services",
+            "description": "Kube ZT contains its own Secure Domain Name Service for fast and reliable network routing over Stealth Networking without compromising the container."
+          },
+          {
+            "iconSrc": "/featureIcons/public-key-infrastructure.svg",
+            "title": "Public Key Infrastructure",
+            "description": "Create secure development environments that mimic your production environments, ensuring that code works seamlessly when deployed."
+          },
+          {
+            "iconSrc": "/featureIcons/secure-containers.svg",
+            "title": "Secure Containers",
+            "description": "Built from the ground up with SBOM, secure virtual workloads compatible with the existing Kubernetes ecosystem."
           }
+
         ],
         "visual-guide": {
           "subtitle": "See how KubeZT Secure Apps can transform your Kubernetes security.",
@@ -82,24 +98,34 @@
       "href": "/anycloud-orchestration",
       "pageContent": {
         "title": "AnyCloud Orchestration",
-        "subtitle": "Simplify and automate your multi-cloud environment management",
+        "subtitle": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management.",
         "benefits": {
-          "subtitle": "Streamline your cloud operations with our intuitive drag-and-drop interface and cost-effective scaling solutions.",
-          "graphicSrc": "/anycloud_mockup.png",
+          "subtitle": "Understand the cost of your Cloud Deployments before you commit to a Cloud. One interface can save time in creating Cloud environments with a policy-controlled Visio-like UI.",
+          "graphicSrc": "/mockups/anycloud-orchestration.png",
           "graphicAlt": "AnyCloud Orchestration Dashboard"
         },
         "features": [
-          {
-            "iconSrc": "/featureIcons/multi-cloud.svg",
-            "title": "Multi-Cloud Management",
-            "description": "Seamlessly manage and orchestrate resources across multiple cloud providers from a single interface."
-          },
-          {
-            "iconSrc": "/featureIcons/cost-optimization.svg",
-            "title": "Cost Optimization",
-            "description": "Intelligently allocate resources and optimize costs across your entire cloud infrastructure."
-          }
-        ],
+        {
+          "iconSrc": "/featureIcons/rates-matter.svg",
+          "title": "Rates Matter",
+          "description": "Know your pre-negotiated costs of each Cloud deployment before you commit to a Cloud."
+        },
+        {
+          "iconSrc": "/featureIcons/policies-enforce-controls.svg",
+          "title": "Policies Enforce Controls",
+          "description": "Object Policies ensure that security controls are met enabling industry or government compliant Cloud deployments."
+        },
+        {
+          "iconSrc": "/featureIcons/ai-enabled-mitigation.svg",
+          "title": "AI-Enabled Mitigation",
+          "description": "Your Cloud environment is under attack. AI detects the attack and seamlessly moves your deployment to a new Cloud in 11 minutes. Saving time and money remediating a Cyber Attack."
+        },
+        {
+          "iconSrc": "/featureIcons/workload-validation.svg",
+          "title": "Workload Validation",
+          "description": "Create environments and workloads with drag and drop simplicity, then have AI validate the workload. Once validated, deploy the workload with a single click."
+        }
+      ],
         "visual-guide": {
           "subtitle": "See how AnyCloud Orchestration can transform your cloud management experience.",
           "graphicSrc": "https://www.youtube.com/embed/anycloud_demo_id",
@@ -108,30 +134,40 @@
       }
     },
     {
-      "label": "Secure Access",
+      "label": "Security Access",
       "title": "Stop Phishing & Block Lateral Movement",
       "subtitle": "Detect and deny malicious activity. MFA Privilege Access & Geofence Service Accounts.",
       "iconSrc": "/productIcons/secure-access.svg",
       "iconAlt": "Secure Access Icon",
       "href": "/secure-access",
       "pageContent": {
-        "title": "Secure Access",
-        "subtitle": "Enhance your security posture with advanced access controls",
+        "title": "Security Access",
+        "subtitle": "Control what was previously unmanageable by blocking lateral movement and preventing malware from entering through user clicks.",
         "benefits": {
-          "subtitle": "Protect your organization from phishing attacks and unauthorized lateral movement with our comprehensive secure access solution.",
-          "graphicSrc": "/secure_access_mockup.png",
+          "subtitle": "Control what you previously couldn't. Eliminate lateral movement in the network and prevent end users from unknowingly clicking links that allow malware into the network.",
+          "graphicSrc": "/mockups/security-access.png",
           "graphicAlt": "Secure Access Dashboard"
         },
         "features": [
           {
             "iconSrc": "/featureIcons/mfa.svg",
-            "title": "Multi-Factor Authentication",
-            "description": "Implement robust MFA for privileged access, significantly reducing the risk of unauthorized entry."
+            "title": "Verify Privileged User Access",
+            "description": "Active Directory Admins have tremendous reach. Verify privileged access users before tasks are executed to prevent lateral movement with MFA."
           },
           {
             "iconSrc": "/featureIcons/geofencing.svg",
-            "title": "Geofencing for Service Accounts",
-            "description": "Restrict service account access based on geographic locations, adding an extra layer of security."
+            "title": "Geofence Service Accounts",
+            "description": "Keep zombie service accounts from taking over your network. Geofence Service Accounts to the server they need access to limiting data exfiltration and reducing risk."
+          },
+          {
+            "iconSrc": "/featureIcons/secure-website-access.svg",
+            "title": "Secure Website Access",
+            "description": "Take away distractions. Access only the sites needed for individual roles."
+          },
+          {
+            "iconSrc": "/featureIcons/prevent-malicious-site-access.svg",
+            "title": "Prevent Malicious Site Access",
+            "description": "The quickest way to ransomware is by clicking malicious links. Stop them instantly by preventing links from connecting when clicked regardless of being on the network."
           }
         ],
         "visual-guide": {
@@ -150,22 +186,32 @@
       "href": "/stealth-networking",
       "pageContent": {
         "title": "Stealth Networking",
-        "subtitle": "Invisible and impenetrable network security",
+        "subtitle": "Protect your data with a service mesh that fortifies inbound firewall ports and enables edge services through scalable, multipath secure networking.",
         "benefits": {
-          "subtitle": "Transform your network security with our advanced stealth networking solution, making your infrastructure invisible to potential threats.",
-          "graphicSrc": "/stealth_networking_mockup.png",
+          "subtitle": "Keep your data secure in transit over a secure service mesh that allows you to close inbound firewall ports and enable edge services over multipath scalable secure networking.",
+          "graphicSrc": "/mockups/stealth-networking.png",
           "graphicAlt": "Stealth Networking Visualization"
         },
         "features": [
           {
-            "iconSrc": "/featureIcons/inbound-blocking.svg",
-            "title": "True Firewall Protection",
-            "description": "Block all inbound ports, significantly reducing your attack surface and enhancing overall security."
+            "iconSrc": "/featureIcons/secure-service-mesh.svg",
+            "title": "Secure Service Mesh",
+            "description": "Only those with the secret route know the way to the destination. Everything else is left on the outside looking in."
           },
           {
-            "iconSrc": "/featureIcons/service-mesh.svg",
-            "title": "Service Mesh Integration",
-            "description": "Implement a true service mesh network for secure, efficient, and flexible inter-service communication."
+            "iconSrc": "/featureIcons/multipathing.svg",
+            "title": "Multipathing",
+            "description": "Get the most bandwidth and keep threat actors guessing as paths and routes through the internet constantly change as data is pushed down multiple routes ensuring delivery."
+          },
+          {
+            "iconSrc": "/featureIcons/rotating-secure-routes.svg",
+            "title": "Rotating Secure Routes",
+            "description": "Static routes lead to hacks. Continuously rotating routes between endpoint and between routers protects data in transit."
+          },
+          {
+            "iconSrc": "/featureIcons/sase.svg",
+            "title": "SASE",
+            "description": "Any endpoint can securely connect to any router, and any router can connect to any other router, using mutual Transport Layer Security to form an encrypted mesh SD-WAN."
           }
         ],
         "visual-guide": {
@@ -187,7 +233,7 @@
         "subtitle": "Turn data into actionable insights with real-time analytics",
         "benefits": {
           "subtitle": "Gain comprehensive visibility into your data with our secure, real-time analytics platform.",
-          "graphicSrc": "/analytics_hq_mockup.png",
+          "graphicSrc": "/mockups/analytics-hq.png",
           "graphicAlt": "Analytics HQ Dashboard"
         },
         "features": [
@@ -218,22 +264,32 @@
       "href": "/global-data-security",
       "pageContent": {
         "title": "Global Data Security",
-        "subtitle": "Ensure your data is secure, available, and resilient globally",
+        "subtitle": "An encrypted global file system that consolidates storage, ensures immutability, and eliminates backups.",
         "benefits": {
-          "subtitle": "Protect your data against threats and ensure its availability with our comprehensive global data security solution.",
-          "graphicSrc": "/global_data_security_mockup.png",
+          "subtitle": "Discover all of your data and classify it into the correct categories so that it can be properly stored in an immutable global filesystem that is easily recoverable.",
+          "graphicSrc": "/mockups/global-data-security.png",
           "graphicAlt": "Global Data Security Overview"
         },
         "features": [
           {
-            "iconSrc": "/featureIcons/ransomware-protection.svg",
-            "title": "Ransomware Resilience",
-            "description": "Implement advanced protection measures to make your data resilient against ransomware attacks."
+            "iconSrc": "/featureIcons/global-immutable-filesystem.svg",
+            "title": "Global Immutable Filesystem",
+            "description": "Bring your various Cloud object stores and file systems, and combine them into a powerful global file system to protect the original files, and back up all changes every 43 seconds."
           },
           {
-            "iconSrc": "/featureIcons/global-availability.svg",
-            "title": "Global Data Availability",
-            "description": "Ensure your data is accessible anytime, anywhere, with our global data distribution and replication system."
+            "iconSrc": "/featureIcons/ai-driven-classification.svg",
+            "title": "AI-Driven Data Discovery and Classification",
+            "description": "Find all the data in your Cloud and on-premise, and classify various types of data so that PII and PHI data is properly moved and protected."
+          },
+          {
+            "iconSrc": "/featureIcons/nextgen-cloud-encryption.svg",
+            "title": "NextGen Cloud Data Encryption",
+            "description": "Secure Cloud data with encryption to protect it from AI and Quantum Computers."
+          },
+          {
+            "iconSrc": "/featureIcons/secure-database.svg",
+            "title": "Secure Encrypted Databases",
+            "description": "View and read data in your encrypted databases while you decrypt and update a record at a time."
           }
         ],
         "visual-guide": {
@@ -251,25 +307,35 @@
       "iconAlt": "Security Overwatch Icon",
       "href": "/security-overwatch",
       "pageContent": {
-        "title": "Security Overwatch",
-        "subtitle": "Comprehensive threat detection, monitoring, and remediation",
-        "benefits": {
-          "subtitle": "Stay ahead of evolving threats with our advanced Security Overwatch platform, providing real-time detection and response capabilities.",
-          "graphicSrc": "/security_overwatch_mockup.png",
-          "graphicAlt": "Security Overwatch Dashboard"
+       "title": "Secure Overwatch",
+      "subtitle": "Monitor your network and block threat actors with a comprehensive, user-friendly dashboard.",
+      "benefits": {
+        "subtitle": "ALL of the capabilities you need to monitor your network and prevent threat actors from exploiting and stealing critical data in a single user-friendly dashboard.",
+        "graphicSrc": "/mockups/security-overwatch.png",
+        "graphicAlt": "Security Overwatch Dashboard"
+      },
+      "features": [
+        {
+          "iconSrc": "/featureIcons/malicious-email-detection.svg",
+          "title": "Malicious Email Detection",
+          "description": "Continuously scan and detect questionable emails. Sort and quarantine malicious or scam emails so users don't accidentally click unknown links."
         },
-        "features": [
-          {
-            "iconSrc": "/featureIcons/real-time-detection.svg",
-            "title": "Real-Time Threat Detection",
-            "description": "Identify and respond to threats as they emerge with our advanced real-time detection algorithms."
-          },
-          {
-            "iconSrc": "/featureIcons/automated-remediation.svg",
-            "title": "Automated Remediation",
-            "description": "Streamline your security operations with automated threat remediation, reducing response times and minimizing impact."
-          }
-        ],
+        {
+          "iconSrc": "/featureIcons/endpoint-detection.svg",
+          "title": "Endpoint Detection and Response",
+          "description": "Monitor activity on end point devices to ensure that threat actors don't compromise devices to steal data or gain access to the network."
+        },
+        {
+          "iconSrc": "/featureIcons/data-governance.svg",
+          "title": "Complete Data Governance",
+          "description": "Inspection, notification, and blocking of critical data leakage on networks and endpoints. Covering PHI, PII, PCI, NPI, passwords, certificates, source code, and other sensitive files."
+        },
+        {
+          "iconSrc": "/featureIcons/enterprise-security.svg",
+          "title": "Enterprise Security",
+          "description": "Protect both the cloud instances and the device endpoints from a variety of malicious threats, attacks, and exploits. AI driven coverage of a broad selection of critical tasks."
+        }
+      ],
         "visual-guide": {
           "subtitle": "See how Security Overwatch can revolutionize your threat detection and response capabilities.",
           "graphicSrc": "https://www.youtube.com/embed/security_overwatch_demo_id",
@@ -279,10 +345,7 @@
     }
   ],
   "company": [
-    { "href": "/company", "iconSrc": "/menuIcons/overview.svg", "label": "Overview" },
-    { "href": "/leadership", "iconSrc": "/menuIcons/leadership.svg", "label": "Leadership" },
-    { "href": "/news", "iconSrc": "/menuIcons/news.svg", "label": "News and Blog"},
-    { "href": "/events", "iconSrc": "/menuIcons/events.svg", "label": "Events"}
+    { "href": "/company", "iconSrc": "/menuIcons/overview.svg", "label": "Overview" }
   ],
   "solutions": [
     { 

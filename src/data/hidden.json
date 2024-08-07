@@ -1,9 +1,43 @@
-[{
-    "label": "Analytics HQ",
-    "title": "Visualize your Data",
-    "subtitle": "Interact with your data with Secure Realtime Visibility",
-    "iconSrc": "/productIcons/analytics-hq.svg",
-    "href": "/analytics-hq"
-  },
-  { "href": "/initiatives", "iconSrc": "/menuIcons/initiatives.svg", "label": "Initiatives" },
-  { "href": "/careers", "iconSrc": "/menuIcons/careers.svg", "label": "Careers" }]
+{
+  "sections": [
+    {
+      "label": "Analytics HQ",
+      "title": "Visualize your Data",
+      "subtitle": "Interact with your data with Secure Realtime Visibility",
+      "iconSrc": "/productIcons/analytics-hq.svg",
+      "href": "/analytics-hq"
+    },
+    {
+      "href": "/initiatives",
+      "iconSrc": "/menuIcons/initiatives.svg",
+      "label": "Initiatives"
+    },
+    {
+      "href": "/careers",
+      "iconSrc": "/menuIcons/careers.svg",
+      "label": "Careers"
+    }
+  ],
+  "company": [
+    {
+      "href": "/company",
+      "iconSrc": "/menuIcons/overview.svg",
+      "label": "Overview"
+    },
+    {
+      "href": "/leadership",
+      "iconSrc": "/menuIcons/leadership.svg",
+      "label": "Leadership"
+    },
+    {
+      "href": "/news",
+      "iconSrc": "/menuIcons/news.svg",
+      "label": "News and Blog"
+    },
+    {
+      "href": "/events",
+      "iconSrc": "/menuIcons/events.svg",
+      "label": "Events"
+    }
+  ]
+}
