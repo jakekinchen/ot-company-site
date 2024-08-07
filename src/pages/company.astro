@@ -1,5 +1,6 @@
 ---
 import DottedPathSVG2 from '../components/DottedPathSVG2.astro';
+import PathMaker from '../components/PathMaker.astro';
 import DottedPathSVG from '../components/DottedPathSVG.astro';
 import AnchorPath from '../components/AnchorPath.astro';
 import Layout from '../components/Layout.astro';
@@ -38,41 +39,40 @@ const glowDistance = 5;
       circleGlowDistance = {glowDistance},
       animationDuration = {40}
     />
-    <DottedPathSVG
-          uniqueId="logo-border2"
-          targetDivClass="onetier-logo"
-          strokeWidth={4}
-          startY={320}
-          initialYOffset={460}
-          glowDistance={glowDistance}
-          strokeDasharray="5,5"
-          strokeColor="blue"
-          semiRect={false}
-          targetDivXPosition='left'
-          targetDivYPosition='center'
-          flipped={false}
-          height={200}
-          circleColor='blue'
-          edgeAnchor={['verticalSegment', 'left', 'sectionAContent']}
-          verticalSegmentXOffset={0}
-        />
-    
-        <DottedPathSVG
-          uniqueId="logo-border"
-          targetDivClass="onetier-logo"
-          strokeWidth={4}
-          startY={200}
-          initialYOffset={260}
-          glowDistance={glowDistance}
-          strokeDasharray="5,5"
-          strokeColor="blue"
-          semiRect={false}
-          targetDivXPosition='right'
-          targetDivYPosition='center'
-          flipped={true}
-          height={200}
-          circleColor='blue'
-        />
+        <PathMaker
+        startEdge={'left'}
+        startY={[`onetier-logo`, 'center']}
+        offsetStartY={150}
+        midpointX={[`sectionAContent`, 'left']}
+        endY={[`onetier-logo`, 'center']}
+        endX={[`onetier-logo`, 'left']}
+        strokeColor="blue"
+        circleColor="blue"
+        animationDuration={5}
+        animationDelay={0}
+        uniqueId={`path1`}
+        midpointXMinWidth={680}
+        glowDistance={glowDistance+2.5}
+        strokeDasharray="5,5"
+        circleRadius={10}
+    />
+    <PathMaker
+        startEdge={'right'}
+        startY={[`onetier-logo`, 'center']}
+        offsetStartY={-150}
+        midpointX={[`sectionAContent`, 'right']}
+        endY={[`onetier-logo`, 'center']}
+        endX={[`onetier-logo`, 'right']}
+        strokeColor="blue"
+        circleColor="blue"
+        animationDuration={5}
+        animationDelay={6}
+        reverseAnimation={true}
+        uniqueId={`path2`}
+        midpointXMinWidth={680}
+        glowDistance={glowDistance+2.5}
+        strokeDasharray="5,5"
+    />
        
   </div>
   <div class={`line-2-container dt:hidden overflow-x-hidden`}>
@@ -124,7 +124,7 @@ const glowDistance = 5;
     </p>
     <div class="relative mb-16">
       <div class="text-center">
-        <img src="/ot-logo.svg" alt="OneTier" class="onetier-logo mx-auto filter-dark-blue w-96 mb-8" />
+        <img id="onetier-logo" src="/ot-logo.svg" alt="OneTier" class="onetier-logo mx-auto filter-dark-blue w-96 mb-8" />
         <p id="sectionADiv2" class="mx-auto">
           OneTier is a Technology Platform Integrator that brings together unique start-ups to create solutions that solve business and technical challenges. This is a long paragraph that should explain how we bring the best we can offer to your businesses through dedication, teamwork, and field expertise.
         </p>

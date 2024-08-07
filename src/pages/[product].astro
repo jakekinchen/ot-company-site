@@ -111,7 +111,7 @@ const gradient = false;
               {buttons.map((button, index) => (
                 <a
                   href={button.href}
-                  class={`button-${index} gradient-button button-gradient text-white py-2 hover:text-white transition-colors dt:w-[20%] dt:h-12 mb:max-w-[180px] mb:w-[25vw] min-w-[60px] text-center font-bold rounded-2xl button-text`}
+                  class={`button-${index} gradient-button button-gradient text-white py-2 hover:text-white transition-colors dt:w-[20%] mb:max-w-[180px] mb:w-[25vw] min-w-[60px] text-center font-bold rounded-2xl button-text`}
                   id={`nav-${button.href.substring(1)}`}
                 >
                   {button.text}
@@ -119,19 +119,17 @@ const gradient = false;
               ))}
             </div>
           </div>
-          <div class="mt-16 mb-16 flex flex-row space-x-10 mb:space-x-0 mb:flex-col-reverse">
-            <div class="pt-4">
+          <div class="py-24 mb:py-12 flex flex-row space-x-10 mb:space-x-0 mb:flex-col-reverse">
+            <div class="">
               <img src={pageContent.benefits.graphicSrc} alt={pageContent.benefits.graphicAlt} class="w-full" />
             </div>
             <div id="benefits" class="w-full">
-              <p class="text-5xl mb-8 font-semibold mb:text-center">
+              <p class="text-5xl font-semibold mb:text-center mb-4">
                 Benefits
               </p>
-              <div class="right-20">
                 <p class="text-xl mb:text-center">
                   {pageContent.benefits?.subtitle || "At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening."}
                 </p>
-              </div>
             </div>
           </div>
           <Features features={features} />

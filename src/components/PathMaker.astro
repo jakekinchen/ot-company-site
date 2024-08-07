@@ -13,6 +13,7 @@ interface Props {
   circleRadius?: number;
   animationDuration?: number;
   animationDelay?: number;
+  reverseAnimation?: boolean;
   glowDistance?: number;
   strokeColor?: string;
   circleColor?: string;
@@ -49,6 +50,7 @@ const {
   gradientDirection = 'vertical',
   midpointXMinWidth = null,
   secondaryMidpointX = null,
+  reverseAnimation = false,
 } = Astro.props;
 
 const effectiveGlowColor = glowColor || circleColor;
@@ -96,17 +98,26 @@ const effectiveGlowColor = glowColor || circleColor;
           r={circleRadius} 
           fill={`var(--${circleColor})`} 
           filter={`url(#${uniqueId}-glow)`}
+          opacity="0"
         >
           <animateMotion 
-            dur={`${animationDuration}s`} 
+            dur={`${animationDuration}s`}
             repeatCount="indefinite" 
             begin={`${animationDelay}s`}
-            keyPoints="0;1"
+            keyPoints={reverseAnimation ? "1;0" : "0;1"}
             keyTimes="0;1"
             calcMode="linear"
           >
             <mpath href={`#${uniqueId}-path`}/>
           </animateMotion>
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            dur="0.01s"
+            begin={`${animationDelay}s`}
+            fill="freeze"
+          />
         </circle>
       </g>
   </svg>
