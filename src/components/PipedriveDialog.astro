@@ -1,0 +1,159 @@
+---
+---
+<dialog id="demoModal" class="modal-content rounded-3xl">
+    <form id="leadForm" method="dialog">
+        <button class="close cursor-pointer mt-2 " aria-label='Close'>
+		<svg xmlns="http://www.w3.org/2000/svg" style="color: var(--blue);" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+		</button>
+		<div class="m-4 space-y-2">
+        <h2 class="no-appearance text-blue mb-2 max-w-xl text-center mx-auto">Find the solution in our portfolio that fits your business</h2>
+        <p class="text-blue-500 text-xl mb-2">CONTACT US</p>
+        <div class="pipedriveWebForms" data-pd-webforms="https://webforms.pipedrive.com/f/6UG5Trc3Z4XyngKTA15SpoLlxuEXlBkO4iPG5zCrdMTmsfxnLGSsQf9SGiGxr2OSWv"><script src="https://webforms.pipedrive.com/f/loader"></script></div>
+	</div>
+    </form>
+</dialog>
+
+
+<style>
+
+	header {
+		margin: 0;
+		padding: 0 2em;
+		display: flex;
+		justify-content: center;
+		background: white;
+	}
+
+    .modal-content {
+		background-color: #fefefe;
+		
+		position: fixed;
+		border: none;
+		padding: 2rem;
+		width: 70vw; /* Adjusted width */
+		border-radius: 10px; /* Rounded corners */
+		box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+		text-align: center; /* Center the text inside the modal */
+		
+	}
+
+	p {
+		font-size: 1rem;
+		margin-bottom: 1em;
+		color: var(--blue);
+	}
+
+	.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-rows: auto auto 1fr; /* Define the height of rows */
+    gap: 1em; /* Space between grid items */
+    align-items: start; /* Align grid items to start at their row */
+}
+
+	/* Specific grid areas for clarity and control */
+	.form-grid label, .form-grid input, .form-grid textarea {
+		grid-column: span 1; /* Most fields span one column */
+	}
+
+	/* Make textarea or a large input field span both columns */
+	.form-grid .full-width {
+		grid-column: 1 / -1; /* Span from the first to the last line */
+	}
+
+	/* Style adjustments for specific types of inputs, can be adjusted as needed */
+	input[type="email"],
+	input[type="text"],
+	input[type="tel"] {
+		/* Inputs take full width of their cell */
+	}
+
+	textarea {
+		/* Textarea spans both columns if needed */
+		grid-column: span 2;
+	}
+
+	label {
+		width: 100%;
+		margin-top: 0.5em;
+		font-size: 1em;
+		text-align: left; /* Align labels to the left */
+	}
+
+	input{
+		width: 100%;
+		padding: 10px;
+		margin: 0.5em 0;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		background-color: #3F6FBF; /* Blue background */
+		color: white; /* White text */
+	}
+
+	textarea {
+		grid-column: span 2; /* Span both columns */
+	}
+
+
+	/* Close Button */
+	.close {
+		top: .5rem;
+		right: 1.2rem;
+		color: #aaa;
+		font-size: 28px;
+		font-weight: bold;
+		background: none;
+		border: none;
+		cursor: pointer;
+		position: absolute; /* Absolute positioning */
+		outline: none; /* Remove outline */
+	}
+
+	.close:hover,
+	.close:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	/* Modal Backdrop */
+	.modal::backdrop {
+		background: rgba(0, 0, 0, 0.8);
+		backdrop-filter: blur(5px);
+	}
+
+	h2 {
+    color: var(--blue);
+    font-size: 2.5rem;  /* Default font size for larger screens */
+}
+
+@media (max-width: 640px) {
+    .dialog {
+        width: clamp(300px, 90%, 600px); /* Suitable percentage/fixed width for smaller screens */
+       
+    }
+    h2 {
+        /* Smooth transition from 2.5rem at 640px to 1rem at 320px */
+        font-size: 1.5rem;
+		width: 90%;
+    }
+}
+
+@media (min-width: 641px) {
+    .dialog {
+        width: 90%; /* Suitable percentage/fixed width for larger screens */
+        max-width: 600px; /* Example fixed max-width for larger screens */
+    }
+}
+
+@media (max-width: 320px) {
+    h2 {
+        font-size: 1rem; /* Minimum font size */
+    }
+}
+
+	
+</style>
+

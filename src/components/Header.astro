@@ -1,6 +1,7 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import Dialog from './Dialog.astro';
+import PipedriveDialog from './PipedriveDialog.astro';
 import Nav from './react/Nav.jsx';
 import { enableGradientFollowById } from '../helpers/gradientFollow';
 import MobileMenu from './react/MobileMenu.jsx';
@@ -26,7 +27,7 @@ const navWidth = width ? `dt:w-[${width}%] dt:mx-auto` : "w-full";
     <button id="requestDemo" class="gradient-button request-demo-button shadow-md min-w-[150px] max-w-[200px] px-4 py-2 mb:hidden">Request Demo</button>
   </div>
   
-  <Dialog />
+  <PipedriveDialog />
   <MobileMenu client:only="react" />
 </header>
 </div>
