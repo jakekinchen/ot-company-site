@@ -134,14 +134,14 @@
       }
     },
     {
-      "label": "Security Access",
+      "label": "Secure Access",
       "title": "Stop Phishing & Block Lateral Movement",
       "subtitle": "Detect and deny malicious activity. MFA Privilege Access & Geofence Service Accounts.",
       "iconSrc": "/productIcons/secure-access.svg",
       "iconAlt": "Secure Access Icon",
       "href": "/secure-access",
       "pageContent": {
-        "title": "Security Access",
+        "title": "Secure Access",
         "subtitle": "Control what was previously unmanageable by blocking lateral movement and preventing malware from entering through user clicks.",
         "benefits": {
           "subtitle": "Control what you previously couldn't. Eliminate lateral movement in the network and prevent end users from unknowingly clicking links that allow malware into the network.",
@@ -230,22 +230,32 @@
       "href": "/analytics-hq",
       "pageContent": {
         "title": "Analytics HQ",
-        "subtitle": "Turn data into actionable insights with real-time analytics",
+        "subtitle": "Reduce TCO and speed up with unified data ingestion, modern management, and edge-to-core analytics using Snowflake and Databricks.",
         "benefits": {
-          "subtitle": "Gain comprehensive visibility into your data with our secure, real-time analytics platform.",
+          "subtitle": "Combine high-speed data ingestion, modern data management, advanced analytics, and easy-to-create dashboards in one data execution engine.",
           "graphicSrc": "/mockups/analytics-hq.png",
           "graphicAlt": "Analytics HQ Dashboard"
         },
         "features": [
           {
-            "iconSrc": "/featureIcons/real-time-analytics.svg",
-            "title": "Real-Time Data Visualization",
-            "description": "View and interact with your data in real-time, enabling quick decision-making and trend identification."
+            "iconSrc": "/featureIcons/data-ingestion.svg",
+            "title": "Data Ingestion",
+            "description": "Faster data acquisition from the edge to the core creates faster analysis and visualizations. Speed saves time, money, and lives."
           },
           {
-            "iconSrc": "/featureIcons/secure-analytics.svg",
-            "title": "Secure Data Processing",
-            "description": "Ensure the confidentiality and integrity of your data with our secure analytics processing engine."
+            "iconSrc": "/featureIcons/modern-data-management.svg",
+            "title": "Modern Data Management",
+            "description": "Manage all your data sources and automate data pipelines with integrated data snapshotting to make the most of your data lakes."
+          },
+          {
+            "iconSrc": "/featureIcons/advanced-analytics.svg",
+            "title": "Advanced Analytics",
+            "description": "Find predictability in your data. Localized data and apps live in the same environment to streamline visualizations."
+          },
+          {
+            "iconSrc": "/featureIcons/open-source.svg",
+            "title": "Open Source",
+            "description": "Bring costs under control with a completely open-source highly flexible analytics platform."
           }
         ],
         "visual-guide": {
