@@ -48,8 +48,8 @@ const closestEvent = futureEvents[0];
       />
   </div>
   <div class="layoutConstraint main-content justify-center">
-    <div class="leading-snug text-left text-wrap text-blue">
-      <h1 class="text-[calc(3vw+3rem)]  break-words w-full font-medium mt-16">
+    <div class="leading-snug text-left text-wrap text-blue min-w-[305px]">
+      <h1 class="text-[calc(4vw+2rem)]  break-words w-full font-medium mt-16 mb:mt-8">
           OneTier's AnyCloud DataSecure Portfolio
       </h1>
       
@@ -72,7 +72,7 @@ const closestEvent = futureEvents[0];
       />
     </div>
     <div class="flex flex-col items-center justify-center min-h-[40vw] mt-16 text-white py-4">
-      <div class="pane backdrop-filter backdrop-blur-lg rounded-3xl text-center mb-8 space-y-[10px] w-[75%] py-4 mb:w-full ">
+      <div class="pane backdrop-filter backdrop-blur-lg rounded-3xl text-center mb-12 space-y-[8px] w-full p-8 mb:p-3 mb:w-full ">
         <p class="text-[calc(16px+1vw)]">
           Cybersecurity threats are slated to cost the world
         </p>
@@ -86,16 +86,16 @@ const closestEvent = futureEvents[0];
           by 2025
         </p>
       </div>
-      <div class="z-10 pane backdrop-filter backdrop-blur-lg rounded-3xl p-[calc(10px+2vw)] text-center w-[75%] mx-[calc(10px+2vw)] my-[calc(10px+2vw)] mb:w-full">
-        <h2 class="text-[calc(12px+4vw)] font-bold mb-4 text-white">
+      <div class="z-10 pane backdrop-filter backdrop-blur-lg rounded-3xl p-8 text-center w-full mb-12 mb:w-full mb:p-4">
+        <h2 class="text-[calc(12px+4vw)] font-bold text-white">
           From Zero to Trust
         </h2>
-        <p class="text-3xl">
+        <p class="text-3xl mb-0">
           Here’s how we keep you safe.
         </p>
       </div>
     </div>
-    <div class="mt-[8vw] flex flex-col gap-8 dt:gap-16 mb:w-full">
+    <div class="flex flex-col gap-8 dt:gap-16 mb:w-full">
       {products.map((product: any, index: number) => (
         <ProductSnippet
           key={product.href}
@@ -114,7 +114,7 @@ const closestEvent = futureEvents[0];
           <div class="w-full max-w-screen-lg mx-auto px-4">
             <p class="text-center text-5xl mb:text-3xl text-blue font-bold mb-8 mb:mb-4">Our Clients</p>
             <div class="logo-container w-full">
-              <Carousel clients={clients} scale={1.5} speed={15} />
+              <Carousel clients={clients} scale={1.5} speed={100} scroll={true} pauseOnHover={true} sideBlur={true}/>
             </div>
             </section>
       </div>

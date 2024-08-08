@@ -28,16 +28,18 @@ if (background == 'transparent'){
 const today = new Date();
 ---
 
-<footer class={`${bgColor} mt-auto flex-shrink-0 p-8`}>
-    <div class="layoutConstraint flex justify-between items-center">
+<footer class={`${bgColor} flex flex-col justify-center pt-4 pb-2 `}>
+    <div class="layoutConstraint">
+    <div class=" flex justify-between items-center ">
         <div class="text-left">
-            <a href="/">
-                <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={`${gradient ? " " : logoColor} w-40`} />
+            <a class="block w-full cursor-pointer" href="/">
+                <img src={gradient ? "/ot-gradient-logo.svg" : "/ot-logo.svg"} alt="OneTier Logo" class={`${gradient ? "" : logoColor} cursor-pointer`} />
             </a>
-            <p class={`${textColor} mt-2`}>Security From Zero to Trust</p>
+            
+            <p class={`${textColor} py-2`}>Security From Zero to Trust</p>
         </div>
-        <div>
-            <ul class="grid grid-cols-2 gap-4 list-none p-0 m-0">
+        <div class="hidden">
+            <ul class="grid grid-cols-2 gap-4 mb:gap-2 list-none p-0 m-0">
                 <li><a href="#" class={`${textColor} no-underline hover:underline`}>Request Demo</a></li>
                 <li><a href="#" class={`${textColor} no-underline hover:underline`}>Resources</a></li>
                 <li><a href="#" class={`${textColor} no-underline hover:underline`}>Products</a></li>
@@ -45,25 +47,35 @@ const today = new Date();
             </ul>
         </div>
     </div>
-    <div class="layoutConstraint flex justify-between items-center mt-4">
-        <p class={`${textColor} footer-left`}>© {today.getFullYear()} OneTier. All rights reserved.</p>
-        <div class="social-links footer-right flex justify-end mr-8">
-            <ul class="flex">
-                <a href="/" class={iconColor}>
-                    <img src="/social-media-icons/instagram.svg" alt="Instagram" />
-                </a>
-                <a href="/" class={iconColor}>
-                    <img src="/social-media-icons/x.svg" alt="X" />
-                </a>
-                <a href="/" class={iconColor}>
-                    <img src="/social-media-icons/facebook.svg" alt="Facebook" />
-                </a>
-                <a href="/" class={iconColor}>
-                    <img src="/social-media-icons/rss.svg" alt="RSS" />
-                </a>
+    <div class="flex justify-between items-center ">
+        <p class={`${textColor} footer-left pr-4 m-0 `}>© {today.getFullYear()} OneTier. All rights reserved.</p>
+        <div class="social-links footer-right">
+            <ul class="social-grid">
+                <li>
+                    <a href="https://www.instagram.com/onetiercorp/" class={iconColor}>
+                        <img src="/social-media-icons/instagram.svg" alt="Instagram" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/OneTier_Corp" class={iconColor}>
+                        <img src="/social-media-icons/x.svg" alt="X" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/OneTierCorporationrs" class={iconColor}>
+                        <img src="/social-media-icons/facebook.svg" alt="Facebook" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/" class={iconColor}>
+                        <img src="/social-media-icons/rss.svg" alt="RSS" />
+                    </a>
+                </li>
             </ul>
         </div>
+        
     </div>
+</div>
 </footer>
 <style>
     footer {
@@ -74,8 +86,43 @@ const today = new Date();
     
     .social-links img {
         border-radius: 0;
-        width: 1.75em;
-        height: 1.75em;
-        margin-left: 1rem;
+        width: 1.50rem;
+        height: 1.50rem;
+        
+    }
+    .social-links .social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.social-links .social-grid li {
+    list-style: none;
+}
+
+.social-links .social-grid a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links .social-grid img {
+    width: 100%;
+    
+}
+
+@media (max-width: 600px) {
+    .social-links .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+    @media (max-width: 768px) {
+        .social-links img{
+            width: 1.5em;
+            height: 1.5em;
+            min-width: 30px;
+            
+        }
+        
     }
 </style>

@@ -81,13 +81,11 @@ import DottedPathSVG from './DottedPathSVG.astro';
   }
 
   .connector-line {
-    position: absolute;
+    position: relative;
     width: 4px;
-    height: 8rem;
-    top: -8.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(to bottom, transparent 50%, white 50%);
+    height: 2rem;
+    top: -2.4rem;
+    background: linear-gradient(to bottom, transparent 50%, rgb(255, 255, 255) 50%);
     background-size: 100% 10px;
     animation: dash 5s linear infinite;
     background-repeat: repeat-y; /* Ensure the gradient repeats */
