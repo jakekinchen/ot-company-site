@@ -7,6 +7,7 @@ interface Props {
   endX: number | [string, 'left' | 'center' | 'right'];
   midpointX?: number | [string, 'left' | 'center' | 'right'];
   offsetStartY?: number;
+  offsetEndX?: number;
   startYAnchor?: [string, 'top' | 'center' | 'bottom'] | null;
   strokeWidth?: number;
   strokeDasharray?: string;
@@ -35,6 +36,7 @@ const {
   endX,
   midpointX,
   offsetStartY = 0,
+  offsetEndX = 0,
   strokeWidth = 4,
   strokeDasharray = "5,5",
   circleRadius = 10,
@@ -122,7 +124,7 @@ const effectiveGlowColor = glowColor || circleColor;
       </g>
   </svg>
 
-  <script is:inline define:vars={{ startEdge, startY, endY, endX, midpointX, offsetStartY, startYAnchor, effectiveGlowColor, glowDistance, uniqueId, midpointXMinWidth, secondaryMidpointX }}>
+  <script is:inline define:vars={{ startEdge, startY, endY, endX, midpointX, offsetStartY, offsetEndX, startYAnchor, effectiveGlowColor, glowDistance, uniqueId, midpointXMinWidth, secondaryMidpointX }}>
     function getYPosition(svgRect, yValue) {
       if (typeof yValue === 'number') {
         return yValue;
@@ -194,7 +196,7 @@ const effectiveGlowColor = glowColor || circleColor;
             }
 
           const effectiveEndY = getYPosition(svgRect, endY);
-          const effectiveEndX = getXPosition(svgRect, endX);
+          const effectiveEndX = getXPosition(svgRect, endX) + offsetEndX;
           
           let effectiveMidpointX;
         if (!midpointXMinWidth || window.innerWidth > midpointXMinWidth) {

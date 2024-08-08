@@ -10,6 +10,7 @@
       "pageContent":{
         "title": "Risk <br> Engagement",
         "subtitle": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.",
+        "mouseHoverAnimation": "true",
         "benefits":{
           "subtitle": "At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening.",
           "graphicSrc": "/mockups/risk-engagement.png",
@@ -54,6 +55,7 @@
       "pageContent": {
         "title": "KubeZT Secure Apps",
         "subtitle": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform.",
+        "mouseHoverAnimation": "true",
         "benefits": {
           "subtitle": "Save time deploying a suite of Zero-Trust enabled Directory Services, Public Key Infrastructure, Secure Domain Name Service, Resource Scheduling and Stealth Networking integrated into a secure Kubernetes Virtual Container Platform.",
           "graphicSrc": "/mockups/kubezt-secure-apps.png",
@@ -99,6 +101,7 @@
       "pageContent": {
         "title": "AnyCloud Orchestration",
         "subtitle": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management.",
+        "mouseHoverAnimation": "true",
         "benefits": {
           "subtitle": "Understand the cost of your Cloud Deployments before you commit to a Cloud. One interface can save time in creating Cloud environments with a policy-controlled Visio-like UI.",
           "graphicSrc": "/mockups/anycloud-orchestration.png",
@@ -143,6 +146,7 @@
       "pageContent": {
         "title": "Secure Access",
         "subtitle": "Control what was previously unmanageable by blocking lateral movement and preventing malware from entering through user clicks.",
+        "mouseHoverAnimation": "true",
         "benefits": {
           "subtitle": "Control what you previously couldn't. Eliminate lateral movement in the network and prevent end users from unknowingly clicking links that allow malware into the network.",
           "graphicSrc": "/mockups/security-access.png",
@@ -187,6 +191,7 @@
       "pageContent": {
         "title": "Stealth Networking",
         "subtitle": "Protect your data with a service mesh that fortifies inbound firewall ports and enables edge services through scalable, multipath secure networking.",
+        "mouseHoverAnimation": "true",
         "benefits": {
           "subtitle": "Keep your data secure in transit over a secure service mesh that allows you to close inbound firewall ports and enable edge services over multipath scalable secure networking.",
           "graphicSrc": "/mockups/stealth-networking.png",
@@ -231,6 +236,7 @@
       "pageContent": {
         "title": "Analytics HQ",
         "subtitle": "Reduce TCO and speed up with unified data ingestion, modern management, and edge-to-core analytics using Snowflake and Databricks.",
+        "mouseHoverAnimation": "true",
         "benefits": {
           "subtitle": "Combine high-speed data ingestion, modern data management, advanced analytics, and easy-to-create dashboards in one data execution engine.",
           "graphicSrc": "/mockups/analytics-hq.png",
@@ -275,6 +281,7 @@
       "pageContent": {
         "title": "Global Data Security",
         "subtitle": "An encrypted global file system that consolidates storage, ensures immutability, and eliminates backups.",
+        "mouseHoverAnimation": "false",
         "benefits": {
           "subtitle": "Discover all of your data and classify it into the correct categories so that it can be properly stored in an immutable global filesystem that is easily recoverable.",
           "graphicSrc": "/mockups/global-data-security.png",
@@ -294,10 +301,10 @@
           {
             "iconSrc": "/featureIcons/nextgen-cloud-encryption.svg",
             "title": "NextGen Cloud Data Encryption",
-            "description": "Secure Cloud data with encryption to protect it from AI and Quantum Computers."
+            "description": "Secure Cloud data with encryption to protect it from AI and Quantum Computers. Encrypt data at rest and in transit."
           },
           {
-            "iconSrc": "/featureIcons/secure-database.svg",
+            "iconSrc": "/featureIcons/secure-encrypted-databases.svg",
             "title": "Secure Encrypted Databases",
             "description": "View and read data in your encrypted databases while you decrypt and update a record at a time."
           }
@@ -317,10 +324,11 @@
       "iconAlt": "Security Overwatch Icon",
       "href": "/security-overwatch",
       "pageContent": {
-       "title": "Secure Overwatch",
+       "title": "Security Overwatch",
       "subtitle": "Monitor your network and block threat actors with a comprehensive, user-friendly dashboard.",
+      "mouseHoverAnimation": "true",
       "benefits": {
-        "subtitle": "ALL of the capabilities you need to monitor your network and prevent threat actors from exploiting and stealing critical data in a single user-friendly dashboard.",
+        "subtitle": "All of the capabilities you need to monitor your network and prevent threat actors from exploiting and stealing critical data in a single user-friendly dashboard.",
         "graphicSrc": "/mockups/security-overwatch.png",
         "graphicAlt": "Security Overwatch Dashboard"
       },

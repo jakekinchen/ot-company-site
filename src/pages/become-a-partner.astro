@@ -2,6 +2,7 @@
 import Carousel from '../components/Carousel.astro';
 import Layout from '../components/Layout.astro';
 import { partnerLogos } from '../data/pages.json';
+import PathMaker from '../components/PathMaker.astro';
 
 if (!partnerLogos) {
   throw new Error('Partner Logos info not found');
@@ -9,6 +10,39 @@ if (!partnerLogos) {
 ---
 
 <Layout customBackground="/backgroundImage.jpg" headerLogoColor='white' headerIconColor='white' headerBackground='transparent' gradient={false} backgroundColorScript={true}>
+  <div class="mb:hidden">
+    <PathMaker
+        startEdge={'left'}
+        startY={[`benefits-title`, 'center']}
+        offsetStartY={150}
+        midpointX={[`section-c`, 'left']}
+        endY={[`benefits-title`, 'center']}
+        endX={[`benefits-title`, 'left']}
+        strokeColor="white"
+        circleColor="cold-white"
+        animationDuration={5}
+        uniqueId={`path1`}
+        glowDistance={5}
+        strokeDasharray="5,5"
+    />
+  </div>
+  <div class="dt:hidden">
+    <PathMaker
+        startEdge={'left'}
+        startY={[`benefits-title`, 'center']}
+        offsetStartY={150}
+        midpointX={[`section-c`, 'left']}
+        endY={[`benefits-title`, 'center']}
+        endX={[`benefits-title`, 'center']}
+        offsetEndX={-65}
+        strokeColor="white"
+        circleColor="cold-white"
+        animationDuration={5}
+        uniqueId={`path2`}
+        glowDistance={5}
+        strokeDasharray="5,5"
+    />
+  </div>
   <section class="section section-a">
     <div class="layoutConstraint">
       <div id="header-text-become-a-partner" class="text-center">
@@ -30,8 +64,8 @@ if (!partnerLogos) {
     </div>
   </section>
 
-  <section class="section section-c layoutConstraint text-white">
-    <h2>Benefits</h2>
+  <section id="section-c" class="section section-c layoutConstraint text-white">
+    <h2 id="benefits-title" >Benefits</h2>
     <p>OneTier operates with a 100% channel approach, offering a range of mature, cutting-edge products through a diverse ecosystem of value-added resellers, service integrators, and partners. Our method allows partners to receive a single quote from multiple vendors, reducing contract complexity, speeding up delivery, and boosting profitability. Simplify with OneTier and accelerate your growth!</p>
     
     <h2>Partnerships with OneTier</h2>
