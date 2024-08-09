@@ -98,18 +98,18 @@ const gradient = false;
           loopReverse={true}
         />
       </div>
-      <div class="layoutConstraint main-content justify-center pt-8">
-        <div class="flex justify-between items-start">
-          <div class="logo dt:grid mb:flex mb:flex-col-reverse w-full">
-            <div class="relative content dt:w-[62.5%] mb:w-full mb:flex mb:flex-col mb:items-center">
-              <p id="product-label" class="text-6xl font-bold mb-4 drop-shadow-lg mb:text-center whitespace-nowrap"
+      <div class="layoutConstraint main-content justify-center pt-20 ">
+        <div class="flex justify-between items-start ">
+          <div class="logo flex flex-row dt:justify-between mb:flex-col-reverse w-full">
+            <div class="relative content  dt:w-[62.5%] mb:w-full mb:flex mb:flex-col mb:items-center ">
+              <p id="product-label" class="text-6xl font-bold mb-4 drop-shadow-lg mb:text-center "
               set:html={pageContent.title} >
               </p>
               <p class="text-3xl mb-8 mb:text-center">
                   {pageContent.subtitle}
               </p>
             </div>
-            <img src={product.iconSrc} alt={product.iconAlt} class="productIcon dt:w-[20%] filter-white mb:w-[50%] dt:place-self-end mb:mb-9 mb:place-self-center"/>
+            <img src={product.iconSrc} alt={product.iconAlt} class=" productIcon dt:w-[30%] filter-white mb:w-[50%] dt:place-self-end mb:mb-9 mb:place-self-center"/>
           </div>
         </div>
         <div class="button-container relative w-full mt-10">
@@ -117,7 +117,7 @@ const gradient = false;
               {buttons.map((button, index) => (
                 <a
                   href={button.href}
-                  class={`button-${index} gradient-button button-gradient text-white py-2 hover:text-white transition-colors dt:w-[20%] dt:h-12 mb:max-w-[180px] mb:w-[25vw] min-w-[60px] text-center font-bold rounded-2xl button-text`}
+                  class={`button-${index} gradient-button button-gradient text-white py-2 hover:text-white transition-colors dt:w-[30%] dt:h-12 mb:max-w-[180px] mb:w-[25vw] min-w-[60px] text-center font-bold rounded-2xl button-text`}
                   id={`nav-${button.href.substring(1)}`}
                 >
                   {button.text}

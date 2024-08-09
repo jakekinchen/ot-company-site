@@ -5,6 +5,7 @@ import DottedPathSVG from '../components/DottedPathSVG.astro';
 import MockupMouse from '../components/MockupMouse.astro';
 import type { ProductInfo } from '../types';
 import pages from '../data/pages.json';
+import PathMaker from '../components/PathMaker.astro';
 
 export function getStaticPaths() {
   return pages.products.map(product => ({
@@ -93,31 +94,47 @@ const gradient = false;
           loopReverse={true}
         />
       </div>
-      <div class="layoutConstraint main-content justify-center pt-8">
-        <div class="flex justify-between items-start">
-          <div class="logo dt:grid mb:flex mb:flex-col-reverse w-full">
-            <div class="relative content dt:w-[62.5%] mb:w-full mb:flex mb:flex-col mb:items-center">
-              <p id="product-label" class="text-6xl font-bold mb-4 drop-shadow-lg mb:text-center whitespace-nowrap"
+      <div class="layoutConstraint main-content justify-center pt-20 ">
+        <div class="flex justify-between items-start ">
+          <div class="logo flex flex-row dt:justify-between mb:flex-col-reverse w-full ">
+            <div class="relative content  dt:w-[62.5%] mb:w-full mb:flex mb:flex-col mb:items-center ">
+              <p id="product-label" class="text-6xl font-bold mb-4 drop-shadow-lg mb:text-center "
               set:html={pageContent.title} >
               </p>
               <p class="text-3xl mb-8 mb:text-center">
                   {pageContent.subtitle}
               </p>
             </div>
-            <img src={productInfo.iconSrc} alt={productInfo.iconAlt} class="productIcon dt:w-[20%] filter-white mb:w-[50%] dt:place-self-end mb:mb-9 mb:place-self-center"/>
+            <img src={productInfo.iconSrc} alt={productInfo.iconAlt} class=" productIcon dt:w-[30%] filter-white mb:w-[50%] dt:place-self-end mb:mb-9 mb:place-self-center"/>
           </div>
         </div>
         <div class="button-container relative w-full mt-10">
-          <div class="buttons flex flex-row justify-between">
+          <div id="nav-button-container" class="buttons flex flex-row justify-between">
               {buttons.map((button, index) => (
                 <a
                   href={button.href}
-                  class={`button-${index} gradient-button button-gradient text-white py-2 hover:text-white transition-colors dt:w-[20%] mb:max-w-[180px] mb:w-[25vw] min-w-[60px] text-center font-bold rounded-2xl button-text`}
+                  class={`button-${index} gradient-button button-gradient text-white py-2 hover:text-white transition-colors dt:w-[30%] mb:max-w-[180px] mb:w-[25vw] min-w-[60px] text-center font-bold rounded-2xl button-text`}
                   id={`nav-${button.href.substring(1)}`}
                 >
                   {button.text}
                 </a>
               ))}
+              <div class="hidden">
+               <PathMaker 
+               startEdge={'left'}
+               startY = {[`nav-button-container`, 'center']}
+               endY={[`nav-button-container`, 'center']}
+               endX={[`nav-button-container`, 'right']}
+               strokeColor="white"
+               circleColor="cold-white"
+               animationDuration={5}
+               loopDelay={2}
+               uniqueId={`path4`}
+               glowDistance={5}
+               strokeDasharray="5,5"
+               hideOnDesktop={true}
+           />
+           </div>
             </div>
           </div>
           <div class="py-24 mb:py-12 flex flex-row space-x-10 mb:space-x-0 mb:flex-col-reverse">
@@ -145,13 +162,21 @@ const gradient = false;
             </p>
           </div>
           <div class="video-container flex-1 flex items-center justify-center mb:h-[55vw]">
-            <!-- Ensure the iframe maintains the aspect ratio -->
-            <div class="relative w-full" style="padding-bottom: 56.25%;"> <!-- 16:9 aspect ratio -->
-              <iframe class="absolute top-0 left-0 w-full h-full border-4 border-dashed" 
-                src={pageContent['visual-guide']?.graphicSrc || "https://www.youtube.com/embed/dQw4w9WgXcQ"} 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
+            <div class="relative w-full" style="padding-bottom: 56.25%;">
+              {pageContent['visual-guide']?.graphicSrc && pageContent['visual-guide']?.isVideo ? (
+                <iframe 
+                  class="absolute top-0 left-0 w-full h-full border-4 border-dashed" 
+                  src={pageContent['visual-guide'].graphicSrc}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen
+                ></iframe>
+              ) : (
+                <img 
+                  class="absolute top-0 left-0 w-full h-full object-cover border-4 border-dashed" 
+                  src={pageContent['visual-guide']?.graphicSrc || "/content-placeholder.jpg"}
+                  alt="Visual Guide"
+                />
+              )}
             </div>
           </div>
             </div>

@@ -10,49 +10,37 @@ if (!partnerLogos) {
 ---
 
 <Layout customBackground="/backgroundImage.jpg" headerLogoColor='white' headerIconColor='white' headerBackground='transparent' gradient={false} backgroundColorScript={true}>
-  <div class="mb:hidden">
-    <PathMaker
-        startEdge={'left'}
-        startY={[`benefits-title`, 'center']}
-        offsetStartY={150}
-        midpointX={[`section-c`, 'left']}
-        endY={[`benefits-title`, 'center']}
-        endX={[`benefits-title`, 'left']}
-        strokeColor="white"
-        circleColor="cold-white"
-        animationDuration={5}
-        uniqueId={`path1`}
-        glowDistance={5}
-        strokeDasharray="5,5"
-    />
-  </div>
-  <div class="dt:hidden">
-    <PathMaker
-        startEdge={'left'}
-        startY={[`benefits-title`, 'center']}
-        offsetStartY={150}
-        midpointX={[`section-c`, 'left']}
-        endY={[`benefits-title`, 'center']}
-        endX={[`benefits-title`, 'center']}
-        offsetEndX={-65}
-        strokeColor="white"
-        circleColor="cold-white"
-        animationDuration={5}
-        uniqueId={`path2`}
-        glowDistance={5}
-        strokeDasharray="5,5"
-    />
-  </div>
+  
   <section class="section section-a">
-    <div class="layoutConstraint">
+    <div id="constraintDiv" class="layoutConstraint">
       <div id="header-text-become-a-partner" class="text-center">
         <h1>Partner Program</h1>
-        <h2>Unlock the Power of the Ecosystem</h2>
+        <h2 id="h2-partner-intro" class="">Unlock the Power of the Ecosystem</h2>
         <p>OneTier partners with cutting-edge technologies to deliver solutions in a 100% channel resale model.</p>
       </div>
       <div class="button-container">
-        <a class="gradient-button partner-button">Become a Partner</a>
-        <a class="gradient-button partner-button">Partner Portal</a>
+        <div class="-z-10">
+          <PathMaker 
+        startEdge={'right'}
+        startY={[`partner-portal-button`, 'center']}
+        endY={[`partner-portal-button`, 'center']}
+        endX={[`partner-portal-button`, 'right']}
+        offsetStartY={-230}
+        offsetEndX={-40}
+        midpointX={[`constraintDiv`, 'right']}
+        offsetMidpointX={-50}
+        strokeColor="white"
+        circleColor="cold-white"
+        animationDuration={5}
+        loopDelay={2}
+        uniqueId={`path3`}
+        glowDistance={5}
+        strokeDasharray="5,5"
+        hideOnMobile={true}
+    />
+  </div>
+        <a id="become-a-partner-button" href="https://partners.onetier.com/partner/registration" class="gradient-button partner-button">Become a Partner</a>
+        <a id="partner-portal-button" href="https://partners.onetier.com/login" class="gradient-button partner-button">Partner Portal</a>
       </div>
     </div>
   </section>
@@ -65,9 +53,45 @@ if (!partnerLogos) {
   </section>
 
   <section id="section-c" class="section section-c layoutConstraint text-white">
+    <div id="benefits-intro">
+      <div class="-z-10">
+        <PathMaker
+            startEdge={'left'}
+            startY={[`benefits-title`, 'center']}
+            offsetStartY={150}
+            midpointX={[`section-c`, 'left']}
+            endY={[`benefits-title`, 'center']}
+            endX={[`benefits-title`, 'center']}
+            offsetEndX={-65}
+            strokeColor="white"
+            circleColor="cold-white"
+            animationDuration={5}
+            uniqueId={`path2`}
+            glowDistance={5}
+            strokeDasharray="5,5"
+            hideOnDesktop={true}
+        />
+        <PathMaker
+          startEdge={'left'}
+          startY={[`benefits-title`, 'center']}
+          offsetStartY={150}
+          offsetEndX={10}
+          midpointX={[`section-c`, 'left']}
+          endY={[`benefits-title`, 'center']}
+          endX={[`benefits-title`, 'left']}
+          strokeColor="white"
+          circleColor="cold-white"
+          animationDuration={5}
+          uniqueId={`path1`}
+          glowDistance={5}
+          loopDelay={1}
+          strokeDasharray="5,5"
+          hideOnMobile={true}
+      />
+        
+    </div>
     <h2 id="benefits-title" >Benefits</h2>
     <p>OneTier operates with a 100% channel approach, offering a range of mature, cutting-edge products through a diverse ecosystem of value-added resellers, service integrators, and partners. Our method allows partners to receive a single quote from multiple vendors, reducing contract complexity, speeding up delivery, and boosting profitability. Simplify with OneTier and accelerate your growth!</p>
-    
     <h2>Partnerships with OneTier</h2>
     <h3>Technology Partners</h3>
     <p>OneTier works with cutting edge, software-based technology firms that solve problems felt across the technology landscape. This includes virtualized infrastructure (Network, Compute, Storage), Cybersecurity, and the AI/ML systems allowing for the management or visualization of the architecture.</p>
@@ -108,7 +132,7 @@ if (!partnerLogos) {
   }
 
   h2 {
-    font-size: clamp(2rem, 2vw + 1rem, 6rem);
+    font-size: clamp(2rem, 2vw + 1rem, 4rem);
     margin-bottom: 1rem;
     font-weight: 400;
   }
@@ -120,6 +144,10 @@ if (!partnerLogos) {
 
   p {
     font-size: clamp(1rem, 0.5vw + .75rem, 2rem);
+  }
+
+  .h2-container-width{
+    width: clamp(500px, 70%, 1000px);
   }
 
   .button-container {
@@ -152,6 +180,7 @@ if (!partnerLogos) {
   }
 
   .square {
+    content: url('/partner-graphic.png');
     width: 30%;
     aspect-ratio: 1 / 1;
     max-width: 400px;

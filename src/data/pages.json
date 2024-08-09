@@ -86,7 +86,7 @@
         ],
         "visual-guide": {
           "subtitle": "See how KubeZT Secure Apps can transform your Kubernetes security.",
-          "graphicSrc": "https://www.youtube.com/embed/your_kubezt_video_id",
+          "graphicSrc": "",
           "isVideo": "true"
         }
       }
@@ -131,7 +131,7 @@
       ],
         "visual-guide": {
           "subtitle": "See how AnyCloud Orchestration can transform your cloud management experience.",
-          "graphicSrc": "https://www.youtube.com/embed/anycloud_demo_id",
+          "graphicSrc": "",
           "isVideo": "true"
         }
       }
@@ -176,7 +176,7 @@
         ],
         "visual-guide": {
           "subtitle": "Discover how Secure Access can fortify your organization against cyber threats.",
-          "graphicSrc": "https://www.youtube.com/embed/secure_access_demo_id",
+          "graphicSrc": "https://www.youtube.com/embed/IGTG0gHN4og?si=lGjSmnu-tqCMhaZR",
           "isVideo": "true"
         }
       }
@@ -221,7 +221,7 @@
         ],
         "visual-guide": {
           "subtitle": "See how Stealth Networking can make your network invisible to threats.",
-          "graphicSrc": "https://www.youtube.com/embed/stealth_networking_demo_id",
+          "graphicSrc": "",
           "isVideo": "true"
         }
       }
@@ -266,8 +266,8 @@
         ],
         "visual-guide": {
           "subtitle": "Explore how Analytics HQ can transform your data into valuable insights.",
-          "graphicSrc": "https://www.youtube.com/embed/analytics_hq_demo_id",
-          "isVideo": "true"
+          "graphicSrc": "/ahq-visual-guide.jpg",
+          "isVideo": "false"
         }
       }
     },
@@ -311,7 +311,7 @@
         ],
         "visual-guide": {
           "subtitle": "Discover how Global Data Security can safeguard your data across the globe.",
-          "graphicSrc": "https://www.youtube.com/embed/global_data_security_demo_id",
+          "graphicSrc": "",
           "isVideo": "true"
         }
       }
@@ -356,14 +356,19 @@
       ],
         "visual-guide": {
           "subtitle": "See how Security Overwatch can revolutionize your threat detection and response capabilities.",
-          "graphicSrc": "https://www.youtube.com/embed/security_overwatch_demo_id",
+          "graphicSrc": "",
           "isVideo": "true"
         }
       }
     }
   ],
   "company": [
-    { "href": "/company", "iconSrc": "/menuIcons/overview.svg", "label": "Overview" }
+    { "href": "/company", "iconSrc": "/menuIcons/overview.svg", "label": "Overview" },
+    {
+      "href": "/events",
+      "iconSrc": "/menuIcons/events.svg",
+      "label": "Events"
+    }
   ],
   "solutions": [
     { 
@@ -412,19 +417,19 @@
     { "label": "Oracle", "iconSrc": "/clientLogos/oracle.png", "alt": "Oracle", "href": "https://www.oracle.com"}
   ],
   "partnerLogos": [
-    { "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com"},
-    { "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriver.com"},
-    { "label": "CyberSwitch Technologies", "iconSrc": "/partnerLogos/cyberswitchTechnologies.png", "alt": "CyberSwitch Technologies", "href": "https://www.cyberswitch.com"},
-    { "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com"},
-    { "label": "Lakeshore IT", "iconSrc": "/partnerLogos/lakeshoreIT.gif", "alt": "Lakeshore IT", "href": "https://www.lakeshoreit.com"},
-    { "label": "Natuv", "iconSrc": "/partnerLogos/natuv.png", "alt": "Natuv", "href": "https://www.natuv.com"},
-    { "label": "Norseman", "iconSrc": "/partnerLogos/norseman.png", "alt": "Norseman", "href": "https://www.norseman.com"},
-    { "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com"},
-    { "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.jpeg", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io"},
-    { "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/"},
-    { "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com"},
-    { "label": "Iva'al", "iconSrc": "/partnerLogos/ivaal.png", "alt": "Iva'al", "href": "https://www.ivaal.com"}
-  ],
+{ "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com"},
+{ "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriver.com"},
+{ "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/"},
+{ "label": "CyberSwitch Technologies", "iconSrc": "/partnerLogos/cyberswitchTechnologies.png", "alt": "CyberSwitch Technologies", "href": "https://www.cyberswitch.com"},
+{ "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.jpeg", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io"},
+{ "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com"},
+{ "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com"},
+{ "label": "Iva'al", "iconSrc": "/partnerLogos/ivaal.png", "alt": "Iva'al", "href": "https://www.ivaal.com"},
+{ "label": "Lakeshore IT", "iconSrc": "/partnerLogos/lakeshoreIT.gif", "alt": "Lakeshore IT", "href": "https://www.lakeshoreit.com"},
+{ "label": "Natuv", "iconSrc": "/partnerLogos/natuv.png", "alt": "Natuv", "href": "https://www.natuv.com"},
+{ "label": "Norseman", "iconSrc": "/partnerLogos/norseman.png", "alt": "Norseman", "href": "https://www.norseman.com"},
+{ "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com"}
+],
 "teamMembers": [
     { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg" },
     { "name": "Taber West", "title": "Chief Technology Officer", "imageSrc": "/profiles/taber-west.jpg" },

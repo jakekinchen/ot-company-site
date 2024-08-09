@@ -7,6 +7,7 @@ interface Props {
   endX: number | [string, 'left' | 'center' | 'right'];
   midpointX?: number | [string, 'left' | 'center' | 'right'];
   offsetStartY?: number;
+  offsetMidpointX?: number;
   offsetEndX?: number;
   startYAnchor?: [string, 'top' | 'center' | 'bottom'] | null;
   strokeWidth?: number;
@@ -25,6 +26,9 @@ interface Props {
   gradientDirection?: 'horizontal' | 'vertical' | 'radial';
   midpointXMinWidth?: number | null;
   secondaryMidpointX?: [string, 'left' | 'center' | 'right'] | null;
+  loopDelay?: number;
+  hideOnMobile?: boolean;
+  hideOnDesktop?: boolean;
   
 }
 
@@ -37,6 +41,7 @@ const {
   midpointX,
   offsetStartY = 0,
   offsetEndX = 0,
+  offsetMidpointX = 0,
   strokeWidth = 4,
   strokeDasharray = "5,5",
   circleRadius = 10,
@@ -53,12 +58,15 @@ const {
   midpointXMinWidth = null,
   secondaryMidpointX = null,
   reverseAnimation = false,
+  loopDelay = 0,
+  hideOnMobile = false,
+  hideOnDesktop = false,
 } = Astro.props;
 
 const effectiveGlowColor = glowColor || circleColor;
 ---
 
-<svg class="absolute left-0 top-0 w-screen h-auto max-h-[50%] pointer-events-none inline-block overflow-visible" style="z-index: 0;" preserveAspectRatio="none">
+<svg class={`${hideOnMobile === true ? 'mb:hidden' : ''} ${hideOnDesktop === true ? 'dt:hidden' : ''} absolute left-0 top-0 w-screen h-auto max-h-[50%] pointer-events-none inline-block overflow-visible`} style="z-index: 0;" preserveAspectRatio="none">
     <defs>
         <filter id={`${uniqueId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation={glowDistance} result="coloredBlur"/>
@@ -88,43 +96,45 @@ const effectiveGlowColor = glowColor || circleColor;
       )}
     </defs>
     <g>
-        <path 
-          id={`${uniqueId}-path`} 
-          fill="none" 
-          stroke={firstGradientColor && secondGradientColor ? `url(#${uniqueId}-gradient)` : `var(--${strokeColor})`} 
-          stroke-width={strokeWidth} 
-          stroke-dasharray={strokeDasharray} 
-          vector-effect="non-scaling-stroke"/>
-        <circle 
-          id={`${uniqueId}-circle`}
-          r={circleRadius} 
-          fill={`var(--${circleColor})`} 
-          filter={`url(#${uniqueId}-glow)`}
-          opacity="0"
-        >
-          <animateMotion 
-            dur={`${animationDuration}s`}
-            repeatCount="indefinite" 
-            begin={`${animationDelay}s`}
-            keyPoints={reverseAnimation ? "1;0" : "0;1"}
-            keyTimes="0;1"
-            calcMode="linear"
-          >
-            <mpath href={`#${uniqueId}-path`}/>
-          </animateMotion>
-          <animate
-            attributeName="opacity"
-            from="0"
-            to="1"
-            dur="0.01s"
-            begin={`${animationDelay}s`}
-            fill="freeze"
-          />
-        </circle>
-      </g>
-  </svg>
+      <path 
+        id={`${uniqueId}-path`} 
+        fill="none" 
+        stroke={firstGradientColor && secondGradientColor ? `url(#${uniqueId}-gradient)` : `var(--${strokeColor})`} 
+        stroke-width={strokeWidth} 
+        stroke-dasharray={strokeDasharray} 
+        vector-effect="non-scaling-stroke"/>
+      <circle 
+        id={`${uniqueId}-circle`}
+        r={circleRadius} 
+        fill={`var(--${circleColor})`} 
+        filter={`url(#${uniqueId}-glow)`}
+        opacity="0"
+      >
+      <animateMotion 
+      id={`${uniqueId}-motion`}
+      dur={`${animationDuration}s`}
+      begin={`${animationDelay}s;${uniqueId}-motion.end+${loopDelay}s`}
+      keyPoints={reverseAnimation ? "1;0" : "0;1"}
+      keyTimes="0;1"
+      calcMode="linear"
+      repeatCount="indefinite"
+    >
+      <mpath href={`#${uniqueId}-path`}/>
+    </animateMotion>
+    <animate
+      id={`${uniqueId}-opacity`}
+      attributeName="opacity"
+      values="0;1;1;0"
+      keyTimes="0;0.01;0.99;1"
+      dur={`${animationDuration}s`}
+      begin={`${animationDelay}s;${uniqueId}-opacity.end+${loopDelay}s`}
+      repeatCount="indefinite"
+    />
+      </circle>
+  </g>
+</svg>
 
-  <script is:inline define:vars={{ startEdge, startY, endY, endX, midpointX, offsetStartY, offsetEndX, startYAnchor, effectiveGlowColor, glowDistance, uniqueId, midpointXMinWidth, secondaryMidpointX }}>
+  <script is:inline define:vars={{ startEdge, startY, endY, endX, midpointX, offsetStartY, offsetEndX, offsetMidpointX, startYAnchor, effectiveGlowColor, glowDistance, uniqueId, midpointXMinWidth, secondaryMidpointX }}>
     function getYPosition(svgRect, yValue) {
       if (typeof yValue === 'number') {
         return yValue;
@@ -199,23 +209,45 @@ const effectiveGlowColor = glowColor || circleColor;
           const effectiveEndX = getXPosition(svgRect, endX) + offsetEndX;
           
           let effectiveMidpointX;
-        if (!midpointXMinWidth || window.innerWidth > midpointXMinWidth) {
-          if (midpointX) {
-            const midX = getXPosition(svgRect, midpointX);
-            effectiveMidpointX = startEdge === 'left' ? 
-              (startX + midX) / 2 : 
-              ((midX - startX) / 2) + startX;
-          } else {
-            effectiveMidpointX = (startX + effectiveEndX) / 2;
-          }
-        } else if (secondaryMidpointX) {
-          const secondaryMidX = getXPosition(svgRect, secondaryMidpointX);
-          effectiveMidpointX = startEdge === 'left' ? 
-            (startX + secondaryMidX) / 2 : 
-            ((secondaryMidX - startX) / 2) + startX;
+if (!midpointXMinWidth || window.innerWidth > midpointXMinWidth) {
+    if (midpointX) {
+        const midX = getXPosition(svgRect, midpointX);
+        const baseMidpointX = startEdge === 'left' ?
+            (startX + midX) / 2 :
+            ((midX - startX) / 2) + startX;
+        
+        // Apply offsetMidpointX if it exists
+        if (offsetMidpointX) {
+            const offsetX = getXPosition(svgRect, offsetMidpointX);
+            effectiveMidpointX = baseMidpointX + offsetX;
         } else {
-          effectiveMidpointX = (startX + effectiveEndX) / 2;
+            effectiveMidpointX = baseMidpointX;
         }
+    } else {
+        effectiveMidpointX = (startX + effectiveEndX) / 2;
+    }
+} else if (secondaryMidpointX) {
+    const secondaryMidX = getXPosition(svgRect, secondaryMidpointX);
+    const baseSecondaryMidpointX = startEdge === 'left' ?
+        (startX + secondaryMidX) / 2 :
+        ((secondaryMidX - startX) / 2) + startX;
+    
+    // Apply offsetMidpointX if it exists
+    if (offsetMidpointX) {
+        const offsetX = getXPosition(svgRect, offsetMidpointX);
+        effectiveMidpointX = baseSecondaryMidpointX + offsetX;
+    } else {
+        effectiveMidpointX = baseSecondaryMidpointX;
+    }
+} else {
+    effectiveMidpointX = (startX + effectiveEndX) / 2;
+    
+    // Apply offsetMidpointX if it exists
+    if (offsetMidpointX) {
+        const offsetX = getXPosition(svgRect, offsetMidpointX);
+        effectiveMidpointX += offsetX;
+    }
+}
     
           let pathData;
           if (startY === null) {

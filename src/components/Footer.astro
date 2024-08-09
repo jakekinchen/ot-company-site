@@ -38,39 +38,36 @@ const today = new Date();
             
             <p class={`${textColor} py-2`}>Security From Zero to Trust</p>
         </div>
-        <div class="hidden">
-            <ul class="grid grid-cols-2 gap-4 mb:gap-2 list-none p-0 m-0">
-                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Request Demo</a></li>
-                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Resources</a></li>
-                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Products</a></li>
-                <li><a href="#" class={`${textColor} no-underline hover:underline`}>Solutions</a></li>
+            <ul class="grid grid-cols-2 gap-4 mb:gap-2 p-2 m-0 text-right">
+                <a href="#" id="footerRequestDemo" class={`${textColor} no-underline hover:underline cursor-pointer`}>Request Demo</a>
+                <a href="/overview" class={`${textColor} no-underline hover:underline w-full`}>Company</a>
+                <a href="/#risk-engagement-container" class={`${textColor} no-underline hover:underline`}>Products</a>
+                <a href="/solutions" class={`${textColor} no-underline hover:underline`}>Solutions</a>
             </ul>
-        </div>
     </div>
     <div class="flex justify-between items-center ">
-        <p class={`${textColor} footer-left pr-4 m-0 `}>© {today.getFullYear()} OneTier. All rights reserved.</p>
+        <p class={`${textColor} footer-left pr-4 m-0 min-w-6 `}>© {today.getFullYear()} OneTier. All rights reserved.</p>
         <div class="social-links footer-right">
             <ul class="social-grid">
-                <li>
-                    <a href="https://www.instagram.com/onetiercorp/" class={iconColor}>
+                
+                    <a href="https://www.instagram.com/onetiercorp/" class={iconColor + ""}>
                         <img src="/social-media-icons/instagram.svg" alt="Instagram" />
                     </a>
-                </li>
-                <li>
+               
+                
                     <a href="https://x.com/OneTier_Corp" class={iconColor}>
                         <img src="/social-media-icons/x.svg" alt="X" />
                     </a>
-                </li>
-                <li>
+                
+               
                     <a href="https://www.facebook.com/OneTierCorporationrs" class={iconColor}>
                         <img src="/social-media-icons/facebook.svg" alt="Facebook" />
                     </a>
-                </li>
-                <li>
-                    <a href="/" class={iconColor}>
-                        <img src="/social-media-icons/rss.svg" alt="RSS" />
+               
+                    <a href="https://www.linkedin.com/company/1tier/" class={iconColor}>
+                        <img src="/social-media-icons/linkedin.svg" alt="LinkedIn" />
                     </a>
-                </li>
+               
             </ul>
         </div>
         
@@ -93,27 +90,32 @@ const today = new Date();
     .social-links .social-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 12px;
 }
 
 .social-links .social-grid li {
     list-style: none;
+
 }
 
 .social-links .social-grid a {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    width: 2rem;
 }
 
 .social-links .social-grid img {
     width: 100%;
+    
     
 }
 
 @media (max-width: 600px) {
     .social-links .social-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 }
     @media (max-width: 768px) {
@@ -126,3 +128,35 @@ const today = new Date();
         
     }
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const footerRequestDemo = document.getElementById('footerRequestDemo');
+    if (footerRequestDemo) {
+        footerRequestDemo.addEventListener('click', (e) => {
+            e.preventDefault();
+            openDialog();
+        });
+    }
+});
+
+function openDialog() {
+    window.dispatchEvent(new CustomEvent('openDialog'));
+}
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(this: HTMLAnchorElement, e: Event) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href')?.substring(1);
+    if (targetId) {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  });
+});
+</script>

@@ -14,10 +14,10 @@ interface Props {
 const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false, sideBlur=true } = Astro.props;
 ---
 
-<div class="logos-wrapper">
+<div class={`logos-wrapper ${sideBlur ? 'side-blur' : ''}`}>
   <div 
-    class={`logos ${pauseOnHover ? 'pause-on-hover' : ''} ${scroll ? 'scrollable' : ''} ${sideBlur ? 'side-blur' : ''}`} 
-    style={`--scale: ${scale}; --speed: ${speed}; --blur-color: rgba(0,0,0,0.5)`}
+    class={`logos ${pauseOnHover ? 'pause-on-hover' : ''} ${scroll ? 'scrollable' : ''}`} 
+    style={`--scale: ${scale}; --speed: ${speed}; --blur-color: rgba(200,200,200,0.8)`}
   >
     <div class="logos-slide">
       {clients.map((client) => (
@@ -69,10 +69,19 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     const wrapper = container.closest('.logos-wrapper') as HTMLElement;
     const blurLeft = wrapper.querySelector('.blur-left') as HTMLElement;
     const blurRight = wrapper.querySelector('.blur-right') as HTMLElement;
-    if (blurLeft && blurRight) {
-      blurLeft.style.opacity = container.scrollLeft > 0 ? '1' : '0';
-      blurRight.style.opacity = container.scrollLeft < (container.scrollWidth - container.clientWidth) ? '1' : '0';
-    }
+    const updateBlur = () => {
+      if (blurLeft && blurRight) {
+        const showLeftBlur = container.scrollLeft > 0;
+        const showRightBlur = container.scrollLeft < (container.scrollWidth - container.clientWidth - 1);
+        
+        blurLeft.style.display = showLeftBlur ? 'block' : 'none';
+        blurRight.style.display = showRightBlur ? 'block' : 'none';
+      }
+    };
+
+    // Call updateBlur initially and whenever the scroll position changes
+    updateBlur();
+    container.addEventListener('scroll', updateBlur);
 
 
       animationFrame = requestAnimationFrame(updateScroll);
@@ -132,6 +141,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     height: 100%;
     z-index: 2;
     pointer-events: none;
+    opacity: 1;
   }
 
   .logos-wrapper .blur-left {
@@ -144,10 +154,6 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     background: linear-gradient(to left, var(--blur-color, rgba(255, 255, 255, 0.8)), rgba(255, 255, 255, 0));
   }
 
-  .logos-wrapper:not(.side-blur) .blur-left,
-  .logos-wrapper:not(.side-blur) .blur-right {
-    display: none;
-  }
 
   .logos-slide {
     display: inline-flex;
@@ -200,11 +206,6 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     width: max-content;
   }
 
-
-  .logos:not(.side-blur) .blur-left,
-  .logos:not(.side-blur) .blur-right {
-    display: none;
-  }
 
   @media (max-width: 960px) {
     .logos-slide a {

@@ -60,12 +60,40 @@ const Nav = () => {
     }
   };
 
-  const isActive = (href) => {
-    if (href === '/') {
-      return pathname === '/' || pathname === '';
+  const isActive = (item) => {
+    const path = pathname.toLowerCase();
+    
+    if (item === 'Home') {
+      return path === '/' || path === '';
     }
-    const subpath = pathname.match(/[^/]+/g);
-    return href === pathname || href === '/' + (subpath?.[0] || '');
+    
+    if (item === 'Solutions') {
+      return path === '/solutions';
+    }
+    
+    if (item === 'Partners') {
+      return path === '/become-a-partner' || path.includes('partners.onetier.com');
+    }
+    
+    if (item === 'Company') {
+      return path === '/company';
+    }
+    
+    if (item === 'Products') {
+      const productPages = [
+        '/risk-engagement',
+        '/kubezt-secure-apps',
+        '/anycloud-orchestration',
+        '/secure-access',
+        '/stealth-networking',
+        '/analytics-hq',
+        '/global-data-security',
+        '/security-overwatch'
+      ];
+      return productPages.some(page => path === page);
+    }
+    
+    return false;
   };
 
     return (
@@ -74,16 +102,17 @@ const Nav = () => {
         <div id="navBar" ref={navBarRef} className="flex space-x-1 font-medium drop-shadow-md bg-off-white rounded-full p-2">
           <a
             href="/"
-            className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full bg-blue hover:text-white active:bg-blue text-white transition-colors duration-200 ${
-              isActive(`/`) ? 'active:!bg-blue' : ''
+            className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 ${
+              isActive('Home') ? 'bg-blue text-white' : ''
             }`}
           >
             Home
           </a>
           <a
             href="/solutions"
-            className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 active:!bg-blue
-              }`}
+            className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white transition-colors duration-200 ${
+              isActive('Solutions') ? 'bg-blue text-white' : ''}
+              `}
           >
             Solutions
           </a>
@@ -96,7 +125,7 @@ const Nav = () => {
               onFocus={() => focusMenu(index)}
               href={`/${item.toLowerCase()}`}
               className={`flex items-center justify-center px-4 py-2 text-dark-blue no-underline rounded-full hover:bg-light-blue hover:text-white active:bg-blue active:text-white cursor-default transition-colors duration-200 ${
-                isActive(`/${item.toLowerCase()}`) ? 'active:!bg-blue' : ''
+                isActive(item) ? 'bg-blue text-white' : ''
               }`}
             >
               {item}
