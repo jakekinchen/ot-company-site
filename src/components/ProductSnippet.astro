@@ -57,18 +57,18 @@ import DottedPathSVG from './DottedPathSVG.astro';
 
 />
 </div>
-<div id={`${productId}-container`} class={`${productId}-container text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center`}>
+<div id={`${productId}-container`} class={`${productId}-container text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center mb:max-w-[700px]`}>
   <div class="connector-line" style={`height: ${firstSnippet ? '4rem' : '2rem'}; top: ${firstSnippet ? '-4.2rem' : '-2.4rem'};`} />
   
-  <div class={`flex flex-col mb:mt-0 mb:py-8 w-[55%] mb:w-[90%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
+  <div class={`flex flex-col mb:py-8 mb:-mt-8 w-[55%] mb:w-[98%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
     
-    <div class={`${productId}-title flex mb:flex-col mb:justify-center items-center`}>
+    <div class={`${productId}-title flex mb:flex-col mb:text-center mb:justify-center items-center`}>
       <img src={iconSrc} alt={`${productName} Icon`} class={`w-[2vw] mr-[1vw] rounded-none mb:w-[25vw] mb:order-2 filter filter-white`}>
-      <h1 class={`text-[calc(1vw+1rem)] mb:text-[6vw] font-semibold text-white mb:mb-4 ${textClass}`}>{productName}</h1>
+      <h1 class={`${textClass}`}>{productName}</h1>
     </div>
-    <h2 class={`text-[calc(3vw+2rem)] mb:text-[10vw] font-bold mb-6 text-white text-center ${textAlignClass}`}>{title}</h2>
+    <h2 class={` ${textAlignClass}`}>{title}</h2>
     <p class={`text-2xl mb-6 text-white w-[70%] text-center ${textAlignClass}`}>{subtitle}</p>
-    <a href={url} class="gradient-button text-center px-8 py-2 text-2xl leading-v-relaxed">
+    <a href={url} class="gradient-button text-center px-8 py-2 text-xl leading-v-relaxed">
       More Information
     </a>
   </div>
@@ -83,13 +83,41 @@ import DottedPathSVG from './DottedPathSVG.astro';
     }
   }
 
+  h1 {
+  font-size: calc(1vw + 1rem);
+  font-weight: 600; /* semibold */
+  color: white;
+}
+
+@media (max-width: 960px) {
+  h1 {
+    font-size: clamp(2rem, 2vw + 1rem, 6rem);
+    margin-bottom: 1rem;
+  }
+}
+
+  h2 {
+  font-size: calc(3vw + 2rem);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: white;
+  }
+
+@media (max-width: 960px) {
+  h2 {
+    font-size: clamp(1.5rem, 2vw + 1rem, 4rem);
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+}
+
   .connector-line {
     position: relative;
     width: 4px;
     height: 2rem;
     top: -2.4rem;
     background: linear-gradient(to bottom, transparent 50%, rgb(255, 255, 255) 50%);
-    background-size: 100% 10px;
+    background-size: 100% 16px;
     animation: dash 5s linear infinite;
     background-repeat: repeat-y; /* Ensure the gradient repeats */
   }

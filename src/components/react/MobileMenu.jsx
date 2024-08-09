@@ -62,8 +62,12 @@ const MobileMenu = () => {
     setLastActiveSubmenu(null);
   };
 
-  if (!isMobile) return null; // Don't render anything if not mobile
+  const handleRequestDemo = () => {
+    closeMenu();
+    window.dispatchEvent(new CustomEvent('openDialog'));
+  };
 
+  if (!isMobile) return null; // Don't render anything if not mobile
 
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center ${isOpen ? 'visible' : 'invisible'}`}>
@@ -109,9 +113,12 @@ const MobileMenu = () => {
                     </li>
                   ))}
                   <li className="py-4">
-                    <a href="/request-demo" className="block text-xl font-semibold text-blue hover:text-orange">
+                    <button 
+                      onClick={handleRequestDemo} 
+                      className="block w-full text-left text-xl font-semibold text-blue hover:text-orange"
+                    >
                       Request a Demo
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </nav>

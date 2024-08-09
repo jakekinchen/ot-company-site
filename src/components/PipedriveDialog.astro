@@ -7,14 +7,12 @@
           </svg>
 		</button>
 		<div class="m-4 space-y-2">
-        <h2 class="no-appearance text-blue mb-2 max-w-xl text-center mx-auto">Find the solution in our portfolio that fits your business</h2>
-        <p class="text-blue-500 text-xl mb-2">CONTACT US</p>
-        <div class="dt:w-1/2 dt:translate-x-[50%]"> 
-        <div class="pipedriveWebForms mx-auto" data-pd-webforms="https://webforms.pipedrive.com/f/6UG5Trc3Z4XyngKTA15SpoLlxuEXlBkO4iPG5zCrdMTmsfxnLGSsQf9SGiGxr2OSWv"><script src="https://webforms.pipedrive.com/f/loader"></script></div>
-    </div>
+        <h2 class="no-appearance text-blue my-2 max-w-xl text-center mx-auto">Find the solution in our portfolio that fits your business</h2>
+        <h3 class="text-blue text-xl">CONTACT US</h3>
+        <div class="pipedriveWebForms mx-auto -translate-y-8" data-pd-webforms="https://webforms.pipedrive.com/f/6UG5Trc3Z4XyngKTA15SpoLlxuEXlBkO4iPG5zCrdMTmsfxnLGSsQf9SGiGxr2OSWv"><script src="https://webforms.pipedrive.com/f/loader"></script>
+		</div>
 	</div>
 </dialog>
-
 
 <style>
 
@@ -32,7 +30,6 @@
 		position: fixed;
 		border: none;
 		padding: 2rem;
-		width: 70vw; /* Adjusted width */
 		border-radius: 10px; /* Rounded corners */
 		box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 		text-align: center; /* Center the text inside the modal */
@@ -126,33 +123,31 @@
 
 	h2 {
     color: var(--blue);
-    font-size: 2.5rem;  /* Default font size for larger screens */
+    font-size: 2rem;  /* Default font size for larger screens */
 }
 
+
 @media (max-width: 640px) {
-    .dialog {
-        width: clamp(300px, 90%, 600px); /* Suitable percentage/fixed width for smaller screens */
+    dialog {
+        width: clamp(300px, 90%, 700px); /* Suitable percentage/fixed width for smaller screens */
        
     }
     h2 {
-        /* Smooth transition from 2.5rem at 640px to 1rem at 320px */
-        font-size: 1.5rem;
+        font-size: clamp(1.25rem, 4vw, 2rem); /* Responsive font size */
 		width: 90%;
     }
+	h3{
+		font-size: clamp(1rem, 3vw, 1.5rem);
+	}
 }
 
 @media (min-width: 641px) {
-    .dialog {
+    dialog {
         width: 90%; /* Suitable percentage/fixed width for larger screens */
         max-width: 600px; /* Example fixed max-width for larger screens */
     }
 }
 
-@media (max-width: 320px) {
-    h2 {
-        font-size: 1rem; /* Minimum font size */
-    }
-}
 
 	
 </style>
