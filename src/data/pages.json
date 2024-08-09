@@ -266,8 +266,8 @@
         ],
         "visual-guide": {
           "subtitle": "Explore how Analytics HQ can transform your data into valuable insights.",
-          "graphicSrc": "/ahq-visual-guide.jpg",
-          "isVideo": "false"
+          "graphicSrc": "",
+          "isVideo": "true"
         }
       }
     },

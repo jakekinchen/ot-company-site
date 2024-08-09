@@ -61,40 +61,36 @@ const Nav = () => {
   };
 
   const isActive = (item) => {
-    const path = pathname.toLowerCase();
-    
-    if (item === 'Home') {
-      return path === '/' || path === '';
-    }
-    
-    if (item === 'Solutions') {
-      return path === '/solutions/';
-    }
-    
-    if (item === 'Partners') {
-      return path === '/become-a-partner/';
-    }
-    
-    if (item === 'Company') {
-      return path === '/company/' || path === '/events/';
-    }
-    
-    if (item === 'Products') {
-      const productPages = [
-        '/risk-engagement/',
-        '/kubezt-secure-apps/',
-        '/anycloud-orchestration/',
-        '/secure-access/',
-        '/stealth-networking/',
-        '/analytics-hq/',
-        '/global-data-security/',
-        '/security-overwatch/'
-      ];
-      return productPages.some(page => path === page);
-    }
-    
-    return false;
-  };
+  const path = pathname.toLowerCase();
+  const checkPath = (p) => path === p || path === p + '/';
+
+  if (item === 'Home') {
+    return checkPath('/') || path === '';
+  }
+  if (item === 'Solutions') {
+    return checkPath('/solutions');
+  }
+  if (item === 'Partners') {
+    return checkPath('/become-a-partner');
+  }
+  if (item === 'Company') {
+    return checkPath('/company') || checkPath('/events');
+  }
+  if (item === 'Products') {
+    const productPages = [
+      '/risk-engagement',
+      '/kubezt-secure-apps',
+      '/anycloud-orchestration',
+      '/secure-access',
+      '/stealth-networking',
+      '/analytics-hq',
+      '/global-data-security',
+      '/security-overwatch'
+    ];
+    return productPages.some(page => checkPath(page));
+  }
+  return false;
+};
 
     return (
     <nav ref={navRef} className="mb:hidden w-full py-4 relative">
