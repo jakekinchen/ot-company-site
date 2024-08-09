@@ -68,27 +68,27 @@ const Nav = () => {
     }
     
     if (item === 'Solutions') {
-      return path === '/solutions';
+      return path === '/solutions/';
     }
     
     if (item === 'Partners') {
-      return path === '/become-a-partner' || path.includes('partners.onetier.com');
+      return path === '/become-a-partner/';
     }
     
     if (item === 'Company') {
-      return path === '/company';
+      return path === '/company/' || path === '/events/';
     }
     
     if (item === 'Products') {
       const productPages = [
-        '/risk-engagement',
-        '/kubezt-secure-apps',
-        '/anycloud-orchestration',
-        '/secure-access',
-        '/stealth-networking',
-        '/analytics-hq',
-        '/global-data-security',
-        '/security-overwatch'
+        '/risk-engagement/',
+        '/kubezt-secure-apps/',
+        '/anycloud-orchestration/',
+        '/secure-access/',
+        '/stealth-networking/',
+        '/analytics-hq/',
+        '/global-data-security/',
+        '/security-overwatch/'
       ];
       return productPages.some(page => path === page);
     }
