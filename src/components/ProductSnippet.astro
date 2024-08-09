@@ -15,12 +15,12 @@ const {
 } = Astro.props;
 
 const isLeft = justify === "left";
-const containerClasses = isLeft ? `items-start ${containerClass}` : `items-end ${containerClass}`;
-const justifyClass = isLeft ? "justify-start" : "justify-end";
+const containerClasses = isLeft ? `dt:items-start ${containerClass}` : `dt:items-end ${containerClass}`;
+const justifyClass = isLeft ? "dt:justify-start" : "dt:justify-end";
 const textAlignClass = isLeft ? `dt:text-left ${textClass}` : `dt:text-right ${textClass}`;
-const orderClasses = isLeft ? "order-1" : "order-2";
-const iconOrderClasses = isLeft ? "order-2" : "order-1";
-const marginClasses = isLeft ? `ml-40 ${iconClass}` : `mr-24 ${iconClass}`;
+const orderClasses = isLeft ? "dt:order-1" : "dt:order-2";
+const iconOrderClasses = isLeft ? "dt:order-2" : "dt:order-1";
+const marginClasses = isLeft ? `dt:ml-40 ${iconClass}` : `dt:mr-24 ${iconClass}`;
 const productId = productName.toLowerCase().replace(/ /g, '-');
 import Lines from './StaticLines.astro';
 import DottedPathSVG from './DottedPathSVG.astro';
@@ -57,10 +57,10 @@ import DottedPathSVG from './DottedPathSVG.astro';
 
 />
 </div>
-<div id={`${productId}-container`} class={`${productId}-container text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center mb:max-w-[700px]`}>
+<div id={`${productId}-container`} class={`${productId}-container text-white mb:border-4 mb:rounded-3xl mb:border-dashed flex justify-center mb:flex-col items-center mb:max-w-[700px] mb:w-[90vw]`}>
   <div class="connector-line" style={`height: ${firstSnippet ? '4rem' : '2rem'}; top: ${firstSnippet ? '-4.2rem' : '-2.4rem'};`} />
   
-  <div class={`flex flex-col mb:py-8 mb:-mt-8 w-[55%] mb:w-[98%] mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
+  <div class={`flex flex-col mb:pb-8 mb:pt-4 mb:-mt-8 w-[55%] mb:w-full mb:flex-col mb:items-center ${containerClasses} ${orderClasses}`}>
     
     <div class={`${productId}-title flex mb:flex-col mb:text-center mb:justify-center items-center`}>
       <img src={iconSrc} alt={`${productName} Icon`} class={`w-[2vw] mr-[1vw] rounded-none mb:w-[25vw] mb:order-2 filter filter-white`}>
@@ -122,13 +122,8 @@ import DottedPathSVG from './DottedPathSVG.astro';
     background-repeat: repeat-y; /* Ensure the gradient repeats */
   }
 
-  .outer-container {
-    position: relative;
-  }
 
-  .outer-container:first-child .connector-line {
-    display: none; /* Hide the connector line for the first box */
-  }
+  
 
   a:hover {
     color: white;

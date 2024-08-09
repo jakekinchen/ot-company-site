@@ -106,6 +106,7 @@ const closestEvent = futureEvents[0];
           url={product.href}
           justify={index % 2 === 0 ? 'left' : 'right'}
           firstSnippet={index === 0}
+          containerClass={index === 0 ? 'mb:-mt-16' : ''}
         />
       ))}
     </div>
