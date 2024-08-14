@@ -1,21 +1,38 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import type { Post } from '../../types';
+import { GET_POST } from '../../queries';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts.map((post: any) => ({
+  // Fetch data from your WordPress GraphQL API
+  const res = await fetch('https://onetier.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: GET_POST,
+    }),
+  });
+
+  const { data } = await res.json();
+  const posts: Post[] = data.posts.nodes;
+
+  return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 }
 
-type Post = CollectionEntry<'posts'>;
+const { post }: { post: Post } = Astro.props;
 
-const { post: post } = Astro.props;
-const { Content } = await post.render();
+// Rendering the content with Astro components
 ---
 
-<BlogPost {...post.data}>
-  <Content />
+<BlogPost 
+  title={post.title}
+  date={new Date(post.date)}
+  author={post.author.node.map(author => author.name).join(', ')}
+>
+<div class="content" {...({ dangerouslySetInnerHTML: { __html: post.content } } as any)} />
 </BlogPost>

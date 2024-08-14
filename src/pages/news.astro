@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import type { Post } from '../types';
 
 const posts = await getCollection('posts') as unknown as Post[];
-const sortedPosts = posts.sort((a: Post, b: Post) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+const sortedPosts = posts.sort((a: Post, b: Post) => new Date(b.date).getTime() - new Date(a.date).getTime());
 const recentNews = sortedPosts.filter(post => post.category === 'News').slice(0, 3);
 const recentBlog = sortedPosts.filter(post => post.category === 'Blog').slice(0, 3);
 const moreNews = sortedPosts.slice(0, 6);
@@ -47,7 +47,7 @@ const moreNews = sortedPosts.slice(0, 6);
             <tr>
               <td>{post.title}</td>
               <td>{post.category}</td>
-              <td>{new Date(post.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+              <td>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
             </tr>
           ))}
         </tbody>

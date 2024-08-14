@@ -12,25 +12,6 @@ export type Event = {
   data: EventSchema;
 };
 
-export type Post = {
-  id: string;
-  href: string;
-  body: string;
-  title: string;
-  category: enum['Company News'| 'Editorial'];
-  collection: 'posts';
-  description: string;
-  pubDate: Date;
-  updatedDate: Date;
-  heroImage: string;
-  share: {
-    image: string;
-    title: string;
-    description: string;
-  };
-  data: z.infer<(typeof collections.posts)['schema']>;
-};
-
 
 export type ProductInfo = {
     label: string;
@@ -89,6 +70,7 @@ export type TeamMember = {
   name: string;
   title: string;
   imageSrc: string;
+  bio: string;
 };
 
 export type Initiative = {
@@ -106,3 +88,45 @@ export type AppData = {
   teamMembers: TeamMember[];
   initiatives: Initiative[];
 };
+
+// New addition for Post and type guard
+export type Post = {
+  title: string;
+  date: Date;
+  category: string;
+  slug: string;
+  tags: {
+    node: {
+      name: string;
+    }[];
+  };
+  share: {
+    title: string;
+    description: string;
+    image?: string;
+  };
+  author: {
+    node: {
+      name: string;
+    }[];
+    };
+  excerpt: string;
+  content: string;
+  featuredImage?: {
+    sourceUrl: string;
+    altText: string;
+  };
+};
+
+export function isPostData(data: any): data is Post {
+  return (
+    typeof data.title === 'string' &&
+    data.date instanceof Date &&
+    typeof data.category === 'string' &&
+    Array.isArray(data.tags) &&
+    typeof data.share === 'object' &&
+    typeof data.share.title === 'string' &&
+    typeof data.share.description === 'string' &&
+    (typeof data.share.image === 'undefined' || typeof data.share.image === 'string')
+  );
+}

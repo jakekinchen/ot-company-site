@@ -363,7 +363,16 @@
     }
   ],
   "company": [
-    { "href": "/company", "iconSrc": "/menuIcons/overview.svg", "label": "Overview" },
+    { 
+      "href": "/company", 
+      "iconSrc": "/menuIcons/overview.svg", 
+      "label": "Overview" 
+    },
+    {
+      "href": "/leadership",
+      "iconSrc": "/menuIcons/leadership.svg",
+      "label": "Leadership"
+    },
     {
       "href": "/events",
       "iconSrc": "/menuIcons/events.svg",
@@ -431,11 +440,11 @@
 { "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com"}
 ],
 "teamMembers": [
-    { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg" },
-    { "name": "Taber West", "title": "Chief Technology Officer", "imageSrc": "/profiles/taber-west.jpg" },
-    { "name": "Jai Oliver", "title": "Vice President of Sales", "imageSrc": "/profiles/jai-oliver.jpg" },
-    { "name": "Krystal Morgan", "title": "US Partner Manager", "imageSrc": "/profiles/krystal-morgan.jpg" },
-    { "name": "Mateo Pinzón", "title": "LATAM Partner Manager", "imageSrc": "/profiles/mateo-pinzon.jpg" }
+    { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg", "bio": "Chris Romeo, a Co-Founder and the Chief Executive Officer of OneTier. He is an experienced Sales executive with over 20 years in Sales. He has previous Sales leadership roles at Atlantis Computing, Insight Engines, NICE, Kyriba and Dispersive." },
+    { "name": "Taber West", "title": "Chief Technology Officer", "imageSrc": "/profiles/taber-west.jpg", "bio": "Taber West, a Co-Founder and the Chief Technology Officer at OneTier. A US Navy veteran and master of four engineering disciplines, he has over 30 years of experience in technology working for McKesson, the US Department of Energy, CSC, DXC, & Accenture in leadership positions." },
+    { "name": "Jai Oliver", "title": "Vice President of Sales", "imageSrc": "/profiles/jai-oliver.jpg", "bio": "Jai Oliver is the Head of Sales at OneTier. He holds a Certified Professional Facilitator (CPF) credential from CustomerCentric Selling, MEDDPIC, SPIN, and Challenger methodology. He has over 20 years of experience in sales, business development, and Enablement at NICE, Centrical, and Replicant." },
+    { "name": "Krystal Morgan", "title": "US Partner Manager", "imageSrc": "/profiles/krystal-morgan.jpg", "bio": "Krystal Morgan is a Partner Manager for North America at OneTier. She is a US Army Reservist and an experienced executive assistant from FISERV. Krystal has worked in and with Public Sector and Commercial entities for 11 years." },
+    { "name": "Mateo Pinzón", "title": "LATAM Partner Manager", "imageSrc": "/profiles/mateo-pinzon.jpg", "bio": "Mateo Pinzon is a Partner Manager for Latin America at OneTier. Originally from Colombia, Mateo has specialized on international business development. Now he has a network of partners and end-users he works with in Latin America." }
   ],
   "initiatives": [
     { "iconSrc": "/globe.svg", "description": "Environmental Activism is a key part of OneTier's secure global strategy." },

@@ -1,5 +1,5 @@
 ---
-const { imageSrc, name, title, backgroundColor = 'blue', hasBackground = true, circleWidth = 100, nameColor = 'white', titleColor = 'white' } = Astro.props;
+const { imageSrc, name, title, backgroundColor = 'blue', hasBackground = true, circleWidth = 100, nameColor = 'white', titleColor = 'white', id = '' } = Astro.props;
 const bgColor = backgroundColor.startsWith('#') ? backgroundColor : `var(--${backgroundColor})`;
 const nameTextColor = nameColor.startsWith('#') ? nameColor : `var(--${nameColor})`;
 const titleTextColor = titleColor.startsWith('#') ? titleColor : `var(--${titleColor})`;
@@ -8,7 +8,7 @@ const titleTextColor = titleColor.startsWith('#') ? titleColor : `var(--${titleC
   {hasBackground && (
     <div class="circle-background" style={`background-color: ${bgColor};`}></div>
   )}
-  <div class="image-container">
+  <div id={id} class="image-container">
     <img
       src={imageSrc}
       alt={name}
