@@ -6,5 +6,10 @@
     "jsxImportSource": "react",
     "lib": ["ES2015", "DOM"],
     "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/types": ["src/types.d.ts"]
+    }
   }
 }
