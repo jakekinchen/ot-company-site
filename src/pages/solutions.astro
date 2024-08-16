@@ -3,13 +3,13 @@ import Layout from '../components/Layout.astro'
 import { solutions } from '../data/pages.json';
 import PathMaker from '../components/PathMaker.astro';
 ---
-<Layout headerLogoColor='white' headerIconColor='white' gradient={false} backgroundColorScript={true}>
+<Layout headerLogoColor='white' headerIconColor='white' gradient={false} backgroundColorScript={true} metadata={solutions.metadata}>
     <div class="layoutConstraint py-16 flex flex-col">
         <h1 class="text-5xl font-bold text-left text-white">Solutions</h1>
         <h2 class="text-3xl font-bold text-left text-white mt-8 italic">Here’s how OneTier meets your needs</h2>
         <p id="solutions-description" class="description text-white text-lg mt-2"><br>OneTier offers a variety of solutions to help your business succeed. Our team of experts is dedicated to providing you with the tools you need to grow your business and reach your goals.<br><br> Whether you need help with marketing, sales, or customer service, we have a solution for you. Our solutions are designed to help you increase revenue, improve customer satisfaction, and drive growth. Contact us today to learn more about how OneTier can help your business succeed.</p>
         <div class="mt-12 grid grid-cols-2 gap-8">
-            {solutions.map((solution, index) => (
+            {solutions.snippets.map((solution, index) => (
                 <div id={`solution-${index}`} class="solution p-4 flex flex-col items-center">
                     <img id={`solutions-icon-${index}`} src={solution.iconSrc} alt={solution.label} class="w-32 h-32 mb-4" />
                     <h3 class="text-3xl font-bold text-white">{solution.label}</h3>
@@ -21,7 +21,7 @@ import PathMaker from '../components/PathMaker.astro';
         </div>
     </div>
 </Layout>
-{solutions.map((_, index) => (
+{solutions.snippets.map((_, index) => (
     <PathMaker
         startEdge={index % 2 === 0 ? 'left' : 'right'}
         startY={[`solutions-icon-${index % 2 === 0 ? 0 : 1}`, 'center']}

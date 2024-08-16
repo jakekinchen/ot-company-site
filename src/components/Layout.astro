@@ -5,6 +5,7 @@ import Dialog from './Dialog.astro';
 import Footer from './Footer.astro';
 
 const { 
+  metadata = {},
   title, 
   description, 
   footerLogoGradient=true,
@@ -30,7 +31,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <!doctype html>
 <html class="" lang="en">
 <head> 
-  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} metadata={metadata} />
   <!--  <base href="https://onetier.com/">   -->
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">

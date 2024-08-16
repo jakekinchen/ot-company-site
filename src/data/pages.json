@@ -11,6 +11,25 @@
         "title": "Risk <br> Engagement",
         "subtitle": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face.",
         "mouseHoverAnimation": "true",
+        "metadata": {
+          "title": "Risk Engagement - OneTier",
+          "description": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face. Explore how OneTier's Risk Engagement solution helps you mitigate and manage risks effectively.",
+          "keywords": "cyber risk, compliance, risk management, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "Risk Engagement - OneTier",
+            "description": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face. Explore how OneTier's Risk Engagement solution helps you mitigate and manage risks effectively.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "Risk Engagement - OneTier",
+            "description": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face. Explore how OneTier's Risk Engagement solution helps you mitigate and manage risks effectively.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits":{
           "subtitle": "At OneTier, we offer data aggregation for your business environments, so you can see exactly what is happening, and where it is happening.",
           "graphicSrc": "/mockups/risk-engagement.png",
@@ -56,6 +75,25 @@
         "title": "KubeZT Secure Apps",
         "subtitle": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform.",
         "mouseHoverAnimation": "true",
+        "metadata": {
+          "title": "KubeZT Secure Apps - OneTier",
+          "description": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform with OneTier.",
+          "keywords": "Kubernetes security, zero trust, PKI, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "KubeZT Secure Apps - OneTier",
+            "description": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform with OneTier.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "KubeZT Secure Apps - OneTier",
+            "description": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform with OneTier.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits": {
           "subtitle": "Save time deploying a suite of Zero-Trust enabled Directory Services, Public Key Infrastructure, Secure Domain Name Service, Resource Scheduling and Stealth Networking integrated into a secure Kubernetes Virtual Container Platform.",
           "graphicSrc": "/mockups/kubezt-secure-apps.png",
@@ -102,6 +140,25 @@
         "title": "AnyCloud Orchestration",
         "subtitle": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management.",
         "mouseHoverAnimation": "true",
+        "metadata": {
+          "title": "AnyCloud Orchestration - OneTier",
+          "description": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management with OneTier's AnyCloud Orchestration.",
+          "keywords": "cloud orchestration, multi-cloud, digital transformation, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "AnyCloud Orchestration - OneTier",
+            "description": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management with OneTier's AnyCloud Orchestration.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "AnyCloud Orchestration - OneTier",
+            "description": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management with OneTier's AnyCloud Orchestration.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits": {
           "subtitle": "Understand the cost of your Cloud Deployments before you commit to a Cloud. One interface can save time in creating Cloud environments with a policy-controlled Visio-like UI.",
           "graphicSrc": "/mockups/anycloud-orchestration.png",
@@ -147,6 +204,25 @@
         "title": "Secure Access",
         "subtitle": "Control what was previously unmanageable by blocking lateral movement and preventing malware from entering through user clicks.",
         "mouseHoverAnimation": "true",
+        "metadata": {
+          "title": "Secure Access - OneTier",
+          "description": "Detect and deny malicious activity with Secure Access. Implement MFA, block lateral movement, and protect your organization from cyber threats.",
+          "keywords": "secure access, MFA, lateral movement, cybersecurity, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "Secure Access - OneTier",
+            "description": "Detect and deny malicious activity with Secure Access. Implement MFA, block lateral movement, and protect your organization from cyber threats.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "Secure Access - OneTier",
+            "description": "Detect and deny malicious activity with Secure Access. Implement MFA, block lateral movement, and protect your organization from cyber threats.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits": {
           "subtitle": "Control what you previously couldn't. Eliminate lateral movement in the network and prevent end users from unknowingly clicking links that allow malware into the network.",
           "graphicSrc": "/mockups/security-access.png",
@@ -192,6 +268,25 @@
         "title": "Stealth Networking",
         "subtitle": "Protect your data with a service mesh that fortifies inbound firewall ports and enables edge services through scalable, multipath secure networking.",
         "mouseHoverAnimation": "true",
+        "metadata": {
+          "title": "Stealth Networking - OneTier",
+          "description": "Protect your network with Stealth Networking. Secure inbound firewall ports and enable edge services with scalable, multipath secure networking.",
+          "keywords": "stealth networking, service mesh, secure networking, firewall, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "Stealth Networking - OneTier",
+            "description": "Protect your network with Stealth Networking. Secure inbound firewall ports and enable edge services with scalable, multipath secure networking.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "Stealth Networking - OneTier",
+            "description": "Protect your network with Stealth Networking. Secure inbound firewall ports and enable edge services with scalable, multipath secure networking.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits": {
           "subtitle": "Keep your data secure in transit over a secure service mesh that allows you to close inbound firewall ports and enable edge services over multipath scalable secure networking.",
           "graphicSrc": "/mockups/stealth-networking.png",
@@ -237,6 +332,25 @@
         "title": "Analytics HQ",
         "subtitle": "Reduce TCO and speed up with unified data ingestion, modern management, and edge-to-core analytics using Snowflake and Databricks.",
         "mouseHoverAnimation": "true",
+        "metadata": {
+          "title": "Analytics HQ - OneTier",
+          "description": "Visualize and interact with your data in real-time using Analytics HQ. Experience secure, unified data management and advanced analytics.",
+          "keywords": "data visualization, analytics, real-time data, Snowflake, Databricks, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "Analytics HQ - OneTier",
+            "description": "Visualize and interact with your data in real-time using Analytics HQ. Experience secure, unified data management and advanced analytics.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "Analytics HQ - OneTier",
+            "description": "Visualize and interact with your data in real-time using Analytics HQ. Experience secure, unified data management and advanced analytics.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits": {
           "subtitle": "Combine high-speed data ingestion, modern data management, advanced analytics, and easy-to-create dashboards in one data execution engine.",
           "graphicSrc": "/mockups/analytics-hq.png",
@@ -282,6 +396,25 @@
         "title": "Global Data Security",
         "subtitle": "An encrypted global file system that consolidates storage, ensures immutability, and eliminates backups.",
         "mouseHoverAnimation": "false",
+        "metadata": {
+          "title": "Global Data Security - OneTier",
+          "description": "Ensure your data is secure and available anytime, anywhere with Global Data Security. Explore our encrypted global file system and resilient storage solutions.",
+          "keywords": "data security, global file system, encrypted storage, ransomware resilience, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "Global Data Security - OneTier",
+            "description": "Ensure your data is secure and available anytime, anywhere with Global Data Security. Explore our encrypted global file system and resilient storage solutions.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "Global Data Security - OneTier",
+            "description": "Ensure your data is secure and available anytime, anywhere with Global Data Security. Explore our encrypted global file system and resilient storage solutions.",
+            "image": "/OT-card.jpg"
+          }
+        },
         "benefits": {
           "subtitle": "Discover all of your data and classify it into the correct categories so that it can be properly stored in an immutable global filesystem that is easily recoverable.",
           "graphicSrc": "/mockups/global-data-security.png",
@@ -327,6 +460,25 @@
        "title": "Security Overwatch",
       "subtitle": "Monitor your network and block threat actors with a comprehensive, user-friendly dashboard.",
       "mouseHoverAnimation": "true",
+      "metadata": {
+          "title": "Security Overwatch - OneTier",
+          "description": "Evolve with threats in real-time using Security Overwatch. Detect, monitor, and remediate threats with a user-friendly dashboard.",
+          "keywords": "security monitoring, threat detection, network security, OneTier",
+          "author": "OneTier Team",
+          "robots": "index,follow",
+          "og": {
+            "type": "website",
+            "title": "Security Overwatch - OneTier",
+            "description": "Evolve with threats in real-time using Security Overwatch. Detect, monitor, and remediate threats with a user-friendly dashboard.",
+            "image": "/OT-card.jpg"
+          },
+          "twitter": {
+            "card": "summary_large_image",
+            "title": "Security Overwatch - OneTier",
+            "description": "Evolve with threats in real-time using Security Overwatch. Detect, monitor, and remediate threats with a user-friendly dashboard.",
+            "image": "/OT-card.jpg"
+          }
+        },
       "benefits": {
         "subtitle": "All of the capabilities you need to monitor your network and prevent threat actors from exploiting and stealing critical data in a single user-friendly dashboard.",
         "graphicSrc": "/mockups/security-overwatch.png",
@@ -362,24 +514,56 @@
       }
     }
   ],
-  "company": [
-    { 
-      "href": "/company", 
-      "iconSrc": "/menuIcons/overview.svg", 
-      "label": "Overview" 
+  "company": {
+    "pages": [
+      { 
+        "href": "/company", 
+        "iconSrc": "/menuIcons/overview.svg", 
+        "label": "Overview",
+        "metadata": {
+          "title": "Company Overview - OneTier",
+          "description": "Explore the OneTier company overview, including our mission, values, and what drives us forward in the cybersecurity industry.",
+          "keywords": "OneTier, company overview, mission, values",
+          "author": "OneTier Team",
+          "robots": "index,follow"
+        }
+      },
+      {
+        "href": "/leadership",
+        "iconSrc": "/menuIcons/leadership.svg",
+        "label": "Leadership",
+        "metadata": {
+          "title": "Leadership Team - OneTier",
+          "description": "Meet the leadership team at OneTier. Discover the experienced professionals guiding our company to success.",
+          "keywords": "OneTier, leadership, team, executives",
+          "author": "OneTier Team",
+          "robots": "index,follow"
+        }
+      }
+    ]
+  },
+  "solutions":{ 
+    "href": "/solutions",
+    "metadata": {
+      "title": "Solutions - OneTier",
+      "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
+      "keywords": "cyber risk, ransomware, Zero Trust, CMMC, OneTier",
+      "author": "OneTier Team",
+      "robots": "index,follow",
+      "og": {
+        "type": "website",
+        "title": "Solutions - OneTier",
+        "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
+        "image": "/OT-card.jpg"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Solutions - OneTier",
+        "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
+        "image": "/OT-card.jpg"
+      }
     },
-    {
-      "href": "/leadership",
-      "iconSrc": "/menuIcons/leadership.svg",
-      "label": "Leadership"
-    },
-    {
-      "href": "/events",
-      "iconSrc": "/menuIcons/events.svg",
-      "label": "Events"
-    }
-  ],
-  "solutions": [
+    "snippets": [
     { 
       "label": "Ransomware", 
       "iconSrc": "/solutionsIcons/ransomware.svg", 
@@ -412,11 +596,35 @@
         {"label": "How to Prepare for CMMC", "href": "/how-to-prepare-for-cmmc"}
       ] 
     }
-  ],
-  "partners": [
-    { "href": "/become-a-partner", "iconSrc": "/menuIcons/become-a-partner.svg", "label": "Become a Partner" },
-    { "href": "https://partners.onetier.com/login", "iconSrc": "/menuIcons/partner-portal.svg", "label": "Partner Portal" }
-  ],
+  ]},
+  "partners": {
+    "pages": [
+      { 
+        "href": "/become-a-partner", 
+        "iconSrc": "/menuIcons/become-a-partner.svg", 
+        "label": "Become a Partner",
+        "metadata": {
+          "title": "Become a Partner - OneTier",
+          "description": "Join OneTier's partner program and access exclusive resources and support. Learn how to become a partner today.",
+          "keywords": "OneTier, partner program, become a partner",
+          "author": "OneTier Team",
+          "robots": "index,follow"
+        }
+      },
+      { 
+        "href": "https://partners.onetier.com/login", 
+        "iconSrc": "/menuIcons/partner-portal.svg", 
+        "label": "Partner Portal",
+        "metadata": {
+          "title": "Partner Portal - OneTier",
+          "description": "Access the OneTier Partner Portal for exclusive tools and resources to support your partnership with us.",
+          "keywords": "OneTier, partner portal, partner login",
+          "author": "OneTier Team",
+          "robots": "index,follow"
+        }
+      }
+    ]
+  },
   "clients": [
     { "label": "U.S. Air Force", "iconSrc": "/clientLogos/airforce.png", "alt": "U.S. Air Force", "href": "https://www.airforce.com"},
     { "label": "Milkwaukee", "iconSrc": "/clientLogos/milwaukee.png", "alt": "Milwaukee", "href": "https://www.milwaukee.gov"},

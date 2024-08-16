@@ -3,15 +3,45 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 
-interface Props {
-	title: string;
-	description: string;
-	image?: string;
+interface Metadata {
+  title: string;
+  description: string;
+  image?: string;
+  keywords?: string;
+  author?: string;
+  robots?: string;
+  og?: {
+    type?: string;
+    url?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+  };
+  twitter?: {
+    card?: string;
+    url?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+  };
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const metadata: Metadata = Astro.props.metadata;
 
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+const {
+  title = "OneTier",
+  description = "Innovation through Integration",
+  image = '/OT-card.jpg', // Default to OT-card.jpg
+  keywords = '',
+  author = '',
+  robots = 'index,follow',
+  og = {},
+  twitter = {}
+} = metadata;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(og.image || image, Astro.url);
+const twitterImage = new URL(twitter.image || image, Astro.url);
 ---
 
 <!-- Global Metadata -->
@@ -31,17 +61,20 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+<meta name="robots" content={robots} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:type" content={og.type || 'website'} />
+<meta property="og:url" content={og.url || Astro.url} />
+<meta property="og:title" content={og.title || title} />
+<meta property="og:description" content={og.description || description} />
+<meta property="og:image" content={ogImage} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:card" content={twitter.card || 'summary_large_image'} />
+<meta property="twitter:url" content={twitter.url || Astro.url} />
+<meta property="twitter:title" content={twitter.title || title} />
+<meta property="twitter:description" content={twitter.description || description} />
+<meta property="twitter:image" content={twitterImage} />
