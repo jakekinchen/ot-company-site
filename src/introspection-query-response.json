@@ -1,0 +1,1868 @@
+{
+    "data": {
+      "__schema": {
+        "queryType": {
+          "fields": [
+            {
+              "name": "allSettings",
+              "description": "Entry point to get all settings for the site",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Settings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "categories",
+              "description": "Connection between the RootQuery type and the category type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToCategoryConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToCategoryConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "category",
+              "description": "A 0bject",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "CategoryIdType",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Category",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksAnimationControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksAnimationControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksAnimationControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksColorPanelControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksColorPanelControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksColorPanelControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksCustomColorsControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksCustomColorsControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksCustomColorsControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksGoogleMapsApiKeySettings",
+              "description": "Fields of the &#039;CoblocksGoogleMapsApiKeySettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksGoogleMapsApiKeySettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksGoogleRecaptchaSecretKeySettings",
+              "description": "Fields of the &#039;CoblocksGoogleRecaptchaSecretKeySettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksGoogleRecaptchaSecretKeySettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksGoogleRecaptchaSiteKeySettings",
+              "description": "Fields of the &#039;CoblocksGoogleRecaptchaSiteKeySettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksGoogleRecaptchaSiteKeySettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksGradientPresetsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksGradientPresetsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksGradientPresetsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksLayoutSelectorControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksLayoutSelectorControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksLayoutSelectorControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksSiteContentControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksSiteContentControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksSiteContentControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksSiteDesignControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksSiteDesignControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksSiteDesignControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "coblocksTypographyControlsEnabledSettings",
+              "description": "Fields of the &#039;CoblocksTypographyControlsEnabledSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CoblocksTypographyControlsEnabledSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "comment",
+              "description": "Returns a Comment",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "Unique identifier for the comment node.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a comment by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "CommentNodeIdTypeEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Comment",
+                "ofType": null
+              }
+            },
+            {
+              "name": "comments",
+              "description": "Connection between the RootQuery type and the Comment type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToCommentConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToCommentConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "contentNode",
+              "description": "A node used to manage content",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "Unique identifier for the content node.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a content node by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ContentNodeIdTypeEnum",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "contentType",
+                  "description": "The content type the node is used for. Required when idType is set to \"name\" or \"slug\"",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ContentTypeEnum",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "asPreview",
+                  "description": "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "INTERFACE",
+                "name": "ContentNode",
+                "ofType": null
+              }
+            },
+            {
+              "name": "contentNodes",
+              "description": "Connection between the RootQuery type and the ContentNode type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToContentNodeConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToContentNodeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "contentType",
+              "description": "Fetch a Content Type node by unique Identifier",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "Unique Identifier for the Content Type node.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a content type by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ContentTypeIdTypeEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ContentType",
+                "ofType": null
+              }
+            },
+            {
+              "name": "contentTypes",
+              "description": "Connection between the RootQuery type and the ContentType type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToContentTypeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "discussionSettings",
+              "description": "Fields of the &#039;DiscussionSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "DiscussionSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "generalSettings",
+              "description": "Fields of the &#039;GeneralSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "GeneralSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "mediaItem",
+              "description": "An object of the mediaItem Type. ",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "MediaItemIdType",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "asPreview",
+                  "description": "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MediaItem",
+                "ofType": null
+              }
+            },
+            {
+              "name": "mediaItems",
+              "description": "Connection between the RootQuery type and the mediaItem type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToMediaItemConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToMediaItemConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "menu",
+              "description": "A WordPress navigation menu",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the menu.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a menu by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "MenuNodeIdTypeEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Menu",
+                "ofType": null
+              }
+            },
+            {
+              "name": "menuItem",
+              "description": "A WordPress navigation menu item",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the menu item.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a menu item by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "MenuItemNodeIdTypeEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MenuItem",
+                "ofType": null
+              }
+            },
+            {
+              "name": "menuItems",
+              "description": "Connection between the RootQuery type and the MenuItem type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToMenuItemConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToMenuItemConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "menus",
+              "description": "Connection between the RootQuery type and the Menu type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToMenuConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToMenuConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "node",
+              "description": "Fetches an object given its ID",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The unique identifier of the node",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "INTERFACE",
+                "name": "Node",
+                "ofType": null
+              }
+            },
+            {
+              "name": "nodeByUri",
+              "description": "Fetches an object given its Unique Resource Identifier",
+              "args": [
+                {
+                  "name": "uri",
+                  "description": "Unique Resource Identifier in the form of a path or permalink for a node. Ex: \"/hello-world\"",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String"
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "kind": "INTERFACE",
+                "name": "UniformResourceIdentifiable",
+                "ofType": null
+              }
+            },
+            {
+              "name": "page",
+              "description": "An object of the page Type. ",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "PageIdType",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "asPreview",
+                  "description": "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Page",
+                "ofType": null
+              }
+            },
+            {
+              "name": "pages",
+              "description": "Connection between the RootQuery type and the page type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToPageConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToPageConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "plugin",
+              "description": "A WordPress plugin",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the plugin.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Plugin",
+                "ofType": null
+              }
+            },
+            {
+              "name": "plugins",
+              "description": "Connection between the RootQuery type and the Plugin type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToPluginConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToPluginConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "post",
+              "description": "An object of the post Type. ",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "PostIdType",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "asPreview",
+                  "description": "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Post",
+                "ofType": null
+              }
+            },
+            {
+              "name": "postFormat",
+              "description": "A 0bject",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "PostFormatIdType",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "PostFormat",
+                "ofType": null
+              }
+            },
+            {
+              "name": "postFormats",
+              "description": "Connection between the RootQuery type and the postFormat type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToPostFormatConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToPostFormatConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "posts",
+              "description": "Connection between the RootQuery type and the post type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToPostConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToPostConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "readingSettings",
+              "description": "Fields of the &#039;ReadingSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReadingSettings",
+                "ofType": null
+              }
+            },
+            {
+              "name": "registeredScripts",
+              "description": "Connection between the RootQuery type and the EnqueuedScript type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToEnqueuedScriptConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "registeredStylesheets",
+              "description": "Connection between the RootQuery type and the EnqueuedStylesheet type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToEnqueuedStylesheetConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "revisions",
+              "description": "Connection between the RootQuery type and the ContentNode type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToRevisionsConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToRevisionsConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "tag",
+              "description": "A 0bject",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "TagIdType",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Tag",
+                "ofType": null
+              }
+            },
+            {
+              "name": "tags",
+              "description": "Connection between the RootQuery type and the tag type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToTagConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToTagConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "taxonomies",
+              "description": "Connection between the RootQuery type and the Taxonomy type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToTaxonomyConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "taxonomy",
+              "description": "Fetch a Taxonomy node by unique Identifier",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "Unique Identifier for the Taxonomy node.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a taxonomy by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "TaxonomyIdTypeEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Taxonomy",
+                "ofType": null
+              }
+            },
+            {
+              "name": "termNode",
+              "description": "A node in a taxonomy used to group and relate content nodes",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "Unique identifier for the term node.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a term node by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "TermNodeIdTypeEnum",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "taxonomy",
+                  "description": "The taxonomy of the tern node. Required when idType is set to \"name\" or \"slug\"",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "TaxonomyEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "INTERFACE",
+                "name": "TermNode",
+                "ofType": null
+              }
+            },
+            {
+              "name": "terms",
+              "description": "Connection between the RootQuery type and the TermNode type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToTermNodeConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToTermNodeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "theme",
+              "description": "A Theme object",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the theme.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Theme",
+                "ofType": null
+              }
+            },
+            {
+              "name": "themes",
+              "description": "Connection between the RootQuery type and the Theme type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToThemeConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "user",
+              "description": "Returns a user",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the user.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                },
+                {
+                  "name": "idType",
+                  "description": "Type of unique identifier to fetch a user by. Default is Global ID",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "UserNodeIdTypeEnum",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "name": "userRole",
+              "description": "Returns a user role",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The globally unique identifier of the user object.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID"
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UserRole",
+                "ofType": null
+              }
+            },
+            {
+              "name": "userRoles",
+              "description": "Connection between the RootQuery type and the UserRole type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToUserRoleConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "users",
+              "description": "Connection between the RootQuery type and the User type",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "The number of items to return after the referenced \"after\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "last",
+                  "description": "The number of items to return before the referenced \"before\" cursor",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "after",
+                  "description": "Cursor used along with the \"first\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "before",
+                  "description": "Cursor used along with the \"last\" argument to reference where in the dataset to get data",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                {
+                  "name": "where",
+                  "description": "Arguments for filtering the connection",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RootQueryToUserConnectionWhereArgs",
+                    "ofType": null
+                  }
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "RootQueryToUserConnection",
+                "ofType": null
+              }
+            },
+            {
+              "name": "viewer",
+              "description": "Returns the current user",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            {
+              "name": "writingSettings",
+              "description": "Fields of the &#039;WritingSettings&#039; settings group",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "WritingSettings",
+                "ofType": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    "extensions": {
+      "debug": [
+        {
+          "type": "DEBUG_LOGS_INACTIVE",
+          "message": "GraphQL Debug logging is not active. To see debug logs, GRAPHQL_DEBUG must be enabled."
+        }
+      ]
+    }
+  }

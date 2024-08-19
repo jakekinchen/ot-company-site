@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function MenuItem({ href, iconSrc, label, subLinks, linkRefs }) {
   const [isHovered, setIsHovered] = useState(false);

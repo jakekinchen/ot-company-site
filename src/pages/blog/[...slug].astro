@@ -1,54 +1,46 @@
 ---
+// File: src/pages/blog/[...slug].astro
+
 import BlogPost from '../../layouts/BlogPost.astro';
 import type { Post } from '../../types';
-import { GET_POST } from '../../queries';
+import { getAllBlogPosts, getPostData } from '../../lib/blogPosts';
 
 export async function getStaticPaths() {
   try {
-    // Fetch data from your WordPress GraphQL API
-    const res = await fetch('https://onetier.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: GET_POST,
-      }),
-    });
+    const allBlogPosts = await getAllBlogPosts();
 
-    if (!res.ok) {
-      console.error('Failed to fetch data:', res.statusText);
-      return [];
-    }
+    const paths = await Promise.all(allBlogPosts.map(async (post) => {
+      const postData = await getPostData(post.slug);
+      if (!postData) return null;
 
-    const { data } = await res.json();
-
-    if (!data || !data.posts || !data.posts.nodes) {
-      console.error('Unexpected API response structure:', data);
-      return [];
-    }
-
-    const posts: Post[] = data.posts.nodes;
-
-    return posts.map((post) => ({
-      params: { slug: post.slug },
-      props: { post },
+      return {
+        params: { slug: post.slug },
+        props: { post: postData },
+      };
     }));
+
+    return paths.filter((path): path is { params: { slug: string }, props: { post: Post } } => path !== null);
   } catch (error) {
     console.error('Error in getStaticPaths:', error);
     return [];
   }
 }
 
-const { post }: { post: Post } = Astro.props;
+interface Props {
+  post: Post;
+}
 
-// Rendering the content with Astro components
+const { post } = Astro.props as Props;
 ---
 
-<BlogPost 
+<BlogPost
   title={post.title}
   date={new Date(post.date)}
-  author={post.author.node.map(author => author.name).join(', ')}
+  author={post.author.node.name}
+  categories={post.categories.nodes.map(category => category.name).join(', ')}
+  tags={post.tags.nodes.map(tag => tag.name).join(', ')}
+  excerpt={post.excerpt}
+  featuredImage={post.featuredImage}
 >
-<div class="content" {...({ dangerouslySetInnerHTML: { __html: post.content } } as any)} />
+  <div class="content" set:html={post.content} />
 </BlogPost>

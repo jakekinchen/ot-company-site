@@ -22,6 +22,16 @@ const futureEvents = events
 
 const closestEvent = futureEvents[0];
 
+// Define a default event
+const defaultEvent = {
+  title: "No Upcoming Events",
+  date: new Date(),
+};
+
+// Use the closest event if it exists, otherwise use the default event
+const eventToDisplay = closestEvent || defaultEvent;
+console.log("Finished server-side js");
+
 ---
 
 <Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70}>
@@ -59,11 +69,11 @@ const closestEvent = futureEvents[0];
     </div>
     <div id="cards" class="flex gap-8 justify-end my-16 mb:hidden">
       <CardComponent
-        title={closestEvent.title}
-        subtitle={closestEvent.date.toDateString()}
-        glassmorphism="true"
-        route="/events"
-      />
+      title={eventToDisplay.title}
+      subtitle={eventToDisplay.date.toDateString()}
+      glassmorphism="true"
+      route="/events"
+    />
       <CardComponent
         title="Product Highlight"
         subtitle="Risk Engagement"

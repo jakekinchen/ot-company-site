@@ -1,4 +1,3 @@
-import React from 'react';
 
 const MobileSubMenu = ({ submenu, items, onBack, onClose }) => {
   return (

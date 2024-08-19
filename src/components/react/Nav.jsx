@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import CompanyMenu from './CompanyMenu';
 import PartnersMenu from './PartnersMenu';
 import ProductsMenu from './ProductsMenu';
-import SolutionsMenu from './SolutionsMenu';
+//import SolutionsMenu from './SolutionsMenu';
 import SlideWrapper from './SlideWrapper';
 
 

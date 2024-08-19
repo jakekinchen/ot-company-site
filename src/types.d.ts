@@ -89,34 +89,37 @@ export type AppData = {
   initiatives: Initiative[];
 };
 
-// New addition for Post and type guard
 export type Post = {
+  id: string;
   title: string;
-  date: Date;
-  category: string;
+  date: string;
   slug: string;
-  tags: {
-    node: {
-      name: string;
-    }[];
-  };
-  share: {
-    title: string;
-    description: string;
-    image?: string;
-  };
   author: {
     node: {
       name: string;
-    }[];
     };
-  excerpt: string;
-  content: string;
-  featuredImage?: {
-    sourceUrl: string;
-    altText: string;
   };
+  content: string;
+  excerpt: string;
+  categories: {
+    nodes: Array<{
+      name: string;
+    }>;
+  };
+  tags: {
+    nodes: Array<{
+      name: string;
+    }>;
+  };
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+    };
+  } | null;
 };
+
+export type PostItem = Omit<Post, 'content' | 'tags'>;
 
 export function isPostData(data: any): data is Post {
   return (

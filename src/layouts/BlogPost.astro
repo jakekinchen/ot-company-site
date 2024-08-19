@@ -2,44 +2,29 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Layout from '../components/Layout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import type { Post } from '@/types';
-import { isPostData } from '@/types';
-import { GET_POST } from '@/queries';
 
 const props = Astro.props;
 
-if (!isPostData(props)) {
-  throw new Error('Props do not match the expected type');
-}
 
-const { title, date, category, tags, share, author, excerpt, content, featuredImage } = props;
+const { title, date, categories, tags, author, excerpt, content, featuredImage } = props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={share.description} />
-    <style>
-      /* Your styles here */
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
+<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
       <article>
         <div class="hero-image">
-          {featuredImage && <img width={1020} height={510} src={featuredImage.sourceUrl} alt={featuredImage.altText || ''} />}
+          {featuredImage && <img width={1020} height={510} src={featuredImage.node.sourceUrl} alt={featuredImage.node.altText || ''} />}
         </div>
         <div class="prose">
           <div class="title">
             <div class="date">
-              <FormattedDate date={date} />
+              <FormattedDate date={new Date(date)} />
             </div>
             <h1>{title}</h1>
             <p>Author: {author}</p>
-            <p>Category: {category}</p>
-            <p>Tags: {tags.node.map(tag => tag.name).join(', ')}</p>
+            <p>Category: {categories}</p>
+            <p>Tags: {tags}</p>
             <hr />
           </div>
           <div class="excerpt">
@@ -48,7 +33,4 @@ const { title, date, category, tags, share, author, excerpt, content, featuredIm
          <div class="content" {...({ dangerouslySetInnerHTML: { __html: content } } as any)} />
         </div>
       </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+    </Layout>

@@ -19,7 +19,7 @@ const { mouseHoverAnimation, staticMouse = false, repetitions = null, size = 16 
   />
 )}
 
-<script define:vars={{ staticMouse, repetitions, size }}>
+<script is:inline define:vars={{ staticMouse, repetitions, size }}>
   const mouse = document.getElementById('animated-mouse');
   const container = document.getElementById('mockup-container');
 
