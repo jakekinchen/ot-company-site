@@ -6,72 +6,72 @@ import Layout from '../../components/Layout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
 import type { PostItem } from '../../types';
-import { GET_POST, GET_POST_ITEMS } from '../../queries';  // Update the import path as necessary
+import { getPosts } from '../../lib/blogPosts';
 
+const allPosts = await getPosts();
+const metadata = {
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+};
+const gradient = true;
 
-async function getPosts() {
-  try {
-    console.log('Fetching posts...');
-    const res = await fetch('https://onetier.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: GET_POST_ITEMS,
-      }),
-    });
-
-    if (!res.ok) {
-      console.error('Failed to fetch data:', res.statusText, "Entire response:", res);
-      return [];
-    }
-
-    const jsonData = await res.json();
-
-    if (!jsonData.data || !jsonData.data.posts || !jsonData.data.posts.nodes) {
-      console.error('Unexpected API response structure:', res);
-      return [];
-    }
-
-    const posts = jsonData.data.posts.nodes;
-    //console.log('Fetched posts:', posts);
-	console.log("Posts fetched successfully");
-    return posts;
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    return [];
-  }
-}
-
-  const posts = await getPosts();
-
-  const metadata = {
-	title: SITE_TITLE,
-	description: SITE_DESCRIPTION,
-  };
-
-  const gradient = true;
-
-
+// Initial number of posts to show
+const initialPostCount = 5;
 ---
 
 <Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
-			<section>
-				<ul>
-					{
-						posts.map((post:PostItem) => (
-							<li>
-								<a href={`/blog/${post.slug}/`}>
-									<img width={720} height={360} src={post.featuredImage?.node?.sourceUrl || '/placeholder-image.jpg'} alt="" />
-									<h4 class="title">{post.title}</h4>
-									<p class="date">
-										<FormattedDate date={new Date(post.date)} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</Layout>
+  <div class="layoutConstraint text-dark-blue">
+    <section class="bg-white py-16 text-center flex flex-col items-center">
+      <h1 class="text-4xl font-bold text-center">Stay Ahead of the Curve in Cybersecurity</h1>
+      <p class="text-center text-lg mt-4">Get the latest news, insights, and updates from our team of experts.</p>
+      <a class="bg-dark-blue hover:bg-white hover:border-4 hover:text-dark-blue text-white rounded-3xl py-2 px-4 hover:px-3 hover:py-1 cursor-pointer">Read the latest article</a>
+    </section>
+    <section class="w-full flex flex-row">
+      <div class="threeQuarters p-4">
+        <h2 class="pb-4 text-blue text-3xl font-bold">Blog</h2>
+        <ul id="postList">
+          {allPosts.slice(0, initialPostCount).map((post: PostItem) => (
+            <li class="max-h-[300px] pt-6 pb-2">
+              {post.author?.node && <h4 class="author text-dark-blue text-medium text-xl">{post.author.node.name}</h4>}
+              <a href={`/blog/${post.slug}/`} class="title text-dark-blue text-4xl">{post.title}</a>
+              <p class="excerpt text-dark-blue">
+                {post.excerpt.length > 250 ? post.excerpt.slice(0, 250) + '...' : post.excerpt}
+              </p>
+              <div class="flex flex-row justify-between items-center">
+                <p class="date !mb-0 text-dark-blue">
+                  <FormattedDate date={new Date(post.date)} />
+                </p>
+                <a href={`/blog/${post.slug}/`} class="read-more text-white px-4 py-2 bg-dark-blue rounded-3xl">Read more</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {allPosts.length > initialPostCount && (
+          <button id="loadMore" class="mt-4 bg-dark-blue text-white rounded-3xl px-4 py-2">Load More</button>
+        )}
+      </div>
+      <div class="oneQuarter mb:hidden">
+        <aside class="max-w-[200px] p-4 mx-auto flex flex-col justify-center">
+          <h4>Categories</h4>
+          <ul class="pl-1 pt-4 space-y-4">
+            <li><a href="/blog/category/announcements/">Announcements</a></li>
+            <li><a href="/blog/category/cybersecurity/">Cybersecurity</a></li>
+            <li><a href="/blog/category/industry-news/">Industry News</a></li>
+            <li><a href="/blog/category/product-updates/">Product Updates</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script is:inline define:vars={{ allPosts, initialPostCount }}>
+	window.allPosts = allPosts;
+	window.initialPostCount = initialPostCount;
+  </script>
+<script src="../../scripts/loadMorePosts.ts"></script>
+
+
+<style>
+  /* Your styles here */
+</style>

@@ -60,6 +60,13 @@
 	--sectionAHeight: 715px;
 }
 
+.threeQuarters {
+	width: calc(var(--columnWidth) * 3);
+}
+.oneQuarter {
+	width: calc(var(--columnWidth));
+}
+
 .layoutConstraint {
 	width: var(--layoutWidth);
 	margin: auto;

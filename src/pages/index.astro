@@ -5,8 +5,10 @@ import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
 import { products, clients, events } from '../data/pages.json';
 import DottedPathSVG from '../components/DottedPathSVG.astro';
-//import ClientsSection from '../components/react/ClientsSection.jsx';
+import { getLatestBlogPost } from '@/lib/blogPosts';
 import Carousel from '../components/Carousel.astro';
+import type { PostItem } from '../types';
+
 if (!clients) {
   throw new Error('Client info not found');
 }
@@ -14,24 +16,75 @@ if (!clients) {
 // Get the current date
 const currentDate = new Date();
 
+// Helper function to parse dates
+const parseDate = (dateString: string) => new Date(dateString);
+
 // Filter and sort the events to find the closest future event
 const futureEvents = events
-  .map(event => ({ ...event, date: new Date(event.eventDate) }))
-  .filter(event => new Date(event.eventDate) > currentDate)
-  .sort((a: any, b: any) => a.date - b.date);
+  .map(event => ({ ...event, date: parseDate(event.eventDate) }))
+  .filter(event => event.date > currentDate)
+  .sort((a, b) => a.date.getTime() - b.date.getTime());
 
 const closestEvent = futureEvents[0];
+const latestBlogPost = await getLatestBlogPost();
 
-// Define a default event
-const defaultEvent = {
-  title: "No Upcoming Events",
-  date: new Date(),
+type Author = {
+  node: {
+    name: string;
+  };
 };
 
-// Use the closest event if it exists, otherwise use the default event
-const eventToDisplay = closestEvent || defaultEvent;
-console.log("Finished server-side js");
+// Helper function to ensure author is always an array
+function ensureAuthorArray(author: Author | Author[]): Author[] {
+  return Array.isArray(author) ? author : [author];
+}
 
+
+// Define types for our content
+type EventContent = {
+  type: 'event';
+  title: string;
+  date: Date;
+};
+
+type BlogPostContent = {
+  type: 'blogPost';
+  title: string;
+  author: string | string[] | Author[];
+  slug: string;
+};
+
+type DefaultContent = {
+  type: 'default';
+  title: string;
+  date: Date;
+};
+
+type DisplayContent = EventContent | BlogPostContent | DefaultContent;
+
+// Determine what content to display
+let contentToDisplay: DisplayContent;
+
+if (closestEvent) {
+  contentToDisplay = {
+    type: 'event',
+    title: closestEvent.title,
+    date: closestEvent.date
+  };
+} else if (latestBlogPost) {
+  contentToDisplay = {
+    type: 'blogPost',
+    title: latestBlogPost.title,
+    author: ensureAuthorArray(latestBlogPost.author),
+    slug: latestBlogPost.slug
+  };
+} else {
+  contentToDisplay = {
+    type: 'default',
+    title: "No Upcoming Events",
+    date: new Date()
+  };
+}
 ---
 
 <Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70}>
@@ -68,12 +121,30 @@ console.log("Finished server-side js");
       </button>
     </div>
     <div id="cards" class="flex gap-8 justify-end my-16 mb:hidden">
-      <CardComponent
-      title={eventToDisplay.title}
-      subtitle={eventToDisplay.date.toDateString()}
-      glassmorphism="true"
-      route="/events"
-    />
+      {contentToDisplay.type === 'event' && (
+        <CardComponent
+          title={contentToDisplay.title}
+          subtitle={contentToDisplay.date.toDateString()}
+          glassmorphism="true"
+          route="/events"
+        />
+      )}
+      {contentToDisplay.type === 'blogPost' && (
+        <CardComponent
+          title={contentToDisplay.title}
+          subtitle={`Blog Post`}
+          glassmorphism="true"
+          route={`/blog/${contentToDisplay.slug}`}
+        />
+      )}
+      {contentToDisplay.type === 'default' && (
+        <CardComponent
+          title={contentToDisplay.title}
+          subtitle={contentToDisplay.date.toDateString()}
+          glassmorphism="true"
+          route="/events"
+        />
+      )}
       <CardComponent
         title="Product Highlight"
         subtitle="Risk Engagement"

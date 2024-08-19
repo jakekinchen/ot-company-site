@@ -3,13 +3,13 @@
 
 import BlogPost from '../../layouts/BlogPost.astro';
 import type { Post } from '../../types';
-import { getAllBlogPosts, getPostData } from '../../lib/blogPosts';
+import { getAllNewsPosts, getPostData } from '../../lib/blogPosts';
 
 export async function getStaticPaths() {
   try {
-    const allBlogPosts = await getAllBlogPosts();
+    const allNewsPosts = await getAllNewsPosts();
 
-    const paths = await Promise.all(allBlogPosts.map(async (post) => {
+    const paths = await Promise.all(allNewsPosts.map(async (post) => {
       const postData = await getPostData(post.slug);
       if (!postData) return null;
 
@@ -41,6 +41,6 @@ const { post } = Astro.props as Props;
   tags={post.tags.nodes.map(tag => tag.name).join(', ')}
   excerpt={post.excerpt}
   featuredImage={post.featuredImage}
-  content={post.content}
 >
+  <div class="content" set:html={post.content} />
 </BlogPost>

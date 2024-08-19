@@ -9,28 +9,36 @@ const props = Astro.props;
 
 
 const { title, date, categories, tags, author, excerpt, content, featuredImage } = props;
+const isNews = categories.includes('News');
+const isBlog = categories.includes('Blog');
 ---
 
 <Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
-      <article>
+  <section class="bg-white">
+   
+    <div class="layoutConstraint pt-8 flex flex-col items-center" >
+      <article class="flex flex-col justify-center max-w-[800px] ">
+        
         <div class="hero-image">
-          {featuredImage && <img width={1020} height={510} src={featuredImage.node.sourceUrl} alt={featuredImage.node.altText || ''} />}
+          {featuredImage && <img width={750} src={featuredImage.node.sourceUrl} alt={featuredImage.node.altText || ''} />}
         </div>
         <div class="prose">
-          <div class="title">
+          <div class="text-blue text-left text-2xl font-semibold pb-2 pt-4 m-0">
+            {isNews && ( <p class="!m-0">News</p>)}
+            {isBlog && ( <p class="!m-0">Blog</p>)}
+            </div>
+          <div class="title !space-y-4">
             <div class="date">
               <FormattedDate date={new Date(date)} />
             </div>
-            <h1>{title}</h1>
-            <p>Author: {author}</p>
-            <p>Category: {categories}</p>
-            <p>Tags: {tags}</p>
+            <h1 class="">{title}</h1>
+            <h4 class="text-xl">By {author}</h4>
+            {tags &&<h4>Tags: {tags}</h4> }
             <hr />
           </div>
-          <div class="excerpt">
-            <p>{excerpt}</p>
-          </div>
-         <div class="content" {...({ dangerouslySetInnerHTML: { __html: content } } as any)} />
+         <div class="content" set:html={content}/>
         </div>
       </article>
+    </div>
+    </section>
     </Layout>
