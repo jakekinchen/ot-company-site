@@ -32,6 +32,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html class="" lang="en">
 <head> 
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} metadata={metadata} />
+  <!-- Google Tag Manager (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NFTM6LJDXW"></script>
+  <script is:inline >
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NFTM6LJDXW');
+  </script>
+  <!-- End Google Tag Manager -->
   <!--  <base href="https://onetier.com/">   -->
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
