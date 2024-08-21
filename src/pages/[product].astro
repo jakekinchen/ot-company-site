@@ -8,7 +8,7 @@ import pages from '../data/pages.json';
 import PathMaker from '../components/PathMaker.astro';
 
 export function getStaticPaths() {
-  return pages.products.map(product => ({
+  return pages.products.pages.map(product => ({
     params: { product: product.href.substring(1) },
     props: { productInfo: product },
   }));

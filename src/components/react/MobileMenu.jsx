@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MobileSubMenu from './MobileSubMenu';
 import pages from '../../data/pages.json';
 
@@ -126,7 +126,7 @@ const MobileMenu = () => {
           ) : (
             <MobileSubMenu
               submenu={activeSubmenu}
-              items={pages[activeSubmenu]}
+              items={pages[activeSubmenu]?.pages || []}
               onBack={backToMainMenu}
               onClose={closeMenu}
             />

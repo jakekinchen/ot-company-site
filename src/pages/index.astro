@@ -177,7 +177,7 @@ if (closestEvent) {
       </div>
     </div>
     <div class="flex flex-col gap-8 dt:gap-16 mb:w-full items-center">
-      {products.map((product: any, index: number) => (
+      {products.pages.map((product: any, index: number) => (
         <ProductSnippet
           key={product.href}
           iconSrc={product.iconSrc}

@@ -1,5 +1,6 @@
 {
-  "products": [
+  "products": {
+    "pages": [
     {
       "label": "Risk Engagement",
       "title": "Respond swiftly and decisively",
@@ -513,7 +514,7 @@
         }
       }
     }
-  ],
+  ]},
   "company": {
     "pages": [
       { 

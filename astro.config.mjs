@@ -26,7 +26,7 @@ export default defineConfig({
     }
   },
   outDir: './dist',
-  site: 'https://example.com',
+  site: 'https://onetier.com',
   integrations: [
     react({
       include: ['**/components/react/*'], // Adjust the path according to your project structure

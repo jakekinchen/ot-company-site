@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
-import pages from '../../data/pages.json';
-
-const PARTNERS_ITEMS = pages.partners.pages;
+import { partners } from '../../data/pages.json';
 
 const PartnersMenu = React.forwardRef((props, ref) => {
   const linkRefs = useRef([]);
@@ -27,27 +25,22 @@ const PartnersMenu = React.forwardRef((props, ref) => {
   // Reset the links array per render
   linkRefs.current = [];
 
-  // Split items into columns (4 items per column)
-  const columns = [];
-  for (let i = 0; i < PARTNERS_ITEMS.length; i += 4) {
-    columns.push(PARTNERS_ITEMS.slice(i, i + 4));
-  }
+  // Use partners.pages directly, no need for columns as there are only 2 items
+  const PARTNERS_ITEMS = partners.pages;
 
   return (
     <nav className="flex space-x-8" onKeyDown={onKeyPress}>
-      {columns.map((column, columnIndex) => (
-        <div key={columnIndex} className="flex flex-col space-y-4">
-          {column.map((item) => (
-            <MenuItem
-              key={item.href}
-              href={item.href}
-              iconSrc={item.iconSrc}
-              label={item.label}
-              linkRefs={linkRefs}
-            />
-          ))}
-        </div>
-      ))}
+      <div className="flex flex-col space-y-4">
+        {PARTNERS_ITEMS.map((item) => (
+          <MenuItem
+            key={item.href}
+            href={item.href}
+            iconSrc={item.iconSrc}
+            label={item.label}
+            linkRefs={linkRefs}
+          />
+        ))}
+      </div>
     </nav>
   );
 });

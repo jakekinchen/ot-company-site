@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
-import { products } from '../../data/pages.json';
+import pages from '../../data/pages.json';
 
 const ProductsMenu = React.forwardRef((props, ref) => {
+  const products = pages.products?.pages || [];
   const linkRefs = useRef([]);
 
   useEffect(() => {
@@ -23,7 +24,6 @@ const ProductsMenu = React.forwardRef((props, ref) => {
   }
 
   linkRefs.current = [];
-
   const columns = [];
   for (let i = 0; i < products.length; i += 4) {
     columns.push(products.slice(i, i + 4));

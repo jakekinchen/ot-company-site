@@ -12,7 +12,7 @@ if (!pages.products) {
   throw new Error('Product info not found');
 }
 
-const product = pages.products.find(product => product.label === "Global Data Security");
+const product = pages.products.pages.find(product => product.label === "Global Data Security");
 
 if (!product) {
   throw new Error('Product with label "Global Data Security" not found');
