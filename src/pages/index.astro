@@ -7,7 +7,10 @@ import { products, clients, events } from '../data/pages.json';
 import DottedPathSVG from '../components/DottedPathSVG.astro';
 import { getLatestBlogPost } from '@/lib/blogPosts';
 import Carousel from '../components/Carousel.astro';
+import { home } from '../data/pages.json';
 import type { PostItem } from '../types';
+
+const metadata = home.pages[0].metadata;
 
 if (!clients) {
   throw new Error('Client info not found');
@@ -87,7 +90,7 @@ if (closestEvent) {
 }
 ---
 
-<Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70}>
+<Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70} metadata={metadata}>
   <div class="mb:hidden">
     <DottedPathSVG
       uniqueId='line-2'

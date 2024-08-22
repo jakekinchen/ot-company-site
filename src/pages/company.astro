@@ -2,13 +2,25 @@
 import DottedPathSVG2 from '../components/DottedPathSVG2.astro';
 import PathMaker from '../components/PathMaker.astro';
 import AnchorPath from '../components/AnchorPath.astro';
-import Layout from '../components/Layout.astro';
+import Layout from '../components/Layout.astro'; 
 import ProfileCircle from '../components/ProfileCircle.astro';
 import { teamMembers, initiatives } from '../data/pages.json';
+import { company } from '../data/pages.json';
+if (!company) {
+  throw new Error('Company info not found');
+}
+const companyInfo = company.pages.find(page => page.label === "Overview");
+if (!companyInfo) {
+  throw new Error('Company info not found');
+}
+const metadata = companyInfo.metadata;
+if (!metadata) {
+  throw new Error('Metadata not found');
+}
 const glowDistance = 5;
 ---
 
-<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true} backgroundColorScript={true} initialBackgroundHeight={815}>
+<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true} backgroundColorScript={true} initialBackgroundHeight={815} metadata={metadata}>
   <!-- <div class="your-div-class absolute left-0 right-0 w-screen bg-white h-[715px] -z-10 overflow-visible"></div>-->
   <div class="line-1-container mb:hidden overflow-x-hidden">
     <AnchorPath

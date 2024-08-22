@@ -1,15 +1,29 @@
 ---
 import Carousel from '../components/Carousel.astro';
 import Layout from '../components/Layout.astro';
-import { partnerLogos } from '../data/pages.json';
+import { partnerLogos } from '../data/pages.json'; 
+import { partners } from '../data/pages.json';
 import PathMaker from '../components/PathMaker.astro';
+
+if (!partners) {
+  throw new Error('Partners info not found');
+}
 
 if (!partnerLogos) {
   throw new Error('Partner Logos info not found');
 }
+
+const becomeAPartner = partners.pages.find(page => page.label === "Become a Partner");
+if (!becomeAPartner) {
+  throw new Error('Page with label "Become a Partner" not found');
+}
+const metadata = becomeAPartner.metadata;
+if (!metadata) {
+  throw new Error('Metadata not found');
+}
 ---
 
-<Layout customBackground="/backgroundImage.jpg" headerLogoColor='white' headerIconColor='white' headerBackground='transparent' gradient={false} backgroundColorScript={true}>
+<Layout customBackground="/backgroundImage.jpg" headerLogoColor='white' headerIconColor='white' headerBackground='transparent' gradient={false} backgroundColorScript={true} metadata={metadata}>
   
   <section class="section section-a">
     <div id="constraintDiv" class="layoutConstraint">

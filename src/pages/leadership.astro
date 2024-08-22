@@ -1,15 +1,25 @@
 ---
 import Layout from '../components/Layout.astro';
 import ProfileCircle from '../components/ProfileCircle.astro';
-import { teamMembers } from '../data/pages.json';
+import { teamMembers } from '../data/pages.json'; 
+import { company } from '../data/pages.json';
 import PathMaker from '../components/PathMaker.astro';
 const glowDistance = 5;
 const teamMemberCount = teamMembers.length-1;
-
+if (!company) {
+  throw new Error('Company info not found');
+}
+const leadershipInfo = company.pages.find(page => page.label === "Leadership");
+if (!leadershipInfo) {
+  throw new Error('Leadership info not found');
+}
+const metadata = leadershipInfo.metadata;
+if (!metadata) {
+  throw new Error('Metadata not found');
+}
 
 ---
-
-<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
+<Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true} metadata={metadata}>
   <section class="bg-white py-16 text-blue">
     <div>
       <PathMaker

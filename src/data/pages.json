@@ -1,4 +1,31 @@
 {
+  "home":{
+    "pages":[{
+      "label": "Home",
+      "title": "OneTier | AnyCloud DataSecure Portfolio ",
+      "subtitle": "Security From Zero to Trust",
+      "iconSrc": "/menuIcons/home.svg",
+      "metadata": {
+        "title": "OneTier | AnyCloud DataSecure Portfolio",
+        "description": "Security From Zero to Trust. OneTier helps organizations protect their data, secure their networks, and prevent cyber attacks. Explore our solutions today.",
+        "keywords": "cybersecurity, data protection, network security, cyber attacks, OneTier",
+        "author": "OneTier Team",
+        "robots": "index",
+        "og": {
+          "type": "website",
+          "title": "OneTier | AnyCloud DataSecure Portfolio",
+          "description": "Security From Zero to Trust. OneTier helps organizations protect their data, secure their networks, and prevent cyber attacks. Explore our solutions today.",
+          "image": "/OT-card.jpg"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "OneTier | AnyCloud DataSecure Portfolio",
+          "description": "Security From Zero to Trust. OneTier helps organizations protect their data, secure their networks, and prevent cyber attacks. Explore our solutions today.",
+          "image": "/OT-card.jpg"
+        }
+      }
+    }]
+  },
   "products": {
     "pages": [
     {
@@ -17,7 +44,7 @@
           "description": "Defining the Cost of Cyber Risk is the #1 Challenge Organizations Face. Explore how OneTier's Risk Engagement solution helps you mitigate and manage risks effectively.",
           "keywords": "cyber risk, compliance, risk management, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "Risk Engagement - OneTier",
@@ -81,7 +108,7 @@
           "description": "Streamline deployment with Zero-Trust Directory Services, PKI, Secure DNS, and Stealth Networking on a secure Kubernetes platform with OneTier.",
           "keywords": "Kubernetes security, zero trust, PKI, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "KubeZT Secure Apps - OneTier",
@@ -146,7 +173,7 @@
           "description": "Optimize cloud costs with a unified, policy-driven interface that streamlines deployment and management with OneTier's AnyCloud Orchestration.",
           "keywords": "cloud orchestration, multi-cloud, digital transformation, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "AnyCloud Orchestration - OneTier",
@@ -210,7 +237,7 @@
           "description": "Detect and deny malicious activity with Secure Access. Implement MFA, block lateral movement, and protect your organization from cyber threats.",
           "keywords": "secure access, MFA, lateral movement, cybersecurity, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "Secure Access - OneTier",
@@ -274,7 +301,7 @@
           "description": "Protect your network with Stealth Networking. Secure inbound firewall ports and enable edge services with scalable, multipath secure networking.",
           "keywords": "stealth networking, service mesh, secure networking, firewall, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "Stealth Networking - OneTier",
@@ -338,7 +365,7 @@
           "description": "Visualize and interact with your data in real-time using Analytics HQ. Experience secure, unified data management and advanced analytics.",
           "keywords": "data visualization, analytics, real-time data, Snowflake, Databricks, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "Analytics HQ - OneTier",
@@ -402,7 +429,7 @@
           "description": "Ensure your data is secure and available anytime, anywhere with Global Data Security. Explore our encrypted global file system and resilient storage solutions.",
           "keywords": "data security, global file system, encrypted storage, ransomware resilience, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "Global Data Security - OneTier",
@@ -466,7 +493,7 @@
           "description": "Evolve with threats in real-time using Security Overwatch. Detect, monitor, and remediate threats with a user-friendly dashboard.",
           "keywords": "security monitoring, threat detection, network security, OneTier",
           "author": "OneTier Team",
-          "robots": "index,follow",
+          "robots": "index",
           "og": {
             "type": "website",
             "title": "Security Overwatch - OneTier",
@@ -526,7 +553,7 @@
           "description": "Explore the OneTier company overview, including our mission, values, and what drives us forward in the cybersecurity industry.",
           "keywords": "OneTier, company overview, mission, values",
           "author": "OneTier Team",
-          "robots": "index,follow"
+          "robots": "index"
         }
       },
       {
@@ -538,66 +565,61 @@
           "description": "Meet the leadership team at OneTier. Discover the experienced professionals guiding our company to success.",
           "keywords": "OneTier, leadership, team, executives",
           "author": "OneTier Team",
-          "robots": "index,follow"
+          "robots": "index"
         }
       }
     ]
   },
-  "solutions":{ 
-    "href": "/solutions",
-    "metadata": {
-      "title": "Solutions - OneTier",
-      "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
-      "keywords": "cyber risk, ransomware, Zero Trust, CMMC, OneTier",
-      "author": "OneTier Team",
-      "robots": "index,follow",
-      "og": {
-        "type": "website",
-        "title": "Solutions - OneTier",
-        "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
-        "image": "/OT-card.jpg"
-      },
-      "twitter": {
-        "card": "summary_large_image",
-        "title": "Solutions - OneTier",
-        "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
-        "image": "/OT-card.jpg"
+ "solutions": {
+    "pages": [
+      {
+        "href": "/solutions",
+        "iconSrc": "/menuIcons/solutions.svg",
+        "label": "Solutions",
+        "metadata": {
+          "title": "Solutions - OneTier",
+          "description": "OneTier offers a range of solutions to help organizations mitigate cyber risk, prevent ransomware attacks, and implement Zero Trust security. Explore our solutions today.",
+          "keywords": "cyber risk, ransomware, Zero Trust, CMMC, OneTier",
+          "author": "OneTier Team",
+          "robots": "index"
+        },
+        "snippets": [
+          { 
+            "label": "Ransomware", 
+            "iconSrc": "/solutionsIcons/ransomware.svg", 
+            "articles": [
+              {"label": "How to prevent ransomware attacks", "href": "/how-to-prevent-ransomware-attacks"}, 
+              {"label": "How Long to Recover from Ransomware?", "href": "/how-long-to-recover-from-ransomware"}
+            ] 
+          },
+          { 
+            "label": "Cyber Risk", 
+            "iconSrc": "/solutionsIcons/cyber-risk.svg", 
+            "articles": [
+              {"label": "What is Cyber Risk?", "href": "/what-is-cyber-risk"}, 
+              {"label": "How to Manage Cyber Risk", "href": "/how-to-manage-cyber-risk"}
+            ] 
+          },
+          { 
+            "label": "Zero Trust", 
+            "iconSrc": "/solutionsIcons/zero-trust.svg", 
+            "articles": [
+              {"label": "What is Zero Trust?", "href": "/what-is-zero-trust"}, 
+              {"label": "How to Implement Zero Trust", "href": "/how-to-implement-zero-trust"}
+            ] 
+          },
+          { 
+            "label": "CMMC", 
+            "iconSrc": "/solutionsIcons/cmmc.svg", 
+            "articles": [
+              {"label": "What is CMMC?", "href": "/what-is-cmmc"}, 
+              {"label": "How to Prepare for CMMC", "href": "/how-to-prepare-for-cmmc"}
+            ] 
+          }
+        ]
       }
-    },
-    "snippets": [
-    { 
-      "label": "Ransomware", 
-      "iconSrc": "/solutionsIcons/ransomware.svg", 
-      "articles": [
-        {"label": "How to prevent ransomware attacks", "href": "/how-to-prevent-ransomware-attacks"}, 
-        {"label": "How Long to Recover from Ransomware?", "href": "/how-long-to-recover-from-ransomware"}
-      ] 
-    },
-    { 
-      "label": "Cyber Risk", 
-      "iconSrc": "/solutionsIcons/cyber-risk.svg", 
-      "articles": [
-        {"label": "What is Cyber Risk?", "href": "/what-is-cyber-risk"}, 
-        {"label": "How to Manage Cyber Risk", "href": "/how-to-manage-cyber-risk"}
-      ] 
-    },
-    { 
-      "label": "Zero Trust", 
-      "iconSrc": "/solutionsIcons/zero-trust.svg", 
-      "articles": [
-        {"label": "What is Zero Trust?", "href": "/what-is-zero-trust"}, 
-        {"label": "How to Implement Zero Trust", "href": "/how-to-implement-zero-trust"}
-      ] 
-    },
-    { 
-      "label": "CMMC", 
-      "iconSrc": "/solutionsIcons/cmmc.svg", 
-      "articles": [
-        {"label": "What is CMMC?", "href": "/what-is-cmmc"}, 
-        {"label": "How to Prepare for CMMC", "href": "/how-to-prepare-for-cmmc"}
-      ] 
-    }
-  ]},
+    ]
+  },
   "partners": {
     "pages": [
       { 
@@ -609,7 +631,7 @@
           "description": "Join OneTier's partner program and access exclusive resources and support. Learn how to become a partner today.",
           "keywords": "OneTier, partner program, become a partner",
           "author": "OneTier Team",
-          "robots": "index,follow"
+          "robots": "index"
         }
       },
       { 
@@ -621,7 +643,7 @@
           "description": "Access the OneTier Partner Portal for exclusive tools and resources to support your partnership with us.",
           "keywords": "OneTier, partner portal, partner login",
           "author": "OneTier Team",
-          "robots": "index,follow"
+          "robots": "index"
         }
       }
     ]
