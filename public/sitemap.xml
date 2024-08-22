@@ -45,19 +45,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://onetier.com/blog/</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://onetier.com/events</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://onetier.com/leadership</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://onetier.com/news</loc>
     <priority>0.7</priority>
   </url>
   <url>

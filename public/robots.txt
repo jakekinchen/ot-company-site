@@ -1,4 +1,24 @@
 User-agent: *
+Disallow: /
+
+# Allow the homepage
 Allow: /
+
+# Allow only the pages specified in the sitemap
+Allow: /risk-engagement
+Allow: /kubezt-secure-apps
+Allow: /anycloud-orchestration
+Allow: /secure-access
+Allow: /stealth-networking
+Allow: /analytics-hq
+Allow: /global-data-security
+Allow: /security-overwatch
+Allow: /company
+Allow: /become-a-partner
+Allow: /leadership
+Allow: /solutions
+
+# Disallow admin and other backend areas
 Disallow: /wp-admin/
+
 Sitemap: https://onetier.com/sitemap.xml
