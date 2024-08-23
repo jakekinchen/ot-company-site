@@ -32,7 +32,7 @@ export default defineConfig({
       include: ['**/components/react/*'], // Adjust the path according to your project structure
     }),
     mdx(),
-    sitemap(),
+    //sitemap(),
   ],
   devOptions: {
     tailwindConfig: './tailwind.config.js',
