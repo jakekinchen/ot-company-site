@@ -5,7 +5,7 @@ import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
 import { products, clients, events } from '../data/pages.json';
 import DottedPathSVG from '../components/DottedPathSVG.astro';
-import { getLatestBlogPost } from '@/lib/blogPosts';
+import { getLatestPost } from '@/lib/wpFunctions';
 import Carousel from '../components/Carousel.astro';
 import { home } from '../data/pages.json';
 import type { PostItem } from '../types';
@@ -29,7 +29,7 @@ const futureEvents = events
   .sort((a, b) => a.date.getTime() - b.date.getTime());
 
 const closestEvent = futureEvents[0];
-const latestBlogPost = await getLatestBlogPost();
+const latestBlogPost = await getLatestPost("Blog");
 
 type Author = {
   node: {

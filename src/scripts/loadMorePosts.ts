@@ -1,19 +1,41 @@
 // src/scripts/loadMorePosts.ts
+import type { PostNode } from '../lib/wpFunctions';
+import { getRecentPosts } from '../lib/wpFunctions';
 
-import type { PostItem } from '../types';
-
-// Declare the global variable for all posts
+// Declare the global variable for initial posts and count
 declare global {
   interface Window {
-    allPosts: PostItem[];
+    initialPosts: PostNode[];
     initialPostCount: number;
   }
 }
 
 const postsPerLoad = 5;
 let currentPostCount = window.initialPostCount;
+let allLoadedPosts = [...window.initialPosts];
 
-function createPostElement(post: PostItem): HTMLLIElement {
+async function loadMorePosts() {
+  const postList = document.getElementById('postList') as HTMLUListElement;
+  const loadMoreButton = document.getElementById('loadMore') as HTMLButtonElement;
+
+  // Fetch more posts
+  const newPosts = await getRecentPosts("Blog", currentPostCount + postsPerLoad);
+  const nextPosts = newPosts.slice(currentPostCount);
+
+  nextPosts.forEach(post => {
+    const postElement = createPostElement(post);
+    postList.appendChild(postElement);
+  });
+
+  allLoadedPosts = [...allLoadedPosts, ...nextPosts];
+  currentPostCount += postsPerLoad;
+
+  if (newPosts.length < currentPostCount + postsPerLoad) {
+    loadMoreButton.style.display = 'none';
+  }
+}
+
+function createPostElement(post: PostNode): HTMLLIElement {
   const li = document.createElement('li');
   li.className = 'max-h-[300px] pt-6 pb-2';
   li.innerHTML = `
@@ -28,24 +50,6 @@ function createPostElement(post: PostItem): HTMLLIElement {
     </div>
   `;
   return li;
-}
-
-function loadMorePosts() {
-  const postList = document.getElementById('postList') as HTMLUListElement;
-  const loadMoreButton = document.getElementById('loadMore') as HTMLButtonElement;
-  
-  const nextPosts = window.allPosts.slice(currentPostCount, currentPostCount + postsPerLoad);
-  
-  nextPosts.forEach(post => {
-    const postElement = createPostElement(post);
-    postList.appendChild(postElement);
-  });
-
-  currentPostCount += postsPerLoad;
-
-  if (currentPostCount >= window.allPosts.length) {
-    loadMoreButton.style.display = 'none';
-  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

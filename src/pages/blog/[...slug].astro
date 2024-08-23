@@ -1,25 +1,21 @@
 ---
 // File: src/pages/blog/[...slug].astro
-
 import BlogPost from '../../layouts/BlogPost.astro';
-import type { Post } from '../../types';
-import { getAllBlogPosts, getPostData } from '../../lib/blogPosts';
+import type { PostNode } from '../../lib/wpFunctions';
+import { getAllPostSlugs, getPostData } from '../../lib/wpFunctions';
 
 export async function getStaticPaths() {
   try {
-    const allBlogPosts = await getAllBlogPosts();
-
-    const paths = await Promise.all(allBlogPosts.map(async (post) => {
-      const postData = await getPostData(post.slug);
+    const allBlogSlugs = await getAllPostSlugs("Blog");
+    const paths = await Promise.all(allBlogSlugs.map(async (slug: string) => {
+      const postData = await getPostData(slug);
       if (!postData) return null;
-
       return {
-        params: { slug: post.slug },
+        params: { slug },
         props: { post: postData },
       };
     }));
-
-    return paths.filter((path): path is { params: { slug: string }, props: { post: Post } } => path !== null);
+    return paths.filter((path): path is { params: { slug: string }, props: { post: PostNode } } => path !== null);
   } catch (error) {
     console.error('Error in getStaticPaths:', error);
     return [];
@@ -27,10 +23,10 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  post: Post;
+  post: PostNode;
 }
 
-const { post } = Astro.props as Props;
+const { post } = Astro.props;
 ---
 
 <BlogPost
@@ -38,7 +34,7 @@ const { post } = Astro.props as Props;
   date={new Date(post.date)}
   author={post.author.node.name}
   categories={post.categories.nodes.map(category => category.name).join(', ')}
-  tags={post.tags.nodes.map(tag => tag.name).join(', ')}
+  tags={post.tags.nodes}
   excerpt={post.excerpt}
   featuredImage={post.featuredImage}
   content={post.content}

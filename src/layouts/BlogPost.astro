@@ -33,7 +33,13 @@ const isBlog = categories.includes('Blog');
             </div>
             <h1 class="">{title}</h1>
             <h4 class="text-xl">By {author}</h4>
-            {tags &&<h4>Tags: {tags}</h4> }
+            <div class="flex flex-wrap gap-2">
+                {tags && (Array.isArray(tags) ? tags : [tags]).map((tag) => (
+                  <span class="px-3 py-1 bg-blue text-white text-sm font-medium rounded-full">
+                    {tag.name}
+                  </span>
+                ))}
+            </div>
             <hr />
           </div>
          <div class="content" set:html={content}/>

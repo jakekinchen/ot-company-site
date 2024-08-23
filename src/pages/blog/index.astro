@@ -5,16 +5,18 @@ import Footer from '../../components/Footer.astro';
 import Layout from '../../components/Layout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
-import type { PostItem } from '../../types';
-import { getPosts } from '../../lib/blogPosts';
+import type { PostNode } from '../../lib/wpFunctions';
+import { getRecentPosts, getLatestPost } from '../../lib/wpFunctions';
 
-const allPosts = await getPosts();
+const allPosts = await getRecentPosts("Blog");
+const latestPost = await getLatestPost("Blog");
+
 const metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
 };
-const gradient = true;
 
+const gradient = true;
 // Initial number of posts to show
 const initialPostCount = 5;
 ---
@@ -24,19 +26,21 @@ const initialPostCount = 5;
     <section class="bg-white py-16 text-center flex flex-col items-center">
       <h1 class="text-4xl font-bold text-center">Stay Ahead of the Curve in Cybersecurity</h1>
       <p class="text-center text-lg mt-4">Get the latest news, insights, and updates from our team of experts.</p>
-      <a class="bg-dark-blue hover:bg-white hover:border-4 hover:text-dark-blue text-white rounded-3xl py-2 px-4 hover:px-3 hover:py-1 cursor-pointer">Read the latest article</a>
+      {latestPost && (
+        <a href={`/blog/${latestPost.slug}/`} class="bg-dark-blue hover:bg-white hover:border-4 hover:text-dark-blue text-white rounded-3xl py-2 px-4 hover:px-3 hover:py-1 cursor-pointer">
+          Read the latest article
+        </a>
+      )}
     </section>
     <section class="w-full flex flex-row">
       <div class="threeQuarters p-4">
         <h2 class="pb-4 text-blue text-3xl font-bold">Blog</h2>
         <ul id="postList">
-          {allPosts.slice(0, initialPostCount).map((post: PostItem) => (
+          {allPosts.slice(0, initialPostCount).map((post: PostNode) => (
             <li class="max-h-[300px] pt-6 pb-2">
               {post.author?.node && <h4 class="author text-dark-blue text-medium text-xl">{post.author.node.name}</h4>}
               <a href={`/blog/${post.slug}/`} class="title text-dark-blue text-4xl">{post.title}</a>
-              <p class="excerpt text-dark-blue">
-                {post.excerpt.length > 250 ? post.excerpt.slice(0, 250) + '...' : post.excerpt}
-              </p>
+              <p class="excerpt text-dark-blue" set:html={post.excerpt.length > 250 ? post.excerpt.slice(0, 250) + '...' : post.excerpt}></p>
               <div class="flex flex-row justify-between items-center">
                 <p class="date !mb-0 text-dark-blue">
                   <FormattedDate date={new Date(post.date)} />
@@ -66,11 +70,11 @@ const initialPostCount = 5;
 </Layout>
 
 <script is:inline define:vars={{ allPosts, initialPostCount }}>
-	window.allPosts = allPosts;
-	window.initialPostCount = initialPostCount;
-  </script>
-<script src="../../scripts/loadMorePosts.ts"></script>
+  window.allPosts = allPosts;
+  window.initialPostCount = initialPostCount;
+</script>
 
+<script src="../../scripts/loadMorePosts.ts"></script>
 
 <style>
   /* Your styles here */
