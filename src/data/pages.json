@@ -589,7 +589,7 @@
             "iconSrc": "/solutionsIcons/ransomware.svg", 
             "articles": [
               {"label": "How to prevent ransomware attacks", "href": "/how-to-prevent-ransomware-attacks"}, 
-              {"label": "How Long to Recover from Ransomware?", "href": "/how-long-to-recover-from-ransomware"}
+              {"label": "How Long to Recover from Ransomware?", "href": "/blog/how-long-does-it-take-to-recover-from-a-ransomware-attack"}
             ] 
           },
           { 

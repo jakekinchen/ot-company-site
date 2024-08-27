@@ -43,6 +43,9 @@ if (!snippets) {
         startYAnchor={[`solutions-icon-${index % 2 === 0 ? 2 : 3}`, 'center']}
         offsetStartY={0}
         midpointX={[`solutions-description`, index % 2 === 0 ? 'left' : 'right']}
+        offsetEndX = { (index % 4 === 0) ? 20 :
+                       (index % 4 === 1) ? -25 :
+                       (index % 4 === 2) ? 0 : 0 }
         endY={[`solutions-icon-${index}`, 'center']}
         endX={[`solutions-icon-${index}`, index % 2 === 0 ? 'left' : 'right']}
         strokeColor="white"

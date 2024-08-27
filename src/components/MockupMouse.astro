@@ -5,58 +5,78 @@ interface Props {
   repetitions?: number | null;
   size?: number;
 }
-
 const { mouseHoverAnimation, staticMouse = false, repetitions = null, size = 16 } = Astro.props;
 ---
-
 {mouseHoverAnimation === "true" && (
   <img
     src="/mouse.svg"
     alt="Mouse cursor"
-    class="absolute transition-all duration-500 ease-in-out"
+    class="absolute transition-all duration-500 ease-in-out pointer-events-none"
     id="animated-mouse"
-    style={`width: ${size}px; height: ${size}px; ${staticMouse || repetitions === 0 ? 'display: block; left: 50%; top: 50%; transform: translate(-50%, -50%);' : 'display: none;'}`}
+    style={`width: ${size}px; height: ${size}px; display: none;`}
   />
 )}
-
 <script is:inline define:vars={{ staticMouse, repetitions, size }}>
   const mouse = document.getElementById('animated-mouse');
   const container = document.getElementById('mockup-container');
+  const mockupImage = document.getElementById('mockup-image');
 
-  if (mouse && container && !staticMouse && repetitions !== 0) {
-    const positions = [
-      { x: '80%', y: '70%' }, // Bottom right (laptop)
-      { x: '50%', y: '40%' }, // Center (desktop)
-      { x: '20%', y: '70%' }, // Bottom left (tablet)
-    ];
+  function initializeMouseAnimation() {
+    if (mouse && container && mockupImage && !staticMouse && repetitions !== 0) {
+      const positions = [
+        { x: 0.725, y: 0.6 }, // Bottom right (laptop)
+        { x: 0.4, y: 0.3 },   // Center (desktop)
+        { x: 0.125, y: 0.6 }, // Bottom left (tablet)
+      ];
+      let currentPosition = 0;
+      let currentRepetition = 0;
 
-    let currentPosition = 0;
-    let currentRepetition = 0;
+      function setMousePosition(position) {
+        const rect = mockupImage.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
 
-    function animateMouse() {
-      const { x, y } = positions[currentPosition];
-      if (!mouse) {
-        console.error('Mouse cursor image not found');
-        return;
+        const mouseX = (rect.left - containerRect.left) + (rect.width * position.x);
+        const mouseY = (rect.top - containerRect.top) + (rect.height * position.y);
+
+        mouse.style.left = `${mouseX}px`;
+        mouse.style.top = `${mouseY}px`;
+        mouse.style.display = 'block';
       }
-      mouse.style.left = `calc(${x} - ${size / 2}px)`;
-      mouse.style.top = `calc(${y} - ${size / 2}px)`;
-      mouse.style.display = 'block';
-      
-      currentPosition = (currentPosition + 1) % positions.length;
-      
-      if (currentPosition === 0 && repetitions !== null) {
-        currentRepetition++;
-        if (currentRepetition >= repetitions) {
-          clearInterval(animationInterval);
+
+      function animateMouse() {
+        setMousePosition(positions[currentPosition]);
+
+        currentPosition = (currentPosition + 1) % positions.length;
+        if (currentPosition === 0 && repetitions !== null) {
+          currentRepetition++;
+          if (currentRepetition >= repetitions) {
+            clearInterval(animationInterval);
+          }
         }
       }
+
+      // Set initial position
+      setMousePosition(positions[0]);
+
+      // Animate every 2 seconds
+      const animationInterval = setInterval(animateMouse, 2000);
+
+      // Update mouse position on window resize
+      window.addEventListener('resize', () => {
+        clearInterval(animationInterval);
+        setMousePosition(positions[currentPosition]);
+      });
+
+      return animationInterval;
     }
+  }
 
-    // Initial position
-    animateMouse();
-
-    // Animate every 2 seconds
-    const animationInterval = setInterval(animateMouse, 2000);
+  // Wait for the image to load before initializing the animation
+  if (mockupImage) {
+    if (mockupImage.complete) {
+      initializeMouseAnimation();
+    } else {
+      mockupImage.onload = initializeMouseAnimation;
+    }
   }
 </script>
