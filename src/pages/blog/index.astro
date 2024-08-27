@@ -8,17 +8,23 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import type { PostNode } from '../../lib/wpFunctions';
 import { getRecentPosts, getLatestPost } from '../../lib/wpFunctions';
 
-const allPosts = await getRecentPosts("Blog");
-const latestPost = await getLatestPost("Blog");
+// Fetch both blog and news posts
+const allBlogPosts = await getRecentPosts("Blog");
+const allNewsPosts = await getRecentPosts("News");
+const latestBlogPost = await getLatestPost("Blog");
+const latestNewsPost = await getLatestPost("News");
 
 const metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
 };
-
 const gradient = true;
+
 // Initial number of posts to show
 const initialPostCount = 5;
+
+// Combine all posts for initial rendering
+const allPosts = [...allBlogPosts, ...allNewsPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
 <Layout headerLogoColor='blue' headerIconColor='blue' headerBackground='bg-white' gradient={true}>
@@ -26,26 +32,38 @@ const initialPostCount = 5;
     <section class="bg-white py-16 text-center flex flex-col items-center">
       <h1 class="text-4xl font-bold text-center">Stay Ahead of the Curve in Cybersecurity</h1>
       <p class="text-center text-lg mt-4">Get the latest news, insights, and updates from our team of experts.</p>
-      {latestPost && (
-        <a href={`/blog/${latestPost.slug}/`} class="bg-dark-blue hover:bg-white hover:border-4 hover:text-dark-blue text-white rounded-3xl py-2 px-4 hover:px-3 hover:py-1 cursor-pointer">
-          Read the latest article
+      {latestBlogPost && (
+        <a href={`/blog/${latestBlogPost.slug}/`} class="bg-dark-blue hover:bg-white hover:border-4 hover:text-dark-blue text-white rounded-3xl py-2 px-4 hover:px-3 hover:py-1 cursor-pointer mt-4">
+          Read the latest blog article
+        </a>
+      )}
+      {latestNewsPost && (
+        <a href={`/news/${latestNewsPost.slug}/`} class="bg-dark-blue hover:bg-white hover:border-4 hover:text-dark-blue text-white rounded-3xl py-2 px-4 hover:px-3 hover:py-1 cursor-pointer mt-4">
+          Read the latest news article
         </a>
       )}
     </section>
-    <section class="w-full flex flex-row">
+    <section class="w-full flex flex-col">
+      <div class="filter-buttons-container flex mb-8 ml-3">
+        <div class="filter-buttons flex flex-wrap">
+          <button class="filter-btn bg-blue text-white hover:text-white px-4 py-2 rounded-full mr-2 mb-2 active" data-type="All">All</button>
+          <button class="filter-btn bg-white text-blue hover:text-white px-4 py-2 rounded-full mr-2 mb-2" data-type="Blog">Blog</button>
+          <button class="filter-btn bg-white text-blue hover:text-white px-4 py-2 rounded-full mr-2 mb-2" data-type="News">News</button>
+        </div>
+      </div>
       <div class="threeQuarters p-4">
-        <h2 class="pb-4 text-blue text-3xl font-bold">Blog</h2>
+        <h2 class="pb-4 text-blue text-3xl font-bold">Articles</h2>
         <ul id="postList">
           {allPosts.slice(0, initialPostCount).map((post: PostNode) => (
-            <li class="max-h-[300px] pt-6 pb-2">
+            <li class="max-h-[300px] pt-6 pb-2" data-type={post.categories.nodes[0].name}>
               {post.author?.node && <h4 class="author text-dark-blue text-medium text-xl">{post.author.node.name}</h4>}
-              <a href={`/blog/${post.slug}/`} class="title text-dark-blue text-4xl">{post.title}</a>
+              <a href={`/${post.categories.nodes[0].name.toLowerCase()}/${post.slug}/`} class="title text-dark-blue text-4xl">{post.title}</a>
               <p class="excerpt text-dark-blue" set:html={post.excerpt.length > 250 ? post.excerpt.slice(0, 250) + '...' : post.excerpt}></p>
               <div class="flex flex-row justify-between items-center">
                 <p class="date !mb-0 text-dark-blue">
                   <FormattedDate date={new Date(post.date)} />
                 </p>
-                <a href={`/blog/${post.slug}/`} class="read-more text-white px-4 py-2 bg-dark-blue rounded-3xl">Read more</a>
+                <a href={`/${post.categories.nodes[0].name.toLowerCase()}/${post.slug}/`} class="read-more text-white px-4 py-2 bg-dark-blue rounded-3xl">Read more</a>
               </div>
             </li>
           ))}
@@ -54,28 +72,91 @@ const initialPostCount = 5;
           <button id="loadMore" class="mt-4 bg-dark-blue text-white rounded-3xl px-4 py-2">Load More</button>
         )}
       </div>
-      <div class="oneQuarter mb:hidden">
-        <aside class="max-w-[200px] p-4 mx-auto flex flex-col justify-center">
-          <h4>Categories</h4>
-          <ul class="pl-1 pt-4 space-y-4">
-            <li><a href="/blog/category/announcements/">Announcements</a></li>
-            <li><a href="/blog/category/cybersecurity/">Cybersecurity</a></li>
-            <li><a href="/blog/category/industry-news/">Industry News</a></li>
-            <li><a href="/blog/category/product-updates/">Product Updates</a></li>
-          </ul>
-        </aside>
-      </div>
     </section>
   </div>
 </Layout>
 
-<script is:inline define:vars={{ allPosts, initialPostCount }}>
-  window.allPosts = allPosts;
-  window.initialPostCount = initialPostCount;
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const postItems = document.querySelectorAll('#postList li');
+    const loadMoreButton = document.getElementById('loadMore');
+    let currentFilter: string | null = 'All';
+    let visiblePosts = 5;
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterType = button.getAttribute('data-type');
+        currentFilter = filterType;
+        visiblePosts = 5;
+
+        // Toggle active class for buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter posts
+        postItems.forEach((item, index) => {
+          if (item instanceof HTMLElement) {
+            const postType = item.getAttribute('data-type');
+            if (filterType === 'All' || postType === filterType) {
+              item.style.display = index < visiblePosts ? 'block' : 'none';
+            } else {
+              item.style.display = 'none';
+            }
+          }
+        });
+
+        // Show/hide load more button
+        updateLoadMoreButton();
+      });
+    });
+
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener('click', () => {
+        visiblePosts += 5;
+        postItems.forEach((item, index) => {
+          if (item instanceof HTMLElement) {
+            const postType = item.getAttribute('data-type');
+            if (currentFilter === 'All' || postType === currentFilter) {
+              item.style.display = index < visiblePosts ? 'block' : 'none';
+            }
+          }
+        });
+        updateLoadMoreButton();
+      });
+    }
+
+    function updateLoadMoreButton() {
+      const visibleCount = Array.from(postItems).filter(item => {
+        if (item instanceof HTMLElement) {
+          const postType = item.getAttribute('data-type');
+          return (currentFilter === 'All' || postType === currentFilter) && item.style.display !== 'none';
+        }
+        return false;
+      }).length;
+
+      if (loadMoreButton) {
+        loadMoreButton.style.display = visibleCount < postItems.length ? 'block' : 'none';
+      }
+    }
+  });
 </script>
 
-<script src="../../scripts/loadMorePosts.ts"></script>
-
 <style>
-  /* Your styles here */
+  .filter-buttons button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .filter-buttons button:hover {
+    background-color: var(--light-blue);
+    color: var(--white);
+  }
+  .filter-btn.active {
+    background-color: var(--blue);
+    color: var(--white);
+  }
+  .filter-btn:not(.active) {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+  }
 </style>

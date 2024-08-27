@@ -152,13 +152,21 @@ const metadata = pageContent.metadata;
             </p>
           </div>
           <div class="video-container flex-1 flex items-center justify-center mb:h-[55vw]">
-            <!-- Ensure the iframe maintains the aspect ratio -->
-            <div class="relative w-full" style="padding-bottom: 56.25%;"> <!-- 16:9 aspect ratio -->
-              <iframe class="absolute top-0 left-0 w-full h-full border-4 border-dashed" 
-                src={pageContent['visual-guide']?.graphicSrc || "https://www.youtube.com/embed/dQw4w9WgXcQ"} 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
+            <div class="relative w-full" style="padding-bottom: 56.25%;">
+              {pageContent['visual-guide']?.graphicSrc && pageContent['visual-guide']?.isVideo ? (
+                <iframe 
+                  class="absolute top-0 left-0 w-full h-full border-4 border-dashed" 
+                  src={pageContent['visual-guide'].graphicSrc}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen
+                ></iframe>
+              ) : (
+                <img 
+                  class="absolute top-0 left-0 w-full h-full object-cover border-4 border-dashed" 
+                  src={pageContent['visual-guide']?.graphicSrc || "/content-placeholder.jpg"}
+                  alt="Visual Guide"
+                />
+              )}
             </div>
           </div>
             </div>

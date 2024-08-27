@@ -71,7 +71,7 @@ const Nav = () => {
     return checkPath('/solutions');
   }
   if (item === 'Partners') {
-    return checkPath('/become-a-partner');
+    return checkPath('/partners');
   }
   if (item === 'Company') {
     return checkPath('/company') || checkPath('/events');

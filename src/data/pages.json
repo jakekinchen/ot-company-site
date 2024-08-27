@@ -473,7 +473,7 @@
         "visual-guide": {
           "subtitle": "Discover how Global Data Security can safeguard your data across the globe.",
           "graphicSrc": "",
-          "isVideo": "true"
+          "isVideo": "false"
         }
       }
     },
@@ -623,8 +623,8 @@
   "partners": {
     "pages": [
       { 
-        "href": "/become-a-partner", 
-        "iconSrc": "/menuIcons/become-a-partner.svg", 
+        "href": "/partners", 
+        "iconSrc": "/menuIcons/partners.svg", 
         "label": "Become a Partner",
         "metadata": {
           "title": "Become a Partner - OneTier",
@@ -660,7 +660,7 @@
 { "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com"},
 { "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriver.com"},
 { "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/"},
-{ "label": "CyberSwitch Technologies", "iconSrc": "/partnerLogos/cyberswitchTechnologies.png", "alt": "CyberSwitch Technologies", "href": "https://www.cyberswitch.com"},
+{ "label": "CyberSwitch Technologies", "iconSrc": "/partnerLogos/cyberswitchTechnologies.png", "alt": "CyberSwitch Technologies", "href": "https://www.cyberswitchtech.com"},
 { "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.jpeg", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io"},
 { "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com"},
 { "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com"},

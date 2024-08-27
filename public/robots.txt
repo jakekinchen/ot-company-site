@@ -14,7 +14,7 @@ Allow: /analytics-hq
 Allow: /global-data-security
 Allow: /security-overwatch
 Allow: /company
-Allow: /become-a-partner
+Allow: /partners
 Allow: /leadership
 Allow: /solutions
 
