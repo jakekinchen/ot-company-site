@@ -28,6 +28,12 @@ const POST_FIELDS = `
       altText
     }
   }
+    seo {
+    title
+    metaDesc
+    focuskw
+    metaKeywords
+  }
 `;
 
 export const GET_POST = `

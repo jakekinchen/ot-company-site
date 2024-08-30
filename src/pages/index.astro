@@ -9,6 +9,7 @@ import { getLatestPost } from '@/lib/wpFunctions';
 import Carousel from '../components/Carousel.astro';
 import { home } from '../data/pages.json';
 import type { PostItem } from '../types';
+import { exportAllPostsAsJson } from '@/lib/wpFunctions';
 
 const metadata = home.pages[0].metadata;
 
@@ -88,6 +89,7 @@ if (closestEvent) {
     date: new Date()
   };
 }
+//exportAllPostsAsJson();
 ---
 
 <Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70} metadata={metadata}>
@@ -149,8 +151,8 @@ if (closestEvent) {
         />
       )}
       <CardComponent
-        title="Product Highlight"
-        subtitle="Risk Engagement"
+        title="Risk Engagement"
+        subtitle="Product Highlight"
         glassmorphism="true"
         route="/risk-engagement"
       />

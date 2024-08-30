@@ -1,5 +1,6 @@
 // src/wp-functions.ts
-
+import fs from 'fs';
+import path from 'path';
 import { GET_POST, GET_POSTS, GET_POST_SLUGS } from '../queries';
 
 export interface PostNode {
@@ -13,6 +14,55 @@ export interface PostNode {
   categories: { nodes: Array<{ name: string }> };
   tags: { nodes: Array<{ name: string }> };
   featuredImage?: { node: { sourceUrl: string; altText: string } };
+  seo: {
+    title: string;
+    metaDesc: string;
+    focuskw: string;
+    metaKeywords: string;
+    metaRobotsNoindex: string;
+    metaRobotsNofollow: string;
+    opengraphTitle: string;
+    opengraphDescription: string;
+    opengraphImage: {
+      sourceUrl: string;
+    };
+    twitterTitle: string;
+    twitterDescription: string;
+    twitterImage: {
+      sourceUrl: string;
+    };
+  };
+}
+
+export interface PostExport extends PostNode {
+  id: string;
+  slug: string;
+  title: string;
+  date: string;
+  content: string;
+  excerpt: string;
+  author: { node: { name: string } };
+  categories: { nodes: Array<{ name: string }> };
+  tags: { nodes: Array<{ name: string }> };
+  featuredImage?: { node: { sourceUrl: string; altText: string } };
+  seo: {
+    title: string;
+    metaDesc: string;
+    focuskw: string;
+    metaKeywords: string;
+    metaRobotsNoindex: string;
+    metaRobotsNofollow: string;
+    opengraphTitle: string;
+    opengraphDescription: string;
+    opengraphImage: {
+      sourceUrl: string;
+    };
+    twitterTitle: string;
+    twitterDescription: string;
+    twitterImage: {
+      sourceUrl: string;
+    };
+  };
 }
 
 export interface PageInfo {
@@ -78,8 +128,29 @@ export async function getAllPostSlugs(category: string | null = null): Promise<s
 }
 
 export async function getRecentPosts(category: string | null = null, count: number = 10): Promise<PostNode[]> {
-  const { data } = await fetchGraphQL(GET_POSTS, { first: count, category });
-  return data.posts?.nodes || [];
+  try {
+    const response = await fetchGraphQL(GET_POSTS, { first: count, category });
+    
+    if (!response.data) {
+      console.error('Unexpected API response structure: data is undefined');
+      return [];
+    }
+    
+    if (!response.data.posts) {
+      console.error('Unexpected API response structure: data.posts is undefined');
+      return [];
+    }
+    
+    if (!Array.isArray(response.data.posts.nodes)) {
+      console.error('Unexpected API response structure: data.posts.nodes is not an array');
+      return [];
+    }
+    
+    return response.data.posts.nodes;
+  } catch (error) {
+    console.error('Error in getRecentPosts:', error);
+    return [];
+  }
 }
 
 export async function getLatestPost(category: string | null = null): Promise<PostNode | null> {
@@ -98,5 +169,28 @@ export async function getPostData(slug: string): Promise<PostNode | null> {
   } catch (error) {
     console.error(`Error fetching post with slug ${slug}:`, error);
     return null;
+  }
+}
+
+export async function exportAllPostsAsJson(category: string | null = null): Promise<void> {
+  try {
+    console.log('Fetching all posts...');
+    const allPosts = await getAllPosts(category);
+
+    const exportPosts: PostExport[] = allPosts.map(post => ({
+      ...post,
+    }));
+
+    const jsonContent = JSON.stringify(exportPosts, null, 2);
+
+    const fileName = `wp-posts-export-${new Date().toISOString().split('T')[0]}.json`;
+    const filePath = path.join(process.cwd(), fileName);
+
+    fs.writeFileSync(filePath, jsonContent);
+
+    console.log(`Exported ${exportPosts.length} posts to ${fileName}`);
+    console.log(`File saved at: ${filePath}`);
+  } catch (error) {
+    console.error('Error exporting posts:', error);
   }
 }

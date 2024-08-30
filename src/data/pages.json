@@ -660,7 +660,6 @@
 { "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com"},
 { "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriver.com"},
 { "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/"},
-{ "label": "CyberSwitch Technologies", "iconSrc": "/partnerLogos/cyberswitchTechnologies.png", "alt": "CyberSwitch Technologies", "href": "https://www.cyberswitchtech.com"},
 { "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.jpeg", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io"},
 { "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com"},
 { "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com"},
@@ -674,13 +673,13 @@
     { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg", "bio": "Chris Romeo, a Co-Founder and the Chief Executive Officer of OneTier. He is an experienced Sales executive with over 20 years in Sales. He has previous Sales leadership roles at Atlantis Computing, Insight Engines, NICE, Kyriba and Dispersive." },
     { "name": "Taber West", "title": "Chief Technology Officer", "imageSrc": "/profiles/taber-west.jpg", "bio": "Taber West, a Co-Founder and the Chief Technology Officer at OneTier. A US Navy veteran and master of four engineering disciplines, he has over 30 years of experience in technology working for McKesson, the US Department of Energy, CSC, DXC, & Accenture in leadership positions." },
     { "name": "Jai Oliver", "title": "Vice President of Sales", "imageSrc": "/profiles/jai-oliver.jpg", "bio": "Jai Oliver is the Head of Sales at OneTier. He holds a Certified Professional Facilitator (CPF) credential from CustomerCentric Selling, MEDDPIC, SPIN, and Challenger methodology. He has over 20 years of experience in sales, business development, and Enablement at NICE, Centrical, and Replicant." },
-    { "name": "Krystal Morgan", "title": "US Partner Manager", "imageSrc": "/profiles/krystal-morgan.jpg", "bio": "Krystal Morgan is a Partner Manager for North America at OneTier. She is a US Army Reservist and an experienced executive assistant from FISERV. Krystal has worked in and with Public Sector and Commercial entities for 11 years." },
+    { "name": "Krystal Morgan", "title": "US Partner Manager", "imageSrc": "/profiles/krystal-morgan.jpg", "bio": "Krystal Morgan is a Partner Manager for North America at OneTier. She has managed partnerships and contracts in the public and private sector over the past 10 years with Fiserv. She is a veteran and continues serving as an Army Reservist." },
     { "name": "Mateo Pinzón", "title": "LATAM Partner Manager", "imageSrc": "/profiles/mateo-pinzon.jpg", "bio": "Mateo Pinzon is a Partner Manager for Latin America at OneTier. Originally from Colombia, Mateo has specialized on international business development. Now he has a network of partners and end-users he works with in Latin America." }
   ],
   "initiatives": [
     { "iconSrc": "/globe.svg", "description": "Environmental Activism is a key part of OneTier's secure global strategy." },
     { "iconSrc": "/tree.svg", "description": "By the end of 2024, OneTier pledges to plant 10,000 trees." },
-    { "iconSrc": "/globe.svg", "description": "Environmental Activism is a key part of OneTier's secure global strategy." }
+    { "iconSrc": "/globe.svg", "description": "OneTier is committed to achieving zero waste in all its operations by 2030." }
   ],
   "events": [
     {
