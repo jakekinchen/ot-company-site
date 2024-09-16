@@ -21,8 +21,8 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
   >
     <div class="logos-slide">
       {clients.map((client) => (
-        <a href={client.href} target="_blank" rel="noopener noreferrer">
-          <img src={client.iconSrc} alt={client.alt} title={client.label} />
+        <a href={client.href} target="_blank" rel="noopener noreferrer" style={`--client-scale: ${client.scale};`}>
+          <img src={client.iconSrc} alt={client.alt} title={client.label}  />
         </a>
       ))}
     </div>
@@ -69,19 +69,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     const wrapper = container.closest('.logos-wrapper') as HTMLElement;
     const blurLeft = wrapper.querySelector('.blur-left') as HTMLElement;
     const blurRight = wrapper.querySelector('.blur-right') as HTMLElement;
-    const updateBlur = () => {
-      if (blurLeft && blurRight) {
-        const showLeftBlur = container.scrollLeft > 0;
-        const showRightBlur = container.scrollLeft < (container.scrollWidth - container.clientWidth - 1);
-        
-        blurLeft.style.display = showLeftBlur ? 'block' : 'none';
-        blurRight.style.display = showRightBlur ? 'block' : 'none';
-      }
-    };
-
-    // Call updateBlur initially and whenever the scroll position changes
-    updateBlur();
-    container.addEventListener('scroll', updateBlur);
+    
 
 
       animationFrame = requestAnimationFrame(updateScroll);
@@ -131,6 +119,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     background: white;
     white-space: nowrap;
     position: relative;
+    z-index: 1;
   }
 
   .logos-wrapper .blur-left,
@@ -142,6 +131,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     z-index: 2;
     pointer-events: none;
     opacity: 1;
+    backdrop-filter: blur(5px);
   }
 
   .logos-wrapper .blur-left {
@@ -165,26 +155,27 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
   }
 
   .logos-slide a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 calc(var(--base-padding) * var(--scale));
-    height: calc(var(--base-height) * var(--scale));
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(var(--base-padding) * var(--scale) / var(--client-scale));
+  height: calc(var(--base-height) * var(--scale));
+}
 
-  .logos-slide img {
-    border-radius: 0;
-    max-width: calc(var(--base-max-width) * var(--scale));
-    max-height: calc(var(--base-max-height) * var(--scale));
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-  }
+.logos-slide img {
+  border-radius: 0;
+  max-width: calc(var(--base-max-width) * var(--scale) * var(--client-scale));
+  max-height: calc(var(--base-max-height) * var(--scale) * var(--client-scale));
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform: scale(var(--client-scale));
+  transition: transform 0.3s ease;
+}
 
-  .logos-slide img:hover {
-    transform: scale(1.1);
-  }
+.logos-slide img:hover {
+  transform: scale(calc(var(--client-scale) * 1.1));
+}
 
   .logos.scrollable {
     scrollbar-width: none; /* Firefox */

@@ -13,9 +13,9 @@ if (!partnerLogos) {
   throw new Error('Partner Logos info not found');
 }
 
-const becomeAPartner = partners.pages.find(page => page.label === "Become a Partner");
+const becomeAPartner = partners.pages.find(page => page.label === "Partner Ecosystem");
 if (!becomeAPartner) {
-  throw new Error('Page with label "Become a Partner" not found');
+  throw new Error('Page with label "Partner Ecosystem" not found');
 }
 const metadata = becomeAPartner.metadata;
 if (!metadata) {
@@ -53,7 +53,7 @@ if (!metadata) {
         hideOnMobile={true}
     />
   </div>
-        <a id="partners-button" href="https://partners.onetier.com/partner/registration" class="gradient-button partner-button">Become a Partner</a>
+        <a id="partners-button" href="https://partners.onetier.com/partner/registration" class="gradient-button partner-button">Partner Ecosystem</a>
         <a id="partner-portal-button" href="https://partners.onetier.com/login" class="gradient-button partner-button">Partner Portal</a>
       </div>
     </div>
@@ -62,7 +62,7 @@ if (!metadata) {
   <section class="section section-b">
     <h2 class="text-center text-blue !font-medium ">OneTier Featured Partners</h2>
     <div class="partner-carousel">
-      <Carousel clients={partnerLogos} scale={1.5} speed={800} scroll={true} />
+      <Carousel clients={partnerLogos} scale={1.5} speed={800} scroll={true}  sideBlur={true }/>
     </div>
   </section>
 

@@ -625,11 +625,11 @@
       { 
         "href": "/partners", 
         "iconSrc": "/menuIcons/partners.svg", 
-        "label": "Become a Partner",
+        "label": "Partner Ecosystem",
         "metadata": {
-          "title": "Become a Partner - OneTier",
-          "description": "Join OneTier's partner program and access exclusive resources and support. Learn how to become a partner today.",
-          "keywords": "OneTier, partner program, become a partner",
+          "title": "Partner Ecosystem - OneTier",
+          "description": "Join OneTier's partner program and access exclusive resources and support. Learn how to Partner Ecosystem today.",
+          "keywords": "OneTier, partner program, Partner Ecosystem, partner ecosystem",
           "author": "OneTier Team",
           "robots": "index"
         }
@@ -649,25 +649,25 @@
     ]
   },
   "clients": [
-    { "label": "U.S. Air Force", "iconSrc": "/clientLogos/airforce.png", "alt": "U.S. Air Force", "href": "https://www.airforce.com"},
-    { "label": "Milkwaukee", "iconSrc": "/clientLogos/milwaukee.png", "alt": "Milwaukee", "href": "https://www.milwaukee.gov"},
-    { "label": "U.S. Navy", "iconSrc": "/clientLogos/navy.png", "alt": "U.S. Navy", "href": "https://www.navy.mil"},
-    { "label": "Disney", "iconSrc": "/clientLogos/disney.png", "alt": "Disney", "href": "https://www.disney.com"},
-    { "label": "Microsoft", "iconSrc": "/clientLogos/microsoft.png", "alt": "Microsoft", "href": "https://www.microsoft.com"},
-    { "label": "Oracle", "iconSrc": "/clientLogos/oracle.png", "alt": "Oracle", "href": "https://www.oracle.com"}
+    { "label": "U.S. Air Force", "iconSrc": "/clientLogos/airforce.png", "alt": "U.S. Air Force", "href": "https://www.airforce.com", "scale": "1"},
+    { "label": "Milkwaukee", "iconSrc": "/clientLogos/milwaukee.png", "alt": "Milwaukee", "href": "https://www.milwaukee.gov", "scale": "1"},
+    { "label": "U.S. Navy", "iconSrc": "/clientLogos/navy.png", "alt": "U.S. Navy", "href": "https://www.navy.mil", "scale": "1"},
+    { "label": "Disney", "iconSrc": "/clientLogos/disney.png", "alt": "Disney", "href": "https://www.disney.com", "scale": "1"},
+    { "label": "Microsoft", "iconSrc": "/clientLogos/microsoft.png", "alt": "Microsoft", "href": "https://www.microsoft.com", "scale": "1"},
+    { "label": "Oracle", "iconSrc": "/clientLogos/oracle.png", "alt": "Oracle", "href": "https://www.oracle.com", "scale": "1"}
   ],
   "partnerLogos": [
-{ "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com"},
-{ "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriver.com"},
-{ "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/"},
-{ "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.jpeg", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io"},
-{ "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com"},
-{ "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com"},
-{ "label": "Iva'al", "iconSrc": "/partnerLogos/ivaal.png", "alt": "Iva'al", "href": "https://www.ivaal.com"},
-{ "label": "Lakeshore IT", "iconSrc": "/partnerLogos/lakeshoreIT.gif", "alt": "Lakeshore IT", "href": "https://www.lakeshoreit.com"},
-{ "label": "Natuv", "iconSrc": "/partnerLogos/natuv.png", "alt": "Natuv", "href": "https://www.natuv.com"},
-{ "label": "Norseman", "iconSrc": "/partnerLogos/norseman.png", "alt": "Norseman", "href": "https://www.norseman.com"},
-{ "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com"}
+{ "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com", "scale": "1"},
+{ "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriverit.com", "scale": "1.25"},
+{ "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/", "scale": "1"},
+{ "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.png", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io", "scale": "1"},
+{ "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com", "scale": "1"},
+{ "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com", "scale": "1"},
+{ "label": "Iva'al", "iconSrc": "/partnerLogos/ivaal.png", "alt": "Iva'al", "href": "https://www.ivaal.com", "scale": "1"},
+{ "label": "Lakeshore IT", "iconSrc": "/partnerLogos/lakeshoreIT.gif", "alt": "Lakeshore IT", "href": "https://www.lakeshoreit.com", "scale": "1"},
+{ "label": "Natuv", "iconSrc": "/partnerLogos/natuv.png", "alt": "Natuv", "href": "https://www.natuv.com", "scale": "1"},
+{ "label": "Norseman", "iconSrc": "/partnerLogos/norseman.png", "alt": "Norseman", "href": "https://www.norseman.com", "scale": "1"},
+{ "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com", "scale": "1"}
 ],
 "teamMembers": [
     { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg", "bio": "Chris Romeo, a Co-Founder and the Chief Executive Officer of OneTier. He is an experienced Sales executive with over 20 years in Sales. He has previous Sales leadership roles at Atlantis Computing, Insight Engines, NICE, Kyriba and Dispersive." },

@@ -45,6 +45,7 @@ export type ProductInfo = {
     iconSrc: string;
     alt: string;
     href: string;
+    scale: string | null;
   };
   
   export type CompanyLink = {
