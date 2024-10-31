@@ -1,5 +1,7 @@
 # OneTier | AnyCloud DataSecure Portfolio
 
+![OneTier Homepage](public/homepage-screenshot.png)
+
 This project is a high-performance, static website built from the ground up using Astro, tailored for OneTier—a company focused on cybersecurity, network protection, and data security. Designed with an emphasis on speed, responsiveness, and modern aesthetics, the site demonstrates cutting-edge performance by leveraging Astro’s static site generation capabilities, optimizing load times and ensuring seamless user interactions.
 
 # Features
