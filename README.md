@@ -1,68 +1,86 @@
-# Astro Starter Kit: Blog
+# OneTier | AnyCloud DataSecure Portfolio
 
-```sh
-npm create astro@latest -- --template blog
-```
+This project is a high-performance, static website built from the ground up using Astro, tailored for OneTier—a company focused on cybersecurity, network protection, and data security. Designed with an emphasis on speed, responsiveness, and modern aesthetics, the site demonstrates cutting-edge performance by leveraging Astro’s static site generation capabilities, optimizing load times and ensuring seamless user interactions.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+# Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+To maximize flexibility and interactivity, this website incorporates a custom vector graphic path system. Built with fixed anchors on HTML elements, the system enhances responsiveness and adaptability, enabling sophisticated animations that adjust dynamically to screen size and orientation. This unique approach aligns with our focus on delivering engaging, scalable web experiences that excel across all device types.
 
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
-```text
 ├── public/
+│   ├── clientLogos/
+│   ├── css/
+│   ├── featureIcons/
+│   ├── fonts/
+│   ├── helpers/
+│   ├── lines/
+│   ├── menuIcons/
+│   ├── mockups/
+│   ├── partnerLogos/
+│   ├── productIcons/
+│   ├── productImages/
+│   ├── profiles/
+│   ├── social-media-icons/
+│   ├── solutionsIcons/
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+│   ├── components/
+│   ├── data/
+│   ├── layouts/
+│   ├── pages/
+│   ├── lib/
+│   ├── consts.ts
+│   └── env.d.ts
+├── .astro/
+├── .vscode/
+├── [astro.config.mjs](http://_vscodecontentref_/1)
+├── [package.json](http://_vscodecontentref_/2)
+├── [postcss.config.js](http://_vscodecontentref_/3)
+├── [tailwind.config.js](http://_vscodecontentref_/4)
+└── [tsconfig.json](http://_vscodecontentref_/5)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro looks for .astro or .md files in the src/pages/ directory. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+There's nothing special about src/components/, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+🏠 Homepage
+The homepage of this site is designed to provide a comprehensive overview of OneTier's offerings and key information. It includes the following sections:
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
+Hero Section: A welcoming hero section with a brief introduction and a call-to-action button.
+Products: A showcase of our main products with brief descriptions and links to detailed pages.
+Clients: A carousel displaying logos of our clients and partners.
+Events: Information about upcoming events, dynamically fetched and displayed.
+Blog: A section highlighting the latest blog articles with excerpts and links to full posts.
+Contact: A contact form for visitors to get in touch with us.
+Homepage Metadata
+🧩 Key Components
+Layout.astro: The main layout component used across various pages.
+CardComponent.astro: A reusable card component.
+ProductSnippet.astro: Displays product snippets.
+CounterComponent.jsx: A React component for counting.
+DottedPathSVG.astro: SVG component for dotted paths.
+Carousel.astro: A carousel component for displaying logos and images.
+📄 Pages
+index.astro: The main landing page that includes various sections like products, clients, events, and a carousel.
+global-data-security.astro: Page for Global Data Security product.
+partners.astro: Page for Partner Program.
+company.astro: Company overview page.
+leadership.astro: Leadership team page.
+news/index.astro: News page listing recent posts.
+blog/index.astro: Blog page listing recent posts.
+🧞 Commands
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Command	Action
+npm install	Installs dependencies
+npm run dev	Starts local dev server at localhost:4321
+npm run build	Build your production site to ./dist/
+npm run preview	Preview your build locally, before deploying
+npm run astro ...	Run CLI commands like astro add, astro check
+npm run astro -- --help	Get help using the Astro CLI
+👀 Want to learn more?
+Check out our documentation or jump into our Discord server.
