@@ -1,6 +1,6 @@
 ![OneTier Homepage](public/homepage-screenshot.png)
 
-This project is a high-performance, static website built from the ground up using Astro, tailored for OneTier—a company focused on cybersecurity, network protection, and data security. Designed with an emphasis on speed, responsiveness, and modern aesthetics, the site demonstrates cutting-edge performance by leveraging Astro’s static site generation capabilities, optimizing load times, and ensuring seamless user interactions. Currently located and hosted at www.onetier.com
+This project is a high-performance, static website built from the ground up using Astro, tailored for a company focused on cybersecurity, network protection, and data security. Designed with an emphasis on speed, responsiveness, and modern aesthetics, the site demonstrates cutting-edge performance by leveraging Astro’s static site generation capabilities, optimizing load times, and ensuring seamless user interactions. Currently located and hosted at www.onetier.com
 
 ---
 
@@ -53,7 +53,7 @@ Astro automatically exposes `.astro` and `.md` files in the `src/pages/` directo
 
 ## 🏠 Homepage Structure
 
-The homepage is designed to provide a comprehensive overview of OneTier's offerings. It includes:
+The homepage is designed to provide a comprehensive overview of their offerings. It includes:
 
 - **Hero Section**: An introduction with a call-to-action.
 - **Products**: Displaying key products with descriptions and links.
