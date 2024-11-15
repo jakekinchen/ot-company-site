@@ -567,6 +567,18 @@
           "author": "OneTier Team",
           "robots": "index"
         }
+      },
+      {
+        "href": "/blog",
+        "iconSrc": "/menuIcons/news.svg",
+        "label": "Blog",
+        "metadata": {
+          "title": "Blog - OneTier",
+          "description": "Get the latest news and insights from the OneTier team. Explore our blog for cybersecurity tips, industry trends, and more.",
+          "keywords": "OneTier, leadership, team, executives",
+          "author": "OneTier Team",
+          "robots": "index"
+        }
       }
     ]
   },
