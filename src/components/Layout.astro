@@ -32,8 +32,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html class="" lang="en">
 <head> 
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} metadata={metadata} />
-  <!-- Google Tag Manager (gtag.js) -->
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-NFTM6LJDXW"></script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KLCM6ZWF');</script>
+  <!-- End Google Tag Manager -->
   <script is:inline >
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -45,7 +50,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <body class={`bg-white flex flex-col min-h-screen ${partnerBackground ? 'partner-background' : ''} ${homeBackground ? 'home-background' : ''}`}>
-  
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLCM6ZWF"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <Header background={headerBackground} gradient={gradient} iconColor={headerIconColor} logoColor={headerLogoColor} width={navWidth} />
   <Dialog />
   {initialBackgroundHeight && (
