@@ -33,22 +33,31 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <head> 
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} metadata={metadata} />
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KLCM6ZWF');</script>
+  <script>
+    (function(w: any, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s) as HTMLScriptElement,
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      if (f && f.parentNode) {
+        f.parentNode.insertBefore(j, f);
+      }
+    })(window, document, 'script', 'dataLayer', 'GTM-KLCM6ZWF');
+  </script>
   <!-- End Google Tag Manager -->
-  <script is:inline >
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-NFTM6LJDXW');
   </script>
   <!-- End Google Tag Manager -->
   <!--  <base href="https://onetier.com/">   -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <body class={`bg-white flex flex-col min-h-screen ${partnerBackground ? 'partner-background' : ''} ${homeBackground ? 'home-background' : ''}`}>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLCM6ZWF"
@@ -62,14 +71,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   <main class="flex-grow content">
     <slot />
   </main>
-</div>
   <Footer theme={footerBackground} gradient={footerLogoGradient} />
   {backgroundColorScript && (
     <script is:inline type="module" src="/helpers/backgroundColor.js"></script>
   )}
-  <!-- <script is:inline type="module">
-    import { displayViewportDimensions } from './src/helpers/viewportDimensions.js';
-    displayViewportDimensions(); </script> -->
 </body>
 </html>
 
