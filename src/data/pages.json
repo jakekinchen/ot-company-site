@@ -6,20 +6,20 @@
       "subtitle": "Security From Zero to Trust",
       "iconSrc": "/menuIcons/home.svg",
       "metadata": {
-        "title": "OneTier | AnyCloud DataSecure Portfolio",
+        "title": "OneTier | AnyCloud DataSecure Platform",
         "description": "Security From Zero to Trust. OneTier helps organizations protect their data, secure their networks, and prevent cyber attacks. Explore our solutions today.",
         "keywords": "cybersecurity, data protection, network security, cyber attacks, OneTier",
         "author": "OneTier Team",
         "robots": "index",
         "og": {
           "type": "website",
-          "title": "OneTier | AnyCloud DataSecure Portfolio",
+          "title": "OneTier | AnyCloud DataSecure Platform",
           "description": "Security From Zero to Trust. OneTier helps organizations protect their data, secure their networks, and prevent cyber attacks. Explore our solutions today.",
           "image": "/OT-card.jpg"
         },
         "twitter": {
           "card": "summary_large_image",
-          "title": "OneTier | AnyCloud DataSecure Portfolio",
+          "title": "OneTier | AnyCloud DataSecure Platform",
           "description": "Security From Zero to Trust. OneTier helps organizations protect their data, secure their networks, and prevent cyber attacks. Explore our solutions today.",
           "image": "/OT-card.jpg"
         }
