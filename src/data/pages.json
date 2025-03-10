@@ -670,7 +670,7 @@
   ],
   "partnerLogos": [
 { "label": "Alliance Technology Group", "iconSrc": "/partnerLogos/allianceTechnologyGroup.png", "alt": "Alliance Technology Group", "href": "https://www.alliance-it.com", "scale": "1"},
-{ "label": "AWS", "iconSrc": "/partnerLogos/aws.png", "alt": "AWS", "href": "https://aws.amazon.com", "scale": "1"},
+{ "label": "AWS", "iconSrc": "/partnerLogos/aws.png", "alt": "AWS", "href": "https://aws.amazon.com", "scale": "0.8"},
 { "label": "Coro", "iconSrc": "/partnerLogos/coro.png", "alt": "Coro", "href": "https://www.coro.net", "scale": "0.9"},
 { "label": "Copper River", "iconSrc": "/partnerLogos/copperRiver.png", "alt": "Copper River", "href": "https://www.copperriverit.com", "scale": "1.25"},
 { "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/", "scale": "1"},
