@@ -7,6 +7,18 @@ const PIPEDRIVE_API_TOKEN = import.meta.env.PIPEDRIVE_API_TOKEN;
 const PIPEDRIVE_BASE_URL = 'https://onetier.pipedrive.com/api/v1';
 const PIPEDRIVE_BASE_URL_V2 = 'https://onetier.pipedrive.com/api/v2';
 
+
+// Handle GET requests to silence the Astro build warning
+export const GET: APIRoute = async () => {
+    return new Response(JSON.stringify({ message: "This API only supports POST requests." }), {
+        status: 405, // "Method Not Allowed"
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+    });
+};
+
 async function searchOrganization(name: string) {
     const response = await fetch(`${PIPEDRIVE_BASE_URL_V2}/organizations/search?term=${encodeURIComponent(name)}&exact_match=true&api_token=${PIPEDRIVE_API_TOKEN}`);
     if (!response.ok) {

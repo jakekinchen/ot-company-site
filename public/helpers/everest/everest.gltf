@@ -1,0 +1,64 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "normalized": false,
+      "count": 67498,
+      "type": "VEC3",
+      "max": [
+        74.0,
+        158.49237060546875,
+        74.0
+      ],
+      "min": [
+        -75.0,
+        98.27335357666016,
+        -75.0
+      ]
+    }
+  ],
+  "asset": {
+    "generator": "pygltflib@v1.16.3",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 809976,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "everest.bin",
+      "byteLength": 809976
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0
+          }
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}

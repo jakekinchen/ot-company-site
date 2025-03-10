@@ -14,11 +14,11 @@ const CounterComponent = ({ targetNumber, duration, emphasize }) => {
         case 0:
           return 100; // 1st second
         case 1:
-          return 100000; // 2nd second
+          return 10000; // 2nd second
         case 2:
-          return 100000000; // 3rd second
+          return 100000; // 3rd second
         case 3:
-          return 100000000000; // 4th second
+          return 10000000; // 4th second
         case 4:
           return targetNumber; // Final target
         default:

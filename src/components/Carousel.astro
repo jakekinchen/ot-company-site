@@ -14,7 +14,7 @@ interface Props {
 const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false, sideBlur=true } = Astro.props;
 ---
 
-<div class={`logos-wrapper ${sideBlur ? 'side-blur' : ''}`}>
+<div class="logos-wrapper">
   <div 
     class={`logos ${pauseOnHover ? 'pause-on-hover' : ''} ${scroll ? 'scrollable' : ''}`} 
     style={`--scale: ${scale}; --speed: ${speed}; --blur-color: rgba(200,200,200,0.8)`}
@@ -27,8 +27,12 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
       ))}
     </div>
   </div>
-  <div class="blur-left"></div>
-  <div class="blur-right"></div>
+  {sideBlur && (
+    <>
+      <div class="blur-left"></div>
+      <div class="blur-right"></div>
+    </>
+  )}
 </div>
 
 <script>
@@ -107,6 +111,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
   .logos-wrapper {
     position: relative;
     overflow: hidden;
+    background: white;
   }
 
   .logos {
@@ -120,30 +125,61 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     white-space: nowrap;
     position: relative;
     z-index: 1;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
   }
 
   .logos-wrapper .blur-left,
   .logos-wrapper .blur-right {
     position: absolute;
     top: 0;
-    width: calc(100px * var(--scale));
+    width: calc(180px * var(--scale));
     height: 100%;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
-    opacity: 1;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .logos-wrapper .blur-left {
-    left: 0;
-    background: linear-gradient(to right, var(--blur-color, rgba(255, 255, 255, 0.8)), rgba(255, 255, 255, 0));
+    left: calc(-30px * var(--scale));
+    background: linear-gradient(to right, 
+      white,
+      rgba(255, 255, 255, 0.9) 20%,
+      rgba(255, 255, 255, 0.7) 40%,
+      rgba(255, 255, 255, 0.3) 60%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(to right, white 50%, transparent);
+    mask-image: linear-gradient(to right, white 50%, transparent);
   }
 
   .logos-wrapper .blur-right {
-    right: 0;
-    background: linear-gradient(to left, var(--blur-color, rgba(255, 255, 255, 0.8)), rgba(255, 255, 255, 0));
+    right: calc(-30px * var(--scale));
+    background: linear-gradient(to left,
+      white,
+      rgba(255, 255, 255, 0.9) 20%,
+      rgba(255, 255, 255, 0.7) 40%,
+      rgba(255, 255, 255, 0.3) 60%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(to left, white 50%, transparent);
+    mask-image: linear-gradient(to left, white 50%, transparent);
   }
-
 
   .logos-slide {
     display: inline-flex;
@@ -209,7 +245,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     
     .logos-wrapper .blur-left,
     .logos-wrapper .blur-right {
-      width: calc(50px * var(--scale));
+      width: calc(90px * var(--scale));
     }
   }
 </style>

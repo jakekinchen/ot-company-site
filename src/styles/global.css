@@ -14,6 +14,7 @@
 	--blue: #1079D0;
 	--filter-blue: invert(33%) sepia(30%) saturate(4643%) hue-rotate(190deg) brightness(93%) contrast(88%);
 	--cold-white: #DBECFF;
+	--light-blue: #bce1ff;
 	--off-white: #EEF0F4;
 	--filter-cold-white: invert(96%) sepia(40%) saturate(5958%) hue-rotate(177deg) brightness(103%) contrast(106%);
 	--light-blue: #63A7E0;
@@ -92,129 +93,19 @@
 
 @font-face {
     font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-ThinItalic.ttf') format('truetype');
-    font-weight: 100;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-ExtraLightItalic.ttf') format('truetype');
-    font-weight: 200;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
     src: url('/fonts/K2D/K2D-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-MediumItalic.ttf') format('truetype');
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-SemiBoldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-}
 
 @font-face {
     font-family: 'K2D';
     src: url('/fonts/K2D/K2D-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-BoldItalic.ttf') format('truetype');
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'K2D';
-    src: url('/fonts/K2D/K2D-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
     font-display: swap;
 }
 

@@ -16,10 +16,9 @@ const {
   customBackground=false,
   logoColor='blue',
   headerLogoColor='blue',
-  backgroundColorScript=false,
   navWidth,
   initialBackgroundHeight,
-  customBackgroundImage = '', // Add this line
+  customBackgroundImage = '',
   homeBackground,
   partnerBackground,
 } = Astro.props;
@@ -54,8 +53,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   </script>
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} metadata={metadata} />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- GSAP for animations -->
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 </head>
-<body class={`bg-white flex flex-col min-h-screen ${partnerBackground ? 'partner-background' : ''} ${homeBackground ? 'home-background' : ''}`}>
+<body class={`flex flex-col min-h-screen ${partnerBackground ? 'partner-background' : ''} ${homeBackground ? 'home-background' : ''}`}>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLCM6ZWF"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -69,9 +70,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <slot />
   </main>
   <Footer theme={footerBackground} gradient={footerLogoGradient} />
-  {backgroundColorScript && (
-    <script is:inline type="module" src="/helpers/backgroundColor.js"></script>
-  )}
 </body>
 </html>
 
@@ -102,44 +100,56 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 2440px;
-  background: url('/backgroundImage.jpg') top center no-repeat;
-  background-size: cover;
-  z-index: -1;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 1) 0%,
+    var(--blue) 50%,
+    var(--dark-blue) 100%
+  );
+  z-index: -2;
 }
 
 .home-background::after {
-  content: '';
-  position: absolute;
-  top: 2440px;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to bottom, var(--blue), var(--dark-blue)) no-repeat;
-  z-index: -1;
+  display: none;
 }
 
-.partner-background{
+.partner-background::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  background: url('/waves.png') top center no-repeat;
-  background-size: stretch, 1000px;
-  background-repeat: no-repeat;
-  padding-bottom: 20px;
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    var(--blue) 0%,
+    var(--dark-blue) 100%
+  );
+  z-index: -2;
+}
+
+.partner-background {
+  position: relative;
+  min-height: 100vh;
 }
 
 main {
   flex: 1 0 auto;
   position: relative;
   z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .content {
   position: relative;
   z-index: 1;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+header {
+  position: relative;
+  z-index: 10;
 }
 
 .gradient {

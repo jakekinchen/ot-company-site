@@ -10,6 +10,7 @@ import Carousel from '../components/Carousel.astro';
 import { home } from '../data/pages.json';
 import type { PostItem } from '../types';
 import { exportAllPostsAsJson } from '@/lib/wpFunctions';
+import ParticlesBackground from '../components/ParticlesBackground.astro';
 
 const metadata = home.pages[0].metadata;
 
@@ -93,6 +94,7 @@ if (closestEvent) {
 ---
 
 <Layout homeBackground='true' gradient="true" backgroundColorScript="true" navWidth={70} metadata={metadata}>
+  <ParticlesBackground />
   <div class="mb:hidden">
     <DottedPathSVG
       uniqueId='line-2'
@@ -115,7 +117,7 @@ if (closestEvent) {
       loopReverse={true}
       />
   </div>
-  <div class="layoutConstraint main-content justify-center">
+  <div class="layoutConstraint main-content justify-center relative z-10">
     <div class="leading-snug text-left text-wrap text-blue min-w-[305px]">
       <h1 class="text-[calc(4vw+2rem)]  break-words w-full font-medium mt-16 mb:mt-8">
           OneTier's AnyCloud DataSecure Platform
@@ -177,7 +179,7 @@ if (closestEvent) {
           From Zero to Trust
         </h2>
         <p class="text-3xl mb-0">
-          Here’s how we keep you safe.
+          Here's how we keep you safe.
         </p>
       </div>
     </div>
@@ -251,5 +253,13 @@ html, body {
 
 h1{
   color: var(--color-blue);
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure all content is above particles */
+.main-content {
+    position: relative;
+    z-index: 1;
 }
 </style>
