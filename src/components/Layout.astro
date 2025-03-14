@@ -8,11 +8,11 @@ const {
   metadata = {},
   title, 
   description, 
-  footerLogoGradient=true,
+  footerLogoGradient=false,
   gradient=false, 
   headerBackground='transparent', 
   headerIconColor='blue', 
-  footerBackground='white',
+  footerBackground='blue',
   customBackground=false,
   logoColor='blue',
   headerLogoColor='blue',
@@ -21,6 +21,9 @@ const {
   customBackgroundImage = '',
   homeBackground,
   partnerBackground,
+  blueGradient = false,
+  solidBlue = false,
+  backgroundColorScript = false,
 } = Astro.props;
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
@@ -56,7 +59,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   <!-- GSAP for animations -->
   <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 </head>
-<body class={`flex flex-col min-h-screen ${partnerBackground ? 'partner-background' : ''} ${homeBackground ? 'home-background' : ''}`}>
+<body class={`flex flex-col min-h-screen ${partnerBackground ? 'partner-background' : ''} ${homeBackground ? 'home-background' : ''} ${blueGradient ? 'blue-gradient-background' : ''} ${solidBlue ? 'solid-blue-background' : ''}`}>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLCM6ZWF"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -216,5 +219,40 @@ header {
   h1 {
     font-size: 1.875rem; /* text-3xl in Tailwind, adjust as needed */
   }
+}
+
+.blue-gradient-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    var(--blue) 0%,
+    var(--dark-blue) 100%
+  );
+  z-index: -2;
+}
+
+.blue-gradient-background {
+  position: relative;
+  min-height: 100vh;
+}
+
+.solid-blue-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--blue);
+  z-index: -2;
+}
+
+.solid-blue-background {
+  position: relative;
+  min-height: 100vh;
 }
 </style>

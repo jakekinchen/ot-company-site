@@ -18,10 +18,10 @@ if (!snippets) {
     throw new Error('Snippets not found');
 }
 ---
-<Layout headerLogoColor='white' headerIconColor='white' gradient={false} backgroundColorScript={true} metadata={metadata}>
+<Layout headerLogoColor='white' headerIconColor='white' gradient={false} solidBlue={true} metadata={metadata}>
     <div class="layoutConstraint py-16 flex flex-col">
         <h1 class="text-5xl font-bold text-left text-white">Solutions</h1>
-        <h2 class="text-3xl font-bold text-left text-white mt-8 italic">Here’s how OneTier meets your needs</h2>
+        <h2 class="text-3xl font-bold text-left text-white mt-8 italic">Here's how OneTier meets your needs</h2>
         <p id="solutions-description" class="description text-white text-lg mt-2"><br>OneTier offers a variety of solutions to help your business succeed. Our team of experts is dedicated to providing you with the tools you need to grow your business and reach your goals.<br><br> Whether you need help with marketing, sales, or customer service, we have a solution for you. Our solutions are designed to help you increase revenue, improve customer satisfaction, and drive growth. Contact us today to learn more about how OneTier can help your business succeed.</p>
         <div class="mt-12 grid grid-cols-2 gap-8">
             {snippets.map((solution, index) => (
