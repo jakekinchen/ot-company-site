@@ -1,5 +1,5 @@
 ---
-let { theme = "blue", gradient = false, background = 'blue' } = Astro.props;
+let { theme = "blue", gradient = false, background = 'blue', phone } = Astro.props;
 let textColor, bgColor, logoColor, iconColor;
 if (theme == 'blue'){
     textColor = 'text-white';
@@ -37,6 +37,9 @@ const today = new Date();
             </a>
             
             <p class={`${textColor} py-2`}>Security From Zero to Trust</p>
+            {phone && (
+              <p class={`${textColor} py-1 font-semibold`}>{phone}</p>
+            )}
         </div>
             <ul class="grid grid-cols-2 gap-4 mb:gap-2 p-2 m-0 text-right">
                 <a href="#" id="footerRequestDemo" class={`${textColor} no-underline hover:underline cursor-pointer`}>Request Demo</a>

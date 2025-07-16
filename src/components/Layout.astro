@@ -24,6 +24,7 @@ const {
   blueGradient = false,
   solidBlue = false,
   backgroundColorScript = false,
+  phone,
 } = Astro.props;
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
@@ -72,7 +73,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   <main class="flex-grow content">
     <slot />
   </main>
-  <Footer theme={footerBackground} gradient={footerLogoGradient} />
+  <Footer theme={footerBackground} gradient={footerLogoGradient} phone={phone} />
 </body>
 </html>
 

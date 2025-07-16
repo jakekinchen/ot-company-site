@@ -684,6 +684,7 @@
 { "label": "Natuv", "iconSrc": "/partnerLogos/natuv.png", "alt": "Natuv", "href": "https://www.natuv.com", "scale": "0.9"},
 { "label": "Norseman", "iconSrc": "/partnerLogos/norseman.png", "alt": "Norseman", "href": "https://www.norseman.com", "scale": "0.9"},
 { "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com", "scale": "1"}
+{ "label": "Google", "iconSrc": "/partnerLogos/google.svg", "alt": "Google", "href": "https://www.google.com", "scale": "1"}
 ],
 "teamMembers": [
     { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg", "bio": "Chris Romeo, a Co-Founder and the Chief Executive Officer of OneTier. He is an experienced Sales executive with over 20 years in Sales. He has previous Sales leadership roles at Atlantis Computing, Insight Engines, NICE, Kyriba and Dispersive." },
