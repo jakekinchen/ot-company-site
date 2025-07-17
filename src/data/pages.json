@@ -479,8 +479,8 @@
     },
     {
       "label": "Security Overwatch",
-      "title": "Know your Environment",
-      "subtitle": "Evolve with threats in real-time. Detect, Monitor & Remediate.",
+      "title": "Protect Cloud, Email & Endpoints",
+      "subtitle": "Powered by Coro",
       "iconSrc": "/productIcons/security-overwatch.svg",
       "iconAlt": "Security Overwatch Icon",
       "href": "/security-overwatch",
@@ -676,15 +676,14 @@
 { "label": "CovVisory", "iconSrc": "/partnerLogos/covvisory.png", "alt": "CovVisory", "href": "https://covvisory.com/", "scale": "1"},
 { "label": "Dallas Digital", "iconSrc": "/partnerLogos/dallasDigital.png", "alt": "Dallas Digital", "href": "https://www.dallasdigital.io", "scale": "0.9"},
 { "label": "FedScale", "iconSrc": "/partnerLogos/fedscale.png", "alt": "FedScale", "href": "https://www.fedscale.com", "scale": "0.9"},
+{ "label": "Google", "iconSrc": "/partnerLogos/google.png", "alt": "Google", "href": "https://www.google.com", "scale": "1"},
 { "label": "Guidehouse", "iconSrc": "/partnerLogos/guidehouse.png", "alt": "Guidehouse", "href": "https://www.guidehouse.com", "scale": "1"},
-{ "label": "Intellizant", "iconSrc": "/partnerLogos/intellizant.png", "alt": "Intellizant", "href": "https://www.intellizant.com", "scale": "1"},
 { "label": "Iva'al", "iconSrc": "/partnerLogos/ivaal.png", "alt": "Iva'al", "href": "https://www.ivaal.com", "scale": "1"},
-{ "label": "Lakeshore IT", "iconSrc": "/partnerLogos/lakeshoreIT.gif", "alt": "Lakeshore IT", "href": "https://www.lakeshoreit.com", "scale": "1"},
 { "label": "Microsoft", "iconSrc": "/partnerLogos/microsoft.png", "alt": "Microsoft", "href": "https://www.microsoft.com", "scale": "1"},
 { "label": "Natuv", "iconSrc": "/partnerLogos/natuv.png", "alt": "Natuv", "href": "https://www.natuv.com", "scale": "0.9"},
 { "label": "Norseman", "iconSrc": "/partnerLogos/norseman.png", "alt": "Norseman", "href": "https://www.norseman.com", "scale": "0.9"},
-{ "label": "Sourcefly", "iconSrc": "/partnerLogos/sourcefly.webp", "alt": "Sourcefly", "href": "https://www.sourcefly.com", "scale": "1"}
-{ "label": "Google", "iconSrc": "/partnerLogos/google.svg", "alt": "Google", "href": "https://www.google.com", "scale": "1"}
+{ "label": "Storage IT", "iconSrc": "/partnerLogos/storage-it.png", "alt": "Storage IT", "href": "https://www.storageit.com", "scale": "1"}
+
 ],
 "teamMembers": [
     { "name": "Chris Romeo", "title": "Chief Executive Officer", "imageSrc": "/profiles/chris-romeo.jpg", "bio": "Chris Romeo, a Co-Founder and the Chief Executive Officer of OneTier. He is an experienced Sales executive with over 20 years in Sales. He has previous Sales leadership roles at Atlantis Computing, Insight Engines, NICE, Kyriba and Dispersive." },
