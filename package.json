@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build --verbose",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "build": "npm run lint && astro check && astro build",
     "build-preview": "astro check && astro build --verbose --mode=production",
     "preview": "astro preview",
     "astro": "astro",
@@ -36,7 +37,10 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "autoprefixer": "^10.4.19",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "eslint": "^9.31.0"
   }
 }

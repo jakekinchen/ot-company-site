@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import MobileSubMenu from './MobileSubMenu';
 import pages from '../../data/pages.json';
 

@@ -1,5 +1,5 @@
 
-const MobileSubMenu = ({ submenu, items, onBack, onClose }) => {
+const MobileSubMenu = ({ items, onBack, onClose }) => {
   return (
     <div className="h-full flex flex-col">
       <div className="flex justify-between items-center w-full py-4">

@@ -114,7 +114,6 @@ async function fetchAllPosts(category: string | null, slugsOnly: boolean = false
       hasNextPage = data.posts.pageInfo.hasNextPage;
       after = data.posts.pageInfo.endCursor;
     } catch (error) {
-      console.error('Error fetching posts:', error);
       break;
     }
   }
@@ -132,23 +131,19 @@ export async function getRecentPosts(category: string | null = null, count: numb
     const response = await fetchGraphQL(GET_POSTS, { first: count, category });
     
     if (!response.data) {
-      console.error('Unexpected API response structure: data is undefined');
       return [];
     }
     
     if (!response.data.posts) {
-      console.error('Unexpected API response structure: data.posts is undefined');
       return [];
     }
     
     if (!Array.isArray(response.data.posts.nodes)) {
-      console.error('Unexpected API response structure: data.posts.nodes is not an array');
       return [];
     }
     
     return response.data.posts.nodes;
   } catch (error) {
-    console.error('Error in getRecentPosts:', error);
     return [];
   }
 }
@@ -167,14 +162,12 @@ export async function getPostData(slug: string): Promise<PostNode | null> {
     const { data } = await fetchGraphQL(GET_POST, { slug });
     return data.post || null;
   } catch (error) {
-    console.error(`Error fetching post with slug ${slug}:`, error);
     return null;
   }
 }
 
 export async function exportAllPostsAsJson(category: string | null = null): Promise<void> {
   try {
-    console.log('Fetching all posts...');
     const allPosts = await getAllPosts(category);
 
     const exportPosts: PostExport[] = allPosts.map(post => ({
@@ -187,10 +180,7 @@ export async function exportAllPostsAsJson(category: string | null = null): Prom
     const filePath = path.join(process.cwd(), fileName);
 
     fs.writeFileSync(filePath, jsonContent);
-
-    console.log(`Exported ${exportPosts.length} posts to ${fileName}`);
-    console.log(`File saved at: ${filePath}`);
   } catch (error) {
-    console.error('Error exporting posts:', error);
+    // Error handling
   }
 }

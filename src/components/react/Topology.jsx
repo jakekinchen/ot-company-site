@@ -14,12 +14,12 @@ export default function ThreeScene() {
   const [enableWaves] = useState(true);
   const [enableRandomPhase] = useState(false);
   // Toggle between points and lines
-  const [showLines, setShowLines] = useState(false);
-  const [isSolid, setIsSolid] = useState(true);
+  const [showLines, _setShowLines] = useState(false);
+  const [isSolid, _setIsSolid] = useState(true);
 
   useEffect(() => {
     let scene, renderer, camera, points, lineSegments, solidMesh;
-    let clock = new THREE.Clock();
+    const clock = new THREE.Clock();
     let targetX = -window.innerWidth / 1.2;
     let initialPositions = null;
     let initialLinePositions = null;
@@ -32,18 +32,17 @@ export default function ThreeScene() {
     let lineVelocities = null;
 
     // Repulsion config
-    let repulsionRadius = 1500;
-    let repulsionStrength = 800;
+    const repulsionRadius = 1500;
+    const repulsionStrength = 800;
     const damping = 0.9;
 
     // Raycasting
     const raycaster = new THREE.Raycaster();
-    let mouseNDC = new THREE.Vector2(-9999, -9999); // start offscreen
-    let mouseIntersectionWorld = new THREE.Vector3(); // intersection in world coords
+    const mouseNDC = new THREE.Vector2(-9999, -9999); // start offscreen
+    const mouseIntersectionWorld = new THREE.Vector3(); // intersection in world coords
 
     // We'll create an invisible bounding sphere to handle intersections
     let boundingSphereMesh = null;
-    let boundingSphere = null;
 
     const init = () => {
       scene = new THREE.Scene();
@@ -115,7 +114,6 @@ export default function ThreeScene() {
               }
             });
             if (!faviconMesh) {
-              console.error('No mesh found in favicon GLTF!');
               setIsLoading(false);
               return;
             }
@@ -324,7 +322,6 @@ export default function ThreeScene() {
 
             // Create bounding sphere in local space of the group
             // We'll attach the invisible sphere as a child
-            boundingSphere = new THREE.Sphere();
             geometryPoints.computeBoundingSphere();
             // Use the bounding sphere radius from geometryPoints as a starting point
             const sphereRadius = geometryPoints.boundingSphere.radius * 1.1; // pad slightly
@@ -337,8 +334,7 @@ export default function ThreeScene() {
             setIsLoading(false);
           },
           undefined,
-          (error) => {
-            console.error('Error loading favicon GLTF:', error);
+          () => {
             setIsLoading(false);
           }
         );
@@ -354,7 +350,6 @@ export default function ThreeScene() {
               }
             });
             if (!everestMesh) {
-              console.error('No mesh found in GLTF!');
               setIsLoading(false);
               return;
             }
@@ -474,7 +469,6 @@ export default function ThreeScene() {
             lineVelocities = new Float32Array(initialLinePositions.length).fill(0);
 
             // Create bounding sphere in local space
-            boundingSphere = new THREE.Sphere();
             geometryPoints.computeBoundingSphere();
             const sphereRadius = geometryPoints.boundingSphere.radius * 1.1;
             const sphereGeom = new THREE.SphereGeometry(sphereRadius, 32, 32);
@@ -486,8 +480,7 @@ export default function ThreeScene() {
             setIsLoading(false);
           },
           undefined,
-          (error) => {
-            console.error('Error loading GLTF:', error);
+          () => {
             setIsLoading(false);
           }
         );

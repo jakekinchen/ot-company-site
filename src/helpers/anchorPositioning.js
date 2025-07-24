@@ -1,17 +1,13 @@
 export default function positionElement(anchorId, targetId, position, offsetX = 0, offsetY = 0) {
-    console.log(`Positioning element: anchorId=${anchorId}, targetId=${targetId}, position=${position}`);
     const anchor = document.getElementById(anchorId);
     const target = document.getElementById(targetId);
 
     if (!anchor || !target) {
-        console.error(`Invalid anchor or target element: ${anchorId}, ${targetId}`);
         return;
     }
 
     const anchorRect = anchor.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
-    console.log(`Anchor Rect:`, anchorRect);
-    console.log(`Target Rect:`, targetRect);
 
     // Add orange border to both elements
 
@@ -42,7 +38,6 @@ export default function positionElement(anchorId, targetId, position, offsetX = 
             target.style.left = `${anchorRect.right + offsetX}px`;
             break;
         default:
-            console.error(`Invalid position: ${position}`);
     }
 
     // Apply the positioning as absolute

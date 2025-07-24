@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import { solutions } from '../../data/pages.json';
 
-const SolutionsMenu = React.forwardRef((props, ref) => {
+const SolutionsMenu = React.forwardRef((props, _ref) => {
   const linkRefs = useRef([]);
 
   useEffect(() => {

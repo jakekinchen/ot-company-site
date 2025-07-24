@@ -89,7 +89,6 @@ async function createNote(leadId: number, content: string) {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-    console.log('Received request:', request);
     if (request.method === 'OPTIONS') {
         return new Response(null, {
             status: 204,
@@ -105,15 +104,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     try {
         // Step 1: Search or create the organization
-        console.log('Searching for organization:', orgName);
         let organization = await searchOrganization(orgName);
         if (!organization) {
-            console.log('Organization not found, creating:', orgName);
             organization = await createOrganization(orgName);
         }
 
         // Step 2: Create the person
-        console.log('Creating person:', personData);
         const person = await createPerson({ ...personData, org_id: organization.id });
 
         // Step 3: Create the lead
@@ -134,7 +130,6 @@ export const POST: APIRoute = async ({ request }) => {
             },
         });
     } catch (error: any) {
-        console.error('Error processing lead creation:', error);
         return new Response(JSON.stringify({ success: false, error: error.message }), {
             status: 500,
             headers: {

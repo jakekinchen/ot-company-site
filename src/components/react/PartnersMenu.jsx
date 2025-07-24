@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import { partners } from '../../data/pages.json';
 
-const PartnersMenu = React.forwardRef((props, ref) => {
+const PartnersMenu = React.forwardRef((props, _ref) => {
   const linkRefs = useRef([]);
 
   useEffect(() => {
