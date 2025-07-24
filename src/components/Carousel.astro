@@ -6,22 +6,22 @@ interface Props {
   pauseOnHover?: boolean;
   clients: Clients[];
   scale?: number;
-  speed?: number;
+  duration?: number;
   scroll?: boolean;
   sideBlur?: boolean;
 }
 
-const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false, sideBlur=true } = Astro.props;
+const { pauseOnHover = true, clients = [], scale = 1, duration = 35, scroll = false, sideBlur=true } = Astro.props;
 ---
 
 <div class="logos-wrapper">
   <div 
     class={`logos ${pauseOnHover ? 'pause-on-hover' : ''} ${scroll ? 'scrollable' : ''}`} 
-    style={`--scale: ${scale}; --speed: ${speed}; --blur-color: rgba(200,200,200,0.8)`}
+    style={`--scale: ${scale}; --duration: ${duration}; --blur-color: rgba(200,200,200,0.8)`}
   >
     <div class="logos-slide">
       {clients.map((client) => (
-        <a href={client.href} target="_blank" rel="noopener noreferrer" style={`--client-scale: ${client.scale};`}>
+        <a href={client.href} target="_blank" rel="noopener noreferrer" style={`--client-scale: ${client.scale};`} aria-label={`Visit ${client.label} website`}>
           <img src={client.iconSrc} alt={client.alt} title={client.label}  />
         </a>
       ))}
@@ -36,47 +36,76 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
 </div>
 
 <script>
-  const logosContainers = document.querySelectorAll('.logos.scrollable') as NodeListOf<HTMLElement>;
+  const logosContainers = document.querySelectorAll('.logos.scrollable');
+  const activeAnimations = new Map();
+  
+  const cleanup = () => {
+    activeAnimations.forEach((animationId) => {
+      cancelAnimationFrame(animationId);
+    });
+    activeAnimations.clear();
+  };
+
+  // Cleanup on page unload or visibility change
+  window.addEventListener('beforeunload', cleanup);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cleanup();
+    }
+  });
+
   logosContainers.forEach(container => {
-    const slide = container.querySelector('.logos-slide') as HTMLElement;
+    const slide = container.querySelector('.logos-slide');
+    if (!slide) return; // Skip if slide element not found
+    
     let isMouseOver = false;
     let animationFrame = 0;
     let lastScrollPosition = 0;
     let scrollDirection = 1;
-    let scrollSpeed = 1;
 
-    const cloneLogos = () => {
-      const logos = slide.innerHTML;
-      slide.innerHTML = logos.repeat(3);  // Just three sets of logos
-    }
 
-    const updateScroll = (timestamp: number) => {
-      if (!isMouseOver) {
-        container.scrollLeft += scrollSpeed * scrollDirection;
-      } else {
-        // Update scroll direction and speed based on manual scrolling
-        const currentScrollPosition = container.scrollLeft;
-        scrollDirection = currentScrollPosition > lastScrollPosition ? 1 : -1;
-        scrollSpeed = Math.abs(currentScrollPosition - lastScrollPosition);
-        lastScrollPosition = currentScrollPosition;
+         let clones = 1;
+     
+     const cloneLogos = () => {
+       const logos = slide.innerHTML;
+       // Clone until total width > visible width * 3
+       while (slide.scrollWidth < container.clientWidth * 3) {
+         slide.insertAdjacentHTML('beforeend', logos);
+         clones += 1;
+       }
+       // Centre on the second set
+       const oneSetWidth = slide.scrollWidth / clones;
+       container.scrollLeft = oneSetWidth;
+     }
+
+    const updateScroll = () => {
+      // Only check mouse state if pauseOnHover is enabled
+      const shouldPause = isMouseOver && container.classList.contains('pause-on-hover');
+      
+      // Calculate pixels per frame for both scrolling and reset logic
+      const cssduration = parseFloat(getComputedStyle(container).getPropertyValue('--duration')) || 35;
+      const pixelsPerFrame = Math.max(0.5, 300 / cssduration);
+      
+      if (!shouldPause) {
+        // Use the duration parameter to control scroll duration (pixels per frame)
+        // Convert CSS duration (which is in seconds for animation duration) to pixels per frame
+        // For consistency: higher duration number = faster movement
+        // CSS uses duration as duration (higher = slower), so we invert it for JS
+        // Scale the calculation to make movement more visible
+        container.scrollLeft += pixelsPerFrame * scrollDirection;
       }
 
-      // Check if we need to reset the scroll position
-      const oneSetWidth = slide.scrollWidth / 3;
-      if (container.scrollLeft >= oneSetWidth * 2) {
-        container.scrollLeft -= oneSetWidth;
+      // Check if we need to reset the scroll position for infinite scrolling
+      const maxScrollLeft = slide.scrollWidth - container.clientWidth;
+      if (container.scrollLeft >= maxScrollLeft - pixelsPerFrame) {
+        // jump back exactly one set
+        container.scrollLeft -= slide.scrollWidth / clones;
       } else if (container.scrollLeft <= 0) {
-        container.scrollLeft += oneSetWidth;
+        container.scrollLeft += slide.scrollWidth / clones;
       }
-
-        // Update side blur visibility
-    const wrapper = container.closest('.logos-wrapper') as HTMLElement;
-    const blurLeft = wrapper.querySelector('.blur-left') as HTMLElement;
-    const blurRight = wrapper.querySelector('.blur-right') as HTMLElement;
-    
-
 
       animationFrame = requestAnimationFrame(updateScroll);
+      activeAnimations.set(container, animationFrame);
     }
 
     const handleMouseOver = () => {
@@ -86,15 +115,35 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
 
     const handleMouseOut = () => {
       isMouseOver = false;
-      scrollSpeed = 1;
       scrollDirection = 1;
+    };
+
+    const stopAnimation = () => {
+      if (activeAnimations.has(container)) {
+        cancelAnimationFrame(activeAnimations.get(container));
+        activeAnimations.delete(container);
+      }
     };
 
     container.addEventListener('mouseenter', handleMouseOver);
     container.addEventListener('mouseleave', handleMouseOut);
 
+    // Add cleanup when container is removed from DOM
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.removedNodes.forEach((node) => {
+          if (node === container || (node.nodeType === 1 && node.contains(container))) {
+            stopAnimation();
+            observer.disconnect();
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
     cloneLogos();
     animationFrame = requestAnimationFrame(updateScroll);
+    activeAnimations.set(container, animationFrame);
   });
 </script>
 
@@ -104,7 +153,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
       transform: translateX(0);
     }
     to {
-      transform: translateX(-33.33%);
+      transform: translateX(calc(-100% / 3));
     }
   }
 
@@ -183,7 +232,7 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
 
   .logos-slide {
     display: inline-flex;
-    animation: calc(var(--speed) * 1s) slide infinite linear;
+    animation: calc(var(--duration) * 1s) slide infinite linear;
   }
 
   .logos.pause-on-hover:hover .logos-slide {
@@ -227,11 +276,13 @@ const { pauseOnHover = true, clients = [], scale = 1, speed = 35, scroll = false
     -webkit-overflow-scrolling: touch;
   }
 
-  .logos.scrollable:hover .logos-slide {
-    animation-play-state: paused;
+  .logos.scrollable .logos-slide {
+    animation: none !important;
     display: flex;
     width: max-content;
   }
+
+
 
 
   @media (max-width: 960px) {

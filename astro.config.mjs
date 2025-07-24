@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 import node from '@astrojs/node';
 
 import { fileURLToPath } from 'url';
@@ -13,10 +12,10 @@ const __dirname = path.dirname(__filename);
 
 // https://astro.build/config
 export default defineConfig({
-  //output: 'hybrid',
-  //adapter: node({
-  //  mode: 'standalone'
-  //}),
+  output: 'server',
+  adapter: node({
+    mode: 'standalone'
+  }),
   vite: {
     resolve: {
       alias: {
@@ -32,7 +31,6 @@ export default defineConfig({
       include: ['**/components/react/*'], // Adjust the path according to your project structure
     }),
     mdx(),
-    //sitemap(),
   ],
   devOptions: {
     tailwindConfig: './tailwind.config.js',

@@ -7,14 +7,13 @@ import type { ProductInfo } from '../types';
 import pages from '../data/pages.json';
 import PathMaker from '../components/PathMaker.astro';
 
-export function getStaticPaths() {
-  return pages.products.pages.map(product => ({
-    params: { product: product.href.substring(1) },
-    props: { productInfo: product },
-  }));
-}
+// For SSR, we need to handle the data fetching differently
+const { product } = Astro.params;
+const productInfo = pages.products.pages.find(p => p.href.substring(1) === product);
 
-const { productInfo } = Astro.props;
+if (!productInfo) {
+  throw new Error('Product not found');
+}
 
 const pageContent = productInfo.pageContent;
 if (!pageContent) {
