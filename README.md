@@ -101,3 +101,9 @@ Commands for running the project from the terminal:
 | `npm run astro -- --help`| Get help using the Astro CLI                              |
 
 ---
+
+## 🔧 Operations
+
+For production deployment, server configuration, and operational procedures, see **[README-OPS.md](README-OPS.md)**.
+
+---
