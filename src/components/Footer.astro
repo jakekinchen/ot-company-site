@@ -43,7 +43,7 @@ const today = new Date();
         </div>
             <ul class="grid grid-cols-2 gap-4 mb:gap-2 p-2 m-0 text-right">
                 <a href="#" id="footerRequestDemo" class={`${textColor} no-underline hover:underline cursor-pointer`}>Request Demo</a>
-                <a href="/overview" class={`${textColor} no-underline hover:underline w-full`}>Company</a>
+                <a href="/company" class={`${textColor} no-underline hover:underline w-full`}>Company</a>
                 <a href="/#risk-engagement-container" class={`${textColor} no-underline hover:underline`}>Products</a>
                 <a href="/solutions" class={`${textColor} no-underline hover:underline`}>Solutions</a>
             </ul>
@@ -132,34 +132,36 @@ const today = new Date();
     }
 </style>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+  // Attach handler immediately so it works even if DOMContentLoaded has fired
+  (() => {
     const footerRequestDemo = document.getElementById('footerRequestDemo');
     if (footerRequestDemo) {
-        footerRequestDemo.addEventListener('click', (e) => {
-            e.preventDefault();
-            openDialog();
-        });
+      footerRequestDemo.addEventListener('click', (e) => {
+        e.preventDefault();
+        openDialog();
+      });
     }
-});
+  })();
 
-function openDialog() {
+  function openDialog() {
     window.dispatchEvent(new CustomEvent('openDialog'));
-}
+  }
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(this: HTMLAnchorElement, e: Event) {
-    e.preventDefault();
+  // Smooth-scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(this: HTMLAnchorElement, e: Event) {
+      e.preventDefault();
 
-    const targetId = this.getAttribute('href')?.substring(1);
-    if (targetId) {
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+      const targetId = this.getAttribute('href')?.substring(1);
+      if (targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       }
-    }
+    });
   });
-});
 </script>
