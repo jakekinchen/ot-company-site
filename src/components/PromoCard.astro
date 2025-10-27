@@ -1,0 +1,47 @@
+---
+// PromoCard — replaces the two top cards with a single clickable card
+// Triggers the CommandCenterDialog on click or button press
+const { title = 'Command Center', subtitle = 'Pre‑Release Offer' } = Astro.props;
+---
+
+<div class="promo-card-wrapper" id="command-center-card">
+  <div class="promo-card glass p-6 pb-8 rounded-xl text-white w-[34rem] h-[11rem] mb:h-auto flex flex-col justify-between cursor-pointer">
+    <div>
+      <h2 class="text-2xl mb:text-xl font-bold text-white">{title}</h2>
+      <p class="text-white/90 mb:text-sm">{subtitle}</p>
+    </div>
+    <div class="flex items-center justify-between">
+      <p class="m-0 text-white/90 text-sm">Save $20,000 • 33% off retail</p>
+      <button type="button" class="learn-more-btn border-white/70 text-white hover:text-white mb:text-xs">See Info</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const card = document.getElementById('command-center-card');
+  if (card) {
+    const open = () => window.dispatchEvent(new CustomEvent('openCommandCenterDialog'));
+    card.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target instanceof Element && target.closest('button')) return;
+      open();
+    });
+    const btn = card.querySelector('button');
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        open();
+      });
+    }
+  }
+</script>
+
+<style>
+  :root { --filter-half-blue: rgba(16, 121, 208, .3); }
+  .glass { background-color: var(--filter-half-blue); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .learn-more-btn { border-width: 2px; border-radius: 9999px; padding: .6rem 1.25rem; }
+  .promo-card-wrapper { position: relative; z-index: 2; isolation: isolate; }
+  .promo-card { position: relative; transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease; border: 2px solid rgba(255,255,255,.35); }
+  .promo-card:hover { box-shadow: 0 0 0 2px rgba(219,236,255,.9), 0 12px 30px rgba(16,121,208,.35); transform: translateY(-2px); border-color: rgba(219,236,255,.9); }
+  @media (max-width: 960px) { .promo-card { width: 100%; padding: 1rem 1.25rem 1.25rem 1.25rem; } }
+</style>

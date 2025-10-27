@@ -1,0 +1,114 @@
+---
+// CommandCenterDialog — modal with cold-white background showing promo content
+---
+
+<dialog id="commandCenterModal" class="modal-content rounded-3xl" role="dialog" aria-labelledby="cc-title">
+  <button class="close cursor-pointer" aria-label="Close">
+    <svg xmlns="http://www.w3.org/2000/svg" style="color: var(--blue);" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <div class="animate-in px-6 py-6 dt:px-10 dt:py-10 text-dark-blue">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-light-blue bg-white/60 text-dark-blue text-sm font-semibold tracking-wide">
+      <span>Exclusive Pre‑Release</span>
+    </div>
+    <h2 id="cc-title" class="mt-3 font-bold leading-tight text-[clamp(1.5rem,3vw,2.25rem)]">
+      The <span class="text-dark-blue">Command Center</span> is almost here
+    </h2>
+    <p class="mt-2 text-[clamp(1rem,1.2vw,1.125rem)] opacity-80">
+      Unified Security Orchestration • Automated Response • Real‑Time Visibility
+    </p>
+    <p class="mt-3 opacity-80 max-w-3xl">
+      Transform your security tool sprawl into a coordinated defense system. Be among the first to
+      experience enterprise‑grade orchestration built on the OneTier Data Secure Platform.
+    </p>
+
+    <div class="mt-5 inline-flex items-start gap-4 rounded-2xl border border-orange/40 bg-white/70 px-6 py-4">
+      <div>
+        <div class="text-2xl font-extrabold text-orange">Save $20,000</div>
+        <div class="opacity-80 text-sm">33% off retail — pre‑release pricing available now</div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 dt:grid-cols-4 gap-4">
+      {['Single Pane of Glass','Machine‑Speed Response','Plug‑and‑Play','Maximize Investments'].map((label) => (
+        <div class="flex flex-col items-center text-center" data-label={label}>
+          <svg class="w-8 h-8 mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+          <div class="font-semibold">{label}</div>
+          {label === 'Single Pane of Glass' && (<p class="opacity-80 text-sm">Unify all security tools in one dashboard</p>)}
+          {label === 'Machine‑Speed Response' && (<p class="opacity-80 text-sm">Automated actions execute across your stack</p>)}
+          {label === 'Plug‑and‑Play' && (<p class="opacity-80 text-sm">Pre‑built connectors for leading vendors</p>)}
+          {label === 'Maximize Investments' && (<p class="opacity-80 text-sm">Enhance what you have — don’t replace</p>)}
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <button id="cc-talk-to-sales" class="gradient-button request-demo-button px-8 py-3 text-base">Talk to Sales</button>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('commandCenterModal');
+    if (!modal) return;
+    const closeBtn = modal.querySelector('.close');
+    const salesBtn = modal.querySelector('#cc-talk-to-sales');
+    const content = modal.querySelector('.animate-in');
+
+    let hasOpened = false;
+    const markOpened = () => { try { localStorage.setItem('ccDialogOpened', 'true'); } catch (_) {} };
+    const animateIn = () => { if (content) requestAnimationFrame(() => content.classList.add('in')); };
+    const openModal = () => {
+      if (typeof modal.showModal === 'function') {
+        modal.showModal();
+      } else { modal.setAttribute('open',''); }
+      hasOpened = true;
+      markOpened();
+      animateIn();
+    };
+
+    window.addEventListener('openCommandCenterDialog', () => {
+      openModal();
+    });
+
+    // Auto-open after 10s for first-time visitors who haven’t opened it yet
+    let previouslyOpened = false;
+    try { previouslyOpened = localStorage.getItem('ccDialogOpened') === 'true'; } catch (_) {}
+    if (!previouslyOpened) {
+      setTimeout(() => {
+        if (!hasOpened) openModal();
+      }, 10000);
+    }
+
+    closeBtn && closeBtn.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+
+    salesBtn && salesBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.close();
+      window.dispatchEvent(new CustomEvent('openDialog'));
+    });
+  });
+</script>
+
+<style>
+  dialog.modal-content {
+    background-color: var(--cold-white); /* cold-white background */
+    position: fixed;
+    border: none;
+    padding: 0;
+    width: min(900px, 92vw);
+    border-radius: 16px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+  }
+  .close { position: absolute; top: .75rem; right: .75rem; background: none; border: none; }
+  .modal-content::backdrop { background: rgba(0,0,0,.5); backdrop-filter: blur(4px); }
+  .animate-in { opacity: 0; transform: translateY(8px) scale(.985); transition: opacity .2s ease, transform .25s ease; }
+  .animate-in.in { opacity: 1; transform: translateY(0) scale(1); }
+  @media (max-width: 640px) {
+    dialog.modal-content { width: 92vw; }
+  }
+</style>

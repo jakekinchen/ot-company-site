@@ -1,0 +1,70 @@
+---
+// CommandCenterBanner — wide promo banner for the homepage
+// Uses site palette and utility classes (no custom CSS)
+---
+
+<section class="w-full my-16">
+  <div class="w-full max-w-[calc(60vw+200px)] mx-auto rounded-3xl overflow-hidden shadow-lg bg-blue-dark-blue-gradient relative">
+    <div class="absolute inset-0 opacity-15 pointer-events-none" aria-hidden="true">
+      <div class="w-full h-full bg-[radial-gradient(80%_60%_at_20%_40%,_rgba(255,255,255,0.2),_transparent_60%),_radial-gradient(60%_50%_at_80%_80%,_rgba(255,255,255,0.12),_transparent_60%)]"></div>
+    </div>
+
+    <div class="relative z-10 px-8 py-10 dt:px-12 dt:py-12 text-white">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-light-blue/40 bg-white/10 text-light-blue text-sm font-semibold tracking-wide">
+        <span>Exclusive Pre‑Release</span>
+      </div>
+
+      <h2 class="mt-4 text-white font-bold leading-tight text-[clamp(1.75rem,4vw,3rem)]">
+        The <span class="text-light-blue">Command Center</span> is almost here
+      </h2>
+
+      <p class="mt-2 text-white/90 text-lg">
+        Unified Security Orchestration • Automated Response • Real‑Time Visibility
+      </p>
+
+      <p class="mt-4 max-w-3xl text-white/80">
+        Transform your security tool sprawl into a coordinated defense system. Be among the first to
+        experience enterprise‑grade orchestration built on the OneTier Data Secure Platform.
+      </p>
+
+      <div class="mt-6 inline-flex items-start gap-4 rounded-2xl border border-orange/40 bg-white/10 px-6 py-4">
+        <div>
+          <div class="text-3xl font-extrabold text-orange">Save $20,000</div>
+          <div class="text-white/80 text-sm">33% off retail — pre‑release pricing available now</div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <a href="/command-center-presale" class="gradient-button inline-flex items-center px-8 py-3 text-lg">
+          Secure Your Pre‑Release Pricing →
+        </a>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 dt:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-3xl mb-1">🎯</div>
+          <div class="text-light-blue font-semibold">Single Pane of Glass</div>
+          <p class="text-white/75 text-sm">Unify all security tools in one dashboard</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-1">⚡</div>
+          <div class="text-light-blue font-semibold">Machine‑Speed Response</div>
+          <p class="text-white/75 text-sm">Automated actions execute across your stack</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-1">🔌</div>
+          <div class="text-light-blue font-semibold">Plug‑and‑Play</div>
+          <p class="text-white/75 text-sm">Pre‑built connectors for leading vendors</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-1">📈</div>
+          <div class="text-light-blue font-semibold">Maximize Investments</div>
+          <p class="text-white/75 text-sm">Enhance what you have — don’t replace</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .opacity-15 { opacity: 0.15; }
+  </style>
+</section>

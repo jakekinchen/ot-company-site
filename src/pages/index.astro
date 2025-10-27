@@ -1,6 +1,8 @@
 ---
 import Layout from '../components/Layout.astro';
-import CardComponent from '../components/CardComponent.astro';
+// import CardComponent from '../components/CardComponent.astro';
+import PromoCard from '../components/PromoCard.astro';
+import CommandCenterDialog from '../components/CommandCenterDialog.astro';
 import ProductSnippet from '../components/ProductSnippet.astro';
 import CounterComponent from '../components/react/CounterComponent.jsx';
 import { products, clients, events } from '../data/pages.json';
@@ -127,37 +129,9 @@ if (closestEvent) {
           More Information
       </button>
     </div>
-    <div id="cards" class="flex gap-8 justify-end my-16 mb:hidden">
-      {contentToDisplay.type === 'event' && (
-        <CardComponent
-          title={contentToDisplay.title}
-          subtitle={contentToDisplay.date.toDateString()}
-          glassmorphism="true"
-          route="/events"
-        />
-      )}
-      {contentToDisplay.type === 'blogPost' && (
-        <CardComponent
-          title={contentToDisplay.title}
-          subtitle={`Blog Post`}
-          glassmorphism="true"
-          route={`/blog/${contentToDisplay.slug}`}
-        />
-      )}
-      {contentToDisplay.type === 'default' && (
-        <CardComponent
-          title={contentToDisplay.title}
-          subtitle={contentToDisplay.date.toDateString()}
-          glassmorphism="true"
-          route="/events"
-        />
-      )}
-      <CardComponent
-        title="Risk Engagement"
-        subtitle="Product Highlight"
-        glassmorphism="true"
-        route="/risk-engagement"
-      />
+    <!-- Replace the two top cards with a single combined-size card -->
+    <div id="cards" class="flex my-16 dt:justify-end mb:justify-center px-4 w-full">
+      <PromoCard title="Command Center" subtitle="Pre‑Release Offer" />
     </div>
     <div class="flex flex-col items-center justify-center min-h-[40vw] mt-16 text-white py-4">
       <div class="pane backdrop-filter backdrop-blur-lg rounded-3xl text-center mb-12 space-y-[8px] w-full p-8 mb:p-3 mb:w-full ">
@@ -226,6 +200,8 @@ if (closestEvent) {
       </div>
     </div>
   </div>
+  <!-- Dialog content for the promo card -->
+  <CommandCenterDialog />
 </Layout>
 
 <style>
