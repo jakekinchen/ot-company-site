@@ -5,14 +5,24 @@ const { title = 'Command Center', subtitle = 'Pre‑Release Offer' } = Astro.pro
 ---
 
 <div class="promo-card-wrapper" id="command-center-card">
-  <div class="promo-card glass p-6 pb-8 rounded-xl text-white w-[34rem] h-[11rem] mb:h-auto flex flex-col justify-between cursor-pointer">
-    <div>
-      <h2 class="text-2xl mb:text-xl font-bold text-white">{title}</h2>
-      <p class="text-white/90 mb:text-sm">{subtitle}</p>
+  <div
+    class="promo-card enhanced-glass p-6 pb-8 dt:p-7 dt:pb-10 rounded-2xl text-white w-[40rem] min-h-[8rem] mb:h-auto flex flex-col gap-3 dt:gap-4 cursor-pointer"
+    role="button"
+    aria-label="Command Center pre‑release details"
+  >
+    <div class="space-y-1.5">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full badge">
+        <span class="uppercase tracking-wide text-[0.75rem] font-semibold">Pre‑Release</span>
+      </div>
+      <h2 class="card-title font-bold text-white">{title}</h2>
+      <p class="card-subtitle text-white/90">{subtitle}</p>
     </div>
-    <div class="flex items-center justify-between">
-      <p class="m-0 text-white/90 text-sm">Save $20,000 • 33% off retail</p>
-      <button type="button" class="learn-more-btn border-white/70 text-white hover:text-white mb:text-xs">See Info</button>
+    <div class="flex items-center justify-between gap-4 mt-auto">
+      <p class="m-0 text-white/90 text-[0.95rem]">Save $20,000 • 33% off retail</p>
+      <button type="button" class="learn-more-btn cta-btn">
+        <span>See Info</span>
+        <svg class="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
     </div>
   </div>
 </div>
@@ -37,11 +47,59 @@ const { title = 'Command Center', subtitle = 'Pre‑Release Offer' } = Astro.pro
 </script>
 
 <style>
-  :root { --filter-half-blue: rgba(16, 121, 208, .3); }
-  .glass { background-color: var(--filter-half-blue); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  .learn-more-btn { border-width: 2px; border-radius: 9999px; padding: .6rem 1.25rem; }
+  :root {
+    --filter-half-blue: rgba(16, 121, 208, .28);
+  }
+
   .promo-card-wrapper { position: relative; z-index: 2; isolation: isolate; }
-  .promo-card { position: relative; transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease; border: 2px solid rgba(255,255,255,.35); }
-  .promo-card:hover { box-shadow: 0 0 0 2px rgba(219,236,255,.9), 0 12px 30px rgba(16,121,208,.35); transform: translateY(-2px); border-color: rgba(219,236,255,.9); }
-  @media (max-width: 960px) { .promo-card { width: 100%; padding: 1rem 1.25rem 1.25rem 1.25rem; } }
+
+  /* Enhanced glass + gradient card */
+  .enhanced-glass {
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid rgba(255,255,255,.55);
+    background:
+      radial-gradient(120% 160% at 110% 120%, rgba(16,121,208,.35) 0%, rgba(16,121,208,0) 60%),
+      radial-gradient(120% 120% at -10% -20%, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 60%),
+      linear-gradient(135deg, rgba(16,121,208,.32), rgba(219,236,255,.22));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(16,121,208,.25), 0 2px 0 rgba(255,255,255,.25) inset;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    background-repeat: no-repeat;
+  }
+  /* Removed ::before overlay to nix horizontal banding lines */
+  .promo-card:hover,
+  .promo-card:focus-within {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,.85);
+    box-shadow: 0 16px 40px rgba(16,121,208,.35), 0 0 0 2px rgba(219,236,255,.85);
+  }
+
+  .card-title { font-size: clamp(1.4rem, 2.2vw, 2.25rem); }
+  .card-subtitle { font-size: clamp(.95rem, 1.2vw, 1.05rem); }
+
+  .badge {
+    background: rgba(255,255,255,.55);
+    color: var(--dark-blue);
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: 0 1px 0 rgba(16,121,208,.25) inset;
+  }
+
+  .learn-more-btn { border-width: 2px; border-radius: 9999px; padding: .6rem 1.1rem; }
+  .cta-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-color: rgba(255,255,255,.75); color: #fff;
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    box-shadow: 0 1px 0 rgba(255,255,255,.25) inset;
+    transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+    margin-bottom: 1.25rem; /* extra bottom margin for better spacing */
+  }
+  .cta-btn:hover,
+  .cta-btn:focus-visible { background: rgba(255,255,255,.18); box-shadow: 0 0 0 3px rgba(219,236,255,.65); }
+  .cta-btn:active { transform: translateY(0.5px); }
+
+  @media (max-width: 960px) {
+    .promo-card { width: 100%; padding: 1rem 1.25rem 1.25rem 1.25rem; }
+  }
 </style>
