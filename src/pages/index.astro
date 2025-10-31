@@ -239,3 +239,11 @@ h1{
     z-index: 1;
 }
 </style>
+
+<!-- Slow down ArrowUp/ArrowDown page scrolling on the homepage -->
+<script type="module">
+  import { initCustomArrowScroll } from '/src/components/CustomScroll.ts';
+  initCustomArrowScroll(16, 120);
+  // Adjust values above to tune: (scrollStepPx, throttleMs)
+  // Example slower: initCustomArrowScroll(20, 120)
+</script>
