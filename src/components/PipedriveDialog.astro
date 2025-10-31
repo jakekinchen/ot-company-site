@@ -9,10 +9,37 @@
 		<div class="m-4 space-y-2">
         <h2 class="no-appearance text-blue my-2 max-w-xl text-center mx-auto">Find the solution in our portfolio that fits your business</h2>
         <h3 class="text-blue text-xl">CONTACT US</h3>
-        <div class="pipedriveWebForms mx-auto -translate-y-8" data-pd-webforms="https://webforms.pipedrive.com/f/6UG5Trc3Z4XyngKTA15SpoLlxuEXlBkO4iPG5zCrdMTmsfxnLGSsQf9SGiGxr2OSWv"><script src="https://webforms.pipedrive.com/f/loader"></script>
+        <div class="mx-auto -translate-y-8">
+          <script src="https://js-na2.hsforms.net/forms/embed/242659175.js" defer></script>
+          <div class="hs-form-frame" data-region="na2" data-form-id="73dff930-5432-4c28-b6a7-926529f98dbe" data-portal-id="242659175"></div>
 		</div>
 	</div>
 </dialog>
+
+<script>
+  (() => {
+    const modal = document.getElementById('demoModal');
+    if (!modal) return;
+    const closeBtn = modal.querySelector('.close');
+
+    window.addEventListener('openDialog', () => {
+      // @ts-ignore
+      if (typeof modal.showModal === 'function') modal.showModal();
+    });
+
+    closeBtn && closeBtn.addEventListener('click', () => {
+      // @ts-ignore
+      if (typeof modal.close === 'function') modal.close();
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        // @ts-ignore
+        if (typeof modal.close === 'function') modal.close();
+      }
+    });
+  })();
+</script>
 
 <style>
 
@@ -151,4 +178,3 @@
 
 	
 </style>
-
